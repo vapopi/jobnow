@@ -1,6 +1,29 @@
 @extends('layouts.app')
 
 @section('content')
+<style>
+    h5 {
+        width: 100%; 
+        text-align: center; 
+        border-bottom: 1px solid #000; 
+        line-height: 0.1em;
+        margin: 10px 0 20px; 
+        font-weight: bold;
+    } 
+
+    h5 span { 
+        background: #fff; 
+        padding: 0 10px;.
+        font-weight: bold;
+
+    }
+
+    .color{  
+        background-color: #6356e5 !important;
+        border-color: #6356e5 !important;
+    }
+
+</style>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -53,7 +76,7 @@
 
                         <div class="row mb-0">
                             <div class="col-md-8 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="color btn btn-primary">
                                     {{ __('Login') }}
                                 </button>
 
@@ -65,6 +88,13 @@
                             </div>
                         </div>
                     </form>
+                    <div class="mx-auto w-75">
+                        <h5 class="mt-5"><span>OR</span></h5>
+                    </div>
+                    <div class="mt-5 col-md-12 text-center">
+                        <button id="client" type="button" class="color btn btn-primary">Sign up as a client</button>
+                        <button id="company" type="button" class="color btn btn-primary">Sign up as a business</button>
+                    </div>
                 </div>
             </div>
         </div>
