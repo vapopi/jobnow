@@ -22,7 +22,6 @@
         background-color: #6356e5 !important;
         border-color: #6356e5 !important;
     }
-
 </style>
 <div class="container">
     <div class="row justify-content-center">
@@ -95,6 +94,7 @@
                         <button id="client" type="button" class="color btn btn-primary">Sign up as a client</button>
                         <button id="company" type="button" class="color btn btn-primary">Sign up as a business</button>
                     </div>
+                    <br>
                 </div>
             </div>
         </div>
