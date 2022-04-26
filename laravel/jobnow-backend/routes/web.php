@@ -32,5 +32,5 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::resource('registeruser', RegisterUserController::class);
-Route::resource('registercompany', RegisterCompanyController::class);
+Route::resource('users', RegisterUserController::class);
+Route::resource('companies', RegisterCompanyController::class);

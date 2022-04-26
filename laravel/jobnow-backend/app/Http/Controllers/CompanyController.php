@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class RegisterUserController extends Controller
+class RegisterCompanyController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,7 +13,7 @@ class RegisterUserController extends Controller
      */
     public function index()
     {
-        return view("users.registerUser");
+        return view("companies.createCompany");
     }
 
     /**
