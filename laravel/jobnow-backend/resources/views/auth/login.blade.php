@@ -90,8 +90,8 @@
                         <h6 class="mt-5"><span>Or</span></h6>
                     </div>
                     <div class="mt-5 col-md-12 text-center">
-                        <a id="client" href="{{ route('registercompany.index') }}" class="color btn btn-primary">Sign up as a company</a>
-                        <a id="client" href="{{ route('registeruser.index') }}" class="color btn btn-primary">Sign up as a client</a>
+                        <a id="client" href="{{ route('users.create') }}" class="color btn btn-primary">Sign up as a company</a>
+                        <a id="client" href="{{ route('companies.create') }}" class="color btn btn-primary">Sign up as a client</a>
                     </div>
                     <br>
                 </div>

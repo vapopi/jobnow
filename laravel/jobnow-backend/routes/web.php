@@ -1,8 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use App\Http\Controllers\RegisterUserController;
-use App\Http\Controllers\RegisterCompanyController;
+use App\Http\Controllers\UserController;
+use App\Http\Controllers\CompanyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -32,5 +32,5 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-Route::resource('users', RegisterUserController::class);
-Route::resource('companies', RegisterCompanyController::class);
+Route::resource('users', UserController::class);
+Route::resource('companies', CompanyController::class);
