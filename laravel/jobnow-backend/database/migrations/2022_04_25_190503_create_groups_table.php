@@ -15,6 +15,13 @@ class CreateGroupsTable extends Migration
     {
         Schema::create('groups', function (Blueprint $table) {
             $table->id();
+            $table->string("name", 20);
+            $table->unsignedBigInteger("logo_id")->nullable();
+            $table->unsignedBigInteger("author_id")->nullable();
+            $table->unsignedBigInteger("company_id")->nullable();
+            $table->foreign("logo_id")->references("id")->on("files");
+            $table->foreign("author_id")->references("id")->on("users");
+            $table->foreign("company_id")->references("id")->on("companies");
             $table->timestamps();
         });
     }
@@ -26,6 +33,12 @@ class CreateGroupsTable extends Migration
      */
     public function down()
     {
+        Schema::table("groups", function(Blueprint $table) {
+            $table->dropForeign(['company_id']);
+            $table->dropForeign(['author_id']);
+            $table->dropForeign(['logo_id']);
+        });
+        
         Schema::dropIfExists('groups');
     }
 }
