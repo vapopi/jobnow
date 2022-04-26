@@ -24,6 +24,7 @@ class CreateCompaniesTable extends Migration
             $table->unsignedBigInteger("role_id");
             $table->foreign("logo_id")->references("id")->on("files");
             $table->foreign("role_id")->references("id")->on("roles");
+            $table->rememberToken();
             $table->timestamps();
         });
     }
