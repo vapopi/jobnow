@@ -34,6 +34,8 @@ class GroupController extends Controller
             'name' => 'required|max:20'
         ]);
 
+        //TODO: Guardar ficheros
+
         $group = Group::create($request->all());
 
         return response($group);
@@ -61,6 +63,8 @@ class GroupController extends Controller
      */
     public function update(Request $request, int $id)
     {
+        //TODO: Update fichero
+
         $group = Group::find($id)
         ->update($request->all());
 
@@ -75,6 +79,8 @@ class GroupController extends Controller
      */
     public function destroy(int $id)
     {
+        //TODO: Eliminar fichero
+        
         Group::destroy($id);
         return response(content: "Success. The group ${id} has been eliminated");
     }

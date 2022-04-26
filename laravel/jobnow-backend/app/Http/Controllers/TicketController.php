@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Models\Ticket;
 
 class TicketController extends Controller
 {
@@ -13,7 +15,11 @@ class TicketController extends Controller
      */
     public function index()
     {
-        //
+        $ticket = DB::table('tickets')
+        ->select('id', 'title', 'description', 'author_id', 'screenshot_id')
+        ->get();
+
+        return response($ticket);
     }
 
     /**
@@ -24,7 +30,17 @@ class TicketController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required|max:20',
+            'description' => 'required|max:255',
+            'author_id' => 'required'
+        ]);
+
+        //TODO: Guardar fichero
+
+        $ticket = Ticket::create($request->all());
+
+        return response($ticket);
     }
 
     /**
@@ -33,9 +49,11 @@ class TicketController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(int $id)
     {
-        //
+        $ticket = Ticket::find($id);
+
+        return response($ticket);
     }
 
     /**
@@ -45,9 +63,14 @@ class TicketController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, int $id)
     {
-        //
+        //TODO: Update fichero
+
+        $ticket = Ticket::find($id)
+        ->update($request->all());
+
+        return response($ticket);
     }
 
     /**
@@ -58,6 +81,9 @@ class TicketController extends Controller
      */
     public function destroy($id)
     {
-        //
+        //TODO: Eliminar fichero
+        
+        Ticket::destroy($id);
+        return response(content: "Success. The ticket ${id} has been eliminated");
     }
 }

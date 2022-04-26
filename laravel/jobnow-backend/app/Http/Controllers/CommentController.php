@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\Comment;
 
 class CommentController extends Controller
 {
@@ -11,9 +12,11 @@ class CommentController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(int $tid)
     {
-        //
+        $comments = Comment::where('ticket_id', '=', $tid)->get();
+
+        return response($comments);
     }
 
     /**
@@ -22,9 +25,18 @@ class CommentController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(int $tid, Request $request)
     {
-        //
+        $request->validate([
+            'comment' => 'required|max:255',
+            'author_id' => 'required'
+        ]);
+
+        $all = $request->all();
+        $all['ticket_id'] = $tid;
+        $comment = Comment::create($all);
+
+        return response($comment);
     }
 
     /**
@@ -33,9 +45,12 @@ class CommentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(int $tid, int $cid)
     {
-        //
+        $comment = Comment::where('ticket_id', '=', $tid)
+        ->find($cid);
+
+        return response($comment);
     }
 
     /**
@@ -45,9 +60,13 @@ class CommentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(int $tid, Request $request, int $cid)
     {
-        //
+        $comment = Comment::where('ticket_id', '=', $tid)
+        ->find($cid)
+        ->update($request->all());
+
+        return response($comment);
     }
 
     /**
@@ -56,8 +75,11 @@ class CommentController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(int $tid, int $cid)
     {
-        //
+        Comment::where('ticket_id', '=', $tid);
+        Comment::destroy($cid);
+
+        return response(content: "Success. The comment ${cid} has been eliminated");
     }
 }

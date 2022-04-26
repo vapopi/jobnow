@@ -64,7 +64,7 @@ class MessageController extends Controller
     {
         $message = Message::where('group_id', '=', $gid)
         ->find($mid)
-        ->update($request-all());
+        ->update($request->all());
 
         return response($message);
     }
