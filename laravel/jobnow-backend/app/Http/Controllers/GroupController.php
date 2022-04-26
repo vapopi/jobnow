@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Models\Group;
 
 class GroupController extends Controller
 {
@@ -13,7 +15,11 @@ class GroupController extends Controller
      */
     public function index()
     {
-        //
+        $group = DB::table('groups')
+        ->select('name', 'logo_id', 'author_id')
+        ->get();
+
+        return response($group);
     }
 
     /**
@@ -24,7 +30,13 @@ class GroupController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'name' => 'required|max:20'
+        ]);
+
+        $group = Group::create($request->all());
+
+        return response($group);
     }
 
     /**
@@ -33,9 +45,11 @@ class GroupController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(int $id)
     {
-        //
+        $group = Group::find($id);
+
+        return response($group);
     }
 
     /**
@@ -45,9 +59,12 @@ class GroupController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, int $id)
     {
-        //
+        $group = Group::find($id)
+        ->update($request->all());
+
+        return response($chat);
     }
 
     /**
@@ -56,8 +73,9 @@ class GroupController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(int $id)
     {
-        //
+        Group::destroy($id);
+        return response(content: "Success. The group ${id} has been eliminated");
     }
 }

@@ -27,6 +27,7 @@ class CreateRolesTable extends Migration
             $table->string("phone", 20)->unique();
             $table->timestamp("birth_date");
             $table->boolean("terms");
+            $table->boolean("premium");
             $table->unsignedBigInteger("avatar_id");
             $table->unsignedBigInteger("role_id");
             $table->foreign("avatar_id")->references("id")->on("files");
