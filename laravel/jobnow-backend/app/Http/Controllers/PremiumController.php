@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class SecurityController extends Controller
+class PremiumController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,6 +13,6 @@ class SecurityController extends Controller
      */
     public function index()
     {
-        return view("security.index");
+        return view("premium.index");
     }
 }
