@@ -1,11 +1,20 @@
 @extends('layouts.app')
 
 @section('content')
+<style>
+    .color{  
+        background-color: #6356e5 !important;
+        border-color: #6356e5 !important;
+    }
+</style>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
             <div class="card">
-                <div class="card-header">{{ __('Reset Password') }}</div>
+                <div class="card-header">
+                    <a href="{{ route('login') }}" class="float-end link-secondary" role="button"> 🡰 Go back</a>
+                    {{ __('Change Password') }}
+                </div>
 
                 <div class="card-body">
                     @if (session('status'))
@@ -33,7 +42,7 @@
 
                         <div class="row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="color btn btn-primary">
                                     {{ __('Send Password Reset Link') }}
                                 </button>
                             </div>
