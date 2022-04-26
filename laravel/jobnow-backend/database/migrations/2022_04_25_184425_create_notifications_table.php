@@ -32,7 +32,7 @@ class CreateNotificationsTable extends Migration
      */
     public function down()
     {
-        Schema::table("otifications", function(Blueprint $table) {
+        Schema::table("notifications", function(Blueprint $table) {
             $table->dropForeign(['company_id']);
             $table->dropForeign(['author_id']);
         });
