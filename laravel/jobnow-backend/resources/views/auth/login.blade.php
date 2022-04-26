@@ -2,7 +2,7 @@
 
 @section('content')
 <style>
-    h5 {
+    h6 {
         width: 100%; 
         text-align: center; 
         border-bottom: 1px solid #000; 
@@ -11,7 +11,7 @@
         font-weight: bold;
     } 
 
-    h5 span { 
+    h6 span { 
         background: #fff; 
         padding: 0 10px;.
         font-weight: bold;
@@ -38,7 +38,6 @@
 
                             <div class="col-md-6">
                                 <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-
                                 @error('email')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -88,11 +87,11 @@
                         </div>
                     </form>
                     <div class="mx-auto w-75">
-                        <h5 class="mt-5"><span>OR</span></h5>
+                        <h6 class="mt-5"><span>Or</span></h6>
                     </div>
                     <div class="mt-5 col-md-12 text-center">
-                        <button id="client" type="button" class="color btn btn-primary">Sign up as a client</button>
-                        <button id="company" type="button" class="color btn btn-primary">Sign up as a business</button>
+                        <a id="client" href="{{ route('registercompany.index') }}" class="color btn btn-primary">Sign up as a company</a>
+                        <a id="client" href="{{ route('registeruser.index') }}" class="color btn btn-primary">Sign up as a client</a>
                     </div>
                     <br>
                 </div>
