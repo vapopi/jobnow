@@ -23,7 +23,7 @@ class CompanyController extends Controller
      */
     public function create()
     {
-        return view("companies.createCompany");
+        return view("companies.create");
     }
 
     /**
@@ -56,7 +56,7 @@ class CompanyController extends Controller
      */
     public function edit($id)
     {
-        //
+        return view('companies.edit');
     }
 
     /**
