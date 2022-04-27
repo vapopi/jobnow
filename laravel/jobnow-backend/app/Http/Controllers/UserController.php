@@ -13,7 +13,9 @@ class UserController extends Controller
      */
     public function index()
     {
-        //
+        return view("users.index", [
+            "users" => User::all(),
+        ]);
     }
 
     /**
@@ -23,6 +25,14 @@ class UserController extends Controller
      */
     public function create()
     {
+        // TODO: añadir lo que queramos que muestre la vista
+
+        // return view("users.create", [
+        //     "roles" => Role::all(),
+        // ]);
+
+        // Ejemplo devolver roles ^^^^^
+
         return view("users.create");
     }
 
@@ -34,7 +44,48 @@ class UserController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+            'surnames' => 'required',
+            'email' => 'required',
+            'birth' => 'required',
+            'phone' => 'required',
+            'password' => 'required|min:6',
+            'upload' => 'required|mimes:gif,jpeg,jpg,png|max:2048'
+        ]);
+
+        $input = $request->all();
+        $input['password'] = Hash::Make($input['password']);
+
+        $upload = $request->file('upload');
+        $fileName = $upload->getClientOriginalName();
+        $fileSize = $upload->getSize();
+        $uploadName = time() . '_' . $fileName;
+
+        $filePath = $upload->storeAs(
+            'uploads',    
+            $uploadName,   
+            'public'        
+        );
+
+        if (Storage::disk('public')->exists($filePath)) {
+
+            $fullPath = Storage::disk('public')->path($filePath);
+
+            $file = File::create([
+                'filepath' => $filePath,
+                'filesize' => $fileSize,
+            ]);
+
+            $upload->filepath = $filePath;
+            $upload->filesize = $fileSize;
+            $input['photo_id'] = $file->id;
+        }
+
+        $user = User::create($input);
+
+        return redirect()->route('users.show', $user)
+            ->with('success', "L'usuari " . $user->name . " s'ha creat correctament.");
     }
 
     /**
