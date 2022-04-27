@@ -11,9 +11,11 @@ class OfferController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(int $company_id)
     {
-        //
+        $offers = Offer::where('company_id', '=', $company_id)->get();
+
+        return response($offers);
     }
 
     /**
@@ -22,9 +24,18 @@ class OfferController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(int $company_id, Request $request)
     {
-        //
+        $request->validate([
+            'offer' => 'required|max:255',
+            'company_id' => 'required'
+        ]);
+
+        $all = $request->all();
+        $all['company_id'] = $company_id;
+        $offer = Offer::create($all);
+
+        return response($offer);
     }
 
     /**
@@ -33,9 +44,12 @@ class OfferController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(int $id, int $company_id)
     {
-        //
+        $offer = Offer::where('company_id', '=', $company_id)
+        ->find($id);
+
+        return response($offer);
     }
 
     /**
@@ -45,9 +59,13 @@ class OfferController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, int $id, int $company_id)
     {
-        //
+        $offer = Offer::where('company_id', '=', $company_id)
+        ->find($id)
+        ->update($request->all());
+
+        return response($offer);
     }
 
     /**
@@ -56,8 +74,11 @@ class OfferController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(int $id, int $company_id)
     {
-        //
+        Offer::where('company_id', '=', $company_id);
+        Offer::destroy($id);
+
+        return response(content: "Success. The offer ${id} has been eliminated");
     }
 }
