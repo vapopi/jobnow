@@ -11,9 +11,11 @@ class NotificationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(int $author_id)
     {
-        //
+        $notifications = Notification::where('author_id', '=', $author_id)->get();
+
+        return response($notifications);
     }
 
     /**
@@ -22,9 +24,18 @@ class NotificationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(int $author_id, Request $request)
     {
-        //
+        $request->validate([
+            'notification' => 'required|max:255',
+            'author_id' => 'required'
+        ]);
+
+        $all = $request->all();
+        $all['author_id'] = $author_id;
+        $notification = Notification::create($all);
+
+        return response($notification);
     }
 
     /**
@@ -33,21 +44,12 @@ class NotificationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(int $id, int $author_id)
     {
-        //
-    }
+        $notification = Notification::where('author_id', '=', $author_id)
+        ->find($id);
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
+        return response($notification);
     }
 
     /**
@@ -56,8 +58,11 @@ class NotificationController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(int $id, int $author_id)
     {
-        //
+        Notification::where('author_id', '=', $author_id);
+        Notification::destroy($id);
+
+        return response(content: "Success. The notification ${id} has been eliminated");
     }
 }
