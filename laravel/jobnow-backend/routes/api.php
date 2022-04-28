@@ -26,27 +26,19 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 });
 
 //apiResources
-Route::apiResource('groups', GroupController::class);
-Route::apiResource('groups/{gid}/messages', MessageController::class);
+Route::apiResource('messages', MessageController::class);
 Route::apiResource('tickets', TicketController::class);
 Route::apiResource('tickets/{tid}/comments', CommentController::class);
 Route::apiResource('notifications', NotificationController::class)->middleware('auth');
 Route::apiResource('posts', PostController::class);
 Route::apiResource('offers', OfferController::class);
 
-// //Middleware rutas API Group
-// Route::get('api/groups', [GroupController::class, 'index'])->middleware(['auth', 'roles: 1, 4, 5']);
-// Route::post('api/groups', [GroupController::class, 'store'])->middleware(['auth', 'roles: 1, 4, 5']);
-// Route::get('api/groups/{group}', [GroupController::class, 'show'])->middleware(['auth', 'roles: 1, 4, 5']);
-// Route::put('api/groups/{group}', [GroupController::class, 'update'])->middleware(['auth', 'roles: 1, 4, 5']);
-// Route::delete('api/groups/{group}', [GroupController::class, 'destroy'])->middleware(['auth', 'roles: 1, 4, 5']);
-
 // //Middleware rutas API Message
-// Route::get('api/groups/{gid}/messages/{message}', [MessageController::class, 'index'])->middleware(['auth', 'roles: 1, 3, 4, 5']);
-// Route::post('api/groups/{gid}/messages', [MessageController::class, 'store'])->middleware(['auth', 'roles: 1, 4, 5']);
-// Route::get('api/groups/{gid}/messages/{message}', [MessageController::class, 'show'])->middleware(['auth', 'roles: 1, 3, 4, 5']);
-// Route::put('api/groups/{gid}/messages/{message}', [MessageController::class, 'update'])->middleware(['auth', 'roles: 1, 4, 5']);
-// Route::delete('api/groups/{gid}/messages/{message}', [MessageController::class, 'destroy'])->middleware(['auth', 'roles: 1, 3, 4, 5']);
+// Route::get('api/messages/{message}', [MessageController::class, 'index'])->middleware(['auth', 'roles: 1, 3, 4, 5']);
+// Route::post('api/messages', [MessageController::class, 'store'])->middleware(['auth', 'roles: 1, 4, 5']);
+// Route::get('api/messages/{message}', [MessageController::class, 'show'])->middleware(['auth', 'roles: 1, 3, 4, 5']);
+// Route::put('api/messages/{message}', [MessageController::class, 'update'])->middleware(['auth', 'roles: 1, 4, 5']);
+// Route::delete('api/messages/{message}', [MessageController::class, 'destroy'])->middleware(['auth', 'roles: 1, 3, 4, 5']);
 
 // //Middleware rutas API Ticket
 // Route::get('api/tickets', [TicketController::class, 'index'])->middleware(['auth', 'roles: 1, 2']);

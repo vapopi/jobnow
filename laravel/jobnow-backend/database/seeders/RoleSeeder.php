@@ -27,10 +27,6 @@ class RoleSeeder extends Seeder
         ]);
 
         DB::table('roles')->insert([
-            'name' => 'company'
-        ]);
-
-        DB::table('roles')->insert([
             'name' => 'basic'
         ]);
     }

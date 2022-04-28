@@ -18,8 +18,7 @@ class CreatePostsTable extends Migration
             $table->string("title", 20);
             $table->string("description");
             $table->integer("likes");
-            $table->unsignedBigInteger("author_id")->nullable();
-            $table->unsignedBigInteger("company_id")->nullable();
+            $table->unsignedBigInteger("author_id");
             $table->unsignedBigInteger("image_id")->nullable();
             $table->timestamps();
         });
@@ -34,7 +33,6 @@ class CreatePostsTable extends Migration
     {
         Schema::table('posts', function(Blueprint $table) {
             $table->dropForeign(['image_id']);
-            $table->dropForeign(['company_id']);
             $table->dropForeign(['author_id']);
         });
 

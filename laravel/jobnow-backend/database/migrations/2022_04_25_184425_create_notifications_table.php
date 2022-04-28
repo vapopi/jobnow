@@ -17,10 +17,8 @@ class CreateNotificationsTable extends Migration
             $table->id();
             $table->string("title", 20);
             $table->string("description");
-            $table->unsignedBigInteger("author_id")->nullable();
-            $table->unsignedBigInteger("company_id")->nullable();
+            $table->unsignedBigInteger("author_id");
             $table->foreign("author_id")->references("id")->on("users");
-            $table->foreign("company_id")->references("id")->on("companies");
             $table->timestamps();
         });
     }
@@ -33,7 +31,6 @@ class CreateNotificationsTable extends Migration
     public function down()
     {
         Schema::table("notifications", function(Blueprint $table) {
-            $table->dropForeign(['company_id']);
             $table->dropForeign(['author_id']);
         });
 

@@ -17,11 +17,9 @@ class CreateMessagesTable extends Migration
             $table->id();
             $table->string("message");
             $table->unsignedBigInteger("author_id");
-            $table->unsignedBigInteger("receiver_id")->nullable();
-            $table->unsignedBigInteger("group_id")->nullable();
+            $table->unsignedBigInteger("receiver_id");
             $table->foreign("author_id")->references("id")->on("users");
             $table->foreign("receiver_id")->references("id")->on("users");
-            $table->foreign("group_id")->references("id")->on("users");
             $table->timestamps();
         });
     }
@@ -34,7 +32,6 @@ class CreateMessagesTable extends Migration
     public function down()
     {
         Schema::table("messages", function(Blueprint $table) {
-            $table->dropForeign(['group_id']);
             $table->dropForeign(['receiver_id']);
             $table->dropForeign(['author_id']);
         });
