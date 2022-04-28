@@ -35,35 +35,32 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 
 
 Route::resource('/users', UserController::class);
-Route::resource('/companies', CompanyController::class);
-Route::resource('/security', SecurityController::class)->middleware(['auth', 'roles: 1']);
+Route::resource('/companies', CompanyController::class)->middleware(['auth', 'roles: 1. 4', 'verified']);
+Route::resource('/security', SecurityController::class)->middleware(['auth', 'roles: 1', 'verified']);
 Route::resource('/premium', PremiumController::class);
 
-// // Middleware rutas User
-// Route::resource('/users', UserController::class)->only([
+// Middleware rutas User
+Route::resource('/users', UserController::class)->only([
 
-//     'index', 'create', 'store', 'destroy'
+    'index', 'create', 'store', 'destroy'
 
-// ])->middleware(['auth', 'roles: 1']);
+])->middleware(['auth', 'roles: 1', 'verified']);
+
+Route::resource('/users', UserController::class)->only([
+
+    'create', 'store'
+
+])->middleware('guest');
 
 Route::resource('/users', UserController::class)->only([
 
     'edit', 'update'
 
-])->middleware('auth');
-// Route::get('users/create', [UserController::class, 'create'])->middleware('guest');
-// Route::post('users', [UserController::class, 'store'])->middleware('guest');
+])->middleware(['auth', 'verified']);
 
-// //Middleware rutas Company
-// Route::get('/companies', [UserController::class, 'index'])->middleware(['auth', 'roles: 1']);
-// Route::get('/companies/create', [UserController::class, 'create'])->middleware(['auth', 'roles: 1']);
-// Route::get('/companies/create', [UserController::class, 'create'])->middleware('guest');
-// Route::post('/companies', [UserController::class, 'store'])->middleware(['auth', 'roles: 1']);
-// Route::post('/companies', [UserController::class, 'store'])->middleware('guest');
-// Route::get('/companies/{company}', [UserController::class, 'show'])->middleware(['auth', 'roles: 1']);
-// Route::get('/companies/{company}/edit', [UserController::class, 'edit'])->middleware(['auth']);
-// Route::put('/companies/{company}', [UserController::class, 'update'])->middleware(['auth']);
-// Route::delete('/companies/{company}', [UserController::class, 'destroy'])->middleware(['auth', 'roles: 1']);
+//Middleware rutas Premium
+Route::resource('/premium', PremiumController::class)->only([
 
-// //Middleware rutas Premium
-// Route::get('/premium', [PremiumController::class], 'index')->middleware(['auth', 'roles: 4, 5']);
+    'index'
+
+])->middleware(['auth', 'roles: 4', 'verified']);
