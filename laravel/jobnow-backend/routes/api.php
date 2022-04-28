@@ -28,42 +28,59 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 //apiResources
 Route::apiResource('messages', MessageController::class);
 Route::apiResource('tickets', TicketController::class);
-Route::apiResource('tickets/{tid}/comments', CommentController::class);
-Route::apiResource('notifications', NotificationController::class)->middleware('auth');
+Route::apiResource('tickets/{tid}/comments', CommentController::class)->middleware(['auth', 'roles: 2, 4', 'verified']);
+Route::apiResource('notifications', NotificationController::class)->middleware('auth', 'verified');
 Route::apiResource('posts', PostController::class);
-Route::apiResource('offers', OfferController::class);
+Route::apiResource('offers', OfferController::class)->middleware('auth', 'roles: 1, 4', 'verified');
 
 // //Middleware rutas API Message
-// Route::get('api/messages/{message}', [MessageController::class, 'index'])->middleware(['auth', 'roles: 1, 3, 4, 5']);
-// Route::post('api/messages', [MessageController::class, 'store'])->middleware(['auth', 'roles: 1, 4, 5']);
-// Route::get('api/messages/{message}', [MessageController::class, 'show'])->middleware(['auth', 'roles: 1, 3, 4, 5']);
-// Route::put('api/messages/{message}', [MessageController::class, 'update'])->middleware(['auth', 'roles: 1, 4, 5']);
-// Route::delete('api/messages/{message}', [MessageController::class, 'destroy'])->middleware(['auth', 'roles: 1, 3, 4, 5']);
+Route::apiResource('messages', MessageController::class)->only([
+
+    'index', 'show', 'destroy'
+
+])->middleware('auth', 'roles: 1, 3, 4', 'verified');
+
+Route::apiResource('messages', MessageController::class)->only([
+
+    'store', 'update'
+
+])->middleware('auth', 'roles: 1, 4', 'verified');
 
 // //Middleware rutas API Ticket
-// Route::get('api/tickets', [TicketController::class, 'index'])->middleware(['auth', 'roles: 1, 2']);
-// Route::post('api/tickets', [TicketController::class, 'store'])->middleware(['auth', 'roles: 1, 5']);
-// Route::get('api/tickets/{ticket}', [TicketController::class, 'show'])->middleware(['auth', 'roles: 1, 2, 5']);
-// Route::put('api/tickets/{ticket}', [TicketController::class, 'update'])->middleware(['auth', 'roles: 1, 2, 5']);
-// Route::delete('api/tickets/{ticket}', [TicketController::class, 'destroy'])->middleware(['auth', 'roles: 1']);
 
-// //Middleware rutas API Comment
-// Route::get('api/tickets/{tid}/comments', [CommentController::class, 'index'])->middleware(['auth', 'roles: 2, 5']);
-// Route::post('api/tickets/{tid}/comments', [CommentController::class, 'store'])->middleware(['auth', 'roles: 2, 5']);
-// Route::get('api/tickets/{tid}/comments/{comment}', [CommentController::class, 'show'])->middleware(['auth', 'roles: 2, 5']);
-// Route::put('api/tickets/{tid}/comments/{comment}', [CommentController::class, 'update'])->middleware(['auth', 'roles: 2, 5']);
-// Route::delete('api/tickets/{tid}/comments/{comment}', [CommentController::class, 'destroy'])->middleware(['auth', 'roles: 2, 5']);
+Route::apiResource('tickets', TicketController::class)->only([
 
-// //Middleware rutas API Post
-// Route::get('api/posts', [PostController::class, 'index'])->middleware(['auth', 'roles: 1, 4, 5']);
-// Route::post('api/posts', [PostController::class, 'store'])->middleware(['auth', 'roles: 1, 4, 5']);
-// Route::get('api/posts/{post}', [PostController::class, 'show'])->middleware(['auth', 'roles: 1, 3, 4, 5']);
-// Route::put('api/posts/{post}', [PostController::class, 'update'])->middleware(['auth', 'roles: 1, 4, 5']);
-// Route::delete('api/posts/{post}', [PostController::class, 'destroy'])->middleware(['auth', 'roles: 1, 3, 4, 5']);
+    'index'
 
-// //Middleware rutas API Offer
-// Route::get('api/offers', [OfferController::class, 'index'])->middleware(['auth', 'roles: 1, 5']);
-// Route::post('api/offers', [OfferController::class, 'store'])->middleware(['auth', 'roles: 1, 4']);
-// Route::get('api/offers/{offer}', [OfferController::class, 'show'])->middleware(['auth', 'roles: 1, 4, 5']);
-// Route::put('api/offers/{offer}', [OfferController::class, 'update'])->middleware(['auth', 'roles: 1, 4']);
-// Route::delete('api/offers/{offer}', [OfferController::class, 'destroy'])->middleware(['auth', 'roles: 1, 4']);
+])->middleware(['auth', 'roles: 1, 2', 'verified']);
+
+Route::apiResource('tickets', TicketController::class)->only([
+
+    'store'
+
+])->middleware(['auth', 'roles: 1, 4', 'verified']);
+
+Route::apiResource('tickets', TicketController::class)->only([
+
+    'show', 'update'
+
+])->middleware(['auth', 'roles: 1, 2, 4', 'verified']);
+
+Route::apiResource('tickets', TicketController::class)->only([
+
+    'destroy'
+
+])->middleware(['auth', 'roles: 1', 'verified']);
+
+//Middleware rutas API Post
+Route::apiResource('posts', PostController::class)->only([
+
+    'index', 'store', 'update'
+
+])->middleware(['auth', 'roles: 1, 4', 'verified']);
+
+Route::apiResource('posts', PostController::class)->only([
+
+    'show', 'destroy'
+
+])->middleware(['auth', 'roles: 1, 2, 4', 'verified']);
