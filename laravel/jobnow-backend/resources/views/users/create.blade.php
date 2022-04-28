@@ -92,7 +92,7 @@
                             <label class="col-md-4 col-form-label text-md-end">{{ __('Profile Picture') }}</label>
 
                             <div class="col-md-6">
-                                <input type="file" class="form-control" id="customFile" name="avatar_id"/>
+                                <input type="file" class="form-control" id="customFile" name="avatar_id" required/>
                             </div>
                         </div>
 
@@ -100,7 +100,7 @@
                         <div class="mt-4 row mb-3">
                             <div class="col-md-6 offset-md-2">
                                 <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" required {{ old('remember') ? 'checked' : '' }}>
 
                                     <label class="form-check-label" for="remember">
                                         {{ __('I accept the') }} <span class="color">terms and conditions</span>
@@ -110,10 +110,7 @@
                         </div>
                         <br>
                         <div class="mt-3 col-md-12 text-center">
-                            <button class="text-center bColor btn btn-primary w-25" type="submit" onClick="document.getElementById('spin').style.display='inline-block'">
-                                <div id="spin" style="display: none;" class="spinner-border spinner-border-sm" role="status"></div>
-                                Sign Up
-                            </button>
+                            <button class="text-center bColor btn btn-primary w-50" type="submit">Sign Up</button>
                         </div>
                         <br>
                     </form>

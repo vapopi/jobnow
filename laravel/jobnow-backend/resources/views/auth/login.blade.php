@@ -22,6 +22,12 @@
         background-color: #6356e5 !important;
         border-color: #6356e5 !important;
     }
+
+    .sColor{  
+        background-color: #323232 !important;
+        border-color: #323232 !important;
+    }
+
 </style>
 <div class="container">
 
@@ -81,7 +87,7 @@
                         </div>
 
                         <div class="row mb-0">
-                            <div class="w-50 offset-md-4">
+                            <div class="w-50 text-center mx-auto">
                                 <button type="submit" class="w-50 color btn btn-primary">
                                     {{ __('Login') }}
                                 </button>
@@ -91,9 +97,9 @@
                     <div class="mx-auto w-75">
                         <h6 class="mt-5"><span>Or</span></h6>
                     </div>
-                    <div class="mt-5 col-md-12 text-center">
-                        <a id="client" href="{{ route('users.create') }}" class="color btn btn-primary">Sign up as a client</a>
-                        <a id="client" href="{{ route('companies.create') }}" class="color btn btn-primary">Sign up as a company</a>
+                    <br>
+                    <div class="mx-auto text-center">
+                        <a id="client" href="{{ route('users.create') }}" class="mx-auto w-25 sColor btn btn-primary">Sign Up</a>
                     </div>
                     <br>
                 </div>

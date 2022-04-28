@@ -88,7 +88,7 @@ class UserController extends Controller
             $input['avatar_id'] = $file->id;
         }
 
-        $input['role_id'] = 1;
+        $input['role_id'] = 4;
 
         $user = User::create($input);
 

@@ -39,12 +39,12 @@ Route::resource('/companies', CompanyController::class);
 Route::resource('/security', SecurityController::class)->middleware(['auth', 'roles: 1']);
 Route::resource('/premium', PremiumController::class);
 
-// Middleware rutas User
-Route::resource('/users', UserController::class)->only([
+// // Middleware rutas User
+// Route::resource('/users', UserController::class)->only([
 
-    'index', 'create', 'store', 'destroy'
+//     'index', 'create', 'store', 'destroy'
 
-])->middleware(['auth', 'roles: 1']);
+// ])->middleware(['auth', 'roles: 1']);
 
 Route::resource('/users', UserController::class)->only([
 
