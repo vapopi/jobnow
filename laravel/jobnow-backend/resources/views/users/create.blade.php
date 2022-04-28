@@ -38,12 +38,6 @@
 
                             <div class="col-md-6">
                                 <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-
-                                @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
                             </div>
                         </div>
 
@@ -53,11 +47,6 @@
                             <div class="col-md-6">
                                 <input id="surnames" type="text" class="form-control" name="surnames" required autofocus>
 
-                                @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
                             </div>
                         </div>
 
@@ -66,12 +55,6 @@
 
                             <div class="col-md-6">
                                 <input id="email" type="text" class="form-control" name="email" required autofocus>
-
-                                @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
                             </div>
                         </div>
 
@@ -79,13 +62,7 @@
                             <label class="col-md-4 col-form-label text-md-end">{{ __('Date of birth') }}</label>
 
                             <div class="col-md-6">
-                                <input id="birth" type="text" class="form-control" name="birth" required>
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                <input id="birth" type="text" class="form-control" name="birth_date" required>
                             </div>
                         </div>
 
@@ -94,12 +71,6 @@
 
                             <div class="col-md-6">
                                 <input id="phone" type="text" class="form-control" name="phone" required>
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
                             </div>
                         </div>
 
@@ -108,12 +79,6 @@
 
                             <div class="col-md-6">
                                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
                             </div>
                         </div>
 
@@ -129,7 +94,7 @@
                             <label class="col-md-4 col-form-label text-md-end">{{ __('Profile Picture') }}</label>
 
                             <div class="col-md-6">
-                                <input type="file" class="form-control" id="customFile" />
+                                <input type="file" class="form-control" id="customFile" name="avatar_id"/>
                             </div>
                         </div>
 

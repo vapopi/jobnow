@@ -48,10 +48,11 @@ class UserController extends Controller
             'name' => 'required',
             'surnames' => 'required',
             'email' => 'required',
-            'birth' => 'required',
+            'birth_date' => 'required',
             'phone' => 'required',
             'password' => 'required|min:6',
-            'upload' => 'required|mimes:gif,jpeg,jpg,png|max:2048'
+            'password_confirmation' => 'required|min:6',
+            'avatar_id' => 'required|mimes:gif,jpeg,jpg,png|max:2048'
         ]);
 
         $input = $request->all();
@@ -79,7 +80,7 @@ class UserController extends Controller
 
             $upload->filepath = $filePath;
             $upload->filesize = $fileSize;
-            $input['photo_id'] = $file->id;
+            $input['avatar_id'] = $file->id;
         }
 
         $user = User::create($input);
@@ -96,7 +97,22 @@ class UserController extends Controller
      */
     public function show($id)
     {
-        //
+
+        // TODO: añadir lo que queramos que muestre la vista
+    
+        // $file = File::where('id', $user->photo_id)->first();
+        // $role = Role::where('id', $user->role_id)->first();
+        
+        // return view('users.show',  [
+        //     "user" => $user,
+        //     "role" => $role,
+        //     "file" => $file
+        // ]);
+
+        // Ejemplo devolver datos usuario ^^^^^
+
+        return view("users.show");
+
     }
 
     /**
@@ -105,8 +121,17 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(User $user)
     {
+        // TODO: añadir lo que queramos que muestre la vista
+
+        // return view('users.edit',  [
+        //     "user" => $user,
+        //     "roles" => Role::all()
+        // ]);
+
+        // Ejemplo devolver datos ^^^^^
+
         return view("users.edit");
     }
 
@@ -117,9 +142,57 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, User $user)
     {
-        //
+        $this->validate($request, [
+            'name' => 'required',
+            'surnames' => 'required',
+            'email' => 'required',
+            'birth_date' => 'required',
+            'phone' => 'required',
+            'password' => 'required|min:6',
+            'password_confirmation' => 'required|min:6',
+            'avatar_id' => 'required|mimes:gif,jpeg,jpg,png|max:2048'
+        ]);
+
+        if($request->hasFile('avatar_id'))
+        {
+            $file = File::where('id', $user->photo_id)->first();
+
+            $antigua_ruta = $file -> filepath;
+            $upload = $request->file('avatar_id');
+            $fileName = $upload->getClientOriginalName();
+            $fileSize = $upload->getSize();
+    
+            $uploadName = time() . '_' . $fileName;
+            $filePath = $upload->storeAs(
+                'uploads',    
+                $uploadName,   
+                'public'        
+            );
+
+            if (\Storage::disk('public')->exists($filePath)) {
+
+                $fullPath = \Storage::disk('public')->path($filePath);
+                $file->filepath = $filePath;
+                $file->filesize = $fileSize;
+                $file->save();
+
+                Storage::disk('public')->delete($antigua_ruta);
+            }
+        }
+
+        $user->name = $request->name;
+        $user->surnames = $request->surnames;
+        $user->email = $request->email;
+        $user->birth_date = $request->birth_date;
+        $user->phone = $request->phone;
+        $user->password = $request->password;
+        $user->avatar_id = $request->avatar_id;
+        $user->save();
+
+        return redirect()->route('users.show', $user)
+            ->with('success', "L'usuari " .$user->name. " s'ha editat correctament.");
     }
 
     /**
@@ -128,8 +201,15 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(User $user)
     {
-        //
+        $file = File::where('id', $user->avatar_id)->first();
+
+        $user->delete();
+        $file->delete();
+        Storage::disk('public')->delete($file->filepath);
+
+        return redirect()->route("users.index")
+            ->with('success', "L'usuari " . $user->name . " s'ha esborrat correctament");
     }
 }

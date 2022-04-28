@@ -22,7 +22,6 @@ class CreateRolesTable extends Migration
         });
 
         Schema::table('users', function(Blueprint $table) {
-            $table->string("username", 20);
             $table->string("surnames", 50);
             $table->string("phone", 20)->unique();
             $table->timestamp("birth_date");
