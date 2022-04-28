@@ -17,8 +17,8 @@
         <script src="{{ asset('js/app.js') }}" defer></script>
     </head>
     <body>
-        @include('flash')
         <div class="font-sans text-gray-900 antialiased">
+            @include('flash')
             {{ $slot }}
         </div>
     </body>

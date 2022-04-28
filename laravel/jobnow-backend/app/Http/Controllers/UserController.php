@@ -53,10 +53,11 @@ class UserController extends Controller
             'surnames' => 'required',
             'email' => 'required|email',
             'birth_date' => 'required|date',
-            'phone' => 'required|integer|size:10',
+            'phone' => 'required|max:20',
             'password' => 'required|min:6',
             'password_confirmation' => 'required|min:6|same:password',
-            'avatar_id' => 'required|mimes:gif,jpeg,jpg,png|max:2048'
+            'avatar_id' => 'required|mimes:gif,jpeg,jpg,png|max:2048',
+            'remember' => 'required'
         ]);
 
         $input = $request->all();
@@ -91,7 +92,7 @@ class UserController extends Controller
 
         $user = User::create($input);
 
-        return redirect()->route('dashboard')
+        return redirect()->route('login')
             ->with('success', "L'usuari " . $user->name . " s'ha creat correctament.");
     }
 

@@ -19,9 +19,6 @@ use App\Http\Controllers\PremiumController;
 */
 
 Route::get('/', function (Request $request) {
-    $message = 'Loading welcome page';
-    Log::info($message);
-    $request->session()->flash('info', $message);
     return view('auth.login');
  });
  

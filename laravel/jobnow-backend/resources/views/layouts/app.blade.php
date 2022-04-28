@@ -23,9 +23,8 @@
 </head>
 <body>
     <div id="app">
-        @include('flash')
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
+            <div class="container">.
                 <a class="navbar-brand" href="{{ url('/') }}">
                     {{ config('app.name', 'jobnow') }}
                 </a>
@@ -68,6 +67,7 @@
         </nav>
 
         <main class="py-4">
+            @include('flash')
             @yield('content')
         </main>
     </div>
