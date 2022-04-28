@@ -37,29 +37,29 @@ Route::resource('/security', SecurityController::class);
 Route::resource('/premium', PremiumController::class);
 
 //Middleware rutas User
-Route::get('/users', [UserController::class, 'index'])->middleware(['auth', 'roles: 1']);
-Route::get('/users/create', [UserController::class, 'create'])->middleware(['auth', 'roles: 1']);
-Route::get('/users/create', [UserController::class, 'create'])->middleware('guest');
-Route::post('/users', [UserController::class, 'store'])->middleware(['auth', 'roles: 1']);
-Route::post('/users', [UserController::class, 'store'])->middleware('guest');
-Route::get('/users/{user}', [UserController::class, 'show'])->middleware(['auth', 'roles: 1']);
-Route::get('/users/{user}/edit', [UserController::class, 'edit'])->middleware(['auth']);
-Route::put('/users/{user}', [UserController::class, 'update'])->middleware(['auth']);
-Route::delete('/users/{user}', [UserController::class, 'destroy'])->middleware(['auth', 'roles: 1']);
+// Route::get('users', [UserController::class, 'index'])->middleware(['auth', 'roles: 1']);
+// Route::get('users/create', [UserController::class, 'create'])->middleware(['auth', 'roles: 1']);
+// Route::get('users/create', [UserController::class, 'create'])->middleware('guest');
+// Route::post('users', [UserController::class, 'store'])->middleware(['auth', 'roles: 1']);
+// Route::post('users', [UserController::class, 'store'])->middleware('guest');
+// Route::get('users/{user}', [UserController::class, 'show'])->middleware(['auth', 'roles: 1']);
+// Route::get('users/{user}/edit', [UserController::class, 'edit'])->middleware(['auth']);
+// Route::put('users/{user}', [UserController::class, 'update'])->middleware(['auth']);
+// Route::delete('users/{user}', [UserController::class, 'destroy'])->middleware(['auth', 'roles: 1']);
 
-//Middleware rutas Company
-Route::get('/companies', [UserController::class, 'index'])->middleware(['auth', 'roles: 1']);
-Route::get('/companies/create', [UserController::class, 'create'])->middleware(['auth', 'roles: 1']);
-Route::get('/companies/create', [UserController::class, 'create'])->middleware('guest');
-Route::post('/companies', [UserController::class, 'store'])->middleware(['auth', 'roles: 1']);
-Route::post('/companies', [UserController::class, 'store'])->middleware('guest');
-Route::get('/companies/{company}', [UserController::class, 'show'])->middleware(['auth', 'roles: 1']);
-Route::get('/companies/{company}/edit', [UserController::class, 'edit'])->middleware(['auth']);
-Route::put('/companies/{company}', [UserController::class, 'update'])->middleware(['auth']);
-Route::delete('/companies/{company}', [UserController::class, 'destroy'])->middleware(['auth', 'roles: 1']);
+// //Middleware rutas Company
+// Route::get('/companies', [UserController::class, 'index'])->middleware(['auth', 'roles: 1']);
+// Route::get('/companies/create', [UserController::class, 'create'])->middleware(['auth', 'roles: 1']);
+// Route::get('/companies/create', [UserController::class, 'create'])->middleware('guest');
+// Route::post('/companies', [UserController::class, 'store'])->middleware(['auth', 'roles: 1']);
+// Route::post('/companies', [UserController::class, 'store'])->middleware('guest');
+// Route::get('/companies/{company}', [UserController::class, 'show'])->middleware(['auth', 'roles: 1']);
+// Route::get('/companies/{company}/edit', [UserController::class, 'edit'])->middleware(['auth']);
+// Route::put('/companies/{company}', [UserController::class, 'update'])->middleware(['auth']);
+// Route::delete('/companies/{company}', [UserController::class, 'destroy'])->middleware(['auth', 'roles: 1']);
 
-//Middleware rutas Security
-Route::get('/security', [SecurityController::class, 'index'])->middleware(['auth', 'roles: 1']);
+// //Middleware rutas Security
+// Route::get('/security', [SecurityController::class, 'index'])->middleware(['auth', 'roles: 1']);
 
-//Middleware rutas Premium
-Route::get('/premium', [PremiumController::class], 'index')->middleware(['auth', 'roles: 4, 5']);
+// //Middleware rutas Premium
+// Route::get('/premium', [PremiumController::class], 'index')->middleware(['auth', 'roles: 4, 5']);
