@@ -18,9 +18,13 @@ use App\Http\Controllers\PremiumController;
 |
 */
 
-Route::get('/', function () {
+Route::get('/', function (Request $request) {
+    $message = 'Loading welcome page';
+    Log::info($message);
+    $request->session()->flash('info', $message);
     return view('auth.login');
-});
+ });
+ 
 
 Route::get('/dashboard', function () {
     return view('dashboard');
@@ -38,7 +42,7 @@ Route::resource('/companies', CompanyController::class);
 Route::resource('/security', SecurityController::class);
 Route::resource('/premium', PremiumController::class);
 
-//Middleware rutas User
+// Middleware rutas User
 // Route::get('users', [UserController::class, 'index'])->middleware(['auth', 'roles: 1']);
 // Route::get('users/create', [UserController::class, 'create'])->middleware(['auth', 'roles: 1']);
 // Route::get('users/create', [UserController::class, 'create'])->middleware('guest');

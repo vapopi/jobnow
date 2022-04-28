@@ -51,11 +51,11 @@ class UserController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'surnames' => 'required',
-            'email' => 'required',
-            'birth_date' => 'required',
-            'phone' => 'required',
+            'email' => 'required|email',
+            'birth_date' => 'required|date',
+            'phone' => 'required|integer|size:10',
             'password' => 'required|min:6',
-            'password_confirmation' => 'required|min:6',
+            'password_confirmation' => 'required|min:6|same:password',
             'avatar_id' => 'required|mimes:gif,jpeg,jpg,png|max:2048'
         ]);
 
@@ -91,7 +91,7 @@ class UserController extends Controller
 
         $user = User::create($input);
 
-        return redirect()->route('home')
+        return redirect()->route('dashboard')
             ->with('success', "L'usuari " . $user->name . " s'ha creat correctament.");
     }
 

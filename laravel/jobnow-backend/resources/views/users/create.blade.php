@@ -108,11 +108,13 @@
                                 </div>
                             </div>
                         </div>
-
-                        <button class="btn btn-primary w-25" type="submit" onClick="document.getElementById('spin').style.display='inline-block'">
-                            <div id="spin" style="display: none;" class="spinner-border spinner-border-sm" role="status"></div>
-                            Sign Up
-                        </button>
+                        <br>
+                        <div class="mt-3 col-md-12 text-center">
+                            <button class="text-center bColor btn btn-primary w-25" type="submit" onClick="document.getElementById('spin').style.display='inline-block'">
+                                <div id="spin" style="display: none;" class="spinner-border spinner-border-sm" role="status"></div>
+                                Sign Up
+                            </button>
+                        </div>
                         <br>
                     </form>
                 </div>
