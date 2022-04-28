@@ -16,8 +16,6 @@ class CreateRolesTable extends Migration
         Schema::create('roles', function (Blueprint $table) {
             $table->id();
             $table->string("name", 20);
-            $table->unsignedBigInteger("permission_id");
-            $table->foreign("permission_id")->references("id")->on("permissions");
             $table->timestamps();
         });
 
@@ -45,10 +43,6 @@ class CreateRolesTable extends Migration
             $table->dropForeign(['role_id']);
             $table->dropForeign(['avatar_id']);
             $table->dropColumn(['role_id', 'avatar_id', 'terms', 'birth_date', 'phone', 'surnames', 'username']);
-        });
-
-        Schema::table('roles', function(Blueprint $table) {
-            $table->dropForeign(['permission_id']);
         });
 
         Schema::dropIfExists('roles');
