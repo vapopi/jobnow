@@ -33,7 +33,6 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-
 Route::resource('/users', UserController::class);
 Route::resource('/companies', CompanyController::class)->middleware(['auth', 'roles: 1. 4', 'verified']);
 Route::resource('/security', SecurityController::class)->middleware(['auth', 'roles: 1', 'verified']);
