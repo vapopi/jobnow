@@ -84,6 +84,6 @@ class TicketController extends Controller
         //TODO: Eliminar fichero
         
         Ticket::destroy($id);
-        return response(content: "Success. The ticket ${id} has been eliminated");
+        // return response(content: "Success. The ticket ${id} has been eliminated");
     }
 }

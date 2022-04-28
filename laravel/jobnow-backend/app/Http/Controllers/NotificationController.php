@@ -63,6 +63,6 @@ class NotificationController extends Controller
         Notification::where('author_id', '=', $author_id);
         Notification::destroy($id);
 
-        return response(content: "Success. The notification ${id} has been eliminated");
+        // return response(content: "Success. The notification ${id} has been eliminated");
     }
 }

@@ -30,9 +30,8 @@
                 </div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" action="{{ route('users.store') }}" enctype="multipart/form-data">
                         @csrf
-
                         <div class="row mb-3">
                             <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
 
@@ -46,7 +45,6 @@
 
                             <div class="col-md-6">
                                 <input id="surnames" type="text" class="form-control" name="surnames" required autofocus>
-
                             </div>
                         </div>
 
@@ -111,11 +109,10 @@
                             </div>
                         </div>
 
-                        <div class="row mb-0">
-                            <div class="mt-3 col-md-12 text-center">
-                                <button id="register" type="button" class="w-50 bColor btn btn-primary">Sign Up</button>
-                            </div>
-                        </div>
+                        <button class="btn btn-primary w-25" type="submit" onClick="document.getElementById('spin').style.display='inline-block'">
+                            <div id="spin" style="display: none;" class="spinner-border spinner-border-sm" role="status"></div>
+                            Sign Up
+                        </button>
                         <br>
                     </form>
                 </div>

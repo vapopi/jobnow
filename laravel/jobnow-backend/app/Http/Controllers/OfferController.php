@@ -79,6 +79,6 @@ class OfferController extends Controller
         Offer::where('company_id', '=', $company_id);
         Offer::destroy($id);
 
-        return response(content: "Success. The offer ${id} has been eliminated");
+        // return response(content: "Success. The offer ${id} has been eliminated");
     }
 }

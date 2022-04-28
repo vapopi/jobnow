@@ -80,6 +80,6 @@ class MessageController extends Controller
         Message::where('group_id', '=', $gid);
         Message::destroy($mid);
 
-        return response(content: "Success. The message ${mid} has been eliminated");
+        // return response(content: "Success. The message ${mid} has been eliminated");
     }
 }

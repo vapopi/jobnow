@@ -82,6 +82,6 @@ class GroupController extends Controller
         //TODO: Eliminar fichero
         
         Group::destroy($id);
-        return response(content: "Success. The group ${id} has been eliminated");
+        // return response(content: "Success. The group ${id} has been eliminated");
     }
 }

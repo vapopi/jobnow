@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Storage;
+use App\Models\User;
+use App\Models\File;
 
 class UserController extends Controller
 {
@@ -58,7 +62,7 @@ class UserController extends Controller
         $input = $request->all();
         $input['password'] = Hash::Make($input['password']);
 
-        $upload = $request->file('upload');
+        $upload = $request->file('avatar_id');
         $fileName = $upload->getClientOriginalName();
         $fileSize = $upload->getSize();
         $uploadName = time() . '_' . $fileName;
@@ -74,7 +78,7 @@ class UserController extends Controller
             $fullPath = Storage::disk('public')->path($filePath);
 
             $file = File::create([
-                'filepath' => $filePath,
+                'filename' => $filePath,
                 'filesize' => $fileSize,
             ]);
 
@@ -83,9 +87,11 @@ class UserController extends Controller
             $input['avatar_id'] = $file->id;
         }
 
+        $input['role_id'] = 1;
+
         $user = User::create($input);
 
-        return redirect()->route('users.show', $user)
+        return redirect()->route('home')
             ->with('success', "L'usuari " . $user->name . " s'ha creat correctament.");
     }
 

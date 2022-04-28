@@ -25,6 +25,7 @@ class User extends Authenticatable
         'password',
         'phone',
         'terms',
+        'birth_date',
         'premium',
         'avatar_id',
         'role_id'
