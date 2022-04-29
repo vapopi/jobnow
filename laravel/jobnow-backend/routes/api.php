@@ -9,6 +9,7 @@ use App\Http\Controllers\CommentController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\OfferController;
+use App\Http\Controllers\ApplicatedOffersController;
 
 /*
 |--------------------------------------------------------------------------
@@ -29,9 +30,10 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::apiResource('messages', MessageController::class);
 Route::apiResource('tickets', TicketController::class);
 Route::apiResource('tickets/{tid}/comments', CommentController::class)->middleware(['auth', 'roles: 2, 4', 'verified']);
-Route::apiResource('notifications', NotificationController::class)->middleware('auth', 'verified');
+Route::apiResource('notifications', NotificationController::class)->middleware(['auth', 'verified']);
 Route::apiResource('posts', PostController::class);
-Route::apiResource('offers', OfferController::class)->middleware('auth', 'roles: 1, 4', 'verified');
+Route::apiResource('offers', OfferController::class)->middleware(['auth', 'roles: 1, 4', 'verified']);
+Route::apiResource('offers/{oid}/applicatedOffers', ApplicatedOffersController::class)->middleware(['auth', 'roles: 4', 'verified']);
 
 // //Middleware rutas API Message
 Route::apiResource('messages', MessageController::class)->only([
