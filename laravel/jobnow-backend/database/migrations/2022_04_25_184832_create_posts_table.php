@@ -20,6 +20,8 @@ class CreatePostsTable extends Migration
             $table->integer("likes");
             $table->unsignedBigInteger("author_id");
             $table->unsignedBigInteger("image_id")->nullable();
+            $table->foreign("author_id")->references("id")->on("users");
+            $table->foreign("image_id")->references("id")->on("files");
             $table->timestamps();
         });
     }

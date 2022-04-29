@@ -14,10 +14,32 @@
             </div>
         </div>
     </div>
+
 </x-app-layout>
+<div class = "botonera">
+
+    @if (Auth::user()->role_id == 4 && Auth::user()->email_verified_at != null)
+
+        <a class="btn btn-primary" href="{{route('premium.index')}}">Premium</a>
+        <a class="btn btn-primary" href="{{route('offers.index')}}">Offers</a> <!-- React -->
+        <a class="btn btn-primary" href="">Companies</a> <!-- React -->
+        <a class="btn btn-primary" href="{{route('posts.index')}}">Posts</a> <!-- React -->
+        <a class="btn btn-primary" href="{{route('notifications.index')}}">Notifications</a> <!-- React -->
+        <a class="btn btn-primary" href="">Tickets</a> <!-- React -->
+        <a class="btn btn-primary" href="">Chat</a> <!-- React -->
+
+    @endif
+
+    @if (Auth::user()->role_id == 1 && Auth::user()->email_verified_at != null)
+
+    @endif
+    
+  
+</div>
+
 <div class="text-center">
-<h3><strong>
-    Welcome to jobnow {{ Auth::user()->name }}!
-</strong>
-</h3>
+    <h3><strong>
+        Welcome to jobnow {{ Auth::user()->name }}!
+        </strong>
+    </h3>
 </div>
