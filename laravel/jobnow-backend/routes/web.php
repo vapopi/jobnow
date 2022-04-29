@@ -38,7 +38,7 @@ Route::resource('/roles', RoleController::class)->middleware(['auth', 'roles: 1'
 Route::resource('/users', UserController::class);
 Route::resource('/companies', CompanyController::class)->middleware(['auth', 'roles: 1. 4', 'verified']);
 Route::resource('/security', SecurityController::class)->middleware(['auth', 'roles: 1', 'verified']);
-Route::resource('/premium', PremiumController::class)->middleware(['auth', 'roles: 4', 'verified']);
+Route::resource('/premium', PremiumController::class)->middleware(['auth', 'roles: 1,4', 'verified']);
 
 // Middleware rutas User
 Route::resource('/users', UserController::class)->only([

@@ -12,7 +12,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                    <a href="{{ url()->previous() }}" class="float-end link-secondary" role="button"> 🡰 Go back</a>
+                    <a href="{{ route('login') }}" class="float-end link-secondary" role="button"> 🡰 Go back</a>
                     {{ __('Change Password') }}
                 </div>
 

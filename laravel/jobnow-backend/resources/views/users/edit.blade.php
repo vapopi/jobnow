@@ -15,6 +15,7 @@
 
     .bsColor{  
         background-color: #323232 !important;
+        border-color: #323232 !important;
     }
 </style>
 
@@ -23,15 +24,14 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-
-                    <a href="{{ route('dashboard') }}" class="float-end link-secondary" role="button"> 🡰 Go back</a>
+                    <a href="{{ url()->previous() }}" class="float-end link-secondary" role="button"> 🡰 Go back</a>
                     {{ __('Edit User') }}
-                    
                 </div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('register') }}">
+                    <form method="POST" action="{{ route('users.update', $user->id) }}" enctype="multipart/form-data">
                         @csrf
+                        @method("PUT")
 
                         <div class="row mb-3">
                             <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
@@ -61,7 +61,7 @@
                             <label class="col-md-4 col-form-label text-md-end">{{ __('Date of birth') }}</label>
 
                             <div class="col-md-6">
-                                <input value='{{$user->birth_date}}' type="text" class="form-control" name="birth" required>
+                                <input value='{{$user->birth_date}}' type="text" class="form-control" name="birth_date" required>
                             </div>
                         </div>
 
@@ -73,20 +73,17 @@
                             </div>
                         </div>
 
-                        
-                        <div class="text-center">
-                        
-                            @if($user->premium == 0)
-                                <p>You are not premium yet! <a class="color" href="{{ route('premium.index') }}">Buy it here.</a></p>
-                            @else
-                                <p class="color">Congrats, you are premium!</p>
-                            @endif
-                        </div>
+                        <div class="row mb-3">
+                            <label class="col-md-4 col-form-label text-md-end">{{ __('Profile Picture') }}</label>
 
+                            <div class="col-md-6">
+                                <input type="file" class="form-control" id="customFile" name="avatar_id"/>
+                            </div>
+                        </div>
 
                         <div class="row mb-0">
                             <div class="mt-3 col-md-12 text-center">
-                                <button type="button" class="w-50 bColor btn btn-primary">Edit profile</button>
+                                <button type="submit" class="w-50 bColor btn btn-primary">Save changes</button>
                             </div>
                         </div>
                         <br>

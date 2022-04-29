@@ -30,14 +30,6 @@ class UserController extends Controller
      */
     public function create()
     {
-        // TODO: añadir lo que queramos que muestre la vista
-
-        // return view("users.create", [
-        //     "roles" => Role::all(),
-        // ]);
-
-        // Ejemplo devolver roles ^^^^^
-
         return view("users.create");
     }
 
@@ -104,30 +96,21 @@ class UserController extends Controller
     }
 
     /**
-     * Display the specified resource.
+     * Display the specified user.
      *
-     * @param  int  $id
+     * @param  \App\Models\User  $user
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(User $user)
     {
+        $file = File::where('id', $user->avatar_id)->first();
 
-        // TODO: añadir lo que queramos que muestre la vista
-    
-        // $file = File::where('id', $user->photo_id)->first();
-        // $role = Role::where('id', $user->role_id)->first();
-        
-        // return view('users.show',  [
-        //     "user" => $user,
-        //     "role" => $role,
-        //     "file" => $file
-        // ]);
-
-        // Ejemplo devolver datos usuario ^^^^^
-
-        return view("users.show");
-
+        return view('users.show',  [
+            "user" => $user,
+            "file" => $file
+        ]);
     }
+
 
     /**
      * Show the form for editing the specified resource.
@@ -154,19 +137,17 @@ class UserController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'surnames' => 'required',
-            'email' => 'required',
-            'birth_date' => 'required',
-            'phone' => 'required',
-            'password' => 'required|min:6',
-            'password_confirmation' => 'required|min:6',
-            'avatar_id' => 'required|mimes:gif,jpeg,jpg,png|max:2048'
+            'email' => 'required|email',
+            'birth_date' => 'required|date',
+            'phone' => 'required|max:20',
+            'avatar_id' => 'mimes:gif,jpeg,jpg,png|max:2048'
         ]);
 
         if($request->hasFile('avatar_id'))
         {
-            $file = File::where('id', $user->photo_id)->first();
+            $file = File::where('id', $user->avatar_id)->first();
 
-            $antigua_ruta = $file -> filepath;
+            $antigua_ruta = $file->filename;
             $upload = $request->file('avatar_id');
             $fileName = $upload->getClientOriginalName();
             $fileSize = $upload->getSize();
@@ -181,7 +162,7 @@ class UserController extends Controller
             if (\Storage::disk('public')->exists($filePath)) {
 
                 $fullPath = \Storage::disk('public')->path($filePath);
-                $file->filepath = $filePath;
+                $file->filename = $filePath;
                 $file->filesize = $fileSize;
                 $file->save();
 
@@ -194,12 +175,18 @@ class UserController extends Controller
         $user->email = $request->email;
         $user->birth_date = $request->birth_date;
         $user->phone = $request->phone;
-        $user->password = $request->password;
-        $user->avatar_id = $request->avatar_id;
+
         $user->save();
 
-        return redirect()->route('users.show', $user)
-            ->with('success', "L'usuari " .$user->name. " s'ha editat correctament.");
+        if(Auth::user()->role_id == 4)
+        {
+            return redirect()->route('users.show', $user)
+                ->with('success', "L'usuari " .$user->name. " s'ha editat correctament.");
+        }else{
+            return redirect()->route('users.index')
+                ->with('success', "L'usuari " .$user->name. " s'ha editat correctament.");
+        }
+
     }
 
     /**

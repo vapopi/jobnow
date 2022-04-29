@@ -38,8 +38,8 @@
                             <tr>
                                 <td>{{ $role->id }}</td>
                                 <td>{{ $role->name }}</td>
-                                <td><button class="color bColor btn-btn-primary" href="{{route('roles.show', $role->id)}}">Edit Role</button>
-                                    <button class="color bsColor btn-btn-secondary" href="{{route('roles.destroy', $role->id)}}">Delete Role</button>
+                                <td><button class="color bColor btn btn-primary" href="{{route('roles.show', $role->id)}}">Edit Role</button>
+                                    <button class="color bsColor btn btn-secondary" href="{{route('roles.destroy', $role->id)}}">Delete Role</button>
                             </tr>
                             @endforeach
                         </tbody>
