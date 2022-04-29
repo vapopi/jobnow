@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use App\Models\User;
 use App\Models\File;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -91,6 +92,9 @@ class UserController extends Controller
         $input['role_id'] = 4;
 
         $user = User::create($input);
+        
+        Auth::login($user);
+        $request->user()->sendEmailVerificationNotification();
 
         return redirect()->route('login')
             ->with('success', "L'usuari " . $user->name . " s'ha creat correctament.");
