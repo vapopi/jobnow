@@ -33,10 +33,11 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Route::resource('/roles', RoleController::class)->middleware(['auth', 'roles: 1', 'verified']);
 Route::resource('/users', UserController::class);
 Route::resource('/companies', CompanyController::class)->middleware(['auth', 'roles: 1. 4', 'verified']);
 Route::resource('/security', SecurityController::class)->middleware(['auth', 'roles: 1', 'verified']);
-Route::resource('/premium', PremiumController::class);
+Route::resource('/premium', PremiumController::class)->middleware(['auth', 'roles: 4', 'verified']);
 
 // Middleware rutas User
 Route::resource('/users', UserController::class)->only([
@@ -56,10 +57,3 @@ Route::resource('/users', UserController::class)->only([
     'edit', 'update'
 
 ])->middleware(['auth', 'verified']);
-
-//Middleware rutas Premium
-Route::resource('/premium', PremiumController::class)->only([
-
-    'index'
-
-])->middleware(['auth', 'roles: 4', 'verified']);

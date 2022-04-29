@@ -1,3 +1,9 @@
+<style>
+    .color{  
+        background-color: #6356e5 !important;
+    }
+</style>
+
 <x-app-layout>
     <x-slot name="header">
         <h2 class="font-semibold text-xl text-gray-800 leading-tight">
@@ -20,21 +26,22 @@
 
     @if (Auth::user()->role_id == 4 && Auth::user()->email_verified_at != null)
 
-        <a class="btn btn-primary" href="{{route('premium.index')}}">Premium</a>
-        <a class="btn btn-primary" href="{{route('offers.index')}}">Offers</a> <!-- React -->
-        <a class="btn btn-primary" href="">Companies</a> <!-- React -->
-        <a class="btn btn-primary" href="{{route('posts.index')}}">Posts</a> <!-- React -->
-        <a class="btn btn-primary" href="{{route('notifications.index')}}">Notifications</a> <!-- React -->
-        <a class="btn btn-primary" href="">Tickets</a> <!-- React -->
-        <a class="btn btn-primary" href="">Chat</a> <!-- React -->
+        <a class="color btn btn-primary" href="{{route('premium.index')}}" role="button">Premium</a>
+        <a class="color btn btn-primary" href="" role="button">Offers</a> <!-- React -->
+        <a class="color btn btn-primary" href="" role="button">Companies</a> <!-- React -->
+        <a class="color btn btn-primary" href="" role="button">Posts</a> <!-- React -->
+        <a class="color btn btn-primary" href="" role="button">Notifications</a> <!-- React -->
+        <a class="color btn btn-primary" href="" role="button">Tickets</a> <!-- React -->
+        <a class="color btn btn-primary" href="" role="button">Chat</a> <!-- React -->
 
     @endif
 
     @if (Auth::user()->role_id == 1 && Auth::user()->email_verified_at != null)
 
+    <a class="color btn btn-primary" href="{{route('security.index')}}" role="button">Security</a>
+
     @endif
     
-  
 </div>
 
 <div class="text-center">
