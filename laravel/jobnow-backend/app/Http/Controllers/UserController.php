@@ -55,8 +55,8 @@ class UserController extends Controller
             'email' => 'required|email',
             'birth_date' => 'required|date',
             'phone' => 'required|max:20',
-            'password' => 'required|min:6',
-            'password_confirmation' => 'required|min:6|same:password',
+            'password' => 'required|min:8',
+            'password_confirmation' => 'required|min:8|same:password',
             'avatar_id' => 'required|mimes:gif,jpeg,jpg,png|max:2048',
             'remember' => 'required'
         ]);
@@ -98,7 +98,7 @@ class UserController extends Controller
         Auth::logout();
 
         return redirect()->route('login')
-            ->with('success', "L'usuari " . $user->name . " s'ha creat correctament.");
+            ->with('success', "Usuari " . $user->name . " creat correctament. Revisa el teu correu per verificar el compte.");
     }
 
     /**

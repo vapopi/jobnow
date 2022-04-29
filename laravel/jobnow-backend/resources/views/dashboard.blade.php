@@ -15,3 +15,9 @@
         </div>
     </div>
 </x-app-layout>
+<div class="text-center">
+<h3><strong>
+    Welcome to jobnow {{ Auth::user()->name }}!
+</strong>
+</h3>
+</div>
