@@ -95,6 +95,7 @@ class UserController extends Controller
         
         Auth::login($user);
         $request->user()->sendEmailVerificationNotification();
+        Auth::logout();
 
         return redirect()->route('login')
             ->with('success', "L'usuari " . $user->name . " s'ha creat correctament.");
