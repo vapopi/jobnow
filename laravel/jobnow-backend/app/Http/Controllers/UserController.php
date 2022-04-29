@@ -90,6 +90,8 @@ class UserController extends Controller
         }
 
         $input['role_id'] = 4;
+        $input['terms'] = 1;
+        
 
         $user = User::create($input);
         
@@ -135,16 +137,9 @@ class UserController extends Controller
      */
     public function edit(User $user)
     {
-        // TODO: añadir lo que queramos que muestre la vista
-
-        // return view('users.edit',  [
-        //     "user" => $user,
-        //     "roles" => Role::all()
-        // ]);
-
-        // Ejemplo devolver datos ^^^^^
-
-        return view("users.edit");
+        return view("users.edit", [
+            "user" => $user
+        ]);
     }
 
     /**

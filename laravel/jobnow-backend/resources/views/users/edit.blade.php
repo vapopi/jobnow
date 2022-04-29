@@ -24,7 +24,7 @@
             <div class="card">
                 <div class="card-header">
 
-                    <a href="{{ route('home') }}" class="float-end link-secondary" role="button"> 🡰 Go back</a>
+                    <a href="{{ route('dashboard') }}" class="float-end link-secondary" role="button"> 🡰 Go back</a>
                     {{ __('Edit User') }}
                     
                 </div>
@@ -37,13 +37,7 @@
                             <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
 
                             <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-
-                                @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                <input value='{{$user->name}}' type="text" class="form-control" name="name" required autocomplete="name" autofocus>
                             </div>
                         </div>
 
@@ -51,13 +45,7 @@
                             <label for="surnames" class="col-md-4 col-form-label text-md-end">{{ __('Surnames') }}</label>
 
                             <div class="col-md-6">
-                                <input id="surnames" type="text" class="form-control" name="surnames" required autofocus>
-
-                                @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                <input value='{{$user->surnames}}' type="text" class="form-control" name="surnames" required autofocus>
                             </div>
                         </div>
 
@@ -65,13 +53,7 @@
                             <label class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
 
                             <div class="col-md-6">
-                                <input id="email" type="text" class="form-control" name="name" required autofocus>
-
-                                @error('name')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                <input value='{{$user->email}}' type="text" class="form-control" name="email" required autofocus>
                             </div>
                         </div>
 
@@ -79,13 +61,7 @@
                             <label class="col-md-4 col-form-label text-md-end">{{ __('Date of birth') }}</label>
 
                             <div class="col-md-6">
-                                <input id="birth" type="text" class="form-control" name="birth" required>
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                <input value='{{$user->birth_date}}' type="text" class="form-control" name="birth" required>
                             </div>
                         </div>
 
@@ -93,41 +69,24 @@
                             <label class="col-md-4 col-form-label text-md-end">{{ __('Phone') }}</label>
 
                             <div class="col-md-6">
-                                <input id="phone" type="text" class="form-control" name="phone" required>
-
-                                @error('email')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
+                                <input value='{{$user->phone}}' type="text" class="form-control" name="phone" required>
                             </div>
                         </div>
 
-                        <div class="row mb-3">
-                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
-
-                                @error('password')
-                                    <span class="invalid-feedback" role="alert">
-                                        <strong>{{ $message }}</strong>
-                                    </span>
-                                @enderror
-                            </div>
+                        
+                        <div class="text-center">
+                        
+                            @if($user->premium == 0)
+                                <p>You are not premium yet! <a class="color" href="{{ route('premium.index') }}">Buy it here.</a></p>
+                            @else
+                                <p class="color">Congrats, you are premium!</p>
+                            @endif
                         </div>
 
-                        <div class="row mb-3">
-                            <label class="col-md-4 col-form-label text-md-end">{{ __('Profile Picture') }}</label>
-
-                            <div class="col-md-6">
-                                <input type="file" class="form-control" id="customFile" />
-                            </div>
-                        </div>
 
                         <div class="row mb-0">
                             <div class="mt-3 col-md-12 text-center">
-                                <button id="register" type="button" class="w-50 bColor btn btn-primary">Edit profile</button>
+                                <button type="button" class="w-50 bColor btn btn-primary">Edit profile</button>
                             </div>
                         </div>
                         <br>

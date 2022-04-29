@@ -24,7 +24,7 @@
             <div class="card">
                 <div class="card-header">
 
-                    <a href="{{ route('login') }}" class="float-end link-secondary" role="button"> 🡰 Go back</a>
+                    <a href="{{ url()->previous() }}" class="float-end link-secondary" role="button"> 🡰 Go back</a>
                     {{ __('Register User') }}
                     
                 </div>
