@@ -38,13 +38,20 @@
                             <tr>
                                 <td>{{ $role->id }}</td>
                                 <td>{{ $role->name }}</td>
-                                <td><button class="color bColor btn-btn-primary" href="{{route('roles.show', $role->id)}}">Edit Role</button>
-                                    <button class="color bsColor btn-btn-secondary" href="{{route('roles.destroy', $role->id)}}">Delete Role</button>
+
+                                <td><a class="color bColor btn btn-primary" href="{{route('roles.edit', $role)}}" role="button">Edit Role</a>
+                                    <form method="POST" action="{{route('roles.destroy', $role)}}">
+                                        @csrf
+                                        @method('delete')
+                                        <button class="color btn btn-secondary" type="submit" role="button">Delete Role</button>
+                                    </form>
+                                </td>
+                                    
                             </tr>
                             @endforeach
                         </tbody>
                     </table>
-                    <a class="bColor btn btn-primary" href="{{route('roles.create')}}" role="button">Add New Role</a>
+                    <a class="bColor btn btn-primary" href="{{route('roles.create')}}" role="button"> + Add New Role</a>
                 </div>
             </div>
         </div>

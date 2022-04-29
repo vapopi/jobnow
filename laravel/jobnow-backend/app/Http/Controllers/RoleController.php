@@ -95,7 +95,7 @@ class RoleController extends Controller
         $role->name = $roleName;
         $role->save();
 
-        return redirect()->route('roles.show', $role)
+        return redirect()->route('roles.index')
         ->with('success', 'Role updated successfully');
     }
 
