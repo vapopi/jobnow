@@ -6,6 +6,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\SecurityController;
 use App\Http\Controllers\PremiumController;
+use App\Http\Controllers\RoleController;
 
 /*
 |--------------------------------------------------------------------------
