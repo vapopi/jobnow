@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use App\Models\User;
 use App\Models\File;
+use App\Models\Role;
 use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
@@ -20,6 +21,7 @@ class UserController extends Controller
     {
         return view("users.index", [
             "users" => User::all(),
+            "roles" => Role::all()
         ]);
     }
 
@@ -92,7 +94,7 @@ class UserController extends Controller
         Auth::logout();
 
         return redirect()->route('login')
-            ->with('success', "Usuari " . $user->name . " creat correctament. Revisa el teu correu per verificar el compte.");
+            ->with('success', "The user " . $user->name . " was created successfully. Please check your email for verify your account.");
     }
 
     /**
@@ -121,7 +123,9 @@ class UserController extends Controller
     public function edit(User $user)
     {
         return view("users.edit", [
-            "user" => $user
+            "user" => $user,
+            "roles" => Role::all()
+
         ]);
     }
 
@@ -134,14 +138,30 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
+        $isAdmin = false; 
+
+        if(Auth::user()->role_id == 1)
+        {
+            $isAdmin = true;
+        }
+
         $this->validate($request, [
             'name' => 'required',
             'surnames' => 'required',
             'email' => 'required|email',
             'birth_date' => 'required|date',
             'phone' => 'required|max:20',
-            'avatar_id' => 'mimes:gif,jpeg,jpg,png|max:2048'
+            'avatar_id' => 'mimes:gif,jpeg,jpg,png|max:2048',
         ]);
+
+        if($isAdmin)
+        {
+            $this->validate($request, [
+                'role_id' => 'required',
+                'terms' => 'required',
+                'premium' => 'required',
+            ]);
+        }
 
         if($request->hasFile('avatar_id'))
         {
@@ -175,18 +195,25 @@ class UserController extends Controller
         $user->email = $request->email;
         $user->birth_date = $request->birth_date;
         $user->phone = $request->phone;
-
         $user->save();
 
-        if(Auth::user()->role_id == 4)
+        if($isAdmin)
         {
-            return redirect()->route('users.show', $user)
-                ->with('success', "L'usuari " .$user->name. " s'ha editat correctament.");
-        }else{
-            return redirect()->route('users.index')
-                ->with('success', "L'usuari " .$user->name. " s'ha editat correctament.");
+            $user->role_id = $request->role_id;
+            $user->terms = $request->terms;
+            $user->premium = $request->premium;    
+            $user->save();
+
         }
 
+        if($isAdmin)
+        {
+            return redirect()->route('users.index')
+                ->with('success', "The profile user " .$user->name. " has been edited successfully.");
+        }else{
+            return redirect()->route('users.show', $user)
+                ->with('success', "The profile user " .$user->name. " has been edited successfully.");
+        }
     }
 
     /**
@@ -204,6 +231,6 @@ class UserController extends Controller
         Storage::disk('public')->delete($file->filepath);
 
         return redirect()->route("users.index")
-            ->with('success', "L'usuari " . $user->name . " s'ha esborrat correctament");
+            ->with('success', "The user " . $user->name . " was deleted successfully.");
     }
 }
