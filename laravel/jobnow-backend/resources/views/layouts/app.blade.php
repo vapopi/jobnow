@@ -21,11 +21,19 @@
     <link rel="icon" href="{{ asset('images/favicon.ico') }}">
 
 </head>
+
+<script type="text/javascript"> 
+   function googleTranslateElementInit() {
+  new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+  }
+</script>
+
+<script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 <body>
     <div id="app">
         <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
             <div class="container">
-                <a class="navbar-brand">
+                <a href="{{route('dashboard')}}" class="navbar-brand">
                     {{ config('app.name', 'jobnow') }}
                 </a>
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">

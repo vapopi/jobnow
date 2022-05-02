@@ -21,9 +21,9 @@ use App\Http\Controllers\MenuCompanyController;
 |
 */
 
-Route::get('/', function (Request $request) {
-    return view('auth.login');
- });
+// Route::get('/', function (Request $request) {
+//     return view('auth.login');
+//  });
  
 
 Route::get('/dashboard', function () {
