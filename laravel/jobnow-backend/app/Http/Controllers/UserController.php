@@ -87,8 +87,11 @@ class UserController extends Controller
         $input['terms'] = 1;
         
         $user = User::create($input);
-        
+
+        Auth::login($user);
         $user->sendEmailVerificationNotification();
+        Auth::logout($user);
+        
 
         return redirect()->route('login')
             ->with('success', "The user " . $user->name . " was created successfully. Please check your email for verify your account.");
@@ -135,12 +138,6 @@ class UserController extends Controller
      */
     public function update(Request $request, User $user)
     {
-        $isAdmin = false; 
-
-        if(Auth::user()->role_id == 1)
-        {
-            $isAdmin = true;
-        }
 
         $this->validate($request, [
             'name' => 'required',
@@ -185,7 +182,7 @@ class UserController extends Controller
         $user->phone = $request->phone;
         $user->save();
 
-        return redirect()->route('users.edit', $user)
+        return redirect()->route('users.show', $user)
             ->with('success', "The profile user " .$user->name. " has been edited successfully.");
     }
 
@@ -203,7 +200,7 @@ class UserController extends Controller
         $file->delete();
         Storage::disk('public')->delete($file->filepath);
 
-        return redirect()->route("users.index")
+        return redirect()->route("login")
             ->with('success', "The user " . $user->name . " was deleted successfully.");
     }
 }
