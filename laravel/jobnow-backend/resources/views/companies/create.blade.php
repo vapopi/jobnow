@@ -30,19 +30,19 @@
                     <form role="form" method="POST" action="{{route('companies.store')}}" enctype="multipart/form-data">
                         @csrf
                         <label for="category-name">Enter Company Name</label>
-                        <input class="form-control" type="text" name="name"/>
+                        <input class="form-control" type="text" name="name" autofocus required/>
                         <br>
                         <label for="category-name">Enter Company Email</label>
-                        <input class="form-control" type="text" name="email"/>
+                        <input class="form-control" type="text" name="email" required/>
                         <br>
                         <label for="category-name">Enter Company Date of Creation</label>
-                        <input class="form-control" type="text" name="creation_date"/>
+                        <input class="form-control" type="text" name="creation_date" required/>
                         <br>
                         <label for="category-name">Enter Company Logo</label>
-                        <input class="form-control" type="file" name="logo"/>
+                        <input class="form-control" type="file" name="logo" required/>
                         <br>
-                        <button type="submit" class=" color bColor btn btn-primary">Create</button>
-                        <button type="reset" class="color bsColor btn btn-secondary">Reset</button>
+                        <button type="submit" class="w-25 color bColor btn btn-primary">Create</button>
+                        <button type="reset" class="w-25 color bsColor btn btn-secondary">Reset</button>
                     </form>
                 </div>
             </div>

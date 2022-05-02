@@ -5,6 +5,22 @@
     .color{  
         background-color: #6356e5 !important;
     }
+
+
+    .bColor{  
+        background-color: #6356e5 !important;
+        border-color: #6356e5 !important;
+    }
+
+	.b2Color{  
+        background-color: #2d0793 !important;
+        border-color: #6356e5 !important;
+    }
+
+    .bsColor{  
+        background-color: #323232 !important;
+        border-color: #323232 !important;
+    }
 </style>
 
 <div class="container">
@@ -39,7 +55,7 @@
                                         <td>{{ $company->email }}</td>
                                         <td>{{ $company->creation_date }}</td>
                                         <td>
-                                            <a class="w-100 color bColor btn btn-primary" href="{{route('companies.edit', $company)}}" role="button">Edit</a>
+                                            <a class="w-100 color b2Color btn btn-primary" href="{{route('companies.edit', $company)}}" role="button">Edit</a>
                                         </td>
                                         <td>
                                             <button class="w-100 bsColor color btn btn-secondary" id="destroy" type="submit" role="button" data-bs-toggle="modal" data-bs-target="#confirmModal{{$company->id}}">Delete</button>
@@ -73,7 +89,7 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                            <a class="b2Color btn btn-primary" href="{{route('companies.create')}}" role="button"> + Add New Company</a>
+                            <a class="bColor btn btn-primary" href="{{route('companies.create')}}" role="button"> + Add New Company</a>
                         </div>
                     </div>
                 </div>
