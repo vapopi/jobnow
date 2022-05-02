@@ -13,6 +13,7 @@ class Company extends Model
 
         'name',
         'email',
+        'creation_date',
         'logo_id',
         'author_id'
     ];

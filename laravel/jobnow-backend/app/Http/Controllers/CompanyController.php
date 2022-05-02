@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Company;
 use App\Models\File;
+use App\Models\User;
 use Illuminate\Support\Facades\Auth;
 
 class CompanyController extends Controller
@@ -20,6 +21,7 @@ class CompanyController extends Controller
     {
         return view("companies.index", [
             "companies" => Company::all(),
+            "users" => User::all()
         ]);
     }
 
@@ -96,6 +98,7 @@ class CompanyController extends Controller
     {
         return view('companies.show', [
             "company" => $company,
+            "file" => File::where('id', $company->logo_id)->first()
         ]);
     }
 
