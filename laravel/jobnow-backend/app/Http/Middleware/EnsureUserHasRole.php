@@ -26,7 +26,7 @@ class EnsureUserHasRole
         }
 
         $url = $request->url();
-        return redirect('home')
+        return redirect('dashboard')
             ->with('error', "Access denied to {$url}");
   
     }
