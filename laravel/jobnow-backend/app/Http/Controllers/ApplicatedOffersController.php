@@ -80,6 +80,6 @@ class ApplicatedOffersController extends Controller
         ApplicatedOffer::where('offer_id', '=', $oid);
         ApplicatedOffer::destroy($aoId);
 
-        return response(content: "Success. The applicated offer ${aoId} has been eliminated");
+        // return response(content: "Success. The applicated offer ${aoId} has been eliminated");
     }
 }

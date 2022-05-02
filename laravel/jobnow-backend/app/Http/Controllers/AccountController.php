@@ -10,7 +10,7 @@ use App\Models\File;
 use App\Models\Role;
 use Illuminate\Support\Facades\Auth;
 
-class UserController extends Controller
+class AccountController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,7 +19,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view("users.index", [
+        return view("accounts.index", [
             "users" => User::all(),
             "roles" => Role::all()
         ]);
@@ -32,7 +32,9 @@ class UserController extends Controller
      */
     public function create()
     {
-        return view("users.create");
+        return view("accounts.create", [
+            "roles" => Role::all(),
+        ]);
     }
 
     /**
@@ -50,10 +52,14 @@ class UserController extends Controller
             'birth_date' => 'required|date',
             'phone' => 'required|max:20',
             'password' => 'required|min:8',
+            'role_id' => 'required',
+            'terms' => 'required',
+            'premium' => 'required',
             'password_confirmation' => 'required|min:8|same:password',
             'avatar_id' => 'required|mimes:gif,jpeg,jpg,png|max:2048',
             'remember' => 'required'
         ]);
+
 
         $input = $request->all();
         $input['password'] = Hash::Make($input['password']);
@@ -82,30 +88,27 @@ class UserController extends Controller
             $upload->filesize = $fileSize;
             $input['avatar_id'] = $file->id;
         }
-
-        $input['role_id'] = 4;
-        $input['terms'] = 1;
         
-        $user = User::create($input);
+        $account = User::create($input);
         
-        $user->sendEmailVerificationNotification();
+        $account->sendEmailVerificationNotification();
 
-        return redirect()->route('login')
-            ->with('success', "The user " . $user->name . " was created successfully. Please check your email for verify your account.");
+        return redirect()->route('accounts.index')
+            ->with('success', "The user " . $account->name . " was created successfully. A verfication email was sent to the user created.");
     }
 
     /**
      * Display the specified user.
      *
-     * @param  \App\Models\User  $user
+     * @param  \App\Models\User  $account
      * @return \Illuminate\Http\Response
      */
-    public function show(User $user)
+    public function show(User $account)
     {
-        $file = File::where('id', $user->avatar_id)->first();
+        $file = File::where('id', $account->avatar_id)->first();
 
-        return view('users.show',  [
-            "user" => $user,
+        return view('accounts.show',  [
+            "account" => $account,
             "file" => $file
         ]);
     }
@@ -117,10 +120,10 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit(User $user)
+    public function edit(User $account)
     {
-        return view("users.edit", [
-            "user" => $user,
+        return view("accounts.edit", [
+            "account" => $account,
             "roles" => Role::all()
 
         ]);
@@ -133,14 +136,8 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, User $user)
+    public function update(Request $request, User $account)
     {
-        $isAdmin = false; 
-
-        if(Auth::user()->role_id == 1)
-        {
-            $isAdmin = true;
-        }
 
         $this->validate($request, [
             'name' => 'required',
@@ -148,12 +145,16 @@ class UserController extends Controller
             'email' => 'required|email',
             'birth_date' => 'required|date',
             'phone' => 'required|max:20',
+            'role_id' => 'required',
+            'terms' => 'required',
+            'premium' => 'required',
             'avatar_id' => 'mimes:gif,jpeg,jpg,png|max:2048',
         ]);
 
+
         if($request->hasFile('avatar_id'))
         {
-            $file = File::where('id', $user->avatar_id)->first();
+            $file = File::where('id', $account->avatar_id)->first();
 
             $antigua_ruta = $file->filename;
             $upload = $request->file('avatar_id');
@@ -178,15 +179,20 @@ class UserController extends Controller
             }
         }
 
-        $user->name = $request->name;
-        $user->surnames = $request->surnames;
-        $user->email = $request->email;
-        $user->birth_date = $request->birth_date;
-        $user->phone = $request->phone;
-        $user->save();
+        $account->name = $request->name;
+        $account->surnames = $request->surnames;
+        $account->email = $request->email;
+        $account->birth_date = $request->birth_date;
+        $account->phone = $request->phone;
+        $account->role_id = $request->role_id;
+        $account->terms = $request->terms;
+        $account->premium = $request->premium;   
+        $account->save();
 
-        return redirect()->route('users.edit', $user)
-            ->with('success', "The profile user " .$user->name. " has been edited successfully.");
+
+        return redirect()->route('accounts.index', $account)
+            ->with('success', "The profile user " .$account->name. " has been edited successfully.");
+        
     }
 
     /**
@@ -195,15 +201,15 @@ class UserController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(User $user)
+    public function destroy(User $account)
     {
-        $file = File::where('id', $user->avatar_id)->first();
+        $file = File::where('id', $account->avatar_id)->first();
 
-        $user->delete();
+        $account->delete();
         $file->delete();
         Storage::disk('public')->delete($file->filepath);
 
-        return redirect()->route("users.index")
-            ->with('success', "The user " . $user->name . " was deleted successfully.");
+        return redirect()->route("accounts.index")
+            ->with('success', "The user " . $account->name . " was deleted successfully.");
     }
 }

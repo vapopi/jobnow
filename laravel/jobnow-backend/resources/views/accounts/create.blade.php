@@ -24,19 +24,18 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                    {{ __('Edit User') }}
+                    <a href="{{ route('security.index') }}" class="float-end link-secondary" role="button"> 🡰 Go back</a>
+                    {{ __('Create User') }}
                 </div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('users.update', $user->id) }}" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('accounts.store') }}" enctype="multipart/form-data">
                         @csrf
-                        @method("PUT")
-
                         <div class="row mb-3">
                             <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
 
                             <div class="col-md-6">
-                                <input value='{{$user->name}}' type="text" class="form-control" name="name" required autocomplete="name" autofocus>
+                                <input type="text" class="form-control" name="name" required autocomplete="name" autofocus>
                             </div>
                         </div>
 
@@ -44,7 +43,7 @@
                             <label for="surnames" class="col-md-4 col-form-label text-md-end">{{ __('Surnames') }}</label>
 
                             <div class="col-md-6">
-                                <input value='{{$user->surnames}}' type="text" class="form-control" name="surnames" required autofocus>
+                                <input type="text" class="form-control" name="surnames" required autofocus>
                             </div>
                         </div>
 
@@ -52,7 +51,7 @@
                             <label class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
 
                             <div class="col-md-6">
-                                <input value='{{$user->email}}' type="text" class="form-control" name="email" required autofocus>
+                                <input type="text" class="form-control" name="email" required autofocus>
                             </div>
                         </div>
 
@@ -60,7 +59,7 @@
                             <label class="col-md-4 col-form-label text-md-end">{{ __('Date of birth') }}</label>
 
                             <div class="col-md-6">
-                                <input value='{{$user->birth_date}}' type="text" class="form-control" name="birth_date" required>
+                                <input type="text" class="form-control" name="birth_date" required>
                             </div>
                         </div>
 
@@ -68,11 +67,25 @@
                             <label class="col-md-4 col-form-label text-md-end">{{ __('Phone') }}</label>
 
                             <div class="col-md-6">
-                                <input value='{{$user->phone}}' type="text" class="form-control" name="phone" required>
+                                <input type="text" class="form-control" name="phone" required>
                             </div>
                         </div>
 
-                        @if(Auth::user()->role_id == 1)
+                        <div class="row mb-3">
+                            <label for="password" class="col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="new-password">
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label for="password-confirm" class="col-md-4 col-form-label text-md-end">{{ __('Repeat Password') }}</label>
+
+                            <div class="col-md-6">
+                                <input id="password-confirm" type="password" class="form-control" name="password_confirmation" required autocomplete="new-password">
+                            </div>
+                        </div>
 
                         <div class="row mb-3">
                             <label class="col-md-4 col-form-label text-md-end">{{ __('Role') }}</label>
@@ -80,11 +93,7 @@
                             <div class="col-md-6">
                                 <select class="w-100" name="role_id" id="role_id">
                                     @foreach ($roles as $role)
-                                        @if ($role->id === $user->role_id)
-                                            <option value="{{ $role->id }}" selected>{{ $role->name }}</option>
-                                        @else
-                                            <option value="{{ $role->id }}">{{ $role->name }}</option>
-                                        @endif
+                                        <option value="{{ $role->id }}">{{ $role->name }}</option>
                                     @endforeach
                                 </select> 
                             </div>
@@ -95,13 +104,8 @@
 
                             <div class="col-md-6">
                                 <select class="w-100" name="terms" id="terms">
-                                    @if ($user->terms === 0)
-                                        <option value="0" selected>Not accepted</option>
-                                        <option value="1">Accepted</option>
-                                    @else
-                                        <option value="0">Not accepted</option>
-                                        <option value="1" selected>Accepted</option>
-                                    @endif
+                                    <option value="0" selected>Not accepted</option>
+                                    <option value="1">Accepted</option>
                                 </select> 
                             </div>
                         </div>
@@ -111,18 +115,11 @@
 
                             <div class="col-md-6">
                                 <select class="w-100" name="premium" id="premium">
-                                    @if ($user->premium === 0)
                                         <option value="0" selected>Not obtained</option>
                                         <option value="1">Obtained</option>
-                                    @else
-                                        <option value="0">Not obtained</option>
-                                        <option value="1" selected>Obtained</option>
-                                    @endif
                                 </select> 
                             </div>
                         </div>
-
-                        @endif
 
                         <div class="row mb-3">
                             <label class="col-md-4 col-form-label text-md-end">{{ __('Profile Picture') }}</label>
@@ -132,6 +129,18 @@
                             </div>
                         </div>
 
+                        <div class="mt-4 row mb-3">
+                            <div class="col-md-6 offset-md-2">
+                                <div class="form-check">
+                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" required {{ old('remember') ? 'checked' : '' }}>
+
+                                    <label class="form-check-label" for="remember">
+                                        {{ __('I accept the') }} <span class="color">terms and conditions</span>
+                                    </label>
+                                </div>
+                            </div>
+                        </div>
+                        <br>
                         <div class="row mb-0">
                             <div class="mt-3 col-md-12 text-center">
                                 <button type="submit" class="w-50 bColor btn btn-primary">Save changes</button>

@@ -24,11 +24,12 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
+                    <a href="{{ url()->previous() }}" class="float-end link-secondary" role="button"> 🡰 Go back</a>
                     {{ __('Edit User') }}
                 </div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('users.update', $user->id) }}" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('accounts.update', $account->id) }}" enctype="multipart/form-data">
                         @csrf
                         @method("PUT")
 
@@ -36,7 +37,7 @@
                             <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
 
                             <div class="col-md-6">
-                                <input value='{{$user->name}}' type="text" class="form-control" name="name" required autocomplete="name" autofocus>
+                                <input value='{{$account->name}}' type="text" class="form-control" name="name" required autocomplete="name" autofocus>
                             </div>
                         </div>
 
@@ -44,7 +45,7 @@
                             <label for="surnames" class="col-md-4 col-form-label text-md-end">{{ __('Surnames') }}</label>
 
                             <div class="col-md-6">
-                                <input value='{{$user->surnames}}' type="text" class="form-control" name="surnames" required autofocus>
+                                <input value='{{$account->surnames}}' type="text" class="form-control" name="surnames" required autofocus>
                             </div>
                         </div>
 
@@ -52,7 +53,7 @@
                             <label class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
 
                             <div class="col-md-6">
-                                <input value='{{$user->email}}' type="text" class="form-control" name="email" required autofocus>
+                                <input value='{{$account->email}}' type="text" class="form-control" name="email" required autofocus>
                             </div>
                         </div>
 
@@ -60,7 +61,7 @@
                             <label class="col-md-4 col-form-label text-md-end">{{ __('Date of birth') }}</label>
 
                             <div class="col-md-6">
-                                <input value='{{$user->birth_date}}' type="text" class="form-control" name="birth_date" required>
+                                <input value='{{$account->birth_date}}' type="text" class="form-control" name="birth_date" required>
                             </div>
                         </div>
 
@@ -68,11 +69,10 @@
                             <label class="col-md-4 col-form-label text-md-end">{{ __('Phone') }}</label>
 
                             <div class="col-md-6">
-                                <input value='{{$user->phone}}' type="text" class="form-control" name="phone" required>
+                                <input value='{{$account->phone}}' type="text" class="form-control" name="phone" required>
                             </div>
                         </div>
 
-                        @if(Auth::user()->role_id == 1)
 
                         <div class="row mb-3">
                             <label class="col-md-4 col-form-label text-md-end">{{ __('Role') }}</label>
@@ -80,7 +80,7 @@
                             <div class="col-md-6">
                                 <select class="w-100" name="role_id" id="role_id">
                                     @foreach ($roles as $role)
-                                        @if ($role->id === $user->role_id)
+                                        @if ($role->id === $account->role_id)
                                             <option value="{{ $role->id }}" selected>{{ $role->name }}</option>
                                         @else
                                             <option value="{{ $role->id }}">{{ $role->name }}</option>
@@ -95,7 +95,7 @@
 
                             <div class="col-md-6">
                                 <select class="w-100" name="terms" id="terms">
-                                    @if ($user->terms === 0)
+                                    @if ($account->terms === 0)
                                         <option value="0" selected>Not accepted</option>
                                         <option value="1">Accepted</option>
                                     @else
@@ -111,7 +111,7 @@
 
                             <div class="col-md-6">
                                 <select class="w-100" name="premium" id="premium">
-                                    @if ($user->premium === 0)
+                                    @if ($account->premium === 0)
                                         <option value="0" selected>Not obtained</option>
                                         <option value="1">Obtained</option>
                                     @else
@@ -121,8 +121,6 @@
                                 </select> 
                             </div>
                         </div>
-
-                        @endif
 
                         <div class="row mb-3">
                             <label class="col-md-4 col-form-label text-md-end">{{ __('Profile Picture') }}</label>

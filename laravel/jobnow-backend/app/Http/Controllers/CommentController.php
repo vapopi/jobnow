@@ -80,6 +80,6 @@ class CommentController extends Controller
         Comment::where('ticket_id', '=', $tid);
         Comment::destroy($cid);
 
-        return response(content: "Success. The comment ${cid} has been eliminated");
+        // return response(content: "Success. The comment ${cid} has been eliminated");
     }
 }
