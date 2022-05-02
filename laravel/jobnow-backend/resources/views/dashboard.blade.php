@@ -22,7 +22,15 @@
     </div>
 
 </x-app-layout>
-<div class = "botonera">
+
+<div class="text-center">
+    <h3><strong>
+        Welcome to jobnow {{ Auth::user()->name }}!
+        </strong>
+    </h3>
+</div>
+<br>
+<div class="text-center botonera">
 
     @if (Auth::user()->role_id == 4 && Auth::user()->email_verified_at != null)
 
@@ -38,15 +46,10 @@
 
     @if (Auth::user()->role_id == 1 && Auth::user()->email_verified_at != null)
 
-    <a class="color btn btn-primary" href="{{route('security.index')}}" role="button">Security</a>
+        <a class="color btn btn-primary" href="{{route('security.index')}}" role="button">Security</a>
 
     @endif
     
 </div>
 
-<div class="text-center">
-    <h3><strong>
-        Welcome to jobnow {{ Auth::user()->name }}!
-        </strong>
-    </h3>
-</div>
+

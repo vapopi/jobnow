@@ -73,6 +73,58 @@
                             </div>
                         </div>
 
+                        @if(Auth::user()->role_id == 1)
+
+                        <div class="row mb-3">
+                            <label class="col-md-4 col-form-label text-md-end">{{ __('Role') }}</label>
+
+                            <div class="col-md-6">
+                                <select class="w-100" name="role_id" id="role_id">
+                                    @foreach ($roles as $role)
+                                        @if ($role->id === $user->role_id)
+                                            <option value="{{ $role->id }}" selected>{{ $role->name }}</option>
+                                        @else
+                                            <option value="{{ $role->id }}">{{ $role->name }}</option>
+                                        @endif
+                                    @endforeach
+                                </select> 
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label class="col-md-4 col-form-label text-md-end">{{ __('Terms and conditions') }}</label>
+
+                            <div class="col-md-6">
+                                <select class="w-100" name="terms" id="terms">
+                                    @if ($user->terms === 0)
+                                        <option value="0" selected>Not accepted</option>
+                                        <option value="1">Accepted</option>
+                                    @else
+                                        <option value="0">Not accepted</option>
+                                        <option value="1" selected>Accepted</option>
+                                    @endif
+                                </select> 
+                            </div>
+                        </div>
+
+                        <div class="row mb-3">
+                            <label class="col-md-4 col-form-label text-md-end">{{ __('Premium') }}</label>
+
+                            <div class="col-md-6">
+                                <select class="w-100" name="premium" id="premium">
+                                    @if ($user->premium === 0)
+                                        <option value="0" selected>Not obtained</option>
+                                        <option value="1">Obtained</option>
+                                    @else
+                                        <option value="0">Not obtained</option>
+                                        <option value="1" selected>Obtained</option>
+                                    @endif
+                                </select> 
+                            </div>
+                        </div>
+
+                        @endif
+
                         <div class="row mb-3">
                             <label class="col-md-4 col-form-label text-md-end">{{ __('Profile Picture') }}</label>
 
