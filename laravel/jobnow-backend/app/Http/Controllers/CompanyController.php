@@ -46,7 +46,6 @@ class CompanyController extends Controller
             'name' => 'required',
             'email' => 'required|email',
             'logo' => 'required|mimes:gif,jpeg,jpg,png|max:2048',
-            'author_id' => 'required'
         ]);
 
         $input = $request->all();
@@ -83,7 +82,7 @@ class CompanyController extends Controller
 
         $company = Company::create($input);
 
-        return redirect()->route('company.show', ($company->id))
+        return redirect()->route('companies.show', ($company->id))
         ->with('success', "Company " . $company->name . " created successfully");
     }
 

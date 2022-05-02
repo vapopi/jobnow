@@ -12,22 +12,13 @@ class Company extends Model
     protected $fillable = [
 
         'name',
-        'password',
         'email',
         'logo_id',
-        'role_id'
-    ];
-
-    protected $hidden = [
-
-        'password',
-        'remember_token'
-
+        'author_id'
     ];
 
     protected $casts = [
 
-        'email_verified_at' => 'datetime',
         'creation_date' => 'datetime',
         'created_at' => 'datetime',
         'updated_at' => 'datetime'

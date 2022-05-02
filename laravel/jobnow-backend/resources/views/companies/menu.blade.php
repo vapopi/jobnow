@@ -45,7 +45,7 @@
                                             <button class="w-100 bsColor color btn btn-secondary" id="destroy" type="submit" role="button" data-bs-toggle="modal" data-bs-target="#confirmModal{{$company->id}}">Delete</button>
 
                                             <!-- Modal -->
-                                            <div class="modal fade" id="confirmModal{{$role->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                            <div class="modal fade" id="confirmModal{{$company->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                 <div class="modal-dialog">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
