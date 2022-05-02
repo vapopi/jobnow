@@ -45,14 +45,14 @@ class CompanyController extends Controller
 
             'name' => 'required',
             'email' => 'required|email',
-            'logo_id' => 'required|mimes:gif,jpeg,jpg,png|max:2048',
+            'logo' => 'required|mimes:gif,jpeg,jpg,png|max:2048',
             'author_id' => 'required'
         ]);
 
         $input = $request->all();
 
         //Coger los datos del logo_id
-        $upload = $request->file('logo_id');
+        $upload = $request->file('logo');
         $fileName = $upload->getClientOriginalName();
         $fileSize = $upload->getSize();
         $uploadName = time() . '_' . $fileName;
