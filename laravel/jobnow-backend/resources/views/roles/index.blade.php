@@ -51,11 +51,32 @@
 
                                 </td>
                                 <td>
-                                <form method="POST" action="{{route('roles.destroy', $role)}}">
-                                        @csrf
-                                        @method('delete')
-                                        <button class="w-100 bsColor color btn btn-secondary" type="submit" role="button">Delete</button>
-                                    </form>
+                                    <button class="w-100 bsColor color btn btn-secondary" id="destroy" type="submit" role="button" data-bs-toggle="modal" data-bs-target="#confirmModal{{$role->id}}">Delete</button>
+
+                                    <!-- Modal -->
+                                    <div class="modal fade" id="confirmModal{{$role->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                        <div class="modal-dialog">
+                                            <div class="modal-content">
+                                                <div class="modal-header">
+                                                    <h5 class="modal-title" id="exampleModalLabel">Delete Role</h5>
+                                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                </div>
+                                                <div class="modal-body">
+                                                    Are you sure you want to delete the role <strong>{{ $role->name }}</strong> ? <br>
+                                                    <span class="text-danger">This action cannot be undone.</span>
+                                                </div>
+                                                <div class="modal-footer">
+                                                    <button type="button" class="color bsColor btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                    <form id="form" method="POST" action="{{route('roles.destroy', $role->id)}}">
+                                                        @csrf
+                                                        @method('DELETE')
+                                                        <button id="confirm" type="submit" class="color bColor btn btn-primary">Confirm</button>
+                                                    </form>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- End Modal -->                
                                 </td>
                             </tr>
                             @endforeach
@@ -64,48 +85,6 @@
                     <a class="b2Color btn btn-primary" href="{{route('roles.create')}}" role="button"> + Add New Role</a>
                 </div>
             </div>
-
-            <!-- Modal -->
-            <div class="modal fade" id="confirmModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title" id="exampleModalLabel">Are you sure you want to delete that role?</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            This action cannot be undone
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="color bsColor btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button id="confirm" type="button" class="color bColor btn btn-primary">Confirm</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Submit confirm -->
-            <script type="text/javascript">
-
-                const submit = document.getElementById("destroy");
-                const confirm = document.getElementById("confirm");
-
-                // Disable form submit button
-                submit.addEventListener("click", function(event) {
-
-                    event.preventDefault();
-                    return false;
-
-                });
-
-                // Enable submit via modal confirmation
-                confirm.addEventListener("click", function(event) {
-
-                    document.getElementById("form").submit();
-
-                });
-
-            </script>
         </div>
     </div>
 </div>
