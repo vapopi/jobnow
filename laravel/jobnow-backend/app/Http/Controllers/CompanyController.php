@@ -7,6 +7,7 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Company;
 use App\Models\File;
+use Illuminate\Support\Facades\Auth;
 
 class CompanyController extends Controller
 {
@@ -43,15 +44,11 @@ class CompanyController extends Controller
         $this->validate($request, [
             'name' => 'required',
             'email' => 'required|email',
-            'phone' => 'required|max:20',
-            'password' => 'required|min:6',
-            'password_confirmation' => 'required|min:6|same:password',
             'logo_id' => 'required|mimes:gif,jpeg,jpg,png|max:2048',
-            'remember' => 'required'
+            'author_id' => 'required'
         ]);
 
         $input = $request->all();
-        $input['password'] = Hash::Make($input['password']);
 
         $upload = $request->file('logo_id');
         $fileName = $upload->getClientOriginalName();
@@ -78,12 +75,12 @@ class CompanyController extends Controller
             $input['logo_id'] = $file->id;
         }
 
-        $input['role_id'] = 4;
+        $input['author_id'] = Auth::user()->id;
 
-        $user = Company::create($input);
+        $company = Company::create($input);
 
-        return redirect()->route('login')
-            ->with('success', "L'usuari " . $user->name . " s'ha creat correctament.");
+        return redirect()->route('company.show', ($company->id))
+        ->with('success', "Company " . $company->name . " created successfully");
     }
 
     /**
@@ -92,9 +89,12 @@ class CompanyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Company $company)
     {
-        //
+        return view('companies.show', [
+            "company" => $company,
+            "file" => $file
+        ]);
     }
 
     /**
@@ -103,9 +103,13 @@ class CompanyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function edit($id)
+    public function edit(Company $company)
     {
-        return view('companies.edit');
+        $file = File::where('id', $company->logo_id)->first();
+
+        return view('companies.edit',[
+            "company" => $company,
+        ]);
     }
 
     /**
@@ -115,9 +119,47 @@ class CompanyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, Company $company)
     {
-        //
+        $request->validate([
+
+            'name' => 'required',
+            'email' => 'required|email',
+            'logo_id' => 'required|mimes:gif,jpeg,jpg,png|max:2048',
+            'author_id' => 'required'
+
+        ]);
+
+        if($request->hasFile('logo_id')) {
+
+            $file = File::where('id', $company->logo_id)->first();
+
+            $antigua_ruta = $file->filename;
+            $upload = $request->file('logo_id');
+            $fileName = $upload->getClientOriginalName();
+            $fileSize = $upload->getSize();
+    
+            $uploadName = time() . '_' . $fileName;
+            $filePath = $upload->storeAs(
+                'uploads',    
+                $uploadName,   
+                'public'        
+            );
+
+            if (\Storage::disk('public')->exists($filePath)) {
+
+                $fullPath = \Storage::disk('public')->path($filePath);
+                $file->filename = $filePath;
+                $file->filesize = $fileSize;
+                $file->save();
+
+                Storage::disk('public')->delete($antigua_ruta);
+            }
+        }
+
+        $company->name = $request->name;
+        $company->email = $request->email;
+        $company->author_id = Auth::user()->id;
     }
 
     /**
@@ -126,8 +168,15 @@ class CompanyController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Company $company)
     {
-        //
+        $file = File::where('id', $company->logo_id)->first();
+
+        $company->delete();
+        $file->delete();
+        Storage::disk('public')->delete($file->filepath);
+
+        return redirect()->route("companies.index")
+        ->with('success', "Company " . $company->name . " was deleted successfully");
     }
 }

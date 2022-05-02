@@ -15,11 +15,11 @@ class TicketController extends Controller
      */
     public function index()
     {
-        $ticket = DB::table('tickets')
+        $tickets = DB::table('tickets')
         ->select('id', 'title', 'description', 'author_id', 'screenshot_id')
         ->get();
 
-        return response($ticket);
+        return response($tickets);
     }
 
     /**
@@ -79,7 +79,7 @@ class TicketController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(int $id)
     {
         //TODO: Eliminar fichero
         

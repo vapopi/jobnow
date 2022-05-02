@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 use App\Models\Message;
 
 class MessageController extends Controller
@@ -12,9 +13,11 @@ class MessageController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(int $gid)
+    public function index()
     {
-        $messages = Message::where('group_id', '=', $gid)->get();
+        $messages = DB::table('messages')
+        ->select('id', 'message', 'author_id', 'receiver_id', 'created_at')
+        ->get();
 
         return response($messages);
     }
@@ -25,16 +28,17 @@ class MessageController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(int $gid, Request $request)
+    public function store(Request $request)
     {
         $request->validate([
             'message' => 'required|max:255',
-            'author_id' => 'required'
+            'author_id' => 'required',
+            'receiver_id' => 'required'
         ]);
 
-        $all = $request->all();
-        $all['group_id'] = $gid;
-        $message = Message::create($all);
+        //TODO: Coger el user id y el receiver id
+
+        $message = Message::create($request->all());
 
         return response($message);
     }
@@ -45,10 +49,9 @@ class MessageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(int $gid, int $mid)
+    public function show(int $id)
     {
-        $message = Messages::where('group_id', '=', $gid)
-        ->find($mid);
+        $message = Messages::find($id);
 
         return response($message);
     }
@@ -60,10 +63,9 @@ class MessageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(int $gip, Request $request, int $mid)
+    public function update(Request $request, int $id)
     {
-        $message = Message::where('group_id', '=', $gid)
-        ->find($mid)
+        $message = Message::find($id)
         ->update($request->all());
 
         return response($message);
@@ -75,10 +77,9 @@ class MessageController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(int $gid, int $mid)
+    public function destroy(int $id)
     {
-        Message::where('group_id', '=', $gid);
-        Message::destroy($mid);
+        Message::destroy($id);
 
         // return response(content: "Success. The message ${mid} has been eliminated");
     }

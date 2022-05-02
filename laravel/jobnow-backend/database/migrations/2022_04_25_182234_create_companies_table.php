@@ -21,7 +21,6 @@ class CreateCompaniesTable extends Migration
             $table->unsignedBigInteger("logo_id");
             $table->unsignedBigInteger("author_id");
             $table->foreign("logo_id")->references("id")->on("files");
-            $table->rememberToken();
             $table->timestamps();
         });
     }
