@@ -110,6 +110,6 @@ class RoleController extends Controller
         $role->delete();
 
         return redirect()->route('roles.index')
-        ->with('success', 'Role'. ' '.$role->id .' '.'has been eliminated');
+        ->with('success', 'Role'. ' '.$role->name .' '.'has been eliminated');
     }
 }
