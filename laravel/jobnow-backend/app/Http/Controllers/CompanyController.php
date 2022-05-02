@@ -42,6 +42,7 @@ class CompanyController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
+
             'name' => 'required',
             'email' => 'required|email',
             'logo_id' => 'required|mimes:gif,jpeg,jpg,png|max:2048',
@@ -50,11 +51,13 @@ class CompanyController extends Controller
 
         $input = $request->all();
 
+        //Coger los datos del logo_id
         $upload = $request->file('logo_id');
         $fileName = $upload->getClientOriginalName();
         $fileSize = $upload->getSize();
         $uploadName = time() . '_' . $fileName;
 
+        //Subir la imagen al disco duro
         $filePath = $upload->storeAs(
             'uploads',    
             $uploadName,   
@@ -65,6 +68,7 @@ class CompanyController extends Controller
 
             $fullPath = Storage::disk('public')->path($filePath);
 
+            //Guardar los datos del archivo a la BBDD
             $file = File::create([
                 'filename' => $filePath,
                 'filesize' => $fileSize,
@@ -93,7 +97,6 @@ class CompanyController extends Controller
     {
         return view('companies.show', [
             "company" => $company,
-            "file" => $file
         ]);
     }
 
@@ -105,10 +108,11 @@ class CompanyController extends Controller
      */
     public function edit(Company $company)
     {
-        $file = File::where('id', $company->logo_id)->first();
 
         return view('companies.edit',[
+
             "company" => $company,
+            "file" => File::find($company->logo_id)
         ]);
     }
 

@@ -36,11 +36,12 @@
 
         <a class="color btn btn-primary" href="{{route('premium.index')}}" role="button">Premium</a>
         <a class="color btn btn-primary" href="" role="button">Offers</a> <!-- React -->
-        <a class="color btn btn-primary" href="" role="button">Companies</a> <!-- React -->
+        <a class="color btn btn-primary" href="{{route('menu.index')}}" role="button">Companies</a>
         <a class="color btn btn-primary" href="" role="button">Posts</a> <!-- React -->
         <a class="color btn btn-primary" href="" role="button">Notifications</a> <!-- React -->
         <a class="color btn btn-primary" href="" role="button">Tickets</a> <!-- React -->
         <a class="color btn btn-primary" href="" role="button">Chat</a> <!-- React -->
+        <a class="color btn btn-primary" href="" role="button">My Network</a><!-- React -->
 
     @endif
 
