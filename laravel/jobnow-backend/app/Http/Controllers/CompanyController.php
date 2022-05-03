@@ -52,13 +52,11 @@ class CompanyController extends Controller
 
         $input = $request->all();
 
-        //Coger los datos del logo_id
         $upload = $request->file('logo');
         $fileName = $upload->getClientOriginalName();
         $fileSize = $upload->getSize();
         $uploadName = time() . '_' . $fileName;
 
-        //Subir la imagen al disco duro
         $filePath = $upload->storeAs(
             'uploads',    
             $uploadName,   
@@ -69,7 +67,6 @@ class CompanyController extends Controller
 
             $fullPath = Storage::disk('public')->path($filePath);
 
-            //Guardar los datos del archivo a la BBDD
             $file = File::create([
                 'filename' => $filePath,
                 'filesize' => $fileSize,
@@ -82,10 +79,16 @@ class CompanyController extends Controller
 
         $input['author_id'] = Auth::user()->id;
 
-        $company = Company::create($input);
+        try {
+            $company = Company::create($input);
+
+        } catch (\Illuminate\Database\QueryException $ex) {
+            
+            return redirect()->route('companies.create')->with('error', "The email is already taken");
+        }
 
         return redirect()->route('menu.index')
-        ->with('success', "Company " . $company->name . " created successfully");
+            ->with('success', "Company " . $company->name . " created successfully");
     }
 
     /**
@@ -164,10 +167,18 @@ class CompanyController extends Controller
         $company->name = $request->name;
         $company->email = $request->email;
         $company->author_id = Auth::user()->id;
-        $company->save();
+
+        try {
+
+            $company->save();
+
+        } catch (\Illuminate\Database\QueryException $ex) {
+
+            return redirect()->route('companies.edit', $company)->with('error', "The email is already taken");
+        }
 
         return redirect()->route('menu.index')
-        ->with('success', "Company " . $company->name . " changed successfully");
+            ->with('success', "Company " . $company->name . " changed successfully");
     }
 
     /**
