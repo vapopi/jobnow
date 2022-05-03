@@ -89,7 +89,21 @@ class AccountController extends Controller
             $input['avatar_id'] = $file->id;
         }
         
-        $account = User::create($input);
+        try {
+            $account = User::create($input);
+
+        } catch (\Illuminate\Database\QueryException $ex) {
+            
+            $message = $ex->getMessage();
+
+            if(str_contains($message, 'users_phone_unique'))
+            {
+                return redirect()->route('accounts.create')->with('error', "The phone is already taken.");
+
+            }else{
+                return redirect()->route('accounts.create')->with('error', "The email is already taken.");
+            }
+        }
         
         $account->sendEmailVerificationNotification();
 
@@ -186,9 +200,24 @@ class AccountController extends Controller
         $account->phone = $request->phone;
         $account->role_id = $request->role_id;
         $account->terms = $request->terms;
-        $account->premium = $request->premium;   
-        $account->save();
+        $account->premium = $request->premium;
 
+        try {
+
+            $account->save();
+
+        } catch (\Illuminate\Database\QueryException $ex) {
+
+            $message = $ex->getMessage();
+
+            if(str_contains($message, 'users_phone_unique'))
+            {
+                return redirect()->route('accounts.edit', $account)->with('error', "The phone is already taken.");
+
+            }else{
+                return redirect()->route('accounts.edit', $account)->with('error', "The email is already taken.");
+            }
+        }
 
         return redirect()->route('accounts.index', $account)
             ->with('success', "The profile user " .$account->name. " has been edited successfully.");

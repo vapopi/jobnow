@@ -192,7 +192,23 @@ class UserController extends Controller
         $user->email = $request->email;
         $user->birth_date = $request->birth_date;
         $user->phone = $request->phone;
-        $user->save();
+        
+        try {
+
+            $user->save();
+
+        } catch (\Illuminate\Database\QueryException $ex) {
+
+            $message = $ex->getMessage();
+
+            if(str_contains($message, 'users_phone_unique'))
+            {
+                return redirect()->route('users.edit', $user)->with('error', "The phone is already taken");
+
+            }else{
+                return redirect()->route('users.edit', $user)->with('error', "The email is already taken");
+            }
+        }
 
         return redirect()->route('users.show', $user)
             ->with('success', "The profile user " .$user->name. " has been edited successfully.");

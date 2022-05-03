@@ -24,7 +24,7 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                    <a href="{{ url()->previous() }}" class="float-end link-secondary" role="button"> 🡰 Go back</a>
+                    <a href="{{ route('accounts.index') }}" class="float-end link-secondary" role="button"> 🡰 Go back</a>
                     {{ __('Edit User') }}
                 </div>
 
