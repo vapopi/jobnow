@@ -32,30 +32,31 @@
 <br>
 <div class="text-center botonera">
 
-    @if (Auth::user()->role_id == 4 && Auth::user()->email_verified_at != null)
-
-        <a class="color btn btn-primary" href="{{route('premium.index')}}" role="button">Premium</a>
-        <a class="color btn btn-primary" href="" role="button">Offers</a> <!-- React -->
-        <a class="color btn btn-primary" href="{{route('menu.index')}}" role="button">Companies</a>
-        <a class="color btn btn-primary" href="" role="button">Posts</a> <!-- React -->
-        <a class="color btn btn-primary" href="" role="button">Notifications</a> <!-- React -->
-        <a class="color btn btn-primary" href="" role="button">Tickets</a> <!-- React -->
-        <a class="color btn btn-primary" href="" role="button">Chat</a> <!-- React -->
-        <a class="color btn btn-primary" href="" role="button">My Network</a><!-- React -->
-        
-    @else
+    @if (Auth::user()->email_verified_at == null)
 
         <p>Verify your email to start using the app</p>
 
-    @endif
-
-    @if (Auth::user()->role_id == 1 && Auth::user()->email_verified_at != null)
-
-        <a class="color btn btn-primary" href="{{route('security.index')}}" role="button">Security</a>
     @else
 
-        <p>Verify your email to start using the app</p>
-        
+        @if (Auth::user()->role_id == 4)
+
+            <a class="color btn btn-primary" href="{{route('premium.index')}}" role="button">Premium</a>
+            <a class="color btn btn-primary" href="" role="button">Offers</a> <!-- React -->
+            <a class="color btn btn-primary" href="{{route('menu.index')}}" role="button">Companies</a>
+            <a class="color btn btn-primary" href="" role="button">Posts</a> <!-- React -->
+            <a class="color btn btn-primary" href="" role="button">Notifications</a> <!-- React -->
+            <a class="color btn btn-primary" href="" role="button">Tickets</a> <!-- React -->
+            <a class="color btn btn-primary" href="" role="button">Chat</a> <!-- React -->
+            <a class="color btn btn-primary" href="" role="button">My Network</a><!-- React -->
+
+        @endif
+
+        @if (Auth::user()->role_id == 1)
+
+            <a class="color btn btn-primary" href="{{route('security.index')}}" role="button">Security</a>
+    
+        @endif
+
     @endif
     
 </div>
