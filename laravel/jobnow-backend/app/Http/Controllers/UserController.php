@@ -86,13 +86,26 @@ class UserController extends Controller
         $input['role_id'] = 4;
         $input['terms'] = 1;
         
-        $user = User::create($input);
+        try {
+            $user = User::create($input);
+
+        } catch (\Illuminate\Database\QueryException $ex) {
+            
+            $message = $ex->getMessage();
+
+            if(str_contains($message, 'users_phone_unique'))
+            {
+                return redirect()->route('users.create')->with('error', "The phone is already taken");
+
+            }else{
+                return redirect()->route('users.create')->with('error', "The email is already taken");
+            }
+        }
 
         Auth::login($user);
         $user->sendEmailVerificationNotification();
         Auth::logout($user);
         
-
         return redirect()->route('login')
             ->with('success', "The user " . $user->name . " was created successfully. Please check your email for verify your account.");
     }
