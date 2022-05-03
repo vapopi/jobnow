@@ -28,7 +28,6 @@
                     <a href="#" class="color btn btn-primary">Buy now</a>
                 </div>
             </div>
-
             <div class="p-2 shadow-sm float-start card" style="width: 18rem;">
                 <div class="card-body">
                     <h5 class="card-title">$74.99</h5>
