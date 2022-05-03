@@ -42,13 +42,20 @@
         <a class="color btn btn-primary" href="" role="button">Tickets</a> <!-- React -->
         <a class="color btn btn-primary" href="" role="button">Chat</a> <!-- React -->
         <a class="color btn btn-primary" href="" role="button">My Network</a><!-- React -->
+        
+    @else
+
+        <p>Verify your email to start using the app</p>
 
     @endif
 
     @if (Auth::user()->role_id == 1 && Auth::user()->email_verified_at != null)
 
         <a class="color btn btn-primary" href="{{route('security.index')}}" role="button">Security</a>
+    @else
 
+        <p>Verify your email to start using the app</p>
+        
     @endif
     
 </div>
