@@ -84,7 +84,7 @@ class CompanyController extends Controller
 
         } catch (\Illuminate\Database\QueryException $ex) {
             
-            return redirect()->route('companies.create')->with('error', "The email is already taken");
+            return redirect()->route('companies.create')->with('error', "The email is already taken.");
         }
 
         return redirect()->route('menu.index')
@@ -169,12 +169,11 @@ class CompanyController extends Controller
         $company->author_id = Auth::user()->id;
 
         try {
-
             $company->save();
 
         } catch (\Illuminate\Database\QueryException $ex) {
 
-            return redirect()->route('companies.edit', $company)->with('error', "The email is already taken");
+            return redirect()->route('companies.edit', $company)->with('error', "The email is already taken.");
         }
 
         return redirect()->route('menu.index')

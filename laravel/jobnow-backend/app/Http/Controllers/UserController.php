@@ -95,10 +95,10 @@ class UserController extends Controller
 
             if(str_contains($message, 'users_phone_unique'))
             {
-                return redirect()->route('users.create')->with('error', "The phone is already taken");
+                return redirect()->route('users.create')->with('error', "The phone is already taken.");
 
             }else{
-                return redirect()->route('users.create')->with('error', "The email is already taken");
+                return redirect()->route('users.create')->with('error', "The email is already taken.");
             }
         }
 
@@ -203,10 +203,10 @@ class UserController extends Controller
 
             if(str_contains($message, 'users_phone_unique'))
             {
-                return redirect()->route('users.edit', $user)->with('error', "The phone is already taken");
+                return redirect()->route('users.edit', $user)->with('error', "The phone is already taken.");
 
             }else{
-                return redirect()->route('users.edit', $user)->with('error', "The email is already taken");
+                return redirect()->route('users.edit', $user)->with('error', "The email is already taken.");
             }
         }
 

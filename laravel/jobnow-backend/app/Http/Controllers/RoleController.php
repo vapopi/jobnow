@@ -41,10 +41,16 @@ class RoleController extends Controller
             'name' => 'required|max:20'
         ]);
 
-        $role = Role::create($request->all());
+        try {
+            $role = Role::create($request->all());
+
+        } catch (\Illuminate\Database\QueryException $ex) {
+
+            return redirect()->route('roles.create')->with('error', "The name is already taken.");
+        }
 
         return redirect()->route('roles.index')
-        ->with('success', "Role created succesfully");
+            ->with('success', "Role created succesfully");
     }
 
     /**
@@ -93,10 +99,17 @@ class RoleController extends Controller
         $roleName = $request->name;
 
         $role->name = $roleName;
-        $role->save();
+        
+        try {
+            $role->save();
+
+        } catch (\Illuminate\Database\QueryException $ex) {
+
+            return redirect()->route('roles.edit', $role)->with('error', "The name is already taken.");
+        }
 
         return redirect()->route('roles.index')
-        ->with('success', 'Role updated successfully');
+            ->with('success', 'Role updated successfully');
     }
 
     /**

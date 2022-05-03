@@ -82,7 +82,7 @@
                             @endforeach
                         </tbody>
                     </table>
-                    <a class="b2Color btn btn-primary" href="{{route('roles.create')}}" role="button"> + Add New Role</a>
+                    <a class="b2Color btn btn-primary" href="{{route('roles.create')}}" role="button"> + Add new role</a>
                 </div>
             </div>
         </div>
