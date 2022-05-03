@@ -8,6 +8,6 @@
 </head>
 <body>
     <div id="example"></div>
-    <script src="{{ asset('js/components/ChatApp.js') }}" defer></script>
+    <script src="{{ asset('js/components/MyNetwork.js') }}" defer></script>
 </body>
 </html>
