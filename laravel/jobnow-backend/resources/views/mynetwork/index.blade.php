@@ -7,7 +7,7 @@
     <title>Document</title>
 </head>
 <body>
-    <div id="example"></div>
-    <script src="{{ asset('js/components/MyNetwork.js') }}" defer></script>
+    <div id="myNetwork"></div>
+    <script src="{{ asset('js/components/MyNetwork/MyNetwork.js') }}" defer></script>
 </body>
 </html>

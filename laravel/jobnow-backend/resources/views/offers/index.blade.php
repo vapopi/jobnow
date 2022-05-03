@@ -7,7 +7,7 @@
     <title>Document</title>
 </head>
 <body>
-    <div id="chatapp"></div>
-    <script src="{{ asset('js/app.js') }}" defer></script>
+    <div id="offers"></div>
+    <script src="{{ asset('js/components/Offers/Offers.js') }}" defer></script>
 </body>
 </html>
