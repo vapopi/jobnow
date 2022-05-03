@@ -5,6 +5,10 @@
     .color{  
         background-color: #6356e5 !important;
     }
+
+    .bsColor{  
+        background-color: #6356e5 !important;
+    }
 </style>
 <div class="container">
     <div class="mx-auto col-md-8">
@@ -13,27 +17,19 @@
             {{ __('Buy premium') }}
         </div>
         <div class="border p-5 bg-white d-flex justify-content-center">
-        <div class="p-2 shadow-sm float-start card" style="width: 18rem;">
-                <div class="card-body">
-                    <h5 class="card-title">$9.99</h5>
-                    <p class="card-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>
-                    <a href="#" class="color btn btn-primary">Buy now</a>
-                </div>
+        <div class="w-75 p-2 shadow-sm float-start card" style="width: 18rem;">
+            <div class="card-header">
+                {{ __('Premium plan') }}
             </div>
-
-            <div class="p-2 shadow-sm float-start card" style="width: 18rem;">
-                <div class="card-body">
-                    <h5 class="card-title">$24.99</h5>
-                    <p class="card-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>
-                    <a href="#" class="color btn btn-primary">Buy now</a>
-                </div>
-            </div>
-            <div class="p-2 shadow-sm float-start card" style="width: 18rem;">
-                <div class="card-body">
-                    <h5 class="card-title">$74.99</h5>
-                    <p class="card-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>
-                    <a href="#" class="color btn btn-primary">Buy now</a>
-                </div>
+            <div class="card-body">
+                <h5 class="card-title">$9.99</h5>
+                <p class="card-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>
+                @if(Auth::user()->premium == 0)
+                <a href="{{ route('premium.create') }}" class="color btn btn-primary">Buy now</a>
+                @else
+                <p class="text-danger">You are already a premium user!</p>
+                <button class="bsColor btn btn-primary" disabled="disabled">Buy now</button>
+                @endif
             </div>
         </div>
     </div>
