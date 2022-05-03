@@ -84,7 +84,7 @@ class CompanyController extends Controller
 
         $company = Company::create($input);
 
-        return redirect()->route('companies.show', ($company->id))
+        return redirect()->route('menu.index')
         ->with('success', "Company " . $company->name . " created successfully");
     }
 
@@ -131,17 +131,15 @@ class CompanyController extends Controller
 
             'name' => 'required',
             'email' => 'required|email',
-            'logo_id' => 'required|mimes:gif,jpeg,jpg,png|max:2048',
-            'author_id' => 'required'
 
         ]);
 
-        if($request->hasFile('logo_id')) {
+        if($request->hasFile('logo')) {
 
             $file = File::where('id', $company->logo_id)->first();
 
-            $antigua_ruta = $file->filename;
-            $upload = $request->file('logo_id');
+            $oldPath = $file->filename;
+            $upload = $request->file('logo');
             $fileName = $upload->getClientOriginalName();
             $fileSize = $upload->getSize();
     
@@ -159,13 +157,17 @@ class CompanyController extends Controller
                 $file->filesize = $fileSize;
                 $file->save();
 
-                Storage::disk('public')->delete($antigua_ruta);
+                Storage::disk('public')->delete($oldPath);
             }
         }
 
         $company->name = $request->name;
         $company->email = $request->email;
         $company->author_id = Auth::user()->id;
+        $company->save();
+
+        return redirect()->route('menu.index')
+        ->with('success', "Company " . $company->name . " changed successfully");
     }
 
     /**
@@ -182,7 +184,7 @@ class CompanyController extends Controller
         $file->delete();
         Storage::disk('public')->delete($file->filepath);
 
-        return redirect()->route("companies.index")
+        return redirect()->route("menu.index")
         ->with('success', "Company " . $company->name . " was deleted successfully");
     }
 }

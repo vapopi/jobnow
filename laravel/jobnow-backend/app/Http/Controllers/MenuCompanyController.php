@@ -16,7 +16,7 @@ class MenuCompanyController extends Controller
     public function index()
     {
         return view("companies.menu", [
-            "companies" => Company::where('author_id', Auth::user()->id) ->get()
+            "companies" => Company::where('author_id', Auth::user()->id)->get()
         ]);
     }
 }
