@@ -44,9 +44,9 @@ class UserController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required',
-            'surnames' => 'required',
-            'email' => 'required|email',
+            'name' => 'required|max:20',
+            'surnames' => 'required|max:50',
+            'email' => 'required|email|max:255',
             'birth_date' => 'required|date',
             'phone' => 'required|max:20',
             'password' => 'required|min:8',
@@ -61,8 +61,15 @@ class UserController extends Controller
         $upload = $request->file('avatar_id');
         $fileName = $upload->getClientOriginalName();
         $fileSize = $upload->getSize();
+        $fileExtension = $upload->getClientOriginalExtension();
         $uploadName = time() . '_' . $fileName;
-
+        
+        if($fileExtension == 'gif')
+        {
+            return redirect()->route('users.register', $user)
+                ->with('error', "You cannot use a gif as a profile picture if you are not a premium user.");
+        }
+        
         $filePath = $upload->storeAs(
             'uploads',    
             $uploadName,   
@@ -152,9 +159,9 @@ class UserController extends Controller
     {
 
         $this->validate($request, [
-            'name' => 'required',
-            'surnames' => 'required',
-            'email' => 'required|email',
+            'name' => 'required|max:20',
+            'surnames' => 'required|max:50',
+            'email' => 'required|email|max:255',
             'birth_date' => 'required|date',
             'phone' => 'required|max:20',
             'avatar_id' => 'mimes:gif,jpeg,jpg,png|max:2048',
@@ -163,13 +170,20 @@ class UserController extends Controller
         if($request->hasFile('avatar_id'))
         {
             $file = File::where('id', $user->avatar_id)->first();
-
+            
             $antigua_ruta = $file->filename;
             $upload = $request->file('avatar_id');
             $fileName = $upload->getClientOriginalName();
+            $fileExtension = $upload->getClientOriginalExtension();
             $fileSize = $upload->getSize();
-    
             $uploadName = time() . '_' . $fileName;
+
+            if($fileExtension == 'gif' && Auth::user()->premium == 0)
+            {
+                return redirect()->route('users.edit', $user)
+                    ->with('error', "You cannot use a gif as a profile picture if you are not a premium user.");
+            }
+
             $filePath = $upload->storeAs(
                 'uploads',    
                 $uploadName,   

@@ -45,8 +45,8 @@ class CompanyController extends Controller
     {
         $this->validate($request, [
 
-            'name' => 'required',
-            'email' => 'required|email',
+            'name' => 'required|max:50',
+            'email' => 'required|email|max:255',
             'logo' => 'required|mimes:gif,jpeg,jpg,png|max:2048',
         ]);
 
@@ -54,8 +54,15 @@ class CompanyController extends Controller
 
         $upload = $request->file('logo');
         $fileName = $upload->getClientOriginalName();
+        $fileExtension = $upload->getClientOriginalExtension();
         $fileSize = $upload->getSize();
         $uploadName = time() . '_' . $fileName;
+
+        if($fileExtension == 'gif' && Auth::user()->premium == 0)
+        {
+            return redirect()->route('companies.create')
+                ->with('error', "You cannot use a gif as a profile picture if the user is not premium.");
+        }
 
         $filePath = $upload->storeAs(
             'uploads',    
@@ -132,8 +139,8 @@ class CompanyController extends Controller
     {
         $request->validate([
 
-            'name' => 'required',
-            'email' => 'required|email',
+            'name' => 'required|max:50',
+            'email' => 'required|email|max:255',
 
         ]);
 
@@ -144,9 +151,16 @@ class CompanyController extends Controller
             $oldPath = $file->filename;
             $upload = $request->file('logo');
             $fileName = $upload->getClientOriginalName();
+            $fileExtension = $upload->getClientOriginalExtension();
             $fileSize = $upload->getSize();
-    
             $uploadName = time() . '_' . $fileName;
+
+            if($fileExtension == 'gif' && Auth::user()->premium == 0)
+            {
+                return redirect()->route('companies.edit', $company)
+                    ->with('error', "You cannot use a gif as a profile picture if the user is not premium.");
+            }
+
             $filePath = $upload->storeAs(
                 'uploads',    
                 $uploadName,   

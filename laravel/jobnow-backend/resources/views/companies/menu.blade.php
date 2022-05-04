@@ -40,7 +40,6 @@
                             <table class="table">
                                 <thead>
                                     <tr>
-                                        <td scope="col">ID</td>
                                         <td scope="col">Name</td>
                                         <td scope="col">Email</td>
                                         <td scope="col">Creation Date</td>
@@ -50,7 +49,6 @@
                                 <tbody>
                                     @foreach ($companies as $company)
                                     <tr>
-                                        <td>{{ $company->id }}</td>
                                         <td>{{ $company->name }}</td>
                                         <td>{{ $company->email }}</td>
                                         <td>{{ $company->creation_date }}</td>

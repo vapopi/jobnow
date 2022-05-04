@@ -46,9 +46,9 @@ class AccountController extends Controller
     public function store(Request $request)
     {
         $this->validate($request, [
-            'name' => 'required',
-            'surnames' => 'required',
-            'email' => 'required|email',
+            'name' => 'required|max:20',
+            'surnames' => 'required|max:50',
+            'email' => 'required|email|max:255',
             'birth_date' => 'required|date',
             'phone' => 'required|max:20',
             'password' => 'required|min:8',
@@ -57,17 +57,22 @@ class AccountController extends Controller
             'premium' => 'required',
             'password_confirmation' => 'required|min:8|same:password',
             'avatar_id' => 'required|mimes:gif,jpeg,jpg,png|max:2048',
-            'remember' => 'required'
         ]);
-
 
         $input = $request->all();
         $input['password'] = Hash::Make($input['password']);
 
         $upload = $request->file('avatar_id');
         $fileName = $upload->getClientOriginalName();
+        $fileExtension = $upload->getClientOriginalExtension();
         $fileSize = $upload->getSize();
         $uploadName = time() . '_' . $fileName;
+
+        if($fileExtension == 'gif' && $input['premium'] == 0)
+        {
+            return redirect()->route('accounts.create')
+                ->with('error', "You cannot use a gif as a profile picture if the user is not premium.");
+        }
 
         $filePath = $upload->storeAs(
             'uploads',    
@@ -154,9 +159,9 @@ class AccountController extends Controller
     {
 
         $this->validate($request, [
-            'name' => 'required',
-            'surnames' => 'required',
-            'email' => 'required|email',
+            'name' => 'required|max:20',
+            'surnames' => 'required|max:50',
+            'email' => 'required|email|max:255',
             'birth_date' => 'required|date',
             'phone' => 'required|max:20',
             'role_id' => 'required',
@@ -173,9 +178,16 @@ class AccountController extends Controller
             $antigua_ruta = $file->filename;
             $upload = $request->file('avatar_id');
             $fileName = $upload->getClientOriginalName();
+            $fileExtension = $upload->getClientOriginalExtension();
             $fileSize = $upload->getSize();
-    
             $uploadName = time() . '_' . $fileName;
+
+            if($fileExtension == 'gif' && $request->premium == 0)
+            {
+                return redirect()->route('accounts.edit', $account)
+                    ->with('error', "You cannot use a gif as a profile picture if the user is not premium.");
+            }
+            
             $filePath = $upload->storeAs(
                 'uploads',    
                 $uploadName,   

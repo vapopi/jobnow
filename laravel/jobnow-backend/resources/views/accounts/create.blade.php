@@ -128,18 +128,6 @@
                                 <input type="file" class="form-control" id="customFile" name="avatar_id"/>
                             </div>
                         </div>
-
-                        <div class="mt-4 row mb-3">
-                            <div class="col-md-6 offset-md-2">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" required {{ old('remember') ? 'checked' : '' }}>
-
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('I accept the') }} <span class="color">terms and conditions</span>
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
                         <br>
                         <div class="row mb-0">
                             <div class="mt-3 col-md-12 text-center">
