@@ -21,7 +21,7 @@
 <div class="card w-50 mx-auto" style="width: 18rem;">
 
     <div class="card-header">
-        <a href="{{ route('dashboard') }}" class="float-end link-secondary" role="button"> 🡰 Go back</a>
+        <a href="{{ url()->previous() }}" class="float-end link-secondary" role="button"> 🡰 Go back</a>
         {{ __('User Profile') }}
     </div>
 
@@ -60,6 +60,7 @@
 
     </div>
     <ul class="list-group list-group-flush">
+        @if(Auth::user()->id == $user->id)
         <li class="list-group-item">
             <a href="{{ route('users.edit', $user->id) }}" class="text-white bColor w-100 btn btn-warning" role="button">Edit my profile</a>
         </li>
@@ -90,6 +91,7 @@
                 </div>
             </div>
         </li>
+        @endif
     </ul>
   </div>
 </div>
