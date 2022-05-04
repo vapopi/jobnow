@@ -1,8 +1,9 @@
 import React from 'react'
+import ReactDOM from 'react-dom';
 
 const Offers = () => {
   return (
-    <div>Offers</div>
+    <p>Offers</p>
   )
 }
 
