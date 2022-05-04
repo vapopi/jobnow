@@ -24,8 +24,13 @@
                 {{ __('Premium plan') }}
             </div>
             <div class="card-body">
-                <h5 class="card-title">$9.99</h5>
-                <p class="card-text">Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book</p>
+                <h5 class="card-title"><strong>$9.99</strong></h5>
+                <br>
+                <p><strong>Advantages</strong></p>
+                <div class="card-text">- You can use a gif in your profile picture</div>
+                <div class="card-text">- You can use a gif in your companies logos</div>
+                <br>
+                <br>
                 @if(Auth::user()->premium == 0)
                 <a href="{{ route('premium.create') }}" class="color btn btn-primary">Buy now</a>
                 @else
