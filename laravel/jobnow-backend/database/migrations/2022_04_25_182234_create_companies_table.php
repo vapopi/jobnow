@@ -17,7 +17,7 @@ class CreateCompaniesTable extends Migration
             $table->id();
             $table->string("name", 50);
             $table->timestamp("creation_date")->nullable();
-            $table->string("email", 50)->unique();
+            $table->string("email")->unique();
             $table->unsignedBigInteger("logo_id");
             $table->unsignedBigInteger("author_id");
             $table->foreign("logo_id")->references("id")->on("files");
