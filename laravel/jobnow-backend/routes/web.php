@@ -14,6 +14,7 @@ use App\Http\Controllers\MyNetworkController;
 use App\Http\Controllers\RouteOffersController;
 use App\Http\Controllers\RoutePostsController;
 use App\Http\Controllers\RouteTicketsController;
+use App\Http\Controllers\AdminCompanyController;
 
 /*
 |--------------------------------------------------------------------------
@@ -51,6 +52,7 @@ Route::resource('/companies/menu', MenuCompanyController::class)->middleware(['a
 Route::resource('/companies', CompanyController::class)->middleware(['auth', 'roles: 1, 4', 'verified']);
 Route::resource('/premium', PremiumController::class)->middleware(['auth', 'roles: 1,4', 'verified']);
 Route::resource('/security/accounts', AccountController::class)->middleware(['auth', 'roles: 1', 'verified']);
+Route::resource('/security/companies', AdminCompanyController::class)->middleware(['auth', 'roles: 1', 'verified']);
 Route::resource('/security', SecurityController::class)->middleware(['auth', 'roles: 1', 'verified']);
 Route::resource('/chatapp', RouteChatAppController::class)->middleware(['auth', 'roles: 3, 4', 'verified']);
 Route::resource('/mynetwork', MyNetworkController::class)->middleware(['auth', 'roles: 4', 'verified']);

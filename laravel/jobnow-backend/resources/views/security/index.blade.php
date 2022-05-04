@@ -22,7 +22,7 @@
                         <div>
                             <a class="w-25 color btn btn-primary" href="{{route('roles.index')}}" role="button">Roles</a>
                             <a class="w-25 color btn btn-primary" href="{{route('accounts.index')}}" role="button">Users</a>
-                            <a class="w-25 color btn btn-primary" href="" role="button">Companies</a>
+                            <a class="w-25 color btn btn-primary" href="{{route('companies.index')}}" role="button">Companies</a>
                         </div>
                     </div>
                     <br><br>
