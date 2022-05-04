@@ -55,6 +55,9 @@
                                         <td>{{ $company->email }}</td>
                                         <td>{{ $company->creation_date }}</td>
                                         <td>
+                                            <a class="w-100 color b2Color btn btn-primary" href="{{route('companies.show', $company)}}" role="button">Show</a>
+                                        </td>
+                                        <td>
                                             <a class="w-100 color b2Color btn btn-primary" href="{{route('companies.edit', $company)}}" role="button">Edit</a>
                                         </td>
                                         <td>
