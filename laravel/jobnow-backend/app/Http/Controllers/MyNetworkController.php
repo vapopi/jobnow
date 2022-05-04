@@ -4,7 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 
-class RouteMyNetworkController extends Controller
+class MyNetworkController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -13,6 +13,9 @@ class RouteMyNetworkController extends Controller
      */
     public function index()
     {
-        return view("mynetwork.index");
+       return view('mynetwork.index', [
+           'companies' => Company::all(),
+           'users' => User::all()
+       ]);
     }
 }

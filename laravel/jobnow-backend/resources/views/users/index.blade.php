@@ -77,34 +77,7 @@
 									@endif
 								@endforeach
 
-                                <td><a href="{{ route('users.edit', $user->id) }}" class="b2Color w-100 btn btn-secondary" role="button">Edit</a></td>
-								<td>
-									<button id="destroy" type="button" class="btn btn-danger bsColor" data-bs-toggle="modal" data-bs-target="#confirmModal{{ $user->id }}">Delete</button>
-
-									<div class="modal fade" id="confirmModal{{ $user->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-										<div class="modal-dialog">
-											<div class="modal-content">
-												<div class="modal-header">
-													<h5 class="modal-title" id="exampleModalLabel">Delete User</h5>
-													<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-												</div>
-												<div class="modal-body">
-													Are you sure you want to delete the user <strong>{{ $user->name }}</strong> ? <br>
-													<span class="text-danger">This action cannot be undone.</span>
-												</div>
-												<div class="modal-footer">
-													<button type="button" class="btn btn-secondary bsColor" data-bs-dismiss="modal">Close</button>
-													<form id="form" method="POST" action="{{ route('users.destroy', $user->id) }}">
-														@csrf
-														@method("DELETE")
-														<button id="confirm" type="submit" class="btn btn-primary bColor">Confirm</button>
-													</form>
-												</div>
-											</div>
-										</div>
-									</div>
-									
-								</td>
+                                <td><a href="{{ route('users.show', $user->id) }}" class="b2Color w-100 btn btn-secondary" role="button">Edit</a></td>
 							</tr>
 							@endforeach
 						</tbody>

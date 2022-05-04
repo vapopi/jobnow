@@ -10,7 +10,7 @@ use App\Http\Controllers\PremiumController;
 use App\Http\Controllers\RoleController;
 use App\Http\Controllers\MenuCompanyController;
 use App\Http\Controllers\RouteChatAppController;
-use App\Http\Controllers\RouteMyNetworkController;
+use App\Http\Controllers\MyNetworkController;
 use App\Http\Controllers\RouteOffersController;
 use App\Http\Controllers\RoutePostsController;
 use App\Http\Controllers\RouteTicketsController;
@@ -53,7 +53,7 @@ Route::resource('/premium', PremiumController::class)->middleware(['auth', 'role
 Route::resource('/security/accounts', AccountController::class)->middleware(['auth', 'roles: 1', 'verified']);
 Route::resource('/security', SecurityController::class)->middleware(['auth', 'roles: 1', 'verified']);
 Route::resource('/chatapp', RouteChatAppController::class)->middleware(['auth', 'roles: 3, 4', 'verified']);
-Route::resource('/mynetwork', RouteMyNetworkController::class)->middleware(['auth', 'roles: 4', 'verified']);
+Route::resource('/mynetwork', MyNetworkController::class)->middleware(['auth', 'roles: 4', 'verified']);
 Route::resource('/offers', RouteOffersController::class)->middleware(['auth', 'roles: 4', 'verified']);
 Route::resource('/posts', RoutePostsController::class)->middleware(['auth', 'roles: 3, 4', 'verified']);
 Route::resource('/tickets', RouteTicketsController::class)->middleware(['auth', 'roles: 2, 4', 'verified']);

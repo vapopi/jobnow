@@ -13,7 +13,6 @@ require('./bootstrap');
  */
 
 require('./components/ChatApp/ChatApp');
-require('./components/MyNetwork/MyNetwork');
 require('./components/Tickets/Tickets');
 require('./components/Offers/Offers');
 require('./components/Posts/Posts');
