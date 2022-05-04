@@ -4,16 +4,18 @@
 <style>
     .color{  
         background-color: #6356e5 !important;
+        border-color: #6356e5 !important;
     }
 
     .bsColor{  
         background-color: #6356e5 !important;
+        border-color: #6356e5 !important;
     }
 </style>
 <div class="container">
     <div class="mx-auto col-md-8">
         <div class="card-header">
-            <a href="{{ url()->previous() }}" class="float-end link-secondary" role="button"> 🡰 Go back</a>
+            <a href="{{ route('dashboard') }}" class="float-end link-secondary" role="button"> 🡰 Go back</a>
             {{ __('Buy premium') }}
         </div>
         <div class="border p-5 bg-white d-flex justify-content-center">

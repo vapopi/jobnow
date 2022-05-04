@@ -35,9 +35,8 @@ class PremiumController extends Controller
      */
     public function store(Request $request)
     {
-        // Mastercard
         $this->validate($request, [
-            'card_number' => 'required|regex:/5[1-5][0-9]{14}/',
+            'card_number' => 'required|regex:/\b\d{13,16}\b/',
             'expiration_date' => 'required|date',
             'cvv' => 'required|max:3'
         ]);
