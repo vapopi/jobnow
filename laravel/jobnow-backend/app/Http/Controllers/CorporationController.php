@@ -7,7 +7,7 @@ use App\Models\User;
 use App\Models\File;
 use Illuminate\Http\Request;
 
-class AdminCompanyController extends Controller
+class CorporationController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -16,8 +16,8 @@ class AdminCompanyController extends Controller
      */
     public function index()
     {
-        return view('admincompanies.index', [
-            'companies' => Company::all(),
+        return view('corporations.index', [
+            'corporations' => Company::all(),
             'users' => User::all()
         ]);
     }
@@ -28,12 +28,12 @@ class AdminCompanyController extends Controller
      * @param  \App\Models\Company  $company
      * @return \Illuminate\Http\Response
      */
-    public function show(Company $company)
+    public function show(Company $corporation)
     {
-        $file = File::where('id', $company->logo_id)->first();
+        $file = File::where('id', $corporation->logo_id)->first();
 
-        return view('companies.show', [
-            'company' => $company,
+        return view('corporations.show', [
+            'corporation' => $corporation,
             'file' => $file,
         ]);
     }
@@ -44,11 +44,11 @@ class AdminCompanyController extends Controller
      * @param  \App\Models\Company  $company
      * @return \Illuminate\Http\Response
      */
-    public function edit(Company $company)
+    public function edit(Company $corporation)
     {
-        return view('companies.edit',[
-            "company" => $company,
-            "file" => File::find($company->logo_id)
+        return view('corporations.edit',[
+            "corporation" => $corporation,
+            "file" => File::find($corporation->logo_id)
         ]);
     }
 
@@ -56,10 +56,10 @@ class AdminCompanyController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Company  $company
+     * @param  \App\Models\Company  $corporation
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Company $company)
+    public function update(Request $request, Company $corporation)
     {
         $request->validate([
 
@@ -68,9 +68,12 @@ class AdminCompanyController extends Controller
 
         ]);
 
+        $user = User::where('id', $corporation->author_id)->first();
+
+
         if($request->hasFile('logo')) {
 
-            $file = File::where('id', $company->logo_id)->first();
+            $file = File::where('id', $corporation->logo_id)->first();
 
             $oldPath = $file->filename;
             $upload = $request->file('logo');
@@ -79,9 +82,9 @@ class AdminCompanyController extends Controller
             $fileSize = $upload->getSize();
             $uploadName = time() . '_' . $fileName;
 
-            if($fileExtension == 'gif' && \Auth::user()->premium == 0)
+            if($fileExtension == 'gif' && $user->premium == 0)
             {
-                return redirect()->route('companies.edit', $company)
+                return redirect()->route('corporations.edit', $corporation)
                     ->with('error', "You cannot use a gif as a profile picture if the user is not premium.");
             }
 
@@ -102,20 +105,19 @@ class AdminCompanyController extends Controller
             }
         }
 
-        $company->name = $request->name;
-        $company->email = $request->email;
-        $company->author_id = \Auth::user()->id;
+        $corporation->name = $request->name;
+        $corporation->email = $request->email;
 
         try {
-            $company->save();
+            $corporation->save();
 
         } catch (\Illuminate\Database\QueryException $ex) {
 
-            return redirect()->route('companies.edit', $company)->with('error', "The email is already taken.");
+            return redirect()->route('corporations.edit', $corporation)->with('error', "The email is already taken.");
         }
 
-        return redirect()->route('companies.index')
-            ->with('success', "Company " . $company->name . " changed successfully");
+        return redirect()->route('corporations.index')
+            ->with('success', "corporation " . $corporation->name . " changed successfully");
     }
 
     /**
@@ -124,15 +126,15 @@ class AdminCompanyController extends Controller
      * @param  \App\Models\Company  $company
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Company $company)
+    public function destroy(Company $corporation)
     {
-        $file = File::where('id', $company->logo_id)->first();
+        $file = File::where('id', $corporation->logo_id)->first();
 
-        $company->delete();
+        $corporation->delete();
         $file->delete();
         \Storage::disk('public')->delete($file->filepath);
 
-        return redirect()->route("companies.index")
-            ->with('success', "Company " . $company->name . " was deleted successfully");
+        return redirect()->route("corporations.index")
+            ->with('success', "Company " . $corporation->name . " was deleted successfully");
     }
 }

@@ -20,16 +20,16 @@
 <div class="card w-50 mx-auto" style="width: 18rem;">
 
     <div class="card-header">
-        <a href="{{ route('companies.index') }}" class="float-end link-secondary" role="button"> 🡰 Go back</a>
+        <a href="{{ route('corporations.index') }}" class="float-end link-secondary" role="button"> 🡰 Go back</a>
         {{ __('Companies') }}
     </div>
 
     <div class="card-body">
 
         <div class="w-50 float-start">
-            <p class="card-text"><strong>Name</strong> {{$company->name}}</p>
-            <p class="card-text"><strong>Email:</strong> {{$company->email}}</p>
-            <p class="card-text"><strong>Creation Date:</strong> {{$company->creation_date}}</p>
+            <p class="card-text"><strong>Name</strong> {{$corporation->name}}</p>
+            <p class="card-text"><strong>Email:</strong> {{$corporation->email}}</p>
+            <p class="card-text"><strong>Creation Date:</strong> {{$corporation->creation_date}}</p>
         </div>
 
         <div class="w-50 float-end">

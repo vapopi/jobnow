@@ -44,24 +44,24 @@
 							</tr>
 						</thead>
 						<tbody>
-							@foreach ($companies as $company)
+							@foreach ($corporations as $corporation)
 							<tr>
-								<td>{{ $company->id }}</td>
-								<td>{{ $company->name }}</td>
-								<td>{{ $company->email }}</td>
-								<td>{{ $company->creation_date }}</td>
+								<td>{{ $corporation->id }}</td>
+								<td>{{ $corporation->name }}</td>
+								<td>{{ $corporation->email }}</td>
+								<td>{{ $corporation->creation_date }}</td>
 								@foreach ($users as $user)
-									@if ($company->author_id == $user->id)
+									@if ($corporation->author_id == $user->id)
 										<td>{{ $user->name }}</td>
 									@endif
 								@endforeach	
 								</td>
-                                <td><a href="{{ route('companies.show', $company->id) }}" class="b2Color w-100 btn btn-primary" role="button">View Company</a></td>
-                                <td><a href="{{ route('companies.edit', $company->id) }}" class="b2Color w-100 btn btn-primary" role="button">Edit Company</a></td>
+                                <td><a href="{{ route('corporations.show', $corporation->id) }}" class="b2Color w-100 btn btn-primary" role="button">View Company</a></td>
+                                <td><a href="{{ route('corporations.edit', $corporation->id) }}" class="b2Color w-100 btn btn-primary" role="button">Edit Company</a></td>
                                 <td>
-									<button id="destroy" type="button" class="w-100 btn btn-danger bsColor" data-bs-toggle="modal" data-bs-target="#confirmModal{{ $company->id }}">Delete Company</button>
+									<button id="destroy" type="button" class="w-100 btn btn-danger bsColor" data-bs-toggle="modal" data-bs-target="#confirmModal{{ $corporation->id }}">Delete Company</button>
 
-									<div class="modal fade" id="confirmModal{{ $company->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+									<div class="modal fade" id="confirmModal{{ $corporation->id }}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
 										<div class="modal-dialog">
 											<div class="modal-content">
 												<div class="modal-header">
@@ -69,12 +69,12 @@
 													<button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
 												</div>
 												<div class="modal-body">
-													Are you sure you want to delete the company <strong>{{ $company->name }}</strong> ? <br>
+													Are you sure you want to delete the company <strong>{{ $corporation->name }}</strong> ? <br>
 													<span class="text-danger">This action cannot be undone.</span>
 												</div>
 												<div class="modal-footer">
 													<button type="button" class="btn btn-secondary bsColor" data-bs-dismiss="modal">Close</button>
-													<form id="form" method="POST" action="{{ route('companies.destroy', $company->id) }}">
+													<form id="form" method="POST" action="{{ route('corporations.destroy', $corporation->id) }}">
 														@csrf
 														@method("DELETE")
 														<button id="confirm" type="submit" class="btn btn-primary bColor">Confirm</button>

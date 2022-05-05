@@ -24,12 +24,12 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                <a href="{{ route('menu.index') }}" class="float-end link-secondary" role="button"> 🡰 Go back</a>
+                <a href="{{ route('corporations.index') }}" class="float-end link-secondary" role="button"> 🡰 Go back</a>
                     {{ __('Edit Company') }}
                 </div>
 
                 <div class="card-body">
-                    <form method="POST" action="{{ route('companies.update', $company->id) }}" enctype="multipart/form-data">
+                    <form method="POST" action="{{ route('corporations.update', $corporation->id) }}" enctype="multipart/form-data">
                         @csrf
                         @method("PUT")
 
@@ -37,7 +37,7 @@
                             <label for="name" class="col-md-4 col-form-label text-md-end">{{ __('Name') }}</label>
 
                             <div class="col-md-6">
-                                <input value='{{$company->name}}' type="text" class="form-control" name="name" required autocomplete="name" autofocus>
+                                <input value='{{$corporation->name}}' type="text" class="form-control" name="name" required autocomplete="name" autofocus>
                             </div>
                         </div>
 
@@ -45,7 +45,7 @@
                             <label for="surnames" class="col-md-4 col-form-label text-md-end">{{ __('Creation Date') }}</label>
 
                             <div class="col-md-6">
-                                <input value='{{$company->creation_date}}' type="text" class="form-control" name="creation_date" required autofocus>
+                                <input value='{{$corporation->creation_date}}' type="text" class="form-control" name="creation_date" required autofocus>
                             </div>
                         </div>
 
@@ -53,7 +53,7 @@
                             <label class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
 
                             <div class="col-md-6">
-                                <input value='{{$company->email}}' type="text" class="form-control" name="email" required autofocus>
+                                <input value='{{$corporation->email}}' type="text" class="form-control" name="email" required autofocus>
                             </div>
                         </div>
 
