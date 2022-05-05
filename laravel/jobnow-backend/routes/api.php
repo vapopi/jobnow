@@ -10,6 +10,7 @@ use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\OfferController;
 use App\Http\Controllers\ApplicatedOffersController;
+use App\Http\Controllers\UsersApiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,8 +35,9 @@ Route::apiResource('notifications', NotificationController::class)->middleware([
 Route::apiResource('posts', PostController::class);
 Route::apiResource('offers', OfferController::class)->middleware(['auth', 'roles: 1, 4', 'verified']);
 Route::apiResource('offers/{oid}/applicatedOffers', ApplicatedOffersController::class)->middleware(['auth', 'roles: 4', 'verified']);
+Route::apiResource('users', UsersApiController::class);
 
-// //Middleware rutas API Message
+//Middleware rutas API Message
 Route::apiResource('messages', MessageController::class)->only([
 
     'index', 'show', 'destroy'
@@ -48,7 +50,7 @@ Route::apiResource('messages', MessageController::class)->only([
 
 ])->middleware('auth', 'roles: 1, 4', 'verified');
 
-// //Middleware rutas API Ticket
+//Middleware rutas API Ticket
 
 Route::apiResource('tickets', TicketController::class)->only([
 
