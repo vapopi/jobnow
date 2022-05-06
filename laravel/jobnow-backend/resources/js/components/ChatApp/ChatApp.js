@@ -12,8 +12,11 @@ function ChatApp() {
     const [editionMode, setEditionMode] = useState(false);
     const [error, setError] = useState(null);
     const [message, setMessage] = useState({});
-    const url = 'http://127.0.0.1/api/messages'
 
+    //URL de la API
+    const url = 'http://127.0.0.1/api/messages';
+
+    //FUNCION PARA RECUPERAR LOS MENSAJES DE LA BBDD
     const getMessages = async () => {
 
         await axios.get(url).then(result => {
@@ -31,18 +34,22 @@ function ChatApp() {
 
     useEffect(() => {
 
+        //TODO: OnSnapshot dvsgefvbtb
         getMessages();
 
     }, []);
 
+    //FUNCION PARA CREAR UN MENSAJE Y GUARDARLO EN LA BBDD
     const createMessage = e => {
 
         e.preventDefault();
 
-        if(!message.mensaje.trim()) {
+        if(!message.trim()) {
 
         
         }
+        const mensaje = 
+        await axios.post(url, )
     }
 
     return (
@@ -85,7 +92,7 @@ function ChatApp() {
                                             <td>{element.id}</td>
                                             <td>{element.message}</td>
                                             <td><User id={element.author_id}/></td>
-                                            <td><Button variant = "danger" onClick={() => deleteMessagee(element.id)}>Delete Message</Button>
+                                            <td><Button variant = "danger" onClick={() => deleteMessage(element.id)}>Delete Message</Button>
                                             <Button variant = "warning" onClick={() => edit(element)}>Edit Message</Button></td>
                                             </tr>
                                         }

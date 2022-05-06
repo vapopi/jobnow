@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
+use App\Models\Post;
 
 class PostController extends Controller
 {
@@ -13,7 +15,9 @@ class PostController extends Controller
      */
     public function index()
     {
-        //
+        $posts = DB::table('posts')->get();
+
+        return response($posts);
     }
 
     /**
@@ -24,7 +28,15 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $request->validate([
+            'title' => 'required|max:20',
+            'description' => 'required|max:255',
+            'author_id' => 'required'
+        ]);
+
+        $post = Post::create($request->all());
+
+        return response($post);
     }
 
     /**
@@ -33,9 +45,11 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(int $id)
     {
-        //
+        $post = Post::find($id);
+
+        return response($post);
     }
 
     /**
@@ -45,9 +59,12 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request, int $id)
     {
-        //
+        $post = Post::find($id)
+        ->update($request->all());
+
+        return response($post);
     }
 
     /**
@@ -56,8 +73,10 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(int $id)
     {
-        //
+        Post::destroy($id);
+
+        //return response(content: "Success. The post ${id} has been eliminated");
     }
 }
