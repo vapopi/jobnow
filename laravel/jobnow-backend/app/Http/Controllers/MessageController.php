@@ -36,8 +36,6 @@ class MessageController extends Controller
             'receiver_id' => 'required'
         ]);
 
-        //TODO: Coger el user id y el receiver id
-
         $message = Message::create($request->all());
 
         return response($message);
@@ -81,6 +79,6 @@ class MessageController extends Controller
     {
         Message::destroy($id);
 
-        // return response(content: "Success. The message ${mid} has been eliminated");
+        // return response(content: "Success. The message ${id} has been eliminated");
     }
 }
