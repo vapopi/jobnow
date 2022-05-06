@@ -36,6 +36,9 @@ function Offers() {
         <>
             <div className="container mt-5">
                 <h1 className='text-center'><strong>OFFERS</strong></h1>
+                <a class="color btn btn-primary" role="button">List offers</a><span> </span>
+                <a class="color btn btn-primary" role="button">Create offer</a><span> </span>
+                <a class="color btn btn-primary" role="button">View applied offers</a><span> </span>  
                 <hr/>
                 <div className='row'>
                     <div style={{margin:"0 auto"}} className='col-12'>

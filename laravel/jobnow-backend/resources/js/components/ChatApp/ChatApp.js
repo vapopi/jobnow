@@ -45,20 +45,14 @@ function ChatApp() {
                         <h4 className='text-center'>Messages you have sended</h4>
                         {
                             <Table striped bordered hover>
-
                                 <thead>
-
                                     <tr>
-
                                         <th>Id</th>
                                         <th>Mensaje</th>
                                         <th>Author</th>
                                         <th>Opciones</th>
-
                                     </tr>
-
                                 </thead>
-
                                 <tbody>
                                 {
                                     messages.map((element, index) => {
