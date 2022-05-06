@@ -11,6 +11,8 @@ use App\Http\Controllers\PostController;
 use App\Http\Controllers\OfferController;
 use App\Http\Controllers\ApplicatedOffersController;
 use App\Http\Controllers\UsersApiController;
+use App\Http\Controllers\CompaniesApiController;
+use App\Http\Controllers\ProfessionalAreaApiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,3 +38,5 @@ Route::apiResource('posts', PostController::class);
 Route::apiResource('offers', OfferController::class);
 Route::apiResource('offers/{oid}/applicatedOffers', ApplicatedOffersController::class);
 Route::apiResource('users', UsersApiController::class);
+Route::apiResource('companies', CompaniesApiController::class);
+Route::apiResource('professionalarea', ProfessionalAreaApiController::class);

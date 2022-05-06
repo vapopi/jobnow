@@ -90,7 +90,7 @@
                                     @endforeach
                                 </tbody>
                             </table>
-                            <a class="bColor btn btn-primary" href="{{route('companies.create')}}" role="button"> + Add New Company</a>
+                            <a class="bColor btn btn-primary" href="{{route('companies.create')}}" role="button"> + Add new company</a>
                         </div>
                     </div>
                 </div>

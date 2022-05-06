@@ -53,7 +53,7 @@ class UserController extends Controller
             'phone' => 'required|max:20',
             'password' => 'required|min:8',
             'password_confirmation' => 'required|min:8|same:password',
-            'avatar_id' => 'required|mimes:gif,jpeg,jpg,png|max:2048',
+            'avatar_id' => 'required|mimes:gif,jpeg,jpg|max:2048',
             'remember' => 'required'
         ]);
 
@@ -171,7 +171,7 @@ class UserController extends Controller
             'email' => 'required|email|max:255',
             'birth_date' => 'required|date',
             'phone' => 'required|max:20',
-            'avatar_id' => 'mimes:gif,jpeg,jpg,png|max:2048',
+            'avatar_id' => 'mimes:gif,jpeg,jpg|max:2048',
         ]);
 
         if($request->hasFile('avatar_id'))
