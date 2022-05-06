@@ -11,7 +11,7 @@ function ChatApp() {
     const [messages, setMessages] = useState([]);
 
     //URL de la API
-    const url = 'http://127.0.0.1:8000/api/messages';
+    const url = 'http://127.0.0.1:8000/api/messages/';
 
     //FUNCION PARA RECUPERAR LOS MENSAJES DE LA BBDD
     const getMessages = async () => {
@@ -22,18 +22,31 @@ function ChatApp() {
 
             setMessages(mensajesBBDD.map((valor) => {
 
-                return {...valor.data, id:valor.id}
+                return {...valor}
 
             }));
 
         });
+
     }
 
+    //HACER QUE LOS MENSAJES SE CARGUEN UNA VEZ
     useEffect(() => {
 
         getMessages();
 
     }, []);
+
+    //FUNCION PARA ELIMINAR EL MENSAJE
+    const deleteMessage = (id) => {
+
+        console.log("oomy")
+        axios.delete(url + id).then(result => {
+
+            console.log(result);
+            console.log(result.data);
+        })
+    }
 
     return (
         <>
@@ -41,7 +54,7 @@ function ChatApp() {
                 <h1 className='text-center'>CHATAPP</h1>
                 <hr/>
                 <div className='row'>
-                    <div className='col-8'>
+                    <div className='col-8' style={{margin:"0 auto"}}>
                         <h4 className='text-center'>Messages you have sended</h4>
                         {
                             <Table striped bordered hover>
@@ -51,9 +64,9 @@ function ChatApp() {
                                     <tr>
 
                                         <th>Id</th>
-                                        <th>Mensaje</th>
+                                        <th>Message</th>
                                         <th>Author</th>
-                                        <th>Opciones</th>
+                                        <th>Options</th>
 
                                     </tr>
 
@@ -67,9 +80,10 @@ function ChatApp() {
                                         <td>{element.id}</td>
                                         <td>{element.message}</td>
                                         <td><User id={element.author_id}/></td>
-                                        <td><Button variant = "danger" onClick={() => deleteMessage(element.id)}>Delete Message</Button>
+                                        <td><button onClick={() => deleteMessage(element.id)}>Delete Message</button>
                                         <Button variant = "warning" onClick={() => edit(element)}>Edit Message</Button></td>
                                         </tr>
+
                                     })      
                                 }
                                 </tbody>
@@ -77,7 +91,7 @@ function ChatApp() {
                         }
                     </div>
 
-                    <div className="col-8">
+                    <div className="col-8" style={{margin:"0 auto"}}>
                         <h4 className="text-center">Messages you have received</h4>
                         {
                             <Table striped bordered hover>

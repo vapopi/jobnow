@@ -5517,7 +5517,7 @@ function ChatApp() {
       setMessages = _useState2[1]; //URL de la API
 
 
-  var url = 'http://127.0.0.1:8000/api/messages'; //FUNCION PARA RECUPERAR LOS MENSAJES DE LA BBDD
+  var url = 'http://127.0.0.1:8000/api/messages/'; //FUNCION PARA RECUPERAR LOS MENSAJES DE LA BBDD
 
   var getMessages = /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
@@ -5529,9 +5529,7 @@ function ChatApp() {
               return axios__WEBPACK_IMPORTED_MODULE_3___default().get(url).then(function (result) {
                 var mensajesBBDD = result.data;
                 setMessages(mensajesBBDD.map(function (valor) {
-                  return _objectSpread(_objectSpread({}, valor.data), {}, {
-                    id: valor.id
-                  });
+                  return _objectSpread({}, valor);
                 }));
               });
 
@@ -5546,11 +5544,21 @@ function ChatApp() {
     return function getMessages() {
       return _ref.apply(this, arguments);
     };
-  }();
+  }(); //HACER QUE LOS MENSAJES SE CARGUEN UNA VEZ
+
 
   (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
     getMessages();
-  }, []);
+  }, []); //FUNCION PARA ELIMINAR EL MENSAJE
+
+  var deleteMessage = function deleteMessage(id) {
+    console.log("oomy");
+    axios__WEBPACK_IMPORTED_MODULE_3___default()["delete"](url + id).then(function (result) {
+      console.log(result);
+      console.log(result.data);
+    });
+  };
+
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.Fragment, {
     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
       className: "container mt-5",
@@ -5561,6 +5569,9 @@ function ChatApp() {
         className: "row",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
           className: "col-8",
+          style: {
+            margin: "0 auto"
+          },
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h4", {
             className: "text-center",
             children: "Messages you have sended"
@@ -5573,11 +5584,11 @@ function ChatApp() {
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("th", {
                   children: "Id"
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("th", {
-                  children: "Mensaje"
+                  children: "Message"
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("th", {
                   children: "Author"
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("th", {
-                  children: "Opciones"
+                  children: "Options"
                 })]
               })
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("tbody", {
@@ -5592,8 +5603,7 @@ function ChatApp() {
                       id: element.author_id
                     })
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("td", {
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
-                      variant: "danger",
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("button", {
                       onClick: function onClick() {
                         return deleteMessage(element.id);
                       },
@@ -5612,6 +5622,9 @@ function ChatApp() {
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
           className: "col-8",
+          style: {
+            margin: "0 auto"
+          },
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h4", {
             className: "text-center",
             children: "Messages you have received"
