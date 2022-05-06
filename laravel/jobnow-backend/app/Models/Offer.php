@@ -13,7 +13,8 @@ class Offer extends Model
 
         'title',
         'description',
-        'company_id'
+        'company_id',
+        'professional_area_id'
     ];
 
     protected $casts = [

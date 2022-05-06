@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-
+use App\Models\Offer;
+use Illuminate\Support\Facades\DB;
 class OfferController extends Controller
 {
     /**
@@ -11,10 +12,10 @@ class OfferController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(int $company_id)
+    public function index()
     {
-        $offers = Offer::where('company_id', '=', $company_id)->get();
-
+        $offers = Offer::all();
+        
         return response($offers);
     }
 
@@ -24,18 +25,18 @@ class OfferController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(int $company_id, Request $request)
+    public function store(Request $request)
     {
         $request->validate([
-            'offer' => 'required|max:255',
-            'company_id' => 'required'
+            'title' => 'required|max:255',
+            'description' => 'required',
+            'company_id' => 'required',
+            'professional_area_id',
         ]);
 
-        $all = $request->all();
-        $all['company_id'] = $company_id;
-        $offer = Offer::create($all);
+        $offer = Offer::create($request->all());
 
-        return response($offer);
+        return \response("Offer created successfully");
     }
 
     /**
@@ -44,12 +45,13 @@ class OfferController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(int $id, int $company_id)
+    public function show(int $id, int $cid)
     {
-        $offer = Offer::where('company_id', '=', $company_id)
-        ->find($id);
-
-        return response($offer);
+        $results = Offer::where('id',$id)
+            ->where('company_id', $cid)
+            ->get();
+        
+        return \response($results);
     }
 
     /**
@@ -59,13 +61,12 @@ class OfferController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, int $id, int $company_id)
+    public function update(Request $request, int $id)
     {
-        $offer = Offer::where('company_id', '=', $company_id)
-        ->find($id)
-        ->update($request->all());
+        Offer::findOrFail($id)
+            ->update($request->all());
 
-        return response($offer);
+        return \response("Offer updated.");
     }
 
     /**
@@ -74,11 +75,10 @@ class OfferController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(int $id, int $company_id)
+    public function destroy(int $id)
     {
-        Offer::where('company_id', '=', $company_id);
         Offer::destroy($id);
 
-        // return response(content: "Success. The offer ${id} has been eliminated");
+        return \response("Offer eliminated successfully.");
     }
 }

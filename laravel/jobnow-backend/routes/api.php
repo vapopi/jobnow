@@ -33,7 +33,7 @@ Route::apiResource('tickets', TicketController::class);
 Route::apiResource('tickets/{tid}/comments', CommentController::class)->middleware(['auth', 'roles: 2, 4', 'verified']);
 Route::apiResource('notifications', NotificationController::class)->middleware(['auth', 'verified']);
 Route::apiResource('posts', PostController::class);
-Route::apiResource('offers', OfferController::class)->middleware(['auth', 'roles: 1, 4', 'verified']);
+Route::apiResource('offers', OfferController::class);
 Route::apiResource('offers/{oid}/applicatedOffers', ApplicatedOffersController::class)->middleware(['auth', 'roles: 4', 'verified']);
 Route::apiResource('users', UsersApiController::class);
 
