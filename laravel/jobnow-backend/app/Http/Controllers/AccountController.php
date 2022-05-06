@@ -58,7 +58,7 @@ class AccountController extends Controller
             'terms' => 'required',
             'premium' => 'required',
             'password_confirmation' => 'required|min:8|same:password',
-            'avatar_id' => 'required|mimes:gif,jpeg,jpg,png|max:2048',
+            'avatar_id' => 'required|mimes:gif,jpeg,jpg|max:2048',
         ]);
 
         $input = $request->all();
@@ -169,7 +169,7 @@ class AccountController extends Controller
             'role_id' => 'required',
             'terms' => 'required',
             'premium' => 'required',
-            'avatar_id' => 'mimes:gif,jpeg,jpg,png|max:2048',
+            'avatar_id' => 'mimes:gif,jpeg,jpg|max:2048',
         ]);
 
 

@@ -47,7 +47,7 @@ class CompanyController extends Controller
 
             'name' => 'required|max:50',
             'email' => 'required|email|max:255',
-            'logo' => 'required|mimes:gif,jpeg,jpg,png|max:2048',
+            'logo' => 'required|mimes:gif,jpeg,jpg|max:2048',
         ]);
 
         $input = $request->all();

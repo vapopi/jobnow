@@ -27,7 +27,11 @@
 
     
     <div class="card-body">
-
+        @if (Route::has('password.request'))
+            <a class="float-end btn btn-link" href="{{ route('password.request') }}">
+                {{ __('Forgot Your Password?') }}
+            </a>
+        @endif
         <div class="w-50 float-start">
             <p class="card-text"><strong>Name</strong> {{$user->name}}</p>
             <p class="card-text"><strong>Surnames:</strong> {{$user->surnames}}</p>
