@@ -4,7 +4,7 @@
  * building robust, powerful web applications using React + Laravel.
  */
 
-require('./bootstrap');
+import './bootstrap';
 
 /**
  * Next, we will create a fresh React component instance and attach it to
@@ -12,7 +12,7 @@ require('./bootstrap');
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
 
-require('./components/ChatApp/ChatApp');
-require('./components/Tickets/Tickets');
-require('./components/Offers/Offers');
-require('./components/Posts/Posts');
+import './components/ChatApp/ChatApp';
+import './components/Tickets/Tickets';
+import './components/Offers/Offers';
+import './components/Posts/Posts';
