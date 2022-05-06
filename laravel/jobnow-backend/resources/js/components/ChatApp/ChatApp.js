@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
-import {Table, Button} from 'react-bootstrap';
+import { Table, Button } from 'react-bootstrap';
 import axios from 'axios';
 import User from './User'
 import 'bootstrap/dist/css/bootstrap.css';
@@ -9,12 +9,9 @@ function ChatApp() {
 
     //STATES
     const [messages, setMessages] = useState([]);
-    const [editionMode, setEditionMode] = useState(false);
-    const [error, setError] = useState(null);
-    const [message, setMessage] = useState({});
 
     //URL de la API
-    const url = 'http://127.0.0.1/api/messages';
+    const url = 'http://127.0.0.1:8000/api/messages';
 
     //FUNCION PARA RECUPERAR LOS MENSAJES DE LA BBDD
     const getMessages = async () => {
@@ -34,23 +31,9 @@ function ChatApp() {
 
     useEffect(() => {
 
-        //TODO: OnSnapshot dvsgefvbtb
         getMessages();
 
     }, []);
-
-    //FUNCION PARA CREAR UN MENSAJE Y GUARDARLO EN LA BBDD
-    const createMessage = e => {
-
-        e.preventDefault();
-
-        if(!message.trim()) {
-
-        
-        }
-        const mensaje = 
-        await axios.post(url, )
-    }
 
     return (
         <>
@@ -59,14 +42,8 @@ function ChatApp() {
                 <hr/>
                 <div className='row'>
                     <div className='col-8'>
-                        <h4 className='text-center'>Messages List</h4>
+                        <h4 className='text-center'>Messages you have sended</h4>
                         {
-                            messages.length === 0 ? (
-
-                            <li className="list-group-item">Without Messages</li>
-
-                            ) : (
-
                             <Table striped bordered hover>
 
                                 <thead>
@@ -86,52 +63,54 @@ function ChatApp() {
                                 {
                                     messages.map((element, index) => {
 
-                                        if (element.author_id === usuario.id) {
-
-                                            return <tr key={index}>
-                                            <td>{element.id}</td>
-                                            <td>{element.message}</td>
-                                            <td><User id={element.author_id}/></td>
-                                            <td><Button variant = "danger" onClick={() => deleteMessage(element.id)}>Delete Message</Button>
-                                            <Button variant = "warning" onClick={() => edit(element)}>Edit Message</Button></td>
-                                            </tr>
-                                        }
+                                        return <tr key={index}>
+                                        <td>{element.id}</td>
+                                        <td>{element.message}</td>
+                                        <td><User id={element.author_id}/></td>
+                                        <td><Button variant = "danger" onClick={() => deleteMessage(element.id)}>Delete Message</Button>
+                                        <Button variant = "warning" onClick={() => edit(element)}>Edit Message</Button></td>
+                                        </tr>
                                     })      
                                 }
                                 </tbody>
                             </Table>
-                        )}
+                        }
                     </div>
 
-                    <div className="col-4">
-                        <h4 className="text-center">
+                    <div className="col-8">
+                        <h4 className="text-center">Messages you have received</h4>
                         {
-                            editionMode ? 'Edit Message' : 'Create Message'
+                            <Table striped bordered hover>
+
+                                <thead>
+
+                                    <tr>
+
+                                        <th>Id</th>
+                                        <th>Mensaje</th>
+                                        <th>Author</th>
+                                        <th>Opciones</th>
+
+                                    </tr>
+
+                                </thead>
+
+                                <tbody>
+                                {
+                                    messages.map((element, index) => {
+
+                                        return <tr key={index}>
+                                        <td>{element.id}</td>
+                                        <td>{element.message}</td>
+                                        <td><User id={element.author_id}/></td>
+                                        <td><Button variant = "danger" onClick={() => deleteMessage(element.id)}>Delete Message</Button>
+                                        <Button variant = "warning" onClick={() => edit(element)}>Edit Message</Button></td>
+                                        </tr>
+                                    })      
+                                }
+                                </tbody>
+                            </Table>
                         }
-                        </h4>
-                        <form onSubmit={editionMode ? editMessage : createMessage}>
-                            {
-                            error ? <span className="text-danger">{error}</span> : null
-                            }
-
-                            <input 
-                            type="text"
-                            name="message"
-                            className="form-control mb-2"
-                            placeholder="Put your message here"
-                            onChange={handleInputChange}
-                            // value={}
-                            />
-
-                            {
-                                modoEdicion ? (
-                                <button className="btn btn-dark btn-block" type="submit">Edit Message</button>
-                                ) : (
-                                <button className="btn btn-dark btn-block" type="submit">Create Message</button>
-                                )
-                            }
-
-                        </form>
                     </div>
                 </div>
             </div>
