@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Storage;
 use App\Models\User;
 use App\Models\File;
 use App\Models\Role;
+use App\Models\Follower;
 use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
@@ -126,10 +127,15 @@ class UserController extends Controller
     public function show(User $user)
     {
         $file = File::where('id', $user->avatar_id)->first();
+        $follows = Follower::where('profile_id', $user->id)->count();
+        $validate = Follower::where('profile_id', $user->id)->where('follower_id', Auth::user()->id)->first();
 
         return view('users.show',  [
+            "users" => User::all(),
+            "validate" => $validate,
             "user" => $user,
-            "file" => $file
+            "file" => $file,
+            "follows" => $follows
         ]);
     }
 
@@ -238,8 +244,12 @@ class UserController extends Controller
     {
         $file = File::where('id', $user->avatar_id)->first();
 
+        Follower::where('profile_id', "=", $user->id)->delete(); 
+        Follower::where('follower_id', "=", $user->id)->delete(); 
+
         $user->delete();
         $file->delete();
+
         Storage::disk('public')->delete($file->filepath);
 
         return redirect()->route("login")

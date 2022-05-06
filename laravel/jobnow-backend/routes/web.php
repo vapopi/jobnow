@@ -15,6 +15,7 @@ use App\Http\Controllers\RouteOffersController;
 use App\Http\Controllers\RoutePostsController;
 use App\Http\Controllers\RouteTicketsController;
 use App\Http\Controllers\CorporationController;
+use App\Http\Controllers\FollowerController;
 
 /*
 |--------------------------------------------------------------------------
@@ -59,6 +60,7 @@ Route::resource('/mynetwork', MyNetworkController::class)->middleware(['auth', '
 Route::resource('/offers', RouteOffersController::class)->middleware(['auth', 'roles: 4', 'verified']);
 Route::resource('/posts', RoutePostsController::class)->middleware(['auth', 'roles: 3, 4', 'verified']);
 Route::resource('/tickets', RouteTicketsController::class)->middleware(['auth', 'roles: 2, 4', 'verified']);
+Route::resource('/followers', FollowerController::class)->middleware(['auth', 'roles: 1, 4', 'verified']);
 
 // Middleware rutas User
 Route::resource('/users', UserController::class)->only([

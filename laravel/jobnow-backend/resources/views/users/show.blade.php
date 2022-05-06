@@ -34,14 +34,16 @@
             <p class="card-text"><strong>Email:</strong> {{$user->email}}</p>
             <p class="card-text"><strong>Phone:</strong> {{$user->phone}}</p>
             <p class="card-text"><strong>Data de naixement:</strong> {{$user->birth_date}}</p>
+            <p class="card-text"><strong>Followers:</strong> {{$follows}}</p>
+
 
             <div>
-                @if($user->premium == 0)
+                @if($user->premium == 0 )
                     <p class="color">
                     <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-x-square-fill" viewBox="0 0 16 16">
                         <path d="M2 0a2 2 0 0 0-2 2v12a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V2a2 2 0 0 0-2-2H2zm3.354 4.646L8 7.293l2.646-2.647a.5.5 0 0 1 .708.708L8.707 8l2.647 2.646a.5.5 0 0 1-.708.708L8 8.707l-2.646 2.647a.5.5 0 0 1-.708-.708L7.293 8 4.646 5.354a.5.5 0 1 1 .708-.708z"/>
                     </svg>
-                    This user is not premium yet! <strong><a class="color" href="{{ route('premium.index') }}">Buy premium.</a></strong></p>
+                    This user is not premium yet! <strong>@if(Auth::user()->id == $user->id)<a class="color" href="{{ route('premium.index') }}">Buy premium.</a></strong>@endif</p>
                 @else
                     <p class="color">
                         <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-bookmark-check" viewBox="0 0 16 16">
@@ -52,6 +54,41 @@
                     </p>
                 @endif
             </div>
+            <br><br><br>
+            
+
+            @if($user->id != Auth::user()->id)
+
+                    @if($validate)
+                        <form method="POST" action="{{ route('followers.destroy', $validate->id) }}" >
+                                @csrf
+                                @method("DELETE")
+                                <button type="submit" class="bsColor btn btn-primary" href="{{ route('followers.destroy', $validate->id) }}" role="button">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-dash" viewBox="0 0 16 16">
+                                    <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                                    <path fill-rule="evenodd" d="M11 7.5a.5.5 0 0 1 .5-.5h4a.5.5 0 0 1 0 1h-4a.5.5 0 0 1-.5-.5z"/>
+                                </svg>
+                                    Unfollow user
+                                </button>
+                                <input type="text" name="profile_id" value="{{ $user->id }}" hidden>
+                                <input type="text" name="follower_id" value="{{ Auth::user()->id }}" hidden>
+                        </form>
+                    @else
+                        <form method="POST" action="{{ route('followers.store') }}" >
+                            @csrf
+                            <button type="submit" class="bColor btn btn-primary" href="{{ route('followers.store') }}" role="button">
+                                <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-person-plus" viewBox="0 0 16 16">
+                                    <path d="M6 8a3 3 0 1 0 0-6 3 3 0 0 0 0 6zm2-3a2 2 0 1 1-4 0 2 2 0 0 1 4 0zm4 8c0 1-1 1-1 1H1s-1 0-1-1 1-4 6-4 6 3 6 4zm-1-.004c-.001-.246-.154-.986-.832-1.664C9.516 10.68 8.289 10 6 10c-2.29 0-3.516.68-4.168 1.332-.678.678-.83 1.418-.832 1.664h10z"/>
+                                    <path fill-rule="evenodd" d="M13.5 5a.5.5 0 0 1 .5.5V7h1.5a.5.5 0 0 1 0 1H14v1.5a.5.5 0 0 1-1 0V8h-1.5a.5.5 0 0 1 0-1H13V5.5a.5.5 0 0 1 .5-.5z"/>
+                                </svg>
+                                Follow user
+                            </button>
+                            <input type="text" name="profile_id" value="{{ $user->id }}" hidden>
+                            <input type="text" name="follower_id" value="{{ Auth::user()->id }}" hidden>
+                        </form>
+                    @endif
+
+            @endif
         </div>
 
         <div class="w-50 float-end">
