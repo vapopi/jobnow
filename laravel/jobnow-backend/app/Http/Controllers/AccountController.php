@@ -8,6 +8,8 @@ use Illuminate\Support\Facades\Storage;
 use App\Models\User;
 use App\Models\File;
 use App\Models\Role;
+use App\Models\Company;
+use App\Models\Follower;
 use Illuminate\Support\Facades\Auth;
 
 class AccountController extends Controller
@@ -246,11 +248,15 @@ class AccountController extends Controller
     {
         $file = File::where('id', $account->avatar_id)->first();
 
+        Company::where('author_id', "=", $account->id)->delete();
+        Follower::where('profile_id', "=", $account->id)->delete(); 
+        Follower::where('follower_id', "=", $account->id)->delete(); 
         $account->delete();
         $file->delete();
+
         Storage::disk('public')->delete($file->filepath);
 
-        return redirect()->route("accounts.index")
+        return redirect()->route("account.index")
             ->with('success', "The user " . $account->name . " was deleted successfully.");
     }
 }

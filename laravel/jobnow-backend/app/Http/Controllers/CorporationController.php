@@ -117,7 +117,7 @@ class CorporationController extends Controller
         }
 
         return redirect()->route('corporations.index')
-            ->with('success', "corporation " . $corporation->name . " changed successfully");
+            ->with('success', "The company " . $corporation->name . " has been changed successfully");
     }
 
     /**
@@ -135,6 +135,6 @@ class CorporationController extends Controller
         \Storage::disk('public')->delete($file->filepath);
 
         return redirect()->route("corporations.index")
-            ->with('success', "Company " . $corporation->name . " was deleted successfully");
+            ->with('success', "The company " . $corporation->name . " was deleted successfully");
     }
 }

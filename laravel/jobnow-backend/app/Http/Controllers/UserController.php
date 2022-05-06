@@ -9,6 +9,7 @@ use App\Models\User;
 use App\Models\File;
 use App\Models\Role;
 use App\Models\Follower;
+use App\Models\Company;
 use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
@@ -67,7 +68,7 @@ class UserController extends Controller
         
         if($fileExtension == 'gif')
         {
-            return redirect()->route('users.register', $user)
+            return redirect()->route('users.create')
                 ->with('error', "You cannot use a gif as a profile picture if you are not a premium user.");
         }
         
@@ -244,9 +245,9 @@ class UserController extends Controller
     {
         $file = File::where('id', $user->avatar_id)->first();
 
+        Company::where('author_id', "=", $user->id)->delete();
         Follower::where('profile_id', "=", $user->id)->delete(); 
         Follower::where('follower_id', "=", $user->id)->delete(); 
-
         $user->delete();
         $file->delete();
 
