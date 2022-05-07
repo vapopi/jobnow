@@ -68,7 +68,7 @@
 			<p class="or"><span>OR</span></p>
 			<div style="text-align: center;">
 				<br>
-				<p class="form-wrapper-footer-text">Don't have an account? <a href="{{ route('users.create') }}" style="color:#6356e5 !important;" class="text-reset">Register here</a></p>
+				<p class="form-wrapper-footer-text">You don't have an account? <a href="{{ route('users.create') }}" style="color:#6356e5 !important;" class="text-reset">Register here</a></p>
 			</div>
 		</div>
 	</div>
