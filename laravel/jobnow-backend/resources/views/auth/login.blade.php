@@ -1,99 +1,87 @@
-@extends('layouts.app')
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="ie=edge">
+	<meta name="csrf-token" content="{{ csrf_token() }}">
+	<title>jobnow</title>
+	<link href="https://fonts.googleapis.com/css?family=Karla:400,700&display=swap" rel="stylesheet">
+	<link rel="stylesheet" href="https://cdn.materialdesignicons.com/4.8.95/css/materialdesignicons.min.css">
+	<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+	<link rel="stylesheet" href={{ asset('/css/forms.css') }}>
+	<link rel="stylesheet" href={{ asset('/css/translator.css') }}>
+	<link rel="icon" href="{{ asset('images/favicon.ico') }}">
+	<script src="{{ asset('js/app.js') }}" defer></script>
+	<script defer type="text/javascript"> 
+		function loadGoogleTranslate() {
+			new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+		}
+	</script>
+</head>
 
-@section('content')
-<style>
-    h6 {
-        width: 100%; 
-        text-align: center; 
-        border-bottom: 1px solid #000; 
-        line-height: 0.1em;
-        margin: 10px 0 20px; 
-        font-weight: bold;
-    } 
+<body>
 
-    h6 span { 
-        background: #fff; 
-        padding: 0 10px;.
-        font-weight: bold;
+  <main>
+		<div class="container-fluid">
+		<div class="row">
+			<div class="col-sm-5 form-section-wrapper">
+			<div class="ml-5 d-flex flex-row brand-wrapper ">
+				<a href="#"><img src={{ asset('/images/black_logo.png') }} alt="logo" class="logo"></a>
+			</div>
+			<div class="ml-5" id="google_translate_element"></div>
+			@include('flash')
+			
+			<div class="ml-5 w-75 form-wrapper my-auto">
+			<h1 class="form-title">Log in</h1>
 
-    }
+			<form method="POST" action="{{ route('login') }}">
+				@csrf
 
-    .color{  
-        background-color: #6356e5 !important;
-        border-color: #6356e5 !important;
-    }
+				<div class="form-group">
+					<label for="email">Email</label>
+					<input type="email" name="email" id="email" class="form-control @error('email') is-invalid @enderror" placeholder="email@example.com" required>
 
-    .sColor{  
-        background-color: #323232 !important;
-        border-color: #323232 !important;
-    }
+				</div>
 
-</style>
-<div class="container">
+				<div class="form-group mb-4">
+					<label for="password">Password</label>
+					<input type="password" name="password" id="password" class="form-control @error('email') is-invalid @enderror" placeholder="Enter your passsword" required>
+					
+				</div>
 
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Login') }}</div>
+				<button name="login" id="login" class="btn btn-block form-btn" type="submit" value="Login">Login</button>
+				
+				<div class="form-group ml-4">
+					<input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
+					<label class="form-check-label" for="remember">
+					{{ __('Remember Me') }}
+				</div>
 
-                <div class="card-body">
-                    <form method="POST" action="{{ route('login') }}">
-                        @csrf
+				</label>
 
-                        <div class="row mb-3">
-                            <label for="email" class="col-md-4 col-form-label text-md-end">{{ __('Email Address') }}</label>
+			</form>
 
-                            <div class="col-md-6">
-                                <input id="email" type="email" class="form-control @error('email') is-invalid @enderror" name="email" value="{{ old('email') }}" required autocomplete="email" autofocus>
-                            </div>
-                        </div>
+			@if (Route::has('password.request'))
+				<a href="{{ route('password.request') }}" style="color:#6356e5 !important" class="forgot-password-link">Forgot password?</a>
+			@endif
+			<p class="or"><span>OR</span></p>
+			<div style="text-align: center;">
+				<br>
+				<p class="form-wrapper-footer-text">Don't have an account? <a href="{{ route('users.create') }}" style="color:#6356e5 !important;" class="text-reset">Register here</a></p>
+			</div>
+		</div>
+	</div>
 
-                        <div class="row mb-3">
-                            <label class="mt-4 col-md-4 col-form-label text-md-end">{{ __('Password') }}</label>
-
-                            <div class="col-md-6">
-
-                                @if (Route::has('password.request'))
-                                    <a class="float-end btn btn-link" href="{{ route('password.request') }}">
-                                        {{ __('Forgot Your Password?') }}
-                                    </a>
-                                @endif
-
-                                <input id="password" type="password" class="form-control @error('password') is-invalid @enderror" name="password" required autocomplete="current-password">
-                            </div>
-                        </div>
-
-                        <div class="row mb-3">
-                            <div class="col-md-6 offset-md-4">
-                                <div class="form-check">
-                                    <input class="form-check-input" type="checkbox" name="remember" id="remember" {{ old('remember') ? 'checked' : '' }}>
-
-                                    <label class="form-check-label" for="remember">
-                                        {{ __('Remember Me') }}
-                                    </label>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="row mb-0">
-                            <div class="w-50 text-center mx-auto">
-                                <button type="submit" class="w-50 color btn btn-primary">
-                                    {{ __('Login') }}
-                                </button>
-                            </div>
-                        </div>
-                    </form>
-                    <div class="mx-auto w-75">
-                        <h6 class="mt-5"><span>Or</span></h6>
-                    </div>
-                    <br>
-                    <div class="mx-auto text-center">
-                        <a id="client" href="{{ route('users.create') }}" class="mx-auto w-25 sColor btn btn-primary">Sign Up</a>
-                    </div>
-                    <br>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
-@endsection
+	<div class="col-sm-7 px-0 d-none d-sm-block">
+		<img src={{ asset('/images/login.jpg') }} alt="login image" class="form-img">
+	</div>
+	  </div>
+	</div>
+  </main>
+  <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
+  <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
+  <script type="text/javascript" src="http://translate.google.com/translate_a/element.js?cb=loadGoogleTranslate"></script>
+</body>
+</html>
