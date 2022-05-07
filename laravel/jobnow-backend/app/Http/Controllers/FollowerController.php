@@ -93,7 +93,7 @@ class FollowerController extends Controller
         $user = User::where('id', $follower->profile_id)->first();
         $follower->delete();
         
-        return redirect()->route('users.show', $user)->with('success', "You followed the user successfully.");
+        return redirect()->route('users.show', $user)->with('success', "You unfollowed the user successfully.");
 
     }
 }
