@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Company;
 use App\Models\User;
+use App\Models\Offer;
 use App\Models\File;
 use Illuminate\Http\Request;
 
@@ -129,7 +130,8 @@ class CorporationController extends Controller
     public function destroy(Company $corporation)
     {
         $file = File::where('id', $corporation->logo_id)->first();
-
+        
+        Offer::where('company_id', "=", $corporation->id)->delete(); 
         $corporation->delete();
         $file->delete();
         \Storage::disk('public')->delete($file->filepath);

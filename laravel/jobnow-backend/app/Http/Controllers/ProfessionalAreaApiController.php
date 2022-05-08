@@ -15,7 +15,8 @@ class ProfessionalAreaApiController extends Controller
      */
     public function index()
     {
-        //
+        $areas = ProfessionalArea::all();
+        return response($areas);
     }
 
     /**

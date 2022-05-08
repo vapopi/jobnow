@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import Company from './Company'
 import Area from './Area'
 
-function Offers() {
+function List() {
 
     const url = '/api/offers';
     const [offers, setOffers] = useState([]);
@@ -29,17 +29,17 @@ function Offers() {
 
     return (
         <>
-            <div className="container mt-5">
-                <h1 className='text-center'><strong>OFFERS</strong></h1>
+            <h1 className='text-center'><strong>OFFERS</strong></h1>
+            <div className="container mt-5" style={{textAlign: 'center'}}>
                 <a className="color btn btn-primary" href="/offers" role="button">List offers</a><span> </span>
                 <a className="color btn btn-primary" href="/offers/create" role="button">Create offer</a><span> </span>
-                <a className="color btn btn-primary" href="/offers" role="button">View applied offers</a><span> </span>
-                {/* <button className="color btn btn-primary" type="submit" onClick={() => { console.log('hola') }} role="button">Test onClick</button><span> </span> */}
-
+                <a className="color btn btn-primary" href="/offers" role="button" disabled>View applied offers</a><span> </span>
                 <hr/>
+                <br/>
+                <h5 className='text-center'><strong>List all offers</strong></h5>
+                <br/>
                 <div className='row'>
                     <div style={{margin:"0 auto"}} className='col-12'>
-                        <h4 className='text-center'>List all offers</h4>
                         {
                             <table className="table">
                                 <thead>
@@ -72,12 +72,13 @@ function Offers() {
                     </div>
                 </div>
             </div>
+
         </>
     );
 }
 
-export default Offers;
+export default List;
 
 if (document.getElementById('react-listOffers')) {
-    ReactDOM.render(<Offers />, document.getElementById('react-listOffers'));
+    ReactDOM.render(<List />, document.getElementById('react-listOffers'));
 }

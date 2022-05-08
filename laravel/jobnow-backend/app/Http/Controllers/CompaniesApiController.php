@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\Company;
+use Illuminate\Support\Facades\Auth;
 
 class CompaniesApiController extends Controller
 {
@@ -14,7 +15,9 @@ class CompaniesApiController extends Controller
      */
     public function index()
     {
-        //
+        // $companies = Company::where('author_id', '=',  auth()->user()->id);
+        $companies = Company::all();
+        return response($companies);
     }
 
     /**
@@ -37,7 +40,6 @@ class CompaniesApiController extends Controller
     public function show($id)
     {
         $company = Company::find($id);
-
         return response($company);
     }
 

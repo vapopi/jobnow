@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Storage;
 use App\Models\Company;
+use App\Models\Offer;
 use App\Models\File;
 use App\Models\User;
 use Illuminate\Support\Facades\Auth;
@@ -203,7 +204,8 @@ class CompanyController extends Controller
     public function destroy(Company $company)
     {
         $file = File::where('id', $company->logo_id)->first();
-
+        
+        Offer::where('company_id', "=", $company->id)->delete(); 
         $company->delete();
         $file->delete();
         Storage::disk('public')->delete($file->filepath);
