@@ -6249,9 +6249,6 @@ function Offers() {
                   }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("td", {
                     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("button", {
                       className: "w-100 btn btn-primary",
-                      onClick: function onClick() {
-                        return deleteMessage(element.id);
-                      },
                       children: "Apply"
                     })
                   })]

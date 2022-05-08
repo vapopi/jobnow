@@ -34,6 +34,8 @@ function Offers() {
                 <a className="color btn btn-primary" href="/offers" role="button">List offers</a><span> </span>
                 <a className="color btn btn-primary" href="/offers/create" role="button">Create offer</a><span> </span>
                 <a className="color btn btn-primary" href="/offers" role="button">View applied offers</a><span> </span>
+                {/* <button className="color btn btn-primary" type="submit" onClick={() => { console.log('hola') }} role="button">Test onClick</button><span> </span> */}
+
                 <hr/>
                 <div className='row'>
                     <div style={{margin:"0 auto"}} className='col-12'>
@@ -59,7 +61,7 @@ function Offers() {
                                                 <td>{element.description}</td>
                                                 <td><Company id={element.company_id}/></td>
                                                 <td><Area id={element.professional_area_id}/></td>
-                                                <td><button className="w-100 btn btn-primary" onClick={() => deleteMessage(element.id)}>Apply</button></td>
+                                                <td><button className="w-100 btn btn-primary">Apply</button></td>
                                             </tr>
                                         )
                                     })      
