@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
 
-<div id="chatapp"></div>
+<div id="react-createOffers"></div>
 
 @endsection

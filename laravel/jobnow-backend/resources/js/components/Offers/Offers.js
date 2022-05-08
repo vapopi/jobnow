@@ -7,27 +7,22 @@ import Area from './Area'
 
 function Offers() {
 
+    const url = '/api/offers';
     const [offers, setOffers] = useState([]);
-
-    const url = 'http://127.0.0.1:8000/api/offers';
 
     const getOffers = async () => {
 
         await axios.get(url).then(result => {
-
             const offersDB = result.data;
 
             setOffers(offersDB.map((valor) => {
-                console.log(valor)
                 return {...valor, id:valor.id}
 
             }));
-
         });
     }
 
     useEffect(() => {
-
         getOffers();
 
     }, []);
@@ -36,9 +31,9 @@ function Offers() {
         <>
             <div className="container mt-5">
                 <h1 className='text-center'><strong>OFFERS</strong></h1>
-                <a class="color btn btn-primary" role="button">List offers</a><span> </span>
-                <a class="color btn btn-primary" role="button">Create offer</a><span> </span>
-                <a class="color btn btn-primary" role="button">View applied offers</a><span> </span>  
+                <a className="color btn btn-primary" href="/offers" role="button">List offers</a><span> </span>
+                <a className="color btn btn-primary" href="/offers/create" role="button">Create offer</a><span> </span>
+                <a className="color btn btn-primary" href="/offers" role="button">View applied offers</a><span> </span>
                 <hr/>
                 <div className='row'>
                     <div style={{margin:"0 auto"}} className='col-12'>
@@ -58,7 +53,6 @@ function Offers() {
                                 <tbody>
                                 {
                                     offers.map((element, index) => {
-                                        console.log(element)
                                         return (
                                             <tr key={index}>
                                                 <td>{element.title}</td>
@@ -82,6 +76,6 @@ function Offers() {
 
 export default Offers;
 
-if (document.getElementById('offers')) {
-    ReactDOM.render(<Offers />, document.getElementById('offers'));
+if (document.getElementById('react-listOffers')) {
+    ReactDOM.render(<Offers />, document.getElementById('react-listOffers'));
 }

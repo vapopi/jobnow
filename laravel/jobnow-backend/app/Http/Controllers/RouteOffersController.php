@@ -15,4 +15,14 @@ class RouteOffersController extends Controller
     {
         return view("offers.index");
     }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        return view("offers.create");
+    }
 }
