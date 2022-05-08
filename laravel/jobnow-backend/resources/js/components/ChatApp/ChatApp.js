@@ -74,7 +74,7 @@ function ChatApp() {
                                         <td>{element.id}</td>
                                         <td>{element.message}</td>
                                         <td><User id={element.author_id}/></td>
-                                        <td><button onClick={() => deleteMessage(element.id)}>Delete Message</button>
+                                        <td><Button variant= "danger" onClick={() => deleteMessage(element.id)}>Delete Message</Button>
                                         <Button variant = "warning" onClick={() => edit(element)}>Edit Message</Button></td>
                                         </tr>
 
