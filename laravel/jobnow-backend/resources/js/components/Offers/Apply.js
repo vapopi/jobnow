@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.css';
 
-function Create() {
+function Apply() {
 
     const apiOffers = '/api/offers';
     const apiCompanies = '/api/companies';
@@ -121,8 +121,8 @@ function Create() {
     );
 }
 
-export default Create;
+export default Apply;
 
-if (document.getElementById('react-createOffers')) {
-    ReactDOM.render(<Create />, document.getElementById('react-createOffers'));
+if (document.getElementById('react-applyOffer')) {
+    ReactDOM.render(<Apply />, document.getElementById('react-applyOffer'));
 }

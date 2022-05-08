@@ -61,7 +61,7 @@ function List() {
                                                 <td>{element.description}</td>
                                                 <td><Company id={element.company_id}/></td>
                                                 <td><Area id={element.professional_area_id}/></td>
-                                                <td><button className="w-100 btn btn-primary">Apply</button></td>
+                                                <td><a className="color btn btn-primary" href={`/offers/apply/${element.id}`} role="button" disabled>Apply offer</a><span> </span></td>
                                             </tr>
                                         )
                                     })      

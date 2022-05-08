@@ -36,6 +36,7 @@ Route::apiResource('tickets/{tid}/comments', CommentController::class);
 Route::apiResource('notifications', NotificationController::class);
 Route::apiResource('posts', PostController::class);
 Route::apiResource('offers', OfferController::class);
+Route::apiResource('offers/apply/{:id}', OfferController::class);
 Route::apiResource('offers/{oid}/applicatedOffers', ApplicatedOffersController::class);
 Route::apiResource('users', UsersApiController::class);
 Route::apiResource('companies', CompaniesApiController::class);

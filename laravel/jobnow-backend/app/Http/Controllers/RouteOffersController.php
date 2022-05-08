@@ -25,4 +25,9 @@ class RouteOffersController extends Controller
     {
         return view("offers.create");
     }
+
+    public function show()
+    {
+        return view("applied.show");
+    }
 }

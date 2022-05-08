@@ -35,7 +35,7 @@
             @endif
         @endif
         <div class="w-50 float-start">
-            <p class="card-text"><strong>Name</strong> {{$user->name}}</p>
+            <p class="card-text"><strong>Name:</strong> {{$user->name}}</p>
             <p class="card-text"><strong>Surnames:</strong> {{$user->surnames}}</p>
             <p class="card-text"><strong>Email:</strong> {{$user->email}}</p>
             <p class="card-text"><strong>Phone:</strong> {{$user->phone}}</p>
