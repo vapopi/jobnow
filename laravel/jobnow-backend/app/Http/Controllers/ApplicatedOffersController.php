@@ -3,7 +3,6 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\ApplicatedOffer;
 
 class ApplicatedOffersController extends Controller
 {
@@ -12,11 +11,19 @@ class ApplicatedOffersController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(int $oid)
+    public function index()
     {
-        $applicatedOffers = ApplicatedOffer::where('offer_id', '=', $oid)->get();
+        return view('applicated.show');
+    }
 
-        return response($applicatedOffers);
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
     }
 
     /**
@@ -25,18 +32,9 @@ class ApplicatedOffersController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(int $oid, Request $request)
+    public function store(Request $request)
     {
-        $request->validate([
-            'user_id' => 'required',
-            'curriculum' => 'required'
-        ]);
-
-        $all = $request->all();
-        $all['offer_id'] = $oid;
-        $applicatedOffer = ApplicatedOffer::create($all);
-
-        return response($applicatedOffer);
+        //
     }
 
     /**
@@ -45,12 +43,20 @@ class ApplicatedOffersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(int $oid, int $aoId) 
+    public function show($id)
     {
-        $applicatedOffer = ApplicatedOffer::where('offer_id', '=', $oid)
-        ->find($aoId);
+        //
+    }
 
-        return response($applicatedOffer);
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  int  $id
+     * @return \Illuminate\Http\Response
+     */
+    public function edit($id)
+    {
+        //
     }
 
     /**
@@ -60,13 +66,9 @@ class ApplicatedOffersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(int $oid, Request $request, int $aoId)
+    public function update(Request $request, $id)
     {
-        $applicatedOffer = ApplicatedOffer::where('offer_id', '=', $oid)
-        ->find($aoId)
-        ->update($request->all());
-
-        return response($applicatedOffer);
+        //
     }
 
     /**
@@ -75,11 +77,8 @@ class ApplicatedOffersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(int $oid, int $aoId)
+    public function destroy($id)
     {
-        ApplicatedOffer::where('offer_id', '=', $oid);
-        ApplicatedOffer::destroy($aoId);
-
-        // return response(content: "Success. The applicated offer ${aoId} has been eliminated");
+        //
     }
 }

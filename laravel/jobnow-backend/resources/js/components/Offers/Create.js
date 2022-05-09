@@ -11,6 +11,7 @@ function Create() {
 
     const [companies, setCompanies] = useState([]);
     const [areas, setAreas] = useState([]);
+    const [state, setState] = useState('');
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [area, setArea] = useState(1);
@@ -42,11 +43,13 @@ function Create() {
             description: description,
             company_id: company,
             professional_area_id: area
-        }).then(response => { 
+        }).then(response => {
             console.log(response)
+            setState(response) 
         })
         .catch(error => {
-            console.log(error.response)
+            setState(error.response.data) 
+            
         });
     }
 
@@ -58,7 +61,7 @@ function Create() {
 
 
     return (
-        <div>   
+        <div className="text-">   
 
             <h1 className='text-center'><strong>OFFERS</strong></h1>
             <div className="container mt-5" style={{textAlign: 'center'}}>
@@ -75,8 +78,8 @@ function Create() {
                     ) : 
                     (
                     <>
-
                         <br/>
+                        <p></p>
                         <h5 className='text-center'><strong>Create offer</strong></h5>
                         <div className="w-75 mx-auto">
                             <div className="form-group">
@@ -91,7 +94,7 @@ function Create() {
 
                             <br/>
                             <p>Choose your company:</p>
-                            <select onChange={ (event) => setCompany(event.target.value)}>
+                            <select className="btn btn-secondary btn-block" onChange={ (event) => setCompany(event.target.value)}>
                             {
                                 companies.map(key => (
                                     <option key={ key.id } value={ key.id }>{ key.name }</option>
@@ -101,7 +104,7 @@ function Create() {
 
                             <br/><br/>
                             <p>Choose the professional area:</p>
-                            <select onChange={ (event) => setArea(event.target.value)}>
+                            <select className="btn btn-secondary btn-block" onChange={ (event) => setArea(event.target.value)}>
                             {
                                 areas.map(key => (
                                     <option key={ key.id } value={ key.id }>{ key.name }</option>
@@ -110,8 +113,21 @@ function Create() {
                             </select>
 
                             <br/><br/>
-                            <button type="button" onClick={() => postOffer()} className="btn btn-primary">Submit</button><span> </span>
-                            <button type="reset" className="btn btn-secondary">Reset</button>
+                            {
+                                state != null ? (
+                                    state.status === 200 ? (
+                                        <span className="text-center text-success">{state.data}</span>
+                                    ):(
+                                        <span className="text-center text-danger">{state.message}</span>
+                                    )
+                                ):(
+                                    <span className="text-center text-info"></span>
+                                )
+                            }
+                            
+                            <br/><br/>
+                            <button type="button" onClick={() => postOffer()} className="w-25 btn btn-primary">Submit</button><span> </span>
+                            <button type="reset" className="w-25 btn btn-secondary">Reset</button>
                             <br/><br/>
                         </div>
                     </>
