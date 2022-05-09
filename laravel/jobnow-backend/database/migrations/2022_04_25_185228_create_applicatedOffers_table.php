@@ -13,7 +13,7 @@ class CreateApplicatedOffersTable extends Migration
      */
     public function up()
     {
-        Schema::create('applicatedOffers', function (Blueprint $table) {
+        Schema::create('applicated_offers', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('curriculum');
@@ -32,13 +32,13 @@ class CreateApplicatedOffersTable extends Migration
      */
     public function down()
     {
-        Schema::table('applicatedOffers', function(Blueprint $table) {
+        Schema::table('applicated_offers', function(Blueprint $table) {
 
             $table->dropForeign(['offer_id']);
             $table->dropForeign(['curriculum']);
             $table->dropForeign(['user_id']);
         });
 
-        Schema::dropIfExists('applicatedOffers');
+        Schema::dropIfExists('applicated_offers');
     }
 }

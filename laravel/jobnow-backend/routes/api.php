@@ -10,9 +10,11 @@ use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\PostController;
 use App\Http\Controllers\OfferController;
 use App\Http\Controllers\ApplicatedOffersController;
+use App\Http\Controllers\ApplicatedOffersApiController;
 use App\Http\Controllers\UsersApiController;
 use App\Http\Controllers\CompaniesApiController;
 use App\Http\Controllers\ProfessionalAreaApiController;
+use App\Http\Controllers\FilesApiController;
 
 /*
 |--------------------------------------------------------------------------
@@ -36,8 +38,9 @@ Route::apiResource('tickets/{tid}/comments', CommentController::class);
 Route::apiResource('notifications', NotificationController::class);
 Route::apiResource('posts', PostController::class);
 Route::apiResource('offers', OfferController::class);
-Route::apiResource('offers/apply/{:id}', OfferController::class);
+Route::apiResource('applicatedoffers', ApplicatedOffersApiController::class);
 Route::apiResource('offers/{oid}/applicatedOffers', ApplicatedOffersController::class);
 Route::apiResource('users', UsersApiController::class);
 Route::apiResource('companies', CompaniesApiController::class);
 Route::apiResource('professionalarea', ProfessionalAreaApiController::class);
+Route::apiResource('files', FilesApiController::class);

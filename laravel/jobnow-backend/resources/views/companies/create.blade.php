@@ -36,7 +36,7 @@
                         <input class="form-control" type="text" name="email" required/>
                         <br>
                         <label for="category-name">Enter Company Date of Creation</label>
-                        <input class="form-control" type="text" name="creation_date" required/>
+                        <input class="form-control" type="date" name="creation_date" required/>
                         <br>
                         <label for="category-name">Enter Company Logo</label>
                         <input class="form-control" type="file" name="logo" required/>

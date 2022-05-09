@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Offer;
-use Illuminate\Support\Facades\DB;
-class OfferController extends Controller
+use App\Models\File;
+
+class FilesApiController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -14,9 +14,8 @@ class OfferController extends Controller
      */
     public function index()
     {
-        $offers = Offer::all();
-        
-        return response($offers);
+        $file = File::all();
+        return response($file);
     }
 
     /**
@@ -28,15 +27,12 @@ class OfferController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title' => 'required|max:255',
-            'description' => 'required',
-            'company_id' => 'required',
-            'professional_area_id',
+            'filename' => 'required',
+            'filesize' => 'required',
         ]);
 
-        $offer = Offer::create($request->all());
-
-        return \response("Offer created successfully!");
+        $file = File::create($request->all());
+        return \response("File created successfully!");
     }
 
     /**
@@ -45,13 +41,9 @@ class OfferController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(int $id, int $cid)
+    public function show($id)
     {
-        $results = Offer::where('id',$id)
-            ->where('company_id', $cid)
-            ->get();
-        
-        return \response($results);
+        //
     }
 
     /**
@@ -61,12 +53,9 @@ class OfferController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, int $id)
+    public function update(Request $request, $id)
     {
-        Offer::findOrFail($id)
-            ->update($request->all());
-
-        return \response("Offer updated.");
+        //
     }
 
     /**
@@ -75,10 +64,8 @@ class OfferController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(int $id)
+    public function destroy($id)
     {
-        Offer::destroy($id);
-
-        return \response("Offer eliminated successfully.");
+        //
     }
 }
