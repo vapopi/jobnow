@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\ApplicatedOffer;
+use App\Models\File;
 
 class ApplicatedOffersApiController extends Controller
 {
@@ -26,13 +27,42 @@ class ApplicatedOffersApiController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        
+        $this->validate($request, [
             'user_id' => 'required',
             'curriculum' => 'required',
             'offer_id' => 'required',
         ]);
 
-        $applicatedOffer = ApplicatedOffer::create($request->all());
+        $input = $request->all();
+
+        $upload = $request->file('curriculum');
+        $fileName = $upload->getClientOriginalName();
+        $fileSize = $upload->getSize();
+        $fileExtension = $upload->getClientOriginalExtension();
+        $uploadName = time() . '_' . $fileName;
+
+        $filePath = $upload->storeAs(
+            'uploads',    
+            $uploadName,   
+            'public'        
+        );
+
+        if (\Storage::disk('public')->exists($filePath)) {
+
+            $fullPath = \Storage::disk('public')->path($filePath);
+
+            $file = File::create([
+                'filename' => $filePath,
+                'filesize' => $fileSize,
+            ]);
+
+            $upload->filepath = $filePath;
+            $upload->filesize = $fileSize;
+            $input['curriculum'] = $file->id;
+        }
+
+        $applicatedOffer = ApplicatedOffer::create($input);
 
         return \response("Offer created successfully!");
     }

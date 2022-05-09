@@ -18,6 +18,7 @@
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/translator.css') }}" rel="stylesheet">
     <link rel="icon" href="{{ asset('images/favicon.ico') }}">
 
     <!-- Bootstrap CSS CDN -->
@@ -42,6 +43,10 @@
                 <a href="{{route('dashboard')}}" class="navbar-brand">
                     {{ config('app.name', 'jobnow') }}
                 </a>
+                <!-- <button type="button" id="sidebarCollapse" class="btn btn-info">
+                    <i class="fas fa-align-left"></i>
+                    <span>Show/Hide Sidebar</span>
+                </button> -->
                 <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
                     <span class="navbar-toggler-icon"></span>
                 </button>
@@ -86,15 +91,12 @@
                 </div>
             </div>
         </nav>
-        <button type="button" id="sidebarCollapse" class="btn btn-info">
-                        <i class="fas fa-align-left"></i>
-                        <span>Toggle Sidebar</span>
-                    </button>
+
         @if (Auth::user()->email_verified_at != null)
             <div class="wrapper">
             <nav id="sidebar">
                 <div class="sidebar-header">
-                    <h3>Sidebar</h3>
+                    <h3>Sidebar (EN OBRAS)</h3>
                 </div>
 
                 <ul class="list-unstyled components">
@@ -116,28 +118,12 @@
                         </li>
                         
                         <li>
-                            <a href="#">Offers</a>
-                        </li>
-                        <li>
-                            <a href="#pageSubmenu" data-toggle="collapse" aria-expanded="false" class="dropdown-toggle">Pages</a>
-                            <ul class="collapse list-unstyled" id="pageSubmenu">
-                                <li>
-                                    <a href="#">Page 1</a>
-                                </li>
-                                <li>
-                                    <a href="#">Page 2</a>
-                                </li>
-                                <li>
-                                    <a href="#">Page 3</a>
-                                </li>
-                            </ul>
+                            <a href="{{route('offers.index')}}">Offers</a>
                         </li>
                         <li>
                             <a href="{{route('premium.index')}}" role="button">Premium</a>
                         </li>
-                        <li>
-                            <a href="{{route('offers.index')}}" role="button">Offers</a>
-                        </li>
+
                         <li>
                             <a href="{{route('menu.index')}}" role="button">Companies</a>
                         </li>

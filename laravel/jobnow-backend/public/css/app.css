@@ -10071,6 +10071,7 @@ textarea.form-control-lg {
     justify-content: space-around !important;
   }
 
+  
   .justify-content-xl-evenly {
     justify-content: space-evenly !important;
   }
@@ -11287,12 +11288,29 @@ textarea.form-control-lg {
   }
 }
 
-/*
-    DEMO STYLE
-*/
 
 
 
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #fafafa;
+}
+
+p {
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.1em;
+    font-weight: 300;
+    line-height: 1.7em;
+    color: #999;
+}
+
+a,
+a:hover,
+a:focus {
+    color: inherit;
+    text-decoration: none;
+    transition: all 0.3s;
+}
 
 .navbar {
     padding: 15px 10px;
@@ -11329,39 +11347,10 @@ textarea.form-control-lg {
 #sidebar {
     min-width: 250px;
     max-width: 250px;
-    background: #6356e5;
+    background: #363232;
     color: #fff;
     transition: all 0.3s;
 }
-
-
-
-
-
-
-
-
-
-
-/* a, a:hover, a:focus, a:active {
-  text-decoration: none !important;
-  color: inherit !important; 
-} */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 #sidebar.active {
     margin-left: -250px;
@@ -11369,7 +11358,7 @@ textarea.form-control-lg {
 
 #sidebar .sidebar-header {
     padding: 20px;
-    background: #6d7fcc;
+    background: #6356e5;
 }
 
 #sidebar ul.components {
@@ -11390,13 +11379,13 @@ textarea.form-control-lg {
 
 #sidebar ul li a:hover {
     color: #7386D5;
-    background: #6d7fcc;
+    background: #fff;
 }
 
 #sidebar ul li.active>a,
-a.special[aria-expanded="true"] {
-    color: #6d7fcc;
-    background: #6d7fcc;
+a[aria-expanded="true"] {
+    color: #fff;
+    background: #6356e5;
 }
 
 a[data-toggle="collapse"] {
@@ -11436,7 +11425,7 @@ a.download {
 
 a.article,
 a.article:hover {
-    background: #6d7fcc !important;
+    background: #fff !important;
     color: #fff !important;
 }
 
@@ -11445,10 +11434,10 @@ a.article:hover {
 ----------------------------------------------------- */
 
 #content {
-  width: 100%;
-  padding: 20px;
-  min-height: 100vh;
-  transition: all 0.3s;
+    width: 100%;
+    padding: 20px;
+    min-height: 100vh;
+    transition: all 0.3s;
 }
 
 /* ---------------------------------------------------
@@ -11456,13 +11445,13 @@ a.article:hover {
 ----------------------------------------------------- */
 
 @media (max-width: 768px) {
-  #sidebar {
-      margin-left: -250px;
-  }
-  #sidebar.active {
-      margin-left: 0;
-  }
-  #sidebarCollapse span {
-      display: none;
-  }
+    #sidebar {
+        margin-left: -250px;
+    }
+    #sidebar.active {
+        margin-left: 0;
+    }
+    #sidebarCollapse span {
+        display: none;
+    }
 }

@@ -6490,7 +6490,6 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 function List() {
   var url = '/api/offers';
   var apiApplicatedOffers = '/api/applicatedoffers';
-  var apiFiles = '/api/files';
 
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]),
       _useState2 = _slicedToArray(_useState, 2),
@@ -6511,8 +6510,6 @@ function List() {
       _useState8 = _slicedToArray(_useState7, 2),
       user = _useState8[0],
       setUser = _useState8[1];
-
-  var d = new Date();
 
   var getOffers = /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
@@ -6544,22 +6541,17 @@ function List() {
   }();
 
   var postApply = function postApply() {
-    axios__WEBPACK_IMPORTED_MODULE_3___default().post(apiFiles, {
-      filename: "uploads/" + d.getMilliseconds() + "_" + curriculum[0].name,
-      filesize: curriculum[0].size
-    }).then(function (response) {
-      console.log(response);
-    })["catch"](function (error) {
-      console.log(error);
-    });
-    axios__WEBPACK_IMPORTED_MODULE_3___default().post(apiApplicatedOffers, {
-      user_id: 1,
-      curriculum: 1,
-      offer_id: offer
-    }).then(function (response) {
-      console.log(response);
-    })["catch"](function (error) {
-      console.log(error);
+    var formData = new FormData();
+    formData.append("curriculum", curriculum);
+    formData.append("offer_id", offer);
+    formData.append("user_id", 1);
+    axios__WEBPACK_IMPORTED_MODULE_3___default()({
+      method: 'post',
+      url: apiApplicatedOffers,
+      data: formData,
+      header: {
+        'Content-Type': 'multipart/form-data'
+      }
     });
   };
 
@@ -6698,10 +6690,10 @@ function List() {
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
                   className: "text-warning"
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("input", {
-                  name: "message",
+                  name: "curriculum",
                   type: "file",
                   onChange: function onChange(data) {
-                    return setCurriculum(data.target.files);
+                    return setCurriculum(data.target.files[0]);
                   },
                   className: "form-control mb-2"
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("button", {
