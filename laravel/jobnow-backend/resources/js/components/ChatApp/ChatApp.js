@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
-import { Table, Button, NavItem } from 'react-bootstrap';
+import { Table, Button, Alert } from 'react-bootstrap';
 import axios from 'axios';
 import User from './User'
 import 'bootstrap/dist/css/bootstrap.css';
 import PropTypes from 'prop-types';
 
-function ChatApp() {
+function ChatApp({props}) {
 
     //STATES
     const [messages, setMessages] = useState([]);
@@ -61,12 +61,10 @@ function ChatApp() {
 
     }, []);
 
-    //FUNCION PARA ELIMINAR EL MENSAJE
-    const deleteMessage = (id) => {
+    //FUNCION QUE ELIMINA EL MENSAJE CON UNA ID CONCRETA DE LA BBDD
+    const deleteMessage = (idMessage) => {
 
-
-        axios.delete(urlMessages + id);
-        
+        axios.delete(urlMessages + idMessage);
         getMessages();
     }
 
@@ -125,7 +123,7 @@ function ChatApp() {
         axios.post(urlMessages, {
             
             message: msg.message,
-            author_id: 1,
+            author_id: props.userid,
             receiver_id: parseInt(msg.receiver)
         
         });
@@ -158,9 +156,9 @@ function ChatApp() {
                 <hr/>
                 <div className='row'>
                     <div className='col-8' style={{margin:"0 auto"}}>
-                        <h4 className='text-center'>Messages you have sended</h4>
+                        <h2 className='text-center'>Messages you have sended</h2>
                         {
-                            <Table striped bordered hover>
+                            <Table striped bordered hover responsive>
 
                                 <thead>
 
@@ -179,14 +177,17 @@ function ChatApp() {
                                 {
                                     messages.map((element, index) => {
 
-                                        return <tr key={index}>
-                                        <td>{element.id}</td>
-                                        <td>{element.message}</td>
-                                        <td><User id={element.receiver_id}/></td>
-                                        <td><Button variant= "danger" onClick={() => deleteMessage(element.id)}>Delete Message</Button>
-                                        <Button variant = "warning" onClick={() => edit(element)}>Edit Message</Button></td>
-                                        </tr>
+                                        if(element.author_id == props.userid) {
 
+                                            return <tr key={index}>
+                                            <td>{element.id}</td>
+                                            <td>{element.message}</td>
+                                            <td><User id={element.receiver_id}/></td>
+                                            <td><Button variant= "danger" onClick={() => deleteMessage(element.id)}>Delete Message</Button>
+                                            <Button variant = "warning" onClick={() => edit(element)}>Edit Message</Button></td>
+                                            </tr>
+
+                                        }
                                     })      
                                 }
                                 </tbody>
@@ -196,9 +197,9 @@ function ChatApp() {
                     </div>
                     
                     <div className="col-8" style={{margin:"0 auto"}}>
-                        <h4 className="text-center">Messages you have received</h4>
+                        <h2 className="text-center">Messages you have received</h2>
                         {
-                            <Table striped bordered hover>
+                            <Table striped bordered hover responsive>
 
                                 <thead>
 
@@ -216,11 +217,15 @@ function ChatApp() {
                                 {
                                     messages.map((element, index) => {
 
-                                        return <tr key={index}>
-                                        <td>{element.id}</td>
-                                        <td>{element.message}</td>
-                                        <td><User id={element.author_id}/></td>
-                                        </tr>
+                                        if(element.receiver_id == props.userid) {
+
+                                            return <tr key={index}>
+                                            <td>{element.id}</td>
+                                            <td>{element.message}</td>
+                                            <td><User id={element.author_id}/></td>
+                                            </tr>
+
+                                        }
                                     })      
                                 }
                                 </tbody>
@@ -229,17 +234,17 @@ function ChatApp() {
                     </div>
                     
                     <div className='col-8' style={{margin:"0 auto"}}>
-                        <h4 className='text-center'>
+                        <h2 className='text-center'>
                             {
                                 editionMode ? 'Edit Message' : 'Create Message'
                             }
-                        </h4>
+                        </h2>
                         <form onSubmit={editionMode ? editMessage: createMessage}>
                             {
                                 error ? <span className='text-danger'>{error}</span> : null
                             }
                             <div>
-                                <p>To which user do you want to send the message:</p>
+                                <h4>To which user do you want to send the message:</h4>
                                 <select
                                 name='receiver'
                                 onChange={handleInputChange} key="receivers"
@@ -293,5 +298,9 @@ ChatApp.propTypes = {
 export default ChatApp;
 
 if (document.getElementById('chatapp')) {
-    ReactDOM.render(<ChatApp />, document.getElementById('chatapp'));
+
+    const element = document.getElementById('chatapp');
+    const props = Object.assign({}, element.dataset);
+
+    ReactDOM.render(<ChatApp props = {props}/>, element);
 }
