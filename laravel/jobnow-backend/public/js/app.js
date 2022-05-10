@@ -5619,13 +5619,7 @@ function ChatApp(_ref) {
   (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
     getMessages();
     getUsers();
-  }, []); //FUNCION QUE ELIMINA EL MENSAJE CON UNA ID CONCRETA DE LA BBDD
-
-  var deleteMessage = function deleteMessage(idMessage) {
-    axios__WEBPACK_IMPORTED_MODULE_3___default()["delete"](urlMessages + idMessage);
-    getMessages();
-  }; //FUNCION QUE CONTROLA EL MODO DE EDICION
-
+  }, []); //FUNCION QUE CONTROLA EL MODO DE EDICION
 
   var edit = function edit(element) {
     setEditionMode(true);
@@ -5669,12 +5663,28 @@ function ChatApp(_ref) {
       message: msg.message,
       author_id: props.userid,
       receiver_id: parseInt(msg.receiver)
+    })["catch"](function (error) {
+      if (error.response.data.message.includes("given data was invalid")) {
+        setError("Please select the user you want to send a message to");
+      }
     });
     setMsg({
       message: "",
       receiver: 0
     });
+    setError(null);
     getMessages();
+  }; //FUNCION QUE ENSEÑA UNA ALERTA PARA CONFIRMAR LA ELIMINACION DE UN MENSAJE
+
+
+  var showAlertDeleteMessage = function showAlertDeleteMessage(idMessage) {
+    var confirmDeleteMessage = confirm("Are you sure you want to deletethe message with id = " + idMessage + " ?");
+
+    if (confirmDeleteMessage) {
+      axios__WEBPACK_IMPORTED_MODULE_3___default()["delete"](urlMessages + idMessage);
+      alert("Message deleted successfully");
+      getMessages();
+    }
   }; //FUNCION QUE CONTROLA LOS ONCHANGE DEL SELECT Y DEL INPUT
 
 
@@ -5732,7 +5742,7 @@ function ChatApp(_ref) {
                       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
                         variant: "danger",
                         onClick: function onClick() {
-                          return deleteMessage(element.id);
+                          return showAlertDeleteMessage(element.id);
                         },
                         children: "Delete Message"
                       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
@@ -5917,7 +5927,7 @@ var User = function User(_ref) {
           switch (_context.prev = _context.next) {
             case 0:
               _context.next = 2;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('http://127.0.0.1:8000/api/users/' + id).then(function (result) {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/users/' + id).then(function (result) {
                 setUser(result.data);
               });
 

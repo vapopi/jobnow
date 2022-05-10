@@ -144,7 +144,7 @@
                         </li>
                     @else
                         <li>
-                            <a href="{{route('mynetwork.index')}}" role="button">Security</a><!-- React -->
+                            <a href="{{route('security.index')}}" role="button">Security</a><!-- React -->
                         </li>
                     @endif
                 </ul>

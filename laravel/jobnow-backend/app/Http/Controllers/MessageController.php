@@ -79,6 +79,6 @@ class MessageController extends Controller
     {
         Message::destroy($id);
 
-        // return response(content: "Success. The message ${id} has been eliminated");
+        return \response("Success. The message ${id} has been eliminated");
     }
 }

@@ -8,7 +8,7 @@ const User = ({id}) => {
     //FUNCION PARA COGER TODOS LOS USUARIOS DE LA BBDD
     const getUserById = async () => {
 
-        await axios.get('http://127.0.0.1:8000/api/users/'+ id).then(result => {
+        await axios.get('/api/users/'+ id).then(result => {
 
             setUser(result.data);
 

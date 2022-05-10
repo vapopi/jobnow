@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
-import { Table, Button, Alert } from 'react-bootstrap';
+import { Table, Button } from 'react-bootstrap';
 import axios from 'axios';
-import User from './User'
+import User from './User';
 import 'bootstrap/dist/css/bootstrap.css';
 import PropTypes from 'prop-types';
 
@@ -60,13 +60,6 @@ function ChatApp({props}) {
         getUsers();
 
     }, []);
-
-    //FUNCION QUE ELIMINA EL MENSAJE CON UNA ID CONCRETA DE LA BBDD
-    const deleteMessage = (idMessage) => {
-
-        axios.delete(urlMessages + idMessage);
-        getMessages();
-    }
 
     //FUNCION QUE CONTROLA EL MODO DE EDICION
     const edit = element => {
@@ -126,6 +119,12 @@ function ChatApp({props}) {
             author_id: props.userid,
             receiver_id: parseInt(msg.receiver)
         
+        }).catch(error => {
+
+            if(error.response.data.message.includes("given data was invalid")) {
+
+                setError("Please select the user you want to send a message to");
+            }
         });
 
         setMsg({
@@ -135,7 +134,22 @@ function ChatApp({props}) {
 
         })
 
+        setError(null);
         getMessages();
+    }
+
+    //FUNCION QUE ENSEÑA UNA ALERTA PARA CONFIRMAR LA ELIMINACION DE UN MENSAJE
+    const showAlertDeleteMessage = (idMessage) => {
+
+        let confirmDeleteMessage = confirm("Are you sure you want to deletethe message with id = "+idMessage+" ?");
+
+        if(confirmDeleteMessage) {
+
+            axios.delete(urlMessages + idMessage);
+            alert("Message deleted successfully");
+            getMessages();
+
+        }
     }
 
     //FUNCION QUE CONTROLA LOS ONCHANGE DEL SELECT Y DEL INPUT
@@ -183,7 +197,7 @@ function ChatApp({props}) {
                                             <td>{element.id}</td>
                                             <td>{element.message}</td>
                                             <td><User id={element.receiver_id}/></td>
-                                            <td><Button variant= "danger" onClick={() => deleteMessage(element.id)}>Delete Message</Button>
+                                            <td><Button variant= "danger" onClick={() => showAlertDeleteMessage(element.id)}>Delete Message</Button>
                                             <Button variant = "warning" onClick={() => edit(element)}>Edit Message</Button></td>
                                             </tr>
 
