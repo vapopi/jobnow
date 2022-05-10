@@ -52,9 +52,7 @@
         @endif
 
         @if (Auth::user()->role_id == 1)
-
             <a class="color btn btn-primary" href="{{route('security.index')}}" role="button">Security</a>
-    
         @endif
 
     @endif
