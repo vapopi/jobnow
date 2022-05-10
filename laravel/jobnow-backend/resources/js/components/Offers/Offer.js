@@ -7,15 +7,16 @@ const Offer = ({id}) => {
 
     const getOfferById = async () => {
 
-        await axios.get('/api/offers/'+id).then(result => {
+        await axios.get('/api/offers/'+ id).then(result => {
             setOffer(result.data);
+
         });
 
     }
 
     useEffect(() => {
         getOfferById();
-        
+
     }, []);
 
     return (

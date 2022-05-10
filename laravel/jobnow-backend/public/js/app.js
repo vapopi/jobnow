@@ -5399,10 +5399,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Offers_Offers__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/Offers/Offers */ "./resources/js/components/Offers/Offers.js");
 /* harmony import */ var _components_Offers_Create__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/Offers/Create */ "./resources/js/components/Offers/Create.js");
 /* harmony import */ var _components_Offers_Apply__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/Offers/Apply */ "./resources/js/components/Offers/Apply.js");
-/* harmony import */ var _components_Offers_Offer__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/Offers/Offer */ "./resources/js/components/Offers/Offer.js");
-/* harmony import */ var _components_Offers_Area__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/Offers/Area */ "./resources/js/components/Offers/Area.js");
-/* harmony import */ var _components_Offers_Company__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/Offers/Company */ "./resources/js/components/Offers/Company.js");
-/* harmony import */ var _components_Posts_Posts__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/Posts/Posts */ "./resources/js/components/Posts/Posts.js");
+/* harmony import */ var _components_Posts_Posts__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/Posts/Posts */ "./resources/js/components/Posts/Posts.js");
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes React and other helpers. It's a great starting point while
@@ -5414,9 +5411,6 @@ __webpack_require__.r(__webpack_exports__);
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
-
-
-
 
 
 
@@ -6014,8 +6008,8 @@ function Apply(_ref) {
 
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]),
       _useState2 = _slicedToArray(_useState, 2),
-      offerss = _useState2[0],
-      setOfferss = _useState2[1];
+      offers = _useState2[0],
+      setOffers = _useState2[1];
 
   var getOffers = /*#__PURE__*/function () {
     var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
@@ -6026,7 +6020,7 @@ function Apply(_ref) {
               _context.next = 2;
               return axios__WEBPACK_IMPORTED_MODULE_3___default().get(apiApplicatedOffers).then(function (result) {
                 var offersDB = result.data;
-                setOfferss(offersDB.map(function (valor) {
+                setOffers(offersDB.map(function (valor) {
                   return _objectSpread(_objectSpread({}, valor), {}, {
                     id: valor.id
                   });
@@ -6102,11 +6096,11 @@ function Apply(_ref) {
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("thead", {
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("tr", {
                   children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("th", {
-                    children: "title"
+                    children: "Offer"
                   })
                 })
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("tbody", {
-                children: offerss.map(function (element, index) {
+                children: offers.map(function (element, index) {
                   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("tr", {
                     children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("td", {
                       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Offer__WEBPACK_IMPORTED_MODULE_5__["default"], {

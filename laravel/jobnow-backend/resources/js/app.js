@@ -17,7 +17,4 @@ import './components/Tickets/Tickets';
 import './components/Offers/Offers';
 import './components/Offers/Create';
 import './components/Offers/Apply';
-import './components/Offers/Offer';
-import './components/Offers/Area';
-import './components/Offers/Company';
 import './components/Posts/Posts';

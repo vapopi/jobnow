@@ -9,13 +9,13 @@ function Apply({props}) {
 
     const apiApplicatedOffers = '/api/applicatedoffers';
 
-    const [offerss, setOfferss] = useState([]);
+    const [offers, setOffers] = useState([]);
 
     const getOffers = async () => {
         await axios.get(apiApplicatedOffers).then(result => {
             const offersDB = result.data;
 
-            setOfferss(offersDB.map((valor) => {
+            setOffers(offersDB.map((valor) => {
                 return {...valor, id:valor.id}
 
             }));
@@ -47,13 +47,13 @@ function Apply({props}) {
                                 <table className="table">
                                     <thead>
                                         <tr>
-                                            <th>title</th>
+                                            <th>Offer</th>
                                         </tr>
                                     </thead>
 
                                     <tbody>
                                     {
-                                        offerss.map((element, index) => {
+                                        offers.map((element, index) => {
                                                 return <tr key={index}>
                                                     <td><Offer id={element.offer_id}/></td>
                                                 </tr>
