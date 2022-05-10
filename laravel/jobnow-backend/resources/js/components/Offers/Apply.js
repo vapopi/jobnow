@@ -47,6 +47,7 @@ function Apply({props}) {
                                 <table className="table">
                                     <thead>
                                         <tr>
+                                            <th>Id</th>
                                             <th>Offer</th>
                                         </tr>
                                     </thead>
@@ -59,6 +60,7 @@ function Apply({props}) {
 
                                                 return (
                                                 <tr key={index}>
+                                                    <td>{element.id}</td>
                                                     <td><Offer id={element.offer_id}/></td>
                                                 </tr>
                                                 )

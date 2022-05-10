@@ -22,7 +22,7 @@ class CompanyController extends Controller
     {
         return view("companies.index", [
             "companies" => Company::all(),
-            "users" => User::all()
+            "users" => User::all(),
         ]);
     }
 
