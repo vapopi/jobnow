@@ -9,15 +9,11 @@ function List() {
 
     const url = '/api/offers';
     const apiApplicatedOffers = '/api/applicatedoffers';
-    const apiFiles = '/api/files';
 
     const [offers, setOffers] = useState([]);
-
     const [offer, setOffer] = useState('');
     const [curriculum, setCurriculum] = useState();
     const [user, setUser] = useState('');
-
-    const d = new Date();
 
     const getOffers = async () => {
         await axios.get(url).then(result => {
@@ -30,28 +26,25 @@ function List() {
         });
     }
     
+    
     const postApply = () => {
-        axios.post(apiFiles, {
-            filename: "uploads/"+d.getMilliseconds()+"_"+curriculum[0].name,
-            filesize: curriculum[0].size,
-        }).then(response => {
-            console.log(response)
-        })
-        .catch(error => {
-            console.log(error)
-        });
 
-        axios.post(apiApplicatedOffers, {
-            user_id: 1,
-            curriculum: 1,
-            offer_id: offer,
-        }).then(response => {
-            console.log(response)
-        })
-        .catch(error => {
-            console.log(error)
-        });
+        var formData = new FormData();
+        formData.append("curriculum", curriculum);
+        formData.append("offer_id", offer);
+        formData.append("user_id", 1);
+
+        axios({
+            method: 'post',
+            url: apiApplicatedOffers,
+            data: formData,
+            header: {
+                      'Content-Type': 'multipart/form-data',
+                    },
+              })
     }
+
+
     useEffect(() => {
         getOffers();
     }, []);
@@ -129,7 +122,7 @@ function List() {
                                     <br/>
                                     <p>Attach your curriculum vitae</p>
                                     <span className="text-warning"></span>
-                                    <input name="message" type="file" onChange={(data) => setCurriculum(data.target.files)} className="form-control mb-2"/>
+                                    <input name="curriculum" type="file" onChange={(data) => setCurriculum(data.target.files[0])} className="form-control mb-2"/>
                                     <button onClick={() => postApply()} className="btn btn-primary btn-block" type="button" style={{ width: "100%"}}>Send</button>
                                 </form>
                             </div>

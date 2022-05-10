@@ -5516,7 +5516,9 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-function ChatApp() {
+function ChatApp(_ref) {
+  var props = _ref.props;
+
   //STATES
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]),
       _useState2 = _slicedToArray(_useState, 2),
@@ -5553,7 +5555,7 @@ function ChatApp() {
   var urlUsers = '/api/users/'; //FUNCION PARA RECUPERAR LOS MENSAJES DE LA BBDD
 
   var getMessages = /*#__PURE__*/function () {
-    var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+    var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
@@ -5575,13 +5577,13 @@ function ChatApp() {
     }));
 
     return function getMessages() {
-      return _ref.apply(this, arguments);
+      return _ref2.apply(this, arguments);
     };
   }(); //FUNCION PARA RECUPERAR LOS USUARIOS DE LA BBDD
 
 
   var getUsers = /*#__PURE__*/function () {
-    var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
+    var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee2() {
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee2$(_context2) {
         while (1) {
           switch (_context2.prev = _context2.next) {
@@ -5603,7 +5605,7 @@ function ChatApp() {
     }));
 
     return function getUsers() {
-      return _ref2.apply(this, arguments);
+      return _ref3.apply(this, arguments);
     };
   }(); //HACER QUE LOS MENSAJES Y LOS USUARIOS SE CARGUEN UNA VEZ AL CARGAR EL COMPONENTE
 
@@ -5611,10 +5613,10 @@ function ChatApp() {
   (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
     getMessages();
     getUsers();
-  }, []); //FUNCION PARA ELIMINAR EL MENSAJE
+  }, []); //FUNCION QUE ELIMINA EL MENSAJE CON UNA ID CONCRETA DE LA BBDD
 
-  var deleteMessage = function deleteMessage(id) {
-    axios__WEBPACK_IMPORTED_MODULE_3___default()["delete"](urlMessages + id);
+  var deleteMessage = function deleteMessage(idMessage) {
+    axios__WEBPACK_IMPORTED_MODULE_3___default()["delete"](urlMessages + idMessage);
     getMessages();
   }; //FUNCION QUE CONTROLA EL MODO DE EDICION
 
@@ -5659,7 +5661,7 @@ function ChatApp() {
 
     axios__WEBPACK_IMPORTED_MODULE_3___default().post(urlMessages, {
       message: msg.message,
-      author_id: 1,
+      author_id: props.userid,
       receiver_id: parseInt(msg.receiver)
     });
     setMsg({
@@ -5670,8 +5672,8 @@ function ChatApp() {
   }; //FUNCION QUE CONTROLA LOS ONCHANGE DEL SELECT Y DEL INPUT
 
 
-  var handleInputChange = function handleInputChange(_ref3) {
-    var target = _ref3.target;
+  var handleInputChange = function handleInputChange(_ref4) {
+    var target = _ref4.target;
     setMsg(_objectSpread(_objectSpread({}, msg), {}, _defineProperty({}, target.name, target.value)));
   };
 
@@ -5688,13 +5690,14 @@ function ChatApp() {
           style: {
             margin: "0 auto"
           },
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h4", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h2", {
             className: "text-center",
             children: "Messages you have sended"
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
             striped: true,
             bordered: true,
             hover: true,
+            responsive: true,
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("thead", {
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("tr", {
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("th", {
@@ -5709,31 +5712,33 @@ function ChatApp() {
               })
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("tbody", {
               children: messages.map(function (element, index) {
-                return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("tr", {
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("td", {
-                    children: element.id
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("td", {
-                    children: element.message
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("td", {
-                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_User__WEBPACK_IMPORTED_MODULE_4__["default"], {
-                      id: element.receiver_id
-                    })
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("td", {
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
-                      variant: "danger",
-                      onClick: function onClick() {
-                        return deleteMessage(element.id);
-                      },
-                      children: "Delete Message"
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
-                      variant: "warning",
-                      onClick: function onClick() {
-                        return edit(element);
-                      },
-                      children: "Edit Message"
+                if (element.author_id == props.userid) {
+                  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("tr", {
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("td", {
+                      children: element.id
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("td", {
+                      children: element.message
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("td", {
+                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_User__WEBPACK_IMPORTED_MODULE_4__["default"], {
+                        id: element.receiver_id
+                      })
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("td", {
+                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
+                        variant: "danger",
+                        onClick: function onClick() {
+                          return deleteMessage(element.id);
+                        },
+                        children: "Delete Message"
+                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
+                        variant: "warning",
+                        onClick: function onClick() {
+                          return edit(element);
+                        },
+                        children: "Edit Message"
+                      })]
                     })]
-                  })]
-                }, index);
+                  }, index);
+                }
               })
             })]
           })]
@@ -5742,13 +5747,14 @@ function ChatApp() {
           style: {
             margin: "0 auto"
           },
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h4", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h2", {
             className: "text-center",
             children: "Messages you have received"
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
             striped: true,
             bordered: true,
             hover: true,
+            responsive: true,
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("thead", {
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("tr", {
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("th", {
@@ -5761,17 +5767,19 @@ function ChatApp() {
               })
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("tbody", {
               children: messages.map(function (element, index) {
-                return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("tr", {
-                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("td", {
-                    children: element.id
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("td", {
-                    children: element.message
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("td", {
-                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_User__WEBPACK_IMPORTED_MODULE_4__["default"], {
-                      id: element.author_id
-                    })
-                  })]
-                }, index);
+                if (element.receiver_id == props.userid) {
+                  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("tr", {
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("td", {
+                      children: element.id
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("td", {
+                      children: element.message
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("td", {
+                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_User__WEBPACK_IMPORTED_MODULE_4__["default"], {
+                        id: element.author_id
+                      })
+                    })]
+                  }, index);
+                }
               })
             })]
           })]
@@ -5780,7 +5788,7 @@ function ChatApp() {
           style: {
             margin: "0 auto"
           },
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h4", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h2", {
             className: "text-center",
             children: editionMode ? 'Edit Message' : 'Create Message'
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("form", {
@@ -5789,7 +5797,7 @@ function ChatApp() {
               className: "text-danger",
               children: error
             }) : null, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("p", {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h4", {
                 children: "To which user do you want to send the message:"
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("select", {
                 name: "receiver",
@@ -5838,7 +5846,11 @@ ChatApp.propTypes = {
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (ChatApp);
 
 if (document.getElementById('chatapp')) {
-  react_dom__WEBPACK_IMPORTED_MODULE_2__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(ChatApp, {}), document.getElementById('chatapp'));
+  var element = document.getElementById('chatapp');
+  var props = Object.assign({}, element.dataset);
+  react_dom__WEBPACK_IMPORTED_MODULE_2__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(ChatApp, {
+    props: props
+  }), element);
 }
 
 /***/ }),
@@ -6490,7 +6502,6 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 function List() {
   var url = '/api/offers';
   var apiApplicatedOffers = '/api/applicatedoffers';
-  var apiFiles = '/api/files';
 
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]),
       _useState2 = _slicedToArray(_useState, 2),
@@ -6511,8 +6522,6 @@ function List() {
       _useState8 = _slicedToArray(_useState7, 2),
       user = _useState8[0],
       setUser = _useState8[1];
-
-  var d = new Date();
 
   var getOffers = /*#__PURE__*/function () {
     var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
@@ -6544,22 +6553,17 @@ function List() {
   }();
 
   var postApply = function postApply() {
-    axios__WEBPACK_IMPORTED_MODULE_3___default().post(apiFiles, {
-      filename: "uploads/" + d.getMilliseconds() + "_" + curriculum[0].name,
-      filesize: curriculum[0].size
-    }).then(function (response) {
-      console.log(response);
-    })["catch"](function (error) {
-      console.log(error);
-    });
-    axios__WEBPACK_IMPORTED_MODULE_3___default().post(apiApplicatedOffers, {
-      user_id: 1,
-      curriculum: 1,
-      offer_id: offer
-    }).then(function (response) {
-      console.log(response);
-    })["catch"](function (error) {
-      console.log(error);
+    var formData = new FormData();
+    formData.append("curriculum", curriculum);
+    formData.append("offer_id", offer);
+    formData.append("user_id", 1);
+    axios__WEBPACK_IMPORTED_MODULE_3___default()({
+      method: 'post',
+      url: apiApplicatedOffers,
+      data: formData,
+      header: {
+        'Content-Type': 'multipart/form-data'
+      }
     });
   };
 
@@ -6698,10 +6702,10 @@ function List() {
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
                   className: "text-warning"
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("input", {
-                  name: "message",
+                  name: "curriculum",
                   type: "file",
                   onChange: function onChange(data) {
-                    return setCurriculum(data.target.files);
+                    return setCurriculum(data.target.files[0]);
                   },
                   className: "form-control mb-2"
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("button", {
