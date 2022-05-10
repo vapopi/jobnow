@@ -5397,9 +5397,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_ChatApp_ChatApp__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./components/ChatApp/ChatApp */ "./resources/js/components/ChatApp/ChatApp.js");
 /* harmony import */ var _components_Tickets_Tickets__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ./components/Tickets/Tickets */ "./resources/js/components/Tickets/Tickets.js");
 /* harmony import */ var _components_Offers_Offers__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/Offers/Offers */ "./resources/js/components/Offers/Offers.js");
-/* harmony import */ var _components_Offers_Create__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/Offers/Create */ "./resources/js/components/Offers/Create.js");
-/* harmony import */ var _components_Offers_Apply__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/Offers/Apply */ "./resources/js/components/Offers/Apply.js");
-/* harmony import */ var _components_Posts_Posts__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/Posts/Posts */ "./resources/js/components/Posts/Posts.js");
+/* harmony import */ var _components_Offers_Offer__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/Offers/Offer */ "./resources/js/components/Offers/Offer.js");
+/* harmony import */ var _components_Offers_Create__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/Offers/Create */ "./resources/js/components/Offers/Create.js");
+/* harmony import */ var _components_Offers_Apply__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/Offers/Apply */ "./resources/js/components/Offers/Apply.js");
+/* harmony import */ var _components_Posts_Posts__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/Posts/Posts */ "./resources/js/components/Posts/Posts.js");
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes React and other helpers. It's a great starting point while
@@ -5411,6 +5412,7 @@ __webpack_require__.r(__webpack_exports__);
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
+
 
 
 
@@ -6101,13 +6103,15 @@ function Apply(_ref) {
                 })
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("tbody", {
                 children: offers.map(function (element, index) {
-                  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("tr", {
-                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("td", {
-                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Offer__WEBPACK_IMPORTED_MODULE_5__["default"], {
-                        id: element.offer_id
+                  if (element.user_id == props.userid) {
+                    return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("tr", {
+                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("td", {
+                        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Offer__WEBPACK_IMPORTED_MODULE_5__["default"], {
+                          id: element.offer_id
+                        })
                       })
-                    })
-                  }, index);
+                    }, index);
+                  }
                 })
               })]
             })

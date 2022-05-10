@@ -15,6 +15,7 @@ import './bootstrap';
 import './components/ChatApp/ChatApp';
 import './components/Tickets/Tickets';
 import './components/Offers/Offers';
+import './components/Offers/Offer';
 import './components/Offers/Create';
 import './components/Offers/Apply';
 import './components/Posts/Posts';

@@ -3,8 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Offer;
 use Illuminate\Support\Facades\DB;
+use App\Models\Offer;
+
 class OfferController extends Controller
 {
     /**
@@ -47,9 +48,9 @@ class OfferController extends Controller
      */
     public function show(int $id)
     {
-        $results = Offer::where('id', $id)->get();
-        
-        return \response($results);
+        $offer = Offer::find($id);
+
+        return response($offer);
     }
 
     /**

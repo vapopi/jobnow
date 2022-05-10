@@ -54,9 +54,16 @@ function Apply({props}) {
                                     <tbody>
                                     {
                                         offers.map((element, index) => {
-                                                return <tr key={index}>
+
+                                            if(element.user_id == props.userid) {
+
+                                                return (
+                                                <tr key={index}>
                                                     <td><Offer id={element.offer_id}/></td>
                                                 </tr>
+                                                )
+
+                                            }
                                         })      
                                     }
                                     </tbody>
