@@ -45,11 +45,9 @@ class OfferController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(int $id, int $cid)
+    public function show(int $id)
     {
-        $results = Offer::where('id',$id)
-            ->where('company_id', $cid)
-            ->get();
+        $results = Offer::where('id', $id)->get();
         
         return \response($results);
     }

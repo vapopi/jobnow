@@ -5399,7 +5399,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _components_Offers_Offers__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! ./components/Offers/Offers */ "./resources/js/components/Offers/Offers.js");
 /* harmony import */ var _components_Offers_Create__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./components/Offers/Create */ "./resources/js/components/Offers/Create.js");
 /* harmony import */ var _components_Offers_Apply__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./components/Offers/Apply */ "./resources/js/components/Offers/Apply.js");
-/* harmony import */ var _components_Posts_Posts__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/Posts/Posts */ "./resources/js/components/Posts/Posts.js");
+/* harmony import */ var _components_Offers_Offer__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./components/Offers/Offer */ "./resources/js/components/Offers/Offer.js");
+/* harmony import */ var _components_Offers_Area__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! ./components/Offers/Area */ "./resources/js/components/Offers/Area.js");
+/* harmony import */ var _components_Offers_Company__WEBPACK_IMPORTED_MODULE_8__ = __webpack_require__(/*! ./components/Offers/Company */ "./resources/js/components/Offers/Company.js");
+/* harmony import */ var _components_Posts_Posts__WEBPACK_IMPORTED_MODULE_9__ = __webpack_require__(/*! ./components/Posts/Posts */ "./resources/js/components/Posts/Posts.js");
 /**
  * First we will load all of this project's JavaScript dependencies which
  * includes React and other helpers. It's a great starting point while
@@ -5411,6 +5414,9 @@ __webpack_require__.r(__webpack_exports__);
  * the page. Then, you may begin adding components to this application
  * or customize the JavaScript scaffolding to fit your unique needs.
  */
+
+
+
 
 
 
@@ -5951,28 +5957,171 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
 /* harmony export */ });
-/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
-/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_2__);
-/* harmony import */ var bootstrap_dist_css_bootstrap_css__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! bootstrap/dist/css/bootstrap.css */ "./node_modules/bootstrap/dist/css/bootstrap.css");
-/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_dom__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react-dom */ "./node_modules/react-dom/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_3__);
+/* harmony import */ var bootstrap_dist_css_bootstrap_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! bootstrap/dist/css/bootstrap.css */ "./node_modules/bootstrap/dist/css/bootstrap.css");
+/* harmony import */ var _Offer__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Offer */ "./resources/js/components/Offers/Offer.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
 
 
 
-function Apply() {
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)("p", {
-    children: offer
+
+
+
+function Apply(_ref) {
+  var props = _ref.props;
+  var apiApplicatedOffers = '/api/applicatedoffers';
+
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]),
+      _useState2 = _slicedToArray(_useState, 2),
+      offerss = _useState2[0],
+      setOfferss = _useState2[1];
+
+  var getOffers = /*#__PURE__*/function () {
+    var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return axios__WEBPACK_IMPORTED_MODULE_3___default().get(apiApplicatedOffers).then(function (result) {
+                var offersDB = result.data;
+                setOfferss(offersDB.map(function (valor) {
+                  return _objectSpread(_objectSpread({}, valor), {}, {
+                    id: valor.id
+                  });
+                }));
+              });
+
+            case 2:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }));
+
+    return function getOffers() {
+      return _ref2.apply(this, arguments);
+    };
+  }();
+
+  (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
+    getOffers();
+  }, []);
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+    className: "w-100 ",
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h1", {
+      className: "text-center",
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("strong", {
+        children: "YOUR APPLICATED OFFERS"
+      })
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+      className: "container mt-5",
+      style: {
+        textAlign: 'center'
+      },
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("a", {
+        className: "color btn btn-primary",
+        href: "/offers",
+        role: "button",
+        children: "List offers"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
+        children: " "
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("a", {
+        className: "color btn btn-primary",
+        href: "/offers/create",
+        role: "button",
+        children: "Create offer"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
+        children: " "
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("a", {
+        className: "color btn btn-primary",
+        href: "/apply",
+        role: "button",
+        disabled: true,
+        children: "View applied offers"
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("span", {
+        children: " "
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("hr", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+        className: "listOffers",
+        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h5", {
+          className: "text-center",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("strong", {
+            children: "List all applicated offers"
+          })
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+          className: "row",
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+            style: {
+              margin: "0 auto"
+            },
+            className: "col-12",
+            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("table", {
+              className: "table",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("thead", {
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("tr", {
+                  children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("th", {
+                    children: "title"
+                  })
+                })
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("tbody", {
+                children: offerss.map(function (element, index) {
+                  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("tr", {
+                    children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("td", {
+                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Offer__WEBPACK_IMPORTED_MODULE_5__["default"], {
+                        id: element.offer_id
+                      })
+                    })
+                  }, index);
+                })
+              })]
+            })
+          })
+        })]
+      })]
+    })]
   });
 }
 
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Apply);
 
 if (document.getElementById('react-applyOffer')) {
-  react_dom__WEBPACK_IMPORTED_MODULE_1__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_4__.jsx)(Apply, {}), document.getElementById('react-applyOffer'));
+  var element = document.getElementById('react-applyOffer');
+  var props = Object.assign({}, element.dataset);
+  react_dom__WEBPACK_IMPORTED_MODULE_2__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(Apply, {
+    props: props
+  }), element);
 }
 
 /***/ }),
@@ -6032,7 +6181,7 @@ var Area = function Area(_ref) {
           switch (_context.prev = _context.next) {
             case 0:
               _context.next = 2;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('http://127.0.0.1:8000/api/professionalarea/' + id).then(function (result) {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/professionalarea/' + id).then(function (result) {
                 setArea(result.data);
               });
 
@@ -6116,7 +6265,7 @@ var Company = function Company(_ref) {
           switch (_context.prev = _context.next) {
             case 0:
               _context.next = 2;
-              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('http://127.0.0.1:8000/api/companies/' + id).then(function (result) {
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/companies/' + id).then(function (result) {
                 setCompany(result.data);
               });
 
@@ -6231,7 +6380,7 @@ function Create() {
       area = _useState12[0],
       setArea = _useState12[1];
 
-  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(''),
+  var _useState13 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(),
       _useState14 = _slicedToArray(_useState13, 2),
       company = _useState14[0],
       setCompany = _useState14[1];
@@ -6292,13 +6441,13 @@ function Create() {
   }();
 
   var postOffer = function postOffer() {
+    setCompany(companies[0].id);
     axios__WEBPACK_IMPORTED_MODULE_3___default().post(apiOffers, {
       title: title,
       description: description,
       company_id: company,
       professional_area_id: area
     }).then(function (response) {
-      console.log(response);
       setState(response);
     })["catch"](function (error) {
       setState(error.response.data);
@@ -6337,7 +6486,7 @@ function Create() {
         children: " "
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("a", {
         className: "color btn btn-primary",
-        href: "/offers",
+        href: "/apply",
         role: "button",
         disabled: true,
         children: "View applied offers"
@@ -6386,30 +6535,34 @@ function Create() {
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("p", {
           children: "Choose your company:"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("select", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("select", {
           className: "btn btn-secondary btn-block",
           onChange: function onChange(event) {
             return setCompany(event.target.value);
           },
-          children: companies.map(function (key) {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("option", {
+            children: "Select company"
+          }), companies.map(function (key) {
             return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("option", {
               value: key.id,
               children: key.name
             }, key.id);
-          })
+          })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("p", {
           children: "Choose the professional area:"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("select", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("select", {
           className: "btn btn-secondary btn-block",
           onChange: function onChange(event) {
             return setArea(event.target.value);
           },
-          children: areas.map(function (key) {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("option", {
+            children: "Select area"
+          }), areas.map(function (key) {
             return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("option", {
               value: key.id,
               children: key.name
             }, key.id);
-          })
+          })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("br", {}), state != null ? state.status === 200 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
           className: "text-center text-success",
           children: state.data
@@ -6442,6 +6595,90 @@ function Create() {
 if (document.getElementById('react-createOffers')) {
   react_dom__WEBPACK_IMPORTED_MODULE_2__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(Create, {}), document.getElementById('react-createOffers'));
 }
+
+/***/ }),
+
+/***/ "./resources/js/components/Offers/Offer.js":
+/*!*************************************************!*\
+  !*** ./resources/js/components/Offers/Offer.js ***!
+  \*************************************************/
+/***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
+
+"use strict";
+__webpack_require__.r(__webpack_exports__);
+/* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   "default": () => (__WEBPACK_DEFAULT_EXPORT__)
+/* harmony export */ });
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! @babel/runtime/regenerator */ "./node_modules/@babel/runtime/regenerator/index.js");
+/* harmony import */ var _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default = /*#__PURE__*/__webpack_require__.n(_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0__);
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
+/* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
+/* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
+/* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
+
+
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+
+
+
+
+
+var Offer = function Offer(_ref) {
+  var id = _ref.id;
+
+  var _useState = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)({}),
+      _useState2 = _slicedToArray(_useState, 2),
+      offer = _useState2[0],
+      setOffer = _useState2[1];
+
+  var getOfferById = /*#__PURE__*/function () {
+    var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
+        while (1) {
+          switch (_context.prev = _context.next) {
+            case 0:
+              _context.next = 2;
+              return axios__WEBPACK_IMPORTED_MODULE_1___default().get('/api/offers/' + id).then(function (result) {
+                setOffer(result.data);
+              });
+
+            case 2:
+            case "end":
+              return _context.stop();
+          }
+        }
+      }, _callee);
+    }));
+
+    return function getOfferById() {
+      return _ref2.apply(this, arguments);
+    };
+  }();
+
+  (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(function () {
+    getOfferById();
+  }, []);
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
+    children: offer.title
+  });
+};
+
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Offer);
 
 /***/ }),
 
@@ -6499,7 +6736,8 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-function List() {
+function Offers(_ref) {
+  var props = _ref.props;
   var url = '/api/offers';
   var apiApplicatedOffers = '/api/applicatedoffers';
 
@@ -6518,13 +6756,13 @@ function List() {
       curriculum = _useState6[0],
       setCurriculum = _useState6[1];
 
-  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(''),
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(),
       _useState8 = _slicedToArray(_useState7, 2),
-      user = _useState8[0],
-      setUser = _useState8[1];
+      state = _useState8[0],
+      setState = _useState8[1];
 
   var getOffers = /*#__PURE__*/function () {
-    var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+    var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
@@ -6548,7 +6786,7 @@ function List() {
     }));
 
     return function getOffers() {
-      return _ref.apply(this, arguments);
+      return _ref2.apply(this, arguments);
     };
   }();
 
@@ -6556,7 +6794,7 @@ function List() {
     var formData = new FormData();
     formData.append("curriculum", curriculum);
     formData.append("offer_id", offer);
-    formData.append("user_id", 1);
+    formData.append("user_id", props.userid);
     axios__WEBPACK_IMPORTED_MODULE_3___default()({
       method: 'post',
       url: apiApplicatedOffers,
@@ -6564,6 +6802,10 @@ function List() {
       header: {
         'Content-Type': 'multipart/form-data'
       }
+    }).then(function (response) {
+      setState(response);
+    })["catch"](function (error) {
+      setState(error.response.data);
     });
   };
 
@@ -6598,7 +6840,7 @@ function List() {
         children: " "
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("a", {
         className: "color btn btn-primary",
-        href: "/offers",
+        href: "/apply",
         role: "button",
         disabled: true,
         children: "View applied offers"
@@ -6684,21 +6926,31 @@ function List() {
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
                   children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("p", {
                     children: "Choose the id of the offer:"
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("select", {
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("select", {
                     name: "offer_id",
                     onChange: function onChange(data) {
                       return setOffer(data.target.value);
                     },
                     className: "w-50 btn btn-secondary dropdown-toggle",
-                    children: offers.map(function (element, index) {
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("option", {
+                      children: "Select ID"
+                    }), offers.map(function (element, index) {
                       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("option", {
                         value: element.id,
                         children: element.id
                       }, element.id);
-                    })
+                    })]
                   }, "usuaris")]
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("p", {
                   children: "Attach your curriculum vitae"
+                }), state != null ? state.status === 200 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
+                  className: "text-center text-success",
+                  children: state.data
+                }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
+                  className: "text-center text-danger",
+                  children: state.message
+                }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
+                  className: "text-center text-info"
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
                   className: "text-warning"
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("input", {
@@ -6728,10 +6980,14 @@ function List() {
   });
 }
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (List);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Offers);
 
 if (document.getElementById('react-listOffers')) {
-  react_dom__WEBPACK_IMPORTED_MODULE_2__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(List, {}), document.getElementById('react-listOffers'));
+  var element = document.getElementById('react-listOffers');
+  var props = Object.assign({}, element.dataset);
+  react_dom__WEBPACK_IMPORTED_MODULE_2__.render( /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(Offers, {
+    props: props
+  }), element);
 }
 
 /***/ }),

@@ -30,7 +30,7 @@ class ApplicatedOffersApiController extends Controller
         
         $this->validate($request, [
             'user_id' => 'required',
-            'curriculum' => 'required',
+            'curriculum' => 'required|mimes:pdf|max:2048',
             'offer_id' => 'required',
         ]);
 
@@ -64,7 +64,7 @@ class ApplicatedOffersApiController extends Controller
 
         $applicatedOffer = ApplicatedOffer::create($input);
 
-        return \response("Offer created successfully!");
+        return \response("You have applicated to the offer successfully!");
     }
 
     /**
@@ -73,12 +73,10 @@ class ApplicatedOffersApiController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show(int $oid, int $aoId) 
+    public function show(int $id) 
     {
-        $applicatedOffer = ApplicatedOffer::where('offer_id', '=', $oid)
-        ->find($aoId);
-
-        return response($applicatedOffer);
+        $applicatedOffer = ApplicatedOffer::find($id);
+        return \response($applicatedOffer);
     }
 
     /**

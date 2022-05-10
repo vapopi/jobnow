@@ -5,7 +5,7 @@ import 'bootstrap/dist/css/bootstrap.css';
 import Company from './Company'
 import Area from './Area'
 
-function List() {
+function Offers({props}) {
 
     const url = '/api/offers';
     const apiApplicatedOffers = '/api/applicatedoffers';
@@ -13,7 +13,7 @@ function List() {
     const [offers, setOffers] = useState([]);
     const [offer, setOffer] = useState('');
     const [curriculum, setCurriculum] = useState();
-    const [user, setUser] = useState('');
+    const [state, setState] = useState();
 
     const getOffers = async () => {
         await axios.get(url).then(result => {
@@ -32,7 +32,7 @@ function List() {
         var formData = new FormData();
         formData.append("curriculum", curriculum);
         formData.append("offer_id", offer);
-        formData.append("user_id", 1);
+        formData.append("user_id", props.userid);
 
         axios({
             method: 'post',
@@ -41,7 +41,12 @@ function List() {
             header: {
                       'Content-Type': 'multipart/form-data',
                     },
-              })
+        }).then(response => {
+            setState(response) 
+        })
+        .catch(error => {
+            setState(error.response.data) 
+        });
     }
 
 
@@ -56,7 +61,7 @@ function List() {
 
                 <a className="color btn btn-primary" href="/offers" role="button">List offers</a><span> </span>
                 <a className="color btn btn-primary" href="/offers/create" role="button">Create offer</a><span> </span>
-                <a className="color btn btn-primary" href="/offers" role="button" disabled>View applied offers</a><span> </span>
+                <a className="color btn btn-primary" href="/apply" role="button" disabled>View applied offers</a><span> </span>
                 <hr/>
                 <br/>
                 <div className="float-start w-50 listOffers">
@@ -110,6 +115,7 @@ function List() {
                                     <div>
                                         <p>Choose the id of the offer:</p>
                                         <select name="offer_id" onChange={(data) => setOffer(data.target.value)} className="w-50 btn btn-secondary dropdown-toggle" key="usuaris">
+                                        <option>Select ID</option>
                                         {
                                             offers.map((element, index) => {
                                                 return(
@@ -121,6 +127,17 @@ function List() {
                                     </div>
                                     <br/>
                                     <p>Attach your curriculum vitae</p>
+                                    {
+                                        state != null ? (
+                                            state.status === 200 ? (
+                                                <span className="text-center text-success">{state.data}</span>
+                                            ):(
+                                                <span className="text-center text-danger">{state.message}</span>
+                                            )
+                                        ):(
+                                            <span className="text-center text-info"></span>
+                                        )
+                                    }
                                     <span className="text-warning"></span>
                                     <input name="curriculum" type="file" onChange={(data) => setCurriculum(data.target.files[0])} className="form-control mb-2"/>
                                     <button onClick={() => postApply()} className="btn btn-primary btn-block" type="button" style={{ width: "100%"}}>Send</button>
@@ -134,8 +151,11 @@ function List() {
     );
 }
 
-export default List;
+export default Offers;
 
 if (document.getElementById('react-listOffers')) {
-    ReactDOM.render(<List />, document.getElementById('react-listOffers'));
+    const element = document.getElementById('react-listOffers');
+    const props = Object.assign({}, element.dataset);
+
+    ReactDOM.render(<Offers props = {props}/>, element);
 }

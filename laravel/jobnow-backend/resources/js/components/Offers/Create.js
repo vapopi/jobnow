@@ -15,7 +15,7 @@ function Create() {
     const [title, setTitle] = useState('');
     const [description, setDescription] = useState('');
     const [area, setArea] = useState(1);
-    const [company, setCompany] = useState('');
+    const [company, setCompany] = useState();
 
 
     const getCompanies = async () => {
@@ -38,13 +38,15 @@ function Create() {
     }
 
     const postOffer = () => {
+
+        setCompany(companies[0].id)
+
         axios.post(apiOffers, {
             title: title,
             description: description,
             company_id: company,
             professional_area_id: area
         }).then(response => {
-            console.log(response)
             setState(response) 
         })
         .catch(error => {
@@ -55,9 +57,8 @@ function Create() {
 
     useEffect(() => {
         getAreas();
-        getCompanies();        
+        getCompanies();
     }, []);
-
 
 
     return (
@@ -67,7 +68,7 @@ function Create() {
             <div className="container mt-5" style={{textAlign: 'center'}}>
                 <a className="color btn btn-primary" href="/offers" role="button">List offers</a><span> </span>
                 <a className="color btn btn-primary" href="/offers/create" role="button">Create offer</a><span> </span>
-                <a className="color btn btn-primary" href="/offers" role="button" disabled>View applied offers</a><span> </span>
+                <a className="color btn btn-primary" href="/apply" role="button" disabled>View applied offers</a><span> </span>
                 <hr/>
             </div>
 
@@ -95,6 +96,7 @@ function Create() {
                             <br/>
                             <p>Choose your company:</p>
                             <select className="btn btn-secondary btn-block" onChange={ (event) => setCompany(event.target.value)}>
+                            <option>Select company</option>
                             {
                                 companies.map(key => (
                                     <option key={ key.id } value={ key.id }>{ key.name }</option>
@@ -105,6 +107,7 @@ function Create() {
                             <br/><br/>
                             <p>Choose the professional area:</p>
                             <select className="btn btn-secondary btn-block" onChange={ (event) => setArea(event.target.value)}>
+                            <option>Select area</option>
                             {
                                 areas.map(key => (
                                     <option key={ key.id } value={ key.id }>{ key.name }</option>

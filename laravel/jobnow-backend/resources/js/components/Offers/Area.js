@@ -7,7 +7,7 @@ const Area = ({id}) => {
 
     const getArea = async () => {
 
-        await axios.get('http://127.0.0.1:8000/api/professionalarea/'+id).then(result => {
+        await axios.get('/api/professionalarea/'+id).then(result => {
 
             setArea(result.data);
         });

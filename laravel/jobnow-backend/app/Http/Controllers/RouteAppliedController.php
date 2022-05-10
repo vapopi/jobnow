@@ -14,7 +14,7 @@ class RouteAppliedController extends Controller
      */
     public function index()
     {
-        //
+        return view('applied.index');
     }
 
     /**
@@ -46,9 +46,7 @@ class RouteAppliedController extends Controller
      */
     public function show(Offer $offer)
     {
-        return view('applied.show', [
-            'offer' => $offer
-        ]);
+        //
     }
 
     /**

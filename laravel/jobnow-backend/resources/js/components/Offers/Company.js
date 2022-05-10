@@ -7,7 +7,7 @@ const Company = ({id}) => {
 
     const getCompanyById = async () => {
 
-        await axios.get('http://127.0.0.1:8000/api/companies/'+id).then(result => {
+        await axios.get('/api/companies/'+id).then(result => {
 
             setCompany(result.data);
         });

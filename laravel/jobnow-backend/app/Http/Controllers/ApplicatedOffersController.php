@@ -13,7 +13,7 @@ class ApplicatedOffersController extends Controller
      */
     public function index()
     {
-        return view('applicated.show');
+        return view('applicated.index', ['authUserId' => \Auth::user()->id]);
     }
 
     /**

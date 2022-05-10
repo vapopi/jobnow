@@ -13,7 +13,7 @@ class RouteOffersController extends Controller
      */
     public function index()
     {
-        return view("offers.index");
+        return view("offers.index", ['authUserId' => \Auth::user()->id]);
     }
 
     /**
