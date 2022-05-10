@@ -11,19 +11,20 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/general.js') }}" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/general.css') }}" rel="stylesheet">
     <link href="{{ asset('css/translator.css') }}" rel="stylesheet">
     <link rel="icon" href="{{ asset('images/favicon.ico') }}">
 
     <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
     <!-- Font Awesome JS -->
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
     <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
@@ -38,11 +39,13 @@
 <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
+        <nav class="navbar navbar-expand-md shadow-sm">
             <div class="container">
+                <div id="logo">
                 <a href="{{route('dashboard')}}" class="navbar-brand">
-                    {{ config('app.name', 'jobnow') }}
+                    <img id="img" style="width: 150px;"src={{ asset('/images/black_logo.png') }} alt="login image" class="form-img">
                 </a>
+                </div>
                 <!-- <button type="button" id="sidebarCollapse" class="btn btn-info">
                     <i class="fas fa-align-left"></i>
                     <span>Show/Hide Sidebar</span>
@@ -63,7 +66,7 @@
                         @guest
                         @else
                             <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="dropdown-toggle nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
+                                <a id="navbarDropdown" class="name dropdown-toggle nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false"  >
                                 {{ Auth::user()->name }}
 
                                 </a>
@@ -94,57 +97,42 @@
 
         @if (Auth::user()->email_verified_at != null)
             <div class="wrapper">
-            <nav id="sidebar">
-                <div class="sidebar-header">
-                    <h3>Sidebar (EN OBRAS)</h3>
-                </div>
-
+            <nav class="shadow-lg" id="sidebar">
                 <ul class="list-unstyled components">
-                    <p>MENU</p>
+                        <li>
+                            <a class="special nav gradient-btn" href="{{route('dashboard')}}"><i class="bi bi-house-door-fill"></i> DASHBOARD</a>
+                        </li>
+                        <hr>
                     @if (Auth::user()->role_id == 4)
-                        <li class="active">
-                            <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="special dropdown-toggle">Home</a>
-                            <ul class="collapse list-unstyled" id="homeSubmenu">
-                                <li>
-                                    <a href="#">Home 1</a>
-                                </li>
-                                <li>
-                                    <a href="#">Home 2</a>
-                                </li>
-                                <li>
-                                    <a href="#">Home 3</a>
-                                </li>
-                            </ul>
-                        </li>
-                        
+
                         <li>
-                            <a href="{{route('offers.index')}}">Offers</a>
+                            <a class="nav nospecial" href="{{route('offers.index')}}"><i class="bi bi-calendar2-week-fill"></i> OFFERS</a>
                         </li>
                         <li>
-                            <a href="{{route('premium.index')}}" role="button">Premium</a>
+                            <a class="nav nospecial" href="{{route('premium.index')}}" role="button"><i class="bi bi-cart-fill"></i> PREMIUM</a>
                         </li>
 
                         <li>
-                            <a href="{{route('menu.index')}}" role="button">Companies</a>
+                            <a class="nav nospecial"  href="{{route('menu.index')}}" role="button"><i class="bi bi-briefcase-fill"></i> COMPANIES</a>
                         </li>
                         <li>
-                            <a href="{{route('posts.index')}}" role="button">Posts</a>
+                            <a class="nav nospecial"  href="{{route('posts.index')}}" role="button"><i class="bi bi-bookmark-fill"></i> POSTS</a>
                         </li>
                         <li>
-                            <a href="" role="button">Notifications</a>
+                            <a class="nav nospecial" href="" role="button"><i class="bi bi-bell-fill"></i> NOTIFICATIONS</a>
                         </li>
                         <li>
-                            <a href="{{route('tickets.index')}}" role="button">Tickets</a>
+                            <a class="nav nospecial"  href="{{route('tickets.index')}}" role="button"><i class="bi bi-ticket-detailed-fill"></i> TICKETS</a>
                         </li>
                         <li>
-                            <a href="{{route('chatapp.index')}}" role="button">Chat</a>
+                            <a class="nav nospecial"  href="{{route('chatapp.index')}}" role="button"><i class="bi bi-chat-fill"></i> CHATAPP</a>
                         </li>
                         <li>
-                            <a href="{{route('mynetwork.index')}}" role="button">My Network</a><!-- React -->
+                            <a class="nav nospecial"  href="{{route('mynetwork.index')}}" role="button"><i class="bi bi-wifi"></i> MY NETWORK</a><!-- React -->
                         </li>
                     @else
                         <li>
-                            <a href="{{route('security.index')}}" role="button">Security</a><!-- React -->
+                            <a class="nav nospecial"  href="{{route('security.index')}}" role="button"><i class="bi bi-shield-fill"></i> SECURITY</a><!-- React -->
                         </li>
                     @endif
                 </ul>
