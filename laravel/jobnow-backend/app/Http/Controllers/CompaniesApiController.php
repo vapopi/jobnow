@@ -15,7 +15,6 @@ class CompaniesApiController extends Controller
      */
     public function index()
     {
-        // $companies = Company::where('author_id', '=',  auth()->user()->id);
         $companies = Company::all();
         return response($companies);
     }

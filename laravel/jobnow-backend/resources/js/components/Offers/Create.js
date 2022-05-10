@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.css';
 
-function Create() {
+function Create({props}) {
 
     const apiOffers = '/api/offers';
     const apiCompanies = '/api/companies';
@@ -98,9 +98,14 @@ function Create() {
                             <select className="btn btn-secondary btn-block" onChange={ (event) => setCompany(event.target.value)}>
                             <option>Select company</option>
                             {
-                                companies.map(key => (
-                                    <option key={ key.id } value={ key.id }>{ key.name }</option>
-                                ))
+                                companies.map((key, index) => {
+                                    if(key.author_id == props.userid)
+                                    {
+                                        return(
+                                            <option key={ index } value={ key.id }>{ key.name }</option>
+                                        )
+                                    }
+                                })
                             }
                             </select>
 
@@ -127,7 +132,6 @@ function Create() {
                                     <span className="text-center text-info"></span>
                                 )
                             }
-                            
                             <br/><br/>
                             <button type="button" onClick={() => postOffer()} className="w-25 btn btn-primary">Submit</button><span> </span>
                             <button type="reset" className="w-25 btn btn-secondary">Reset</button>
@@ -143,5 +147,10 @@ function Create() {
 export default Create;
 
 if (document.getElementById('react-createOffers')) {
-    ReactDOM.render(<Create />, document.getElementById('react-createOffers'));
+
+    const element = document.getElementById('react-createOffers');
+    const props = Object.assign({}, element.dataset);
+
+    ReactDOM.render(<Create props = {props}/>, element);
+
 }
