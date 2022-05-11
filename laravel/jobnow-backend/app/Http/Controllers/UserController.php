@@ -10,6 +10,7 @@ use App\Models\File;
 use App\Models\Role;
 use App\Models\Follower;
 use App\Models\Company;
+use App\Models\Notification;
 use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
@@ -113,6 +114,13 @@ class UserController extends Controller
 
         Auth::login($user);
         $user->sendEmailVerificationNotification();
+
+        Notification::create([
+            'title' => "Jobnow Team",
+            'description' => "Welcome to jobnow, enjoy! :)",
+            'author_id' => $user->id,
+        ]);
+        
         Auth::logout($user);
         
         return redirect()->route('login')

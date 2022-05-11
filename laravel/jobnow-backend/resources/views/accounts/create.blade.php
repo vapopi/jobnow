@@ -24,7 +24,6 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                    <a href="{{ route('security.index') }}" class="float-end link-secondary" role="button"> 🡰 Go back</a>
                     {{ __('Create User') }}
                 </div>
 
@@ -59,7 +58,7 @@
                             <label class="col-md-4 col-form-label text-md-end">{{ __('Date of birth') }}</label>
 
                             <div class="col-md-6">
-                                <input type="text" class="form-control" name="birth_date" required>
+                                <input type="date" class="form-control" name="birth_date" required>
                             </div>
                         </div>
 

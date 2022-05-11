@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Message;
+use App\Models\Notification;
 
 class MessageController extends Controller
 {
@@ -36,7 +37,15 @@ class MessageController extends Controller
             'receiver_id' => 'required'
         ]);
 
+
+
         $message = Message::create($request->all());
+
+        Notification::create([
+            'title' => "New messages",
+            'description' => "Seems that you received new messages in chatapp, check it!",
+            'author_id' => $request['receiver_id'],
+        ]);
 
         return response($message);
     }

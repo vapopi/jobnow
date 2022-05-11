@@ -23,7 +23,6 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-					<a href="{{ route('premium.index') }}" class="float-end link-secondary" role="button">🡰 Go back</a>  
                     {{__('Buy premium') }}
                 </div>
                 <div class="card-body">

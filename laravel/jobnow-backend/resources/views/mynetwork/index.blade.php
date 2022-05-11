@@ -28,7 +28,6 @@
 			<div class="card">
 				<div class="card-header">
 					{{ __('My Network') }}
-					<a href="{{ route('dashboard') }}" class="float-end link-secondary" role="button"> 🡰 Go back</a>
 				</div>
                 <div class="card-body overflow-auto">
 

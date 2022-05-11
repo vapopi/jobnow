@@ -50,16 +50,7 @@
                     <li>
                         <a class="special nav gradient-btn" href="{{route('dashboard')}}"><i class="bi bi-house-door-fill"></i> HOME</a>
                     </li>
-                    <hr>
                     @if (Auth::user()->role_id == 4)
-
-                        <li>
-                            <a class="nav no-special" href="{{route('notifications.index')}}" role="button"><i class="bi bi-bell-fill"></i> NOTIFICATIONS 
-                                <span>
-                                    ({{ \App\Models\Notification::all()->count() }})
-                                </span>
-                            </a>
-                        </li>
                         <hr>
                         <li>
                             <a class="premium nav no-special" href="{{route('premium.index')}}" role="button"><i class="bi bi-cart-fill"></i> PREMIUM</a>
@@ -83,6 +74,7 @@
                             <a class="nav no-special"  href="{{route('mynetwork.index')}}" role="button"><i class="bi bi-wifi"></i> MY NETWORK</a><!-- React -->
                         </li>
                     @else
+                        <hr>
                         <li>
                             <a class="nav no-special"  href="{{route('security.index')}}" role="button"><i class="bi bi-shield-fill"></i> SECURITY</a><!-- React -->
                         </li>
@@ -90,9 +82,26 @@
                 </ul>
                 <hr>
                 <ul class="name ms-auto">
-                    <a href="#profile" data-toggle="collapse" aria-expanded="false" class="nameUser dropdown-toggle">
-                    <i class="bi bi-person-circle"></i> {{ Auth::user()->name }}</a>
-                    
+                    <div class="info-user">
+                        @if(Auth::user()->role_id == 4)
+                            @if( \App\Models\Notification::where('author_id', '=', Auth::user()->id)->count() == 0)
+                                <span>
+                                    <a class="notis nav no-special" href="{{route('notifications.index')}}" role="button"><i class="bi bi-bell-fill"></i> 
+                                    ({{ \App\Models\Notification::where('author_id', '=', Auth::user()->id)->count() }})
+                                    </a>
+                                </span>
+                            @else
+                                <span>
+                                    <a class="text-danger notis nav no-special" href="{{route('notifications.index')}}" role="button"><i class="bi bi-bell-fill"></i> 
+                                    ({{ \App\Models\Notification::where('author_id', '=', Auth::user()->id)->count() }})
+                                    </a>
+                                </span>    
+                            @endif
+                        @endif
+                        <a href="#profile" data-toggle="collapse" aria-expanded="false" class="nameUser dropdown-toggle">
+                        <i class="bi bi-person-circle"></i> {{ Auth::user()->name }}</a>
+
+                    </div>
                     <ul class="collapse list-unstyled" id="profile">
                         <br>
                         <li>

@@ -15,7 +15,6 @@
 <div class="container">
     <div class="mx-auto col-md-8">
         <div class="card-header">
-            <a href="{{ route('dashboard') }}" class="float-end link-secondary" role="button"> 🡰 Go back</a>
             {{ __('Buy premium') }}
         </div>
         <div class="border p-5 bg-white d-flex justify-content-center">

@@ -36,7 +36,7 @@
                             <tr>
                                 <td scope="col">Title</td>
                                 <td scope="col">Description</td>
-                                <td class="w-25" scope="col">Delete</td>
+                                <td class="w-25" scope="col">Options</td>
                             </tr>
                         </thead>
                         <tbody>
@@ -48,7 +48,7 @@
                                     <form id="form" method="POST" action="{{route('notifications.destroy', $notification->id)}}">
                                         @csrf
                                         @method('DELETE')
-                                        <button id="confirm" type="submit" class="color bsColor btn btn-secondary"><i class="bi bi-x-square-fill"></i></button>
+                                        <button id="confirm" type="submit" class="color bsColor btn btn-secondary">Delete</button>
                                     </form>
                                 </td>
                             </tr>

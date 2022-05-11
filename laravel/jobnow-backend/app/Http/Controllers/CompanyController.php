@@ -96,7 +96,7 @@ class CompanyController extends Controller
             return redirect()->route('companies.create')->with('error', "The email is already taken.");
         }
 
-        return redirect()->route('menu.index')->with('success', "Company". $company->name . " created successfully");            
+        return redirect()->route('menu.index')->with('success', "Company ". $company->name . " created successfully");            
     }
 
     /**

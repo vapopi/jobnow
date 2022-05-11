@@ -29,7 +29,6 @@
 			<div class="card">
 				<div class="card-header">
 					{{ __('Companies') }}
-					<a href="{{ route('dashboard') }}" class="float-end link-secondary" role="button"> 🡰 Go back</a>
 				</div>
 				<div class="card-body overflow-auto">
 					<table class="table">

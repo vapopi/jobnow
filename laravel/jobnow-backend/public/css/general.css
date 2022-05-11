@@ -3,6 +3,25 @@ body{
     background-color: rgb(251, 249, 255) !important;
 }
 
+@keyframes anim{
+    0% {color: rgb(119, 0, 255);}
+   25% {color: rgb(231, 177, 0);}
+   50% {color: #fa0202;}
+   75% {color: #0755ff;}
+  100% {color: rgb(119, 0, 255);} 
+}
+
+.premium {
+    animation-name: anim;
+    animation-duration: 5s;
+    animation-iteration-count: infinite;
+}
+
+.info-user{
+    display: inline;
+    background-color: #f3f6f6;
+}
+
 .name{
     background-color: #f3f6f6;
     padding: 5%;
@@ -13,10 +32,14 @@ a.nameUser{
     color: #323232 !important;
     font-size: 17px;
     background-color: #f3f6f6;
-    margin-left: 7%;
-    padding: 5%;
     text-decoration: none !important;
+    margin-left: 3%;
 
+}
+
+a.notis{
+    float: left !important;
+    margin-left: 13%;
 }
 
 #logo{
@@ -24,15 +47,13 @@ a.nameUser{
 }
 
 .dropdown-item:active{
-    background-color: #6356e5 !important;
+    color: #323232 !important;
+    background-color: #bdb7ffb9 !important;
 }
 
-.premium{
-    color: #efb810 !important;
-}
 
 .premium:hover{
-    color: #efb810 !important;
+    animation-name: anim;
 }
 
 a.nav,
@@ -156,7 +177,7 @@ a.nav:focus {
     top: 100%;
     width: 0;
     height: 2px;
-    background-color: #efb810;
+    background-color: #6356e5;
     transition: .7s ease-in-out;
 }
 
@@ -178,8 +199,6 @@ a.nav[aria-expanded="true"] {
 a.nav[data-toggle="collapse"] {
     position: relative;
 }
-
-
 
 ul ul a.nav {
     font-size: 0.9em !important;

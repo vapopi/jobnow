@@ -21,7 +21,6 @@
 <div class="card w-50 mx-auto" style="width: 18rem;">
 
     <div class="card-header">
-        <a href="{{ url()->previous() }}" class="float-end link-secondary" role="button"> 🡰 Go back</a>
         {{ __('User Profile') }}
     </div>
 

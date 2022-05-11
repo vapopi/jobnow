@@ -5668,6 +5668,7 @@ function ChatApp(_ref) {
       message: "",
       receiver: 0
     });
+    window.location.reload();
     setError(null);
     getMessages();
   }; //FUNCION QUE ENSEÑA UNA ALERTA PARA CONFIRMAR LA ELIMINACION DE UN MENSAJE

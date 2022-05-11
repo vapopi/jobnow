@@ -28,7 +28,6 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">
-                    <a href="{{ route('dashboard') }}" class="float-end link-secondary" role="button"> 🡰 Go back</a>
                     {{ __('Companies') }}
                 </div>
                 <div class="card-body">

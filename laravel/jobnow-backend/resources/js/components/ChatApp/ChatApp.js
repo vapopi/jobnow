@@ -133,7 +133,8 @@ function ChatApp({props}) {
             receiver: 0
 
         })
-
+        
+        window.location.reload();
         setError(null);
         getMessages();
     }

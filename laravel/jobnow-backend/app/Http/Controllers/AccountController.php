@@ -10,6 +10,7 @@ use App\Models\File;
 use App\Models\Role;
 use App\Models\Company;
 use App\Models\Follower;
+use App\Models\Notification;
 use Illuminate\Support\Facades\Auth;
 
 class AccountController extends Controller
@@ -114,6 +115,12 @@ class AccountController extends Controller
         
         $account->sendEmailVerificationNotification();
 
+        Notification::create([
+            'title' => "Jobnow Team",
+            'description' => "Welcome to jobnow, enjoy! :)",
+            'author_id' => $account->id,
+        ]);
+        
         return redirect()->route('accounts.index')
             ->with('success', "The user " . $account->name . " was created successfully. A verfication email was sent to the user created.");
     }
@@ -257,6 +264,6 @@ class AccountController extends Controller
         Storage::disk('public')->delete($file->filepath);
 
         return redirect()->route("account.index")
-            ->with('success', "The user " . $account->name . " was deleted successfully.");
+            ->with('success', "The user was deleted successfully.");
     }
 }
