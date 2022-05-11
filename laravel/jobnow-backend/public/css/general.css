@@ -4,7 +4,27 @@ body{
 }
 
 .name{
-    color: #6356e5 !important;
+    background-color: #f3f6f6;
+    padding: 5%;
+    text-decoration: none !important;
+}
+
+a.nameUser{
+    color: #323232 !important;
+    font-size: 17px;
+    background-color: #f3f6f6;
+    margin-left: 7%;
+    padding: 5%;
+    text-decoration: none !important;
+
+}
+
+#logo{
+    margin: 0 auto;
+}
+
+.dropdown-item:active{
+    background-color: #6356e5 !important;
 }
 
 a.nav,
@@ -66,7 +86,7 @@ a.nav:focus {
 
 #sidebar {
     min-width: 250px;
-    max-width: 250px;
+    max-width: 300px;
     background: #ffffff;
     font-size: 15px;
     transition: all 0.3s;
@@ -75,6 +95,7 @@ a.nav:focus {
 
 #sidebar.active {
     margin-left: -250px;
+    position: relative;
 }
 
 #sidebar .sidebar-header {
@@ -85,6 +106,18 @@ a.nav:focus {
 #sidebar ul.components {
     padding: 20px 0;
 }
+
+#sidebarCollapse{
+    color: white;
+    background: #6356e5;
+    border-color: #6356e5;
+}
+
+
+#sidebarCollapse:focus {
+    box-shadow: 0 0 0 3px #7e76dab9;
+}
+
 
 #sidebar ul p {
     padding: 10px;
@@ -97,7 +130,7 @@ a.nav:focus {
     display: block;
 }
 
-#sidebar ul li a.nospecial:after {
+#sidebar ul li a.no-special:after {
     content: "";
     position: absolute;
     left:0;
@@ -108,12 +141,12 @@ a.nav:focus {
     transition: .7s ease-in-out;
 }
 
-#sidebar ul li a.nospecial:hover {
+#sidebar ul li a.no-special:hover {
     color: #6356e5;
     transform: translateX(5px);
 }
 
-#sidebar ul li a.nospecial:hover:after {
+#sidebar ul li a.no-special:hover:after {
     width: 75%
 }
 
@@ -152,10 +185,27 @@ a.nav.download {
     color: #7386D5;
 }
 
+#img{
+    width: 130px;
+}
+
 a.nav.article,
 a.nav.article:hover {
     background: #6356e5 !important;
     color: #fff !important;
+}
+
+.header-elements{
+    margin: 0 auto;
+}
+
+#logo{
+    display: inline-block !important;
+    margin: 0 auto !important;
+}
+
+#sidebarCollapse{
+    float: left;
 }
 
 /* ---------------------------------------------------
@@ -180,7 +230,5 @@ a.nav.article:hover {
     #sidebar.active {
         margin-left: 0;
     }
-    #sidebarCollapse span {
-        display: none;
-    }
+
 }

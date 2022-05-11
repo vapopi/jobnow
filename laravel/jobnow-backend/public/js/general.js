@@ -10,3 +10,9 @@ $("#logo").hover(
     var image = getRandomImage();
     $("#img").attr("src", image);
 });
+
+$(document).ready(function () {
+  $('#sidebarCollapse').on('click', function () {
+      $('#sidebar').toggleClass('active');
+  });
+});
