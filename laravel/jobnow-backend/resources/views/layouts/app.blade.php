@@ -11,149 +11,104 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="{{ asset('js/general.js') }}" defer></script>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/general.css') }}" rel="stylesheet">
     <link href="{{ asset('css/translator.css') }}" rel="stylesheet">
     <link rel="icon" href="{{ asset('images/favicon.ico') }}">
 
     <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
-
-    <!-- Font Awesome JS -->
-    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/solid.js" integrity="sha384-tzzSw1/Vo+0N5UhStP3bvwWPq+uvzCMfrN1fEFe+xBmv1C/AtVX5K0uZtmcHitFZ" crossorigin="anonymous"></script>
-    <script defer src="https://use.fontawesome.com/releases/v5.0.13/js/fontawesome.js" integrity="sha384-6OIrr52G08NpOFSZdxxz1xdNSndlD4vdcf/q2myIUVO0VsqaGHJsB0RaBE01VTOY" crossorigin="anonymous"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
 </head>
-
-<script defer type="text/javascript"> 
-   function googleTranslateElementInit() {
-  new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
-  }
-</script>
 
 <script type="text/javascript" src="//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit"></script>
 <body>
     <div id="app">
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a href="{{route('dashboard')}}" class="navbar-brand">
-                    {{ config('app.name', 'jobnow') }}
-                </a>
-                <!-- <button type="button" id="sidebarCollapse" class="btn btn-info">
-                    <i class="fas fa-align-left"></i>
-                    <span>Show/Hide Sidebar</span>
-                </button> -->
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+        <nav class="navbar navbar-expand-md shadow-sm">
+            <button type="button" id="sidebarCollapse" class="btn btn-info">
+                <i class="bi bi-text-left"></i>
+            </button>
+            <div class="header-elements">
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
-
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ms-auto">
-                        <!-- Authentication Links -->
-                        @guest
-                        @else
-                            <li class="nav-item dropdown">
-                                <a id="navbarDropdown" class="dropdown-toggle nav-link" href="#" role="button" data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" >
-                                {{ Auth::user()->name }}
-
-                                </a>
-
-                                <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-
-                                    <a class="dropdown-item" href="{{ route('users.show', Auth::user()->id, Auth::user()->avatar_id) }}"">
-                                        {{ __('My profile') }}
-                                    </a>
-
-                                    <a class="dropdown-item" href="{{ route('logout') }}"
-                                       onclick="event.preventDefault();
-                                        document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
-
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                        @csrf
-                                    </form>
-
-                                </div>
-                            </li>
-                        @endguest
-                    </ul>
+                <div id="logo">
+                    <a href="{{route('dashboard')}}">
+                        <img id="img" src={{ asset('/images/black_logo.png') }} alt="login image" class="form-img">
+                    </a>
                 </div>
             </div>
         </nav>
 
         @if (Auth::user()->email_verified_at != null)
             <div class="wrapper">
-            <nav id="sidebar">
-                <div class="sidebar-header">
-                    <h3>Sidebar (EN OBRAS)</h3>
-                </div>
-
+            <nav class="shadow-lg" id="sidebar">
                 <ul class="list-unstyled components">
-                    <p>MENU</p>
+                    <li>
+                        <a class="special nav gradient-btn" href="{{route('dashboard')}}"><i class="bi bi-house-door-fill"></i> DASHBOARD</a>
+                    </li>
+                    <hr>
                     @if (Auth::user()->role_id == 4)
-                        <li class="active">
-                            <a href="#homeSubmenu" data-toggle="collapse" aria-expanded="false" class="special dropdown-toggle">Home</a>
-                            <ul class="collapse list-unstyled" id="homeSubmenu">
-                                <li>
-                                    <a href="#">Home 1</a>
-                                </li>
-                                <li>
-                                    <a href="#">Home 2</a>
-                                </li>
-                                <li>
-                                    <a href="#">Home 3</a>
-                                </li>
-                            </ul>
-                        </li>
-                        
+
                         <li>
-                            <a href="{{route('offers.index')}}">Offers</a>
+                            <a class="nav no-special" href="{{route('offers.index')}}"><i class="bi bi-calendar2-week-fill"></i> OFFERS</a>
                         </li>
                         <li>
-                            <a href="{{route('premium.index')}}" role="button">Premium</a>
+                            <a class="nav no-special" href="{{route('premium.index')}}" role="button"><i class="bi bi-cart-fill"></i> PREMIUM</a>
                         </li>
 
                         <li>
-                            <a href="{{route('menu.index')}}" role="button">Companies</a>
+                            <a class="nav no-special"  href="{{route('menu.index')}}" role="button"><i class="bi bi-briefcase-fill"></i> COMPANIES</a>
                         </li>
                         <li>
-                            <a href="{{route('posts.index')}}" role="button">Posts</a>
+                            <a class="nav no-special"  href="{{route('posts.index')}}" role="button"><i class="bi bi-bookmark-fill"></i> POSTS</a>
                         </li>
                         <li>
-                            <a href="" role="button">Notifications</a>
+                            <a class="nav no-special" href="" role="button"><i class="bi bi-bell-fill"></i> NOTIFICATIONS</a>
                         </li>
                         <li>
-                            <a href="{{route('tickets.index')}}" role="button">Tickets</a>
+                            <a class="nav no-special"  href="{{route('tickets.index')}}" role="button"><i class="bi bi-ticket-detailed-fill"></i> TICKETS</a>
                         </li>
                         <li>
-                            <a href="{{route('chatapp.index')}}" role="button">Chat</a>
+                            <a class="nav no-special"  href="{{route('chatapp.index')}}" role="button"><i class="bi bi-chat-fill"></i> CHATAPP</a>
                         </li>
                         <li>
-                            <a href="{{route('mynetwork.index')}}" role="button">My Network</a><!-- React -->
+                            <a class="nav no-special"  href="{{route('mynetwork.index')}}" role="button"><i class="bi bi-wifi"></i> MY NETWORK</a><!-- React -->
                         </li>
                     @else
                         <li>
-                            <a href="{{route('security.index')}}" role="button">Security</a><!-- React -->
+                            <a class="nav no-special"  href="{{route('security.index')}}" role="button"><i class="bi bi-shield-fill"></i> SECURITY</a><!-- React -->
                         </li>
                     @endif
                 </ul>
-
-                <!-- <ul class="list-unstyled CTAs">
-                    <li>
-                        <a href="" class="download">button</a>
-                    </li>
-                </ul> -->
+                <hr>
+                <ul class="name ms-auto">
+                    <a href="#profile" data-toggle="collapse" aria-expanded="false" class="nameUser dropdown-toggle">
+                    <i class="bi bi-person-circle"></i> {{ Auth::user()->name }}</a>
+                    
+                    <ul class="collapse list-unstyled" id="profile">
+                        <br>
+                        <li>
+                            <a class="dropdown-item" href="{{ route('users.show', Auth::user()->id, Auth::user()->avatar_id) }}"">
+                                {{ __('My profile') }}
+                            </a>
+                        </li>
+                        <li>
+                            <a class="dropdown-item" href="{{ route('logout') }}"
+                                onclick="event.preventDefault();
+                                document.getElementById('logout-form').submit();">
+                                {{ __('Logout') }}
+                            </a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                            </form>
+                        </li>
+                    </ul>
+                </ul>
             </nav>
 
             <div id="content">
@@ -170,11 +125,7 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/js/bootstrap.min.js" integrity="sha384-uefMccjFJAIv6A+rW+L4AHf99KvxDjWSu1z9VI8SKNVmz4sk7buKt/6v9KI65qnm" crossorigin="anonymous"></script>
 
     <script type="text/javascript">
-    $(document).ready(function () {
-        $('#sidebarCollapse').on('click', function () {
-            $('#sidebar').toggleClass('active');
-        });
-    });
+
     </script>
 </body>
 </html>
