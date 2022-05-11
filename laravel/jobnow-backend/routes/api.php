@@ -15,6 +15,7 @@ use App\Http\Controllers\UsersApiController;
 use App\Http\Controllers\CompaniesApiController;
 use App\Http\Controllers\ProfessionalAreaApiController;
 use App\Http\Controllers\FilesApiController;
+use App\Http\Controllers\LikeController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,3 +45,4 @@ Route::apiResource('users', UsersApiController::class);
 Route::apiResource('companies', CompaniesApiController::class);
 Route::apiResource('professionalarea', ProfessionalAreaApiController::class);
 Route::apiResource('files', FilesApiController::class);
+Route::apiResource('likes', LikeController::class);
