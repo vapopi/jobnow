@@ -13,8 +13,7 @@ class Notification extends Model
 
         'title',
         'description',
-        'author_id',
-        'company_id'
+        'author_id'
     ];
 
     protected $casts = [

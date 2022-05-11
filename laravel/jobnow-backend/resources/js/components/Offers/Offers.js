@@ -42,11 +42,15 @@ function Offers({props}) {
                       'Content-Type': 'multipart/form-data',
                     },
         }).then(response => {
+            window.location.reload();
             setState(response) 
+
         })
         .catch(error => {
             setState(error.response.data) 
         });
+
+
     }
 
 

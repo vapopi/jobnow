@@ -9,6 +9,7 @@ use App\Models\Company;
 use App\Models\Offer;
 use App\Models\File;
 use App\Models\User;
+use App\Models\ApplicatedOffer;
 use Illuminate\Support\Facades\Auth;
 
 class CompanyController extends Controller
@@ -95,8 +96,7 @@ class CompanyController extends Controller
             return redirect()->route('companies.create')->with('error', "The email is already taken.");
         }
 
-        return redirect()->route('menu.index')
-            ->with('success', "Company " . $company->name . " created successfully");
+        return redirect()->route('menu.index')->with('success', "Company". $company->name . " created successfully");            
     }
 
     /**
@@ -204,13 +204,21 @@ class CompanyController extends Controller
     public function destroy(Company $company)
     {
         $file = File::where('id', $company->logo_id)->first();
-        
-        Offer::where('company_id', "=", $company->id)->delete(); 
+        $offer = Offer::where('company_id', "=", $company->id)->get(); 
+
+        foreach ($offer as $o)
+        {
+            $offer = ApplicatedOffer::where('offer_id', "=", $o->id)->delete(); 
+
+        }
+
+        $offer = Offer::where('company_id', "=", $company->id)->delete(); 
         $company->delete();
         $file->delete();
+
         Storage::disk('public')->delete($file->filepath);
 
         return redirect()->route("menu.index")
-        ->with('success', "Company " . $company->name . " was deleted successfully");
+            ->with('success', "Company " . $company->name . " was deleted successfully");
     }
 }

@@ -6822,6 +6822,7 @@ function Offers(_ref) {
         'Content-Type': 'multipart/form-data'
       }
     }).then(function (response) {
+      window.location.reload();
       setState(response);
     })["catch"](function (error) {
       setState(error.response.data);

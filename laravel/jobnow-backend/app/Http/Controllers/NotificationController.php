@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Notification;
 use Illuminate\Http\Request;
 
 class NotificationController extends Controller
@@ -11,11 +12,23 @@ class NotificationController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(int $author_id)
+    public function index()
     {
-        $notifications = Notification::where('author_id', '=', $author_id)->get();
+        $notificationsfiltered = Notification::where('author_id', \Auth::user()->id)->get();
 
-        return response($notifications);
+        return view("notifications.index", [
+            "notifications" => $notificationsfiltered
+        ]);
+    }
+
+    /**
+     * Show the form for creating a new resource.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function create()
+    {
+        //
     }
 
     /**
@@ -24,45 +37,57 @@ class NotificationController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(int $author_id, Request $request)
+    public function store(Request $request)
     {
-        $request->validate([
-            'notification' => 'required|max:255',
-            'author_id' => 'required'
-        ]);
-
-        $all = $request->all();
-        $all['author_id'] = $author_id;
-        $notification = Notification::create($all);
-
+        $notification = Notification::create($request->all());
         return response($notification);
     }
 
     /**
      * Display the specified resource.
      *
-     * @param  int  $id
+     * @param  \App\Models\Notification  $notification
      * @return \Illuminate\Http\Response
      */
-    public function show(int $id, int $author_id)
+    public function show(Notification $notification)
     {
-        $notification = Notification::where('author_id', '=', $author_id)
-        ->find($id);
+        //
+    }
 
-        return response($notification);
+    /**
+     * Show the form for editing the specified resource.
+     *
+     * @param  \App\Models\Notification  $notification
+     * @return \Illuminate\Http\Response
+     */
+    public function edit(Notification $notification)
+    {
+        //
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  \App\Models\Notification  $notification
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, Notification $notification)
+    {
+        //
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  int  $id
+     * @param  \App\Models\Notification  $notification
      * @return \Illuminate\Http\Response
      */
-    public function destroy(int $id, int $author_id)
+    public function destroy(Notification $notification)
     {
-        Notification::where('author_id', '=', $author_id);
-        Notification::destroy($id);
+        $notification = Notification::where('id', $notification->id)->delete();
 
-        // return response(content: "Success. The notification ${id} has been eliminated");
+        return redirect()->route("notifications.index")
+            ->with('success', "The notification was deleted successfully.");
     }
 }

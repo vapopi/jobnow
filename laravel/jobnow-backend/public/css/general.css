@@ -27,6 +27,14 @@ a.nameUser{
     background-color: #6356e5 !important;
 }
 
+.premium{
+    color: #efb810 !important;
+}
+
+.premium:hover{
+    color: #efb810 !important;
+}
+
 a.nav,
 a.nav:hover,
 a.nav:focus {
@@ -141,13 +149,24 @@ a.nav:focus {
     transition: .7s ease-in-out;
 }
 
+#sidebar ul li a.premium:after {
+    content: "";
+    position: absolute;
+    left:0;
+    top: 100%;
+    width: 0;
+    height: 2px;
+    background-color: #efb810;
+    transition: .7s ease-in-out;
+}
+
 #sidebar ul li a.no-special:hover {
     color: #6356e5;
     transform: translateX(5px);
 }
 
 #sidebar ul li a.no-special:hover:after {
-    width: 75%
+    width: 85%
 }
 
 #sidebar ul li.active>a.nav,

@@ -6,6 +6,7 @@ use App\Models\Company;
 use App\Models\User;
 use App\Models\Offer;
 use App\Models\File;
+use App\Models\ApplicatedOffer;
 use Illuminate\Http\Request;
 
 class CorporationController extends Controller
@@ -130,13 +131,21 @@ class CorporationController extends Controller
     public function destroy(Company $corporation)
     {
         $file = File::where('id', $corporation->logo_id)->first();
-        
-        Offer::where('company_id', "=", $corporation->id)->delete(); 
+        $offer = Offer::where('company_id', "=", $corporation->id)->get(); 
+
+        foreach ($offer as $o)
+        {
+            $offer = ApplicatedOffer::where('offer_id', "=", $o->id)->delete(); 
+
+        }
+
+        $offer = Offer::where('company_id', "=", $corporation->id)->delete(); 
         $corporation->delete();
         $file->delete();
+
         \Storage::disk('public')->delete($file->filepath);
 
         return redirect()->route("corporations.index")
-            ->with('success', "The company " . $corporation->name . " was deleted successfully");
+            ->with('success', "Company " . $corporation->name . " was deleted successfully");
     }
 }

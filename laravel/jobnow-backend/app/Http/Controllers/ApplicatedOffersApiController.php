@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\ApplicatedOffer;
+use App\Models\Notification;
 use App\Models\File;
+use Illuminate\Support\Facades\Auth;
 
 class ApplicatedOffersApiController extends Controller
 {
@@ -63,6 +65,12 @@ class ApplicatedOffersApiController extends Controller
         }
 
         $applicatedOffer = ApplicatedOffer::create($input);
+        
+        Notification::create([
+            'title' => "Applicated Offer",
+            'description' => "You applicated the offer with ID " . $input['offer_id'] . " successfully.",
+            'author_id' => $request['user_id'],
+        ]);
 
         return \response("You have applicated to the offer successfully!");
     }
