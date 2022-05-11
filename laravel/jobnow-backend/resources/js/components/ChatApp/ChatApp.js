@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import { Table, Button } from 'react-bootstrap';
 import axios from 'axios';
-import User from './User';
+import User from '../commons/User';
 import 'bootstrap/dist/css/bootstrap.css';
 import PropTypes from 'prop-types';
 
@@ -313,8 +313,8 @@ export default ChatApp;
 
 if (document.getElementById('chatapp')) {
 
-    const element = document.getElementById('chatapp');
-    const props = Object.assign({}, element.dataset);
+    const divChatapp = document.getElementById('chatapp');
+    const props = Object.assign({}, divChatapp.dataset);
 
-    ReactDOM.render(<ChatApp props = {props}/>, element);
+    ReactDOM.render(<ChatApp props = {props}/>, divChatapp);
 }

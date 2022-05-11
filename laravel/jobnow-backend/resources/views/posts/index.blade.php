@@ -1,6 +1,6 @@
 @extends('layouts.app')
 @section('content')
 
-<div id="posts"></div>
+<div id="posts" data-userId={{$authUserId}}></div>
 
 @endsection
