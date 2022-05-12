@@ -4,14 +4,14 @@ import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.css';
 import PropTypes from 'prop-types';
 import User from '../commons/User';
-import Icons from './Icons';
+import Likes from './Likes';
 
 const Posts = ({props}) => {
 
   //STATES
   const [posts, setPosts] = useState([]);
 
-  //URL de la API
+  //URL de las API
   const urlPosts = '/api/posts/';
 
   //FUNCION PARA RECUPERAR LOS POSTS DE LA BBDD
@@ -54,7 +54,7 @@ const Posts = ({props}) => {
 
               <h5 className='card-title'>{element.title}</h5>
               <p className='card-text'>{element.description}</p>
-              <div><Icons postId = {element.id} userId = {props.userid}/></div>
+              <div><Likes idPost = {element.id} idUser = {props.userid}/></div>
 
             </div>
 

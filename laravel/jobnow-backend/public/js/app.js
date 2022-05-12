@@ -6928,9 +6928,9 @@ if (document.getElementById('react-listOffers')) {
 
 /***/ }),
 
-/***/ "./resources/js/components/Posts/Icons.js":
+/***/ "./resources/js/components/Posts/Likes.js":
 /*!************************************************!*\
-  !*** ./resources/js/components/Posts/Icons.js ***!
+  !*** ./resources/js/components/Posts/Likes.js ***!
   \************************************************/
 /***/ ((__unused_webpack_module, __webpack_exports__, __webpack_require__) => {
 
@@ -6976,18 +6976,30 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-var Icons = function Icons(_ref) {
-  var postId = _ref.postId,
-      userId = _ref.userId;
+
+var Likes = function Likes(_ref) {
+  var idPost = _ref.idPost,
+      idUser = _ref.idUser;
 
   //STATES
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)([]),
       _useState2 = _slicedToArray(_useState, 2),
       likes = _useState2[0],
-      setLikes = _useState2[1]; //URL de la API
+      setLikes = _useState2[1];
+
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(false),
+      _useState4 = _slicedToArray(_useState3, 2),
+      clicked = _useState4[0],
+      setClicked = _useState4[1];
+
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(null),
+      _useState6 = _slicedToArray(_useState5, 2),
+      error = _useState6[0],
+      setError = _useState6[1]; //URL de las API
 
 
-  var urlLikes = '/api/likes'; //FUNCION PARA RECUPERAR LOS LIKES DE LA BBDD
+  var urlLikes = '/api/likes/';
+  var urlPosts = '/api/posts/'; //FUNCION QUE CARGA LOS LIKES DE LA BBDD
 
   var getLikes = /*#__PURE__*/function () {
     var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
@@ -7014,57 +7026,68 @@ var Icons = function Icons(_ref) {
     return function getLikes() {
       return _ref2.apply(this, arguments);
     };
-  }(); //HACER QUE LOS LIKES SE CARGUEN UNA VEZ AL CARGAR EL COMPONENTE
-
+  }();
 
   (0,react__WEBPACK_IMPORTED_MODULE_2__.useEffect)(function () {
     getLikes();
   }, []);
 
-  var changeLike = function changeLike(clicked, idLike) {
-    if (clicked) {
-      axios__WEBPACK_IMPORTED_MODULE_1___default()["delete"](urlLikes + idLike);
-      getLikes();
-    } else {
+  var changeLike = function changeLike(idPost, idUser) {
+    var btLike = document.getElementById("btLike");
+
+    if (likes.length == 0) {
       axios__WEBPACK_IMPORTED_MODULE_1___default().post(urlLikes, {
-        user_id: userId,
-        post_id: postId
+        user_id: idUser,
+        post_id: idPost
+      });
+      getLikes();
+      setClicked(true);
+    } else {
+      likes.forEach(function (element) {
+        if (element.post_id == idPost && element.user_id == idUser && clicked == false) {
+          btLike.variant = "danger";
+          setClicked(true);
+          axios__WEBPACK_IMPORTED_MODULE_1___default().post(urlLikes, {
+            user_id: idUser,
+            post_id: idPost
+          }).then(function (response) {
+            setError(response);
+            getLikes();
+          });
+          axios__WEBPACK_IMPORTED_MODULE_1___default().get(urlPosts + element.post_id).then(function (result) {
+            var post = result.data;
+            var likes = post.likes;
+            axios__WEBPACK_IMPORTED_MODULE_1___default().put(urlPosts + element.post_id, {
+              likes: likes + 1
+            });
+          });
+        } else if (element.post_id == idPost && element.user_id == idUser && clicked == true) {
+          btLike.variant = "primary";
+          setClicked(false);
+          axios__WEBPACK_IMPORTED_MODULE_1___default()["delete"](urlLikes + element.id);
+        }
       });
     }
   };
 
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
-    children: likes.map(function (element, index) {
-      if (element.user_id == userId && element.post_id == postId) {
-        error ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
-          className: "text-danger",
-          children: error
-        }) : null;
-        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
-            variant: "danger",
-            onClick: changeLike(true, element.id),
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("i", {
-              className: "bi bi-heart-fill"
-            })
-          })
-        }, index);
-      } else {
-        return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
-          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
-            variant: "danger",
-            onClick: changeLike(false, element.id),
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("i", {
-              "class": "bi bi-heart"
-            })
-          })
-        }, index);
-      }
-    })
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
+    children: [error ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
+      className: "text-success",
+      children: error
+    }) : null, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
+      variant: "primary",
+      id: "btLike",
+      onClick: function onClick() {
+        return changeLike(idPost, idUser);
+      },
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("i", {
+        className: "bi bi-hand-thumbs-up-fill"
+      })
+    })]
   });
 };
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Icons);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Likes);
 
 /***/ }),
 
@@ -7087,7 +7110,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var bootstrap_dist_css_bootstrap_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! bootstrap/dist/css/bootstrap.css */ "./node_modules/bootstrap/dist/css/bootstrap.css");
 /* harmony import */ var _commons_User__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ../commons/User */ "./resources/js/components/commons/User.js");
-/* harmony import */ var _Icons__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Icons */ "./resources/js/components/Posts/Icons.js");
+/* harmony import */ var _Likes__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! ./Likes */ "./resources/js/components/Posts/Likes.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
 
@@ -7131,7 +7154,7 @@ var Posts = function Posts(_ref) {
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)([]),
       _useState2 = _slicedToArray(_useState, 2),
       posts = _useState2[0],
-      setPosts = _useState2[1]; //URL de la API
+      setPosts = _useState2[1]; //URL de las API
 
 
   var urlPosts = '/api/posts/'; //FUNCION PARA RECUPERAR LOS POSTS DE LA BBDD
@@ -7191,9 +7214,9 @@ var Posts = function Posts(_ref) {
               className: "card-text",
               children: element.description
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("div", {
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_Icons__WEBPACK_IMPORTED_MODULE_6__["default"], {
-                postId: element.id,
-                userId: props.userid
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)(_Likes__WEBPACK_IMPORTED_MODULE_6__["default"], {
+                idPost: element.id,
+                idUser: props.userid
               })
             })]
           })]
