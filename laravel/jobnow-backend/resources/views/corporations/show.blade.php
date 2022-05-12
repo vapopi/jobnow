@@ -26,7 +26,7 @@
     <div class="card-body">
 
         <div class="w-50 float-start">
-            <p class="card-text"><strong>Name</strong> {{$corporation->name}}</p>
+            <p class="card-text"><strong>Name</strong>{{$corporation->name}}</p>
             <p class="card-text"><strong>Email:</strong> {{$corporation->email}}</p>
             <p class="card-text"><strong>Creation Date:</strong> {{$corporation->creation_date}}</p>
         </div>

@@ -18,6 +18,7 @@ use App\Http\Controllers\CorporationController;
 use App\Http\Controllers\FollowerController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\ApplicatedOffersController;
+use App\Http\Controllers\RouteAppliedController;
 
 /*
 |--------------------------------------------------------------------------
@@ -65,6 +66,7 @@ Route::resource('/tickets', RouteTicketsController::class)->middleware(['auth', 
 Route::resource('/followers', FollowerController::class)->middleware(['auth', 'roles: 1, 4', 'verified']);
 Route::resource('/notifications', NotificationController::class)->middleware(['auth', 'roles: 3, 2, 4', 'verified']);
 Route::resource('/apply', ApplicatedOffersController::class)->middleware(['auth', 'roles: 1, 4', 'verified']);
+Route::resource('/applicated', RouteAppliedController::class)->middleware(['auth', 'roles: 1, 4', 'verified']);
 
 // Middleware rutas User
 Route::resource('/users', UserController::class)->only([

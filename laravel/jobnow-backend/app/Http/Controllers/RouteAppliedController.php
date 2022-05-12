@@ -1,9 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
-
-use App\Models\Offer;
 use Illuminate\Http\Request;
+
+use App\Models\ApplicatedOffer;
+use App\Models\Offer;
+use App\Models\User;
+use App\Models\File;
+
 
 class RouteAppliedController extends Controller
 {
@@ -14,7 +18,7 @@ class RouteAppliedController extends Controller
      */
     public function index()
     {
-        return view('applied.index');
+        //
     }
 
     /**
@@ -44,9 +48,17 @@ class RouteAppliedController extends Controller
      * @param  \App\Models\Offer  $offer
      * @return \Illuminate\Http\Response
      */
-    public function show(Offer $offer)
+    public function show(Offer $offer, $id)
     {
-        //
+        $offer = Offer::all()->where('id', "=", $id)->first();
+        $applicatedUsers = ApplicatedOffer::where('offer_id', "=", $id)->get(); 
+
+        return view('applicated.list',  [
+            "offer" => $offer,
+            "applicatedUsers" => $applicatedUsers,
+            "files" => File::all(),
+            "users" => User::all()
+        ]);    
     }
 
     /**
