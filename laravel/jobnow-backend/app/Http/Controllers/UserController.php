@@ -257,9 +257,7 @@ class UserController extends Controller
     public function destroy(User $user)
     {
         $file = File::where('id', $user->avatar_id)->first();
-
-        $file = File::where('id', $account->avatar_id)->first();
-        $companies = Company::where('author_id', "=", $account->id)->get();
+        $companies = Company::where('author_id', "=", $user->id)->get();
 
         foreach($companies as $company) {
 
@@ -274,17 +272,17 @@ class UserController extends Controller
             
         }
         
-        Company::where('author_id', "=", $account->id)->delete();
-        Follower::where('profile_id', "=", $account->id)->delete(); 
-        Follower::where('follower_id', "=", $account->id)->delete();
-        ApplicatedOffer::where('user_id', "=", $account->id)->delete();
-        Like::where('user_id', "=", $account->id)->delete();
-        Message::where('author_id', "=", $account->id)->delete();
-        Message::where('receiver_id', "=", $account->id)->delete();
-        Post::where('author_id', "=", $account->id)->delete();
-        Notification::where('author_id', "=", $account->id)->delete();
+        Company::where('author_id', "=", $user->id)->delete();
+        Follower::where('profile_id', "=", $user->id)->delete(); 
+        Follower::where('follower_id', "=", $user->id)->delete();
+        ApplicatedOffer::where('user_id', "=", $user->id)->delete();
+        Like::where('user_id', "=", $user->id)->delete();
+        Message::where('author_id', "=", $user->id)->delete();
+        Message::where('receiver_id', "=", $user->id)->delete();
+        Post::where('author_id', "=", $user->id)->delete();
+        Notification::where('author_id', "=", $user->id)->delete();
 
-        $account->delete();
+        $user->delete();
         $file->delete();
 
         Storage::disk('public')->delete($file->filepath);
