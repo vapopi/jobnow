@@ -32,7 +32,7 @@
                         <input class="form-control" type="text" name="card_number" required/>
                         <br>
                         <label for="category-name">Expiration date</label>
-                        <input class="form-control" type="text" name="expiration_date" required/>
+                        <input class="form-control" type="date" name="expiration_date" required/>
                         <br>
                         <label for="category-name">CVV</label>
                         <input class="form-control" type="text" name="cvv" required/>

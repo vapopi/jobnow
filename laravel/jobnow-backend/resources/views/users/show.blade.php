@@ -60,10 +60,8 @@
                 @endif
             </div>
             <br><br><br>
-            
 
             @if($user->id != Auth::user()->id)
-
                     @if($validate)
                         <form method="POST" action="{{ route('followers.destroy', $validate->id) }}" >
                                 @csrf
@@ -130,6 +128,7 @@
         @endif
     </ul>
   </div>
+  
 </div>
 
 @endsection
