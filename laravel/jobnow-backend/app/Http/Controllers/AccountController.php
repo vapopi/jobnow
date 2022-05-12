@@ -11,6 +11,11 @@ use App\Models\Role;
 use App\Models\Company;
 use App\Models\Follower;
 use App\Models\Notification;
+use App\Models\ApplicatedOffer;
+use App\Models\Like;
+use App\Models\Message;
+use App\Models\Post;
+use App\Models\Offer;
 use Illuminate\Support\Facades\Auth;
 
 class AccountController extends Controller
@@ -254,16 +259,37 @@ class AccountController extends Controller
     public function destroy(User $account)
     {
         $file = File::where('id', $account->avatar_id)->first();
+        $companies = Company::where('author_id', "=", $account->id)->get();
 
+        foreach($companies as $company) {
+
+            $offers = Offer::where('company_id', "=", $company->id)->get();
+            
+            foreach ($offers as $offer) {
+
+                ApplicatedOffer::where('offer_id', "=", $offer->id)->delete();
+            }
+
+            Offer::where('company_id', "=", $company->id)->delete();
+            
+        }
+        
         Company::where('author_id', "=", $account->id)->delete();
         Follower::where('profile_id', "=", $account->id)->delete(); 
-        Follower::where('follower_id', "=", $account->id)->delete(); 
+        Follower::where('follower_id', "=", $account->id)->delete();
+        ApplicatedOffer::where('user_id', "=", $account->id)->delete();
+        Like::where('user_id', "=", $account->id)->delete();
+        Message::where('author_id', "=", $account->id)->delete();
+        Message::where('receiver_id', "=", $account->id)->delete();
+        Post::where('author_id', "=", $account->id)->delete();
+        Notification::where('author_id', "=", $account->id)->delete();
+
         $account->delete();
         $file->delete();
 
         Storage::disk('public')->delete($file->filepath);
 
-        return redirect()->route("account.index")
-            ->with('success', "The user was deleted successfully.");
+        return redirect()->route("accounts.index")
+        ->with('success', "The user was deleted successfully.");
     }
 }
