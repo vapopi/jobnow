@@ -263,7 +263,7 @@ class AccountController extends Controller
 
         Storage::disk('public')->delete($file->filepath);
 
-        return redirect()->route("account.index")
+        return redirect()->route("accounts.index")
             ->with('success', "The user was deleted successfully.");
     }
 }
