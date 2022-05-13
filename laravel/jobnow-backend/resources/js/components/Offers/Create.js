@@ -62,7 +62,7 @@ function Create({props}) {
 
 
     return (
-        <div className="text-">   
+        <div className="text">
 
             <h1 className='text-center'><strong>OFFERS</strong></h1>
             <div className="container mt-5" style={{textAlign: 'center'}}>

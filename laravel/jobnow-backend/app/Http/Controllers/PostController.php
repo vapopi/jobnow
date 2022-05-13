@@ -36,7 +36,7 @@ class PostController extends Controller
 
         $post = Post::create($request->all());
 
-        return response($post);
+        return \response("Post created successfully!!");
     }
 
     /**
@@ -77,6 +77,6 @@ class PostController extends Controller
     {
         Post::destroy($id);
 
-        //return response(content: "Success. The post ${id} has been eliminated");
+        return \response("Success. The post ${id} has been eliminated");
     }
 }

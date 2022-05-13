@@ -142,7 +142,7 @@ function ChatApp({props}) {
     //FUNCION QUE ENSEÑA UNA ALERTA PARA CONFIRMAR LA ELIMINACION DE UN MENSAJE
     const showAlertDeleteMessage = (idMessage) => {
 
-        let confirmDeleteMessage = confirm("Are you sure you want to deletethe message with id = "+idMessage+" ?");
+        let confirmDeleteMessage = confirm("Are you sure you want to delete the message with id = "+idMessage+" ?");
 
         if(confirmDeleteMessage) {
 
