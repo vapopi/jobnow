@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\ProfessionalArea;
+use App\Models\ApplicatedOffer;
 use App\Models\Offer;
 use App\Models\Company;
 
@@ -50,7 +51,7 @@ class AdvertController extends Controller
      * @param  \App\Models\Offer  $offer
      * @return \Illuminate\Http\Response
      */
-    public function show(Offer $offer)
+    public function show(Offer $advert)
     {
         //
     }
@@ -61,7 +62,7 @@ class AdvertController extends Controller
      * @param  \App\Models\Offer  $offer
      * @return \Illuminate\Http\Response
      */
-    public function edit(Offer $offer)
+    public function edit(Offer $advert)
     {
         //
     }
@@ -73,7 +74,7 @@ class AdvertController extends Controller
      * @param  \App\Models\Offer  $offer
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Offer $offer)
+    public function update(Request $request, Offer $advert)
     {
         //
     }
@@ -84,12 +85,12 @@ class AdvertController extends Controller
      * @param  \App\Models\Offer  $offer
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Offer $offer)
+    public function destroy(Offer $advert)
     {
-        $applicated = ApplicatedUser::where('offer_id', "=", $offer->id)->delete();
-        $offer->delete();
+        $applicated = ApplicatedOffer::where('offer_id', "=", $advert->id)->delete();
+        $advert->delete();
 
         return redirect()->route('adverts.index')
-        ->with('success', 'The offer with ID'. ' '.$offer->id .' '.'has been eliminated');
+        ->with('success', 'The offer with ID'. ' '.$advert->id .' '.'has been eliminated');
     }
 }
