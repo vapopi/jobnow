@@ -6944,7 +6944,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! axios */ "./node_modules/axios/index.js");
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_1___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_1__);
 /* harmony import */ var react__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! react */ "./node_modules/react/index.js");
-/* harmony import */ var react_bootstrap__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/Button.js");
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
 
@@ -6975,8 +6974,6 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-
-
 var Likes = function Likes(_ref) {
   var idPost = _ref.idPost,
       idUser = _ref.idUser;
@@ -6987,15 +6984,10 @@ var Likes = function Likes(_ref) {
       likes = _useState2[0],
       setLikes = _useState2[1];
 
-  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(false),
+  var _useState3 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(null),
       _useState4 = _slicedToArray(_useState3, 2),
       clicked = _useState4[0],
-      setClicked = _useState4[1];
-
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)(null),
-      _useState6 = _slicedToArray(_useState5, 2),
-      error = _useState6[0],
-      setError = _useState6[1]; //URL de las API
+      setClicked = _useState4[1]; //URL de las API
 
 
   var urlLikes = '/api/likes/';
@@ -7042,18 +7034,17 @@ var Likes = function Likes(_ref) {
       });
       getLikes();
       setClicked(true);
+      btLike.className = "btn btn-primary";
     } else {
       likes.forEach(function (element) {
         if (element.post_id == idPost && element.user_id == idUser && clicked == false) {
-          btLike.variant = "danger";
+          btLike.className = "btn btn-primary";
           setClicked(true);
           axios__WEBPACK_IMPORTED_MODULE_1___default().post(urlLikes, {
             user_id: idUser,
             post_id: idPost
-          }).then(function (response) {
-            setError(response);
-            getLikes();
           });
+          getLikes();
           axios__WEBPACK_IMPORTED_MODULE_1___default().get(urlPosts + element.post_id).then(function (result) {
             var post = result.data;
             var likes = post.likes;
@@ -7062,20 +7053,18 @@ var Likes = function Likes(_ref) {
             });
           });
         } else if (element.post_id == idPost && element.user_id == idUser && clicked == true) {
-          btLike.variant = "primary";
+          btLike.className = "btn btn-secondary";
           setClicked(false);
           axios__WEBPACK_IMPORTED_MODULE_1___default()["delete"](urlLikes + element.id);
+          getLikes();
         }
       });
     }
   };
 
-  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
-    children: [error ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
-      className: "text-success",
-      children: error
-    }) : null, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_4__["default"], {
-      variant: "primary",
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.Fragment, {
+    children: clicked ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+      className: "btn btn-primary",
       id: "btLike",
       onClick: function onClick() {
         return changeLike(idPost, idUser);
@@ -7083,7 +7072,16 @@ var Likes = function Likes(_ref) {
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("i", {
         className: "bi bi-hand-thumbs-up-fill"
       })
-    })]
+    }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+      className: "btn btn-secondary",
+      id: "btLike",
+      onClick: function onClick() {
+        return changeLike(idPost, idUser);
+      },
+      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("i", {
+        className: "bi bi-hand-thumbs-up-fill"
+      })
+    })
   });
 };
 

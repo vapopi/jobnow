@@ -16,7 +16,7 @@ class LikeController extends Controller
     public function index()
     {
         $likes = DB::table('likes')
-        ->select('id', 'user_id', 'post_id')
+        ->select('id', 'user_id', 'post_id', 'created_at')
         ->get();
 
         return \response($likes);

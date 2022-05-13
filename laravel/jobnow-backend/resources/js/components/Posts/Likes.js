@@ -1,13 +1,11 @@
 import axios from 'axios';
-import React, { useEffect, useState } from 'react'
-import { Button } from 'react-bootstrap'
+import React, { useEffect, useState } from 'react';
 
 const Likes = ({idPost, idUser}) => {
 
     //STATES
     const [likes, setLikes] = useState([]);
-    const [clicked, setClicked] = useState(false);
-    const [error, setError] = useState(null);
+    const [clicked, setClicked] = useState(null);
 
     //URL de las API
     const urlLikes = '/api/likes/';
@@ -27,7 +25,7 @@ const Likes = ({idPost, idUser}) => {
           }));
     
         });
-    
+
     }
 
     useEffect(() => {
@@ -51,6 +49,7 @@ const Likes = ({idPost, idUser}) => {
 
             getLikes();
             setClicked(true);
+            btLike.className = "btn btn-primary";
 
         } else {
 
@@ -58,7 +57,7 @@ const Likes = ({idPost, idUser}) => {
 
                 if(element.post_id == idPost && element.user_id == idUser && clicked == false) {
     
-                    btLike.variant = "danger";
+                    btLike.className = "btn btn-primary";
                     setClicked(true);
     
                     axios.post(urlLikes, {
@@ -66,11 +65,9 @@ const Likes = ({idPost, idUser}) => {
                         user_id: idUser,
                         post_id: idPost
     
-                    }).then(response => {
-    
-                        setError(response);
-                        getLikes();
                     });
+
+                    getLikes();
     
                     axios.get(urlPosts + element.post_id).then(result => {
     
@@ -83,10 +80,11 @@ const Likes = ({idPost, idUser}) => {
     
                 } else if(element.post_id == idPost && element.user_id == idUser && clicked == true) {
     
-                    btLike.variant = "primary";
+                    btLike.className = "btn btn-secondary";
                     setClicked(false);
     
                     axios.delete(urlLikes + element.id);
+                    getLikes();
                 }
             })
         }
@@ -96,11 +94,18 @@ const Likes = ({idPost, idUser}) => {
   return (
     <>
     {
-        error ? <span className='text-success'>{error}</span> : null
+        clicked ? (
+
+            <button className='btn btn-primary' id="btLike" onClick={() => changeLike(idPost, idUser)}><i className="bi bi-hand-thumbs-up-fill"></i></button>
+
+        ) : (
+
+            <button className='btn btn-secondary' id="btLike" onClick={() => changeLike(idPost, idUser)}><i className="bi bi-hand-thumbs-up-fill"></i></button>
+        )
     }
-        <Button variant="primary" id="btLike" onClick={() => changeLike(idPost, idUser)}><i className="bi bi-hand-thumbs-up-fill"></i></Button>
+        
     </>
   )
 }
 
-export default Likes
+export default Likes;
