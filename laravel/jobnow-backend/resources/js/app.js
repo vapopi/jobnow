@@ -19,3 +19,4 @@ import './components/Offers/Offer';
 import './components/Offers/Create';
 import './components/Offers/Apply';
 import './components/Posts/Posts';
+import './components/Posts/Create';

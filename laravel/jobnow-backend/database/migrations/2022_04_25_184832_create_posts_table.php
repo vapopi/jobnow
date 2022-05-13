@@ -17,7 +17,7 @@ class CreatePostsTable extends Migration
             $table->id();
             $table->string("title", 20);
             $table->string("description");
-            $table->integer("likes");
+            $table->integer("likes")->default(0);
             $table->unsignedBigInteger("author_id");
             $table->unsignedBigInteger("image_id")->nullable();
             $table->foreign("author_id")->references("id")->on("users");
