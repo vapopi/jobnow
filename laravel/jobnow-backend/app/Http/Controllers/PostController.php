@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Post;
+use App\Models\File;
 
 class PostController extends Controller
 {
@@ -31,12 +32,41 @@ class PostController extends Controller
         $request->validate([
             'title' => 'required|max:20',
             'description' => 'required|max:255',
-            'author_id' => 'required'
+            'author_id' => 'required',
+            'image_id' => 'required|mimes:jpg,jpeg'
         ]);
 
-        $post = Post::create($request->all());
+        $input = $request->all();
 
-        return \response("Post created successfully!!");
+        $upload = $request->file('image_id');
+        $fileName = $upload->getClientOriginalName();
+        $fileSize = $upload->getSize();
+        $fileExtension = $upload->getClientOriginalExtension();
+        $uploadName = time() . '_' . $fileName;
+
+        $filePath = $upload->storeAs(
+            'uploads',
+            $uploadName,
+            'public'
+        );
+        
+        if(\Storage::disk('public')->exists($filePath)) {
+
+            $fullPath = \Storage::disk('public')->path($filePath);
+
+            $file = File::create([
+                'filename' => $filePath,
+                'filesize' => $fileSize,
+            ]);
+
+            $upload->filepath = $filePath;
+            $upload->filesize = $fileSize;
+            $input['image_id'] = $file->id;
+        }
+
+        $post = Post::create($input);
+
+        return \response("Post created successfully");
     }
 
     /**

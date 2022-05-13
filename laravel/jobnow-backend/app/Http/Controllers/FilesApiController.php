@@ -43,7 +43,9 @@ class FilesApiController extends Controller
      */
     public function show($id)
     {
-        //
+        $file = File::find($id);
+
+        return response($file);
     }
 
     /**

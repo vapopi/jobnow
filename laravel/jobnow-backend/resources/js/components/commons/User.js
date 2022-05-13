@@ -5,7 +5,7 @@ const User = ({id}) => {
 
     const [user, setUser] = useState({});
 
-    //FUNCION PARA COGER TODOS LOS USUARIOS DE LA BBDD
+    //FUNCION PARA COGER UN USUARIO EN CONCRETO DE LA BBDD
     const getUserById = async () => {
 
         await axios.get('/api/users/'+ id).then(result => {

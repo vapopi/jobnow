@@ -6,6 +6,7 @@ const Create = ({props}) => {
 
   //STATES
   const [post, setPost] = useState({});
+  const [image, setImage] = useState();
 
   //URL de la API
   const urlPosts = "/api/posts/";
@@ -30,7 +31,7 @@ const Create = ({props}) => {
     var formData = new FormData();
     formData.append("title", post.title);
     formData.append("description", post.description);
-    formData.append("imagen_id", post.image);
+    formData.append("image_id", image);
     formData.append("author_id", props.userid);
 
     axios({
@@ -42,12 +43,11 @@ const Create = ({props}) => {
               },
     }).then(response => {
 
-      window.location.reload();
-      setError(response);
+      alert(response.data);
 
     }).catch(errors => {
 
-      setError(errors.response.data);
+      alert(errors.response.data);
 
     });
 
@@ -64,9 +64,7 @@ const Create = ({props}) => {
       
       <div style={{margin:"0 auto"}} className="w-50">
         <form onSubmit={createPost}>
-        {/* {
-        error ? <span className='text-center'>{error}</span> : null
-        } */}
+        
           <div className="form-group">
             <label>Title: </label>
             <input
@@ -94,7 +92,7 @@ const Create = ({props}) => {
             <input 
               name="image" 
               type="file" 
-              onChange={handleInputChange} 
+              onChange={(data) => setImage(data.target.files[0])} 
               className="form-control mb-2"
             />
           </div>

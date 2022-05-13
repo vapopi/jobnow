@@ -4,6 +4,7 @@ import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.css';
 import User from '../commons/User';
 import Likes from './Likes';
+import PostImg from './PostImg';
 
 const Posts = ({props}) => {
 
@@ -69,13 +70,13 @@ const Posts = ({props}) => {
 
             <h5><p>Post created by: <User id={element.author_id}/></p></h5>
             {/* INSERTAR IMG AQUI */}
-            <img src=''></img>
+            <PostImg fileId = {element.image_id}/>
 
             <div className='card-body'>
 
               <h5 className='card-title'>{element.title}</h5>
               <p className='card-text'>{element.description}</p>
-              <div><Likes idPost = {element.id} idUser = {props.userid}/><span> </span>
+              <div><Likes idPost = {element.id} idUser = {props.userid}/>
               
               {
                 element.author_id == props.userid ? (
