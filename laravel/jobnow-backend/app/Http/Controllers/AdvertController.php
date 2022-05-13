@@ -1,16 +1,13 @@
 <?php
 
 namespace App\Http\Controllers;
-use Illuminate\Http\Request;
 
-use App\Models\ApplicatedOffer;
+use Illuminate\Http\Request;
+use App\Models\ProfessionalArea;
 use App\Models\Offer;
 use App\Models\Company;
-use App\Models\User;
-use App\Models\File;
 
-
-class RouteAppliedController extends Controller
+class AdvertController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -19,7 +16,11 @@ class RouteAppliedController extends Controller
      */
     public function index()
     {
-        //
+        return view("adverts.index", [
+            "adverts" => Offer::all(),
+            "areas" => ProfessionalArea::all(),
+            "companies" => Company::all(),
+        ]);
     }
 
     /**
@@ -49,20 +50,9 @@ class RouteAppliedController extends Controller
      * @param  \App\Models\Offer  $offer
      * @return \Illuminate\Http\Response
      */
-    public function show(Offer $offer, $id)
+    public function show(Offer $offer)
     {
-        $offer = Offer::all()->where('id', "=", $id)->first();
-        $applicatedUsers = ApplicatedOffer::where('offer_id', "=", $id)->get(); 
-        $company = Company::where('id', "=", $offer->company_id)->get();
-        $user = User::where('id', "=", $company[0]->author_id)->first();
-
-        return view('applicated.list',  [
-            "offer" => $offer,
-            "applicatedUsers" => $applicatedUsers,
-            "files" => File::all(),
-            "user" => $user,
-            "users" => User::all()
-        ]);    
+        //
     }
 
     /**
@@ -96,6 +86,10 @@ class RouteAppliedController extends Controller
      */
     public function destroy(Offer $offer)
     {
-        //
+        $applicated = ApplicatedUser::where('offer_id', "=", $offer->id)->delete();
+        $offer->delete();
+
+        return redirect()->route('adverts.index')
+        ->with('success', 'The offer with ID'. ' '.$offer->id .' '.'has been eliminated');
     }
 }

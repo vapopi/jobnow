@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Notification;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -45,6 +46,12 @@ class PremiumController extends Controller
 
         $user['premium'] = 1;
         $user->save();        
+
+        Notification::create([
+            'title' => "Premium",
+            'description' => "Congrats, you are now a premium user!",
+            'author_id' => $user->id,
+        ]);
 
         return redirect()->route('users.show', $user)
             ->with('success', "Congrats, you are now premium!");

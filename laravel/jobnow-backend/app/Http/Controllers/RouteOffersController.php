@@ -25,9 +25,4 @@ class RouteOffersController extends Controller
     {
         return view("offers.create", ['authUserId' => \Auth::user()->id]);
     }
-
-    public function show()
-    {
-        return view("applied.show");
-    }
 }

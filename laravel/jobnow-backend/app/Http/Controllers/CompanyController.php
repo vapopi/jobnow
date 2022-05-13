@@ -108,7 +108,6 @@ class CompanyController extends Controller
     public function show(Company $company)
     {
         $offers = Offer::where('company_id', $company->id)->get();
-
         return view('companies.show', [
             "company" => $company,
             "offers" => $offers, 

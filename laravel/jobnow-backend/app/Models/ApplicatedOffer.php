@@ -10,14 +10,12 @@ class ApplicatedOffer extends Model
     use HasFactory;
 
     protected $fillable = [
-
         'user_id',
         'curriculum',
         'offer_id'
     ];
 
     protected $casts = [
-
         'created_at' => 'datetime',
         'updated_at' => 'datetime'
     ];

@@ -62,7 +62,6 @@ class RoleController extends Controller
     public function show(Role $role)
     {
         return view('roles.show', [
-
             'role' => $role
         ]);
     }
@@ -76,9 +75,7 @@ class RoleController extends Controller
     public function edit(Role $role)
     {
         return view("roles.edit", [
-
             'role' => $role
-
         ]);
     }
 

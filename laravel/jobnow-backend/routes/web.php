@@ -19,6 +19,7 @@ use App\Http\Controllers\FollowerController;
 use App\Http\Controllers\NotificationController;
 use App\Http\Controllers\ApplicatedOffersController;
 use App\Http\Controllers\RouteAppliedController;
+use App\Http\Controllers\AdvertController;
 
 /*
 |--------------------------------------------------------------------------
@@ -54,10 +55,11 @@ Route::resource('/roles', RoleController::class)->middleware(['auth', 'roles: 1'
 Route::resource('/users', UserController::class);
 Route::resource('/companies/menu', MenuCompanyController::class)->middleware(['auth', 'roles: 4', 'verified']);
 Route::resource('/companies', CompanyController::class)->middleware(['auth', 'roles: 1, 4', 'verified']);
-Route::resource('/premium', PremiumController::class)->middleware(['auth', 'roles: 1, 4', 'verified']);
 Route::resource('/security/accounts', AccountController::class)->middleware(['auth', 'roles: 1', 'verified']);
 Route::resource('/security/corporations', CorporationController::class)->middleware(['auth', 'roles: 1', 'verified']);
-Route::resource('/security', SecurityController::class)->middleware(['auth', 'roles: 1', 'verified']);
+Route::resource('/security/adverts', AdvertController::class)->middleware(['auth', 'roles: 1', 'verified']);
+Route::resource('/security', SecurityController::class)->middleware(['auth', 'roles: 1, 2, 3', 'verified']);
+Route::resource('/premium', PremiumController::class)->middleware(['auth', 'roles: 1, 4', 'verified']);
 Route::resource('/chatapp', RouteChatAppController::class)->middleware(['auth', 'roles: 3, 4', 'verified']);
 Route::resource('/mynetwork', MyNetworkController::class)->middleware(['auth', 'roles: 4', 'verified']);
 Route::resource('/offers', RouteOffersController::class)->middleware(['auth', 'roles: 4', 'verified']);

@@ -55,7 +55,7 @@
                         <td>{{ $o->id }}</td>
                         <td>{{ $o->title }}</td>
                         <td>{{ $o->description }}</td>
-                        @if(Auth::user()->id == $o->company_id)
+                        @if(Auth::user()->id == $company->author_id)
                             <td><a href="{{ route('applicated.show', $o, $o) }}" class="w-100 bsColor btn btn-secondary" role="button">Show applicated users</a></td>
                         @else
                             <td><a href="{{ route('offers.index') }}" class="w-100 bsColor btn btn-secondary" role="button">Apply for this offer</a></td>
