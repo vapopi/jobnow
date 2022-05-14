@@ -11,9 +11,21 @@ function Offers({props}) {
     const apiApplicatedOffers = '/api/applicatedoffers';
 
     const [offers, setOffers] = useState([]);
+    const [filter, setFilter] = useState([])
     const [offer, setOffer] = useState('');
+    const [offerFind, setOfferFind] = useState("")
     const [curriculum, setCurriculum] = useState();
     const [state, setState] = useState();
+
+    useEffect(() => {
+        getOffers();
+    }, []);
+
+    useEffect( () => {
+        setFilter(offers)
+    
+    }, [offers])
+
 
     const getOffers = async () => {
         await axios.get(url).then(result => {
@@ -53,10 +65,11 @@ function Offers({props}) {
 
     }
 
-
-    useEffect(() => {
-        getOffers();
-    }, []);
+    function filterOffer(ofr){
+        return function(x){
+          return x.description.toLowerCase().includes(ofr) || !ofr
+        }
+    }
 
     return (
         <div className="w-100 ">
@@ -73,6 +86,13 @@ function Offers({props}) {
                     <h5 className='text-center'><strong>List all offers</strong></h5>
                     <br/>
                     <div className='row'>
+                        <input 
+                        className="form-control mb-2" 
+                        name="offerFind" 
+                        onChange={e => setOfferFind(e.target.value)} 
+                        type="text" 
+                        placeholder="🔎︎ Search offers"
+                        style={{backgroundColor: "#E6E6E6"}}/>
                         <div style={{margin:"0 auto"}} className='col-12'>
                             {
                                 <table className="table">
@@ -88,9 +108,9 @@ function Offers({props}) {
 
                                     <tbody>
                                     {
-                                        offers.map((element, index) => {
+                                        filter.filter(filterOffer(offerFind)).map((element) => {
                                             return (
-                                                <tr key={index}>
+                                                <tr key={element.id}>
                                                     <td>{element.id}</td>
                                                     <td>{element.title}</td>
                                                     <td>{element.description}</td>
