@@ -83,7 +83,7 @@
                 <hr>
                 <ul class="name ms-auto">
                     <div class="info-user">
-                        @if(Auth::user()->role_id == 4)
+                        @if(Auth::user()->role_id == 4 || Auth::user()->role_id == 2 || Auth::user()->role_id == 3)
                             @if( \App\Models\Notification::where('author_id', '=', Auth::user()->id)->count() == 0)
                                 <span>
                                     <a class="notis nav no-special" href="{{route('notifications.index')}}" role="button"><i class="bi bi-bell-fill"></i> 
@@ -129,6 +129,18 @@
                     @yield('content')
                 </main>
             </div>
+        </div>
+    @else
+        <h3 class="mt-5 text-center">Verify your email for starting using jobnow!</h3><br>
+        <div style="text-align:center;">
+            <button class="btn btn-primary bg-dark text-light mx-auto w-25 dropdown-item" href="{{ route('logout') }}"
+                onclick="event.preventDefault();
+                document.getElementById('logout-form').submit();">
+                {{ __('Logout') }}
+            </button>
+            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+            @csrf
+            </form>
         </div>
     @endif
 
