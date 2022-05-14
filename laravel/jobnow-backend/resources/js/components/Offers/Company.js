@@ -27,7 +27,7 @@ const Company = ({id}) => {
 }
 
 Company.propTypes = {
-    id: PropTypes.int,
+    id: PropTypes.number,
 }
 
 export default Company

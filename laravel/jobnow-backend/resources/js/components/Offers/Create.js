@@ -28,7 +28,7 @@ function Create({props}) {
     const getAreas = async () => {
         await axios.get(apiAreas).then(result => {
             const areasDB = result.data;
-            console.log(areas)
+
             setAreas(areasDB.map((valor) => {
                 return {...valor}
             }));
@@ -70,16 +70,35 @@ function Create({props}) {
 
             <h1 className='text-center'><strong>OFFERS</strong></h1>
             <div className="container mt-5" style={{textAlign: 'center'}}>
-                <a className="color btn btn-primary" href="/offers" role="button">List offers</a><span> </span>
-                <a className="color btn btn-primary" href="/offers/create" role="button">Create offer</a><span> </span>
-                <a className="color btn btn-primary" href="/apply" role="button" disabled>View applied offers</a><span> </span>
+                <a 
+                    className="color btn btn-primary" 
+                    href="/offers" 
+                    role="button">List offers
+                </a><span> </span>
+
+                <a 
+                    className="color btn btn-primary" 
+                    href="/offers/create" 
+                    role="button">Create offer
+                </a><span> </span>
+
+                <a 
+                    className="color btn btn-primary" 
+                    href="/apply" 
+                    role="button">View applied offers
+                </a><span> </span>
+                
                 <hr/>
             </div>
 
             {            
 
                 companies.length === 0 ? (
-                        <li className="list-group-item" style={{textAlign: "center", color: "white", backgroundColor: "#245DD8"}}>You don't have any company.</li>
+                        <li 
+                            className="list-group-item" 
+                            style={{textAlign: "center", color: "white", backgroundColor: "#245DD8"}}
+                            >You don't have any company.
+                        </li>
                     ) : 
                     (
                     <>
@@ -177,11 +196,11 @@ function Create({props}) {
     );
 }
 
-export default Create;
-
 Create.propTypes = {
     props: PropTypes.object,
 }
+
+export default Create;
 
 if (document.getElementById('react-createOffers')) {
 

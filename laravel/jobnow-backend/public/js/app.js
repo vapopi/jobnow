@@ -5889,6 +5889,8 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var axios__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(axios__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var bootstrap_dist_css_bootstrap_css__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! bootstrap/dist/css/bootstrap.css */ "./node_modules/bootstrap/dist/css/bootstrap.css");
 /* harmony import */ var _Offer__WEBPACK_IMPORTED_MODULE_5__ = __webpack_require__(/*! ./Offer */ "./resources/js/components/Offers/Offer.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! prop-types */ "./node_modules/prop-types/index.js");
+/* harmony import */ var prop_types__WEBPACK_IMPORTED_MODULE_7___default = /*#__PURE__*/__webpack_require__.n(prop_types__WEBPACK_IMPORTED_MODULE_7__);
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
 
@@ -5913,6 +5915,7 @@ function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len 
 function _iterableToArrayLimit(arr, i) { var _i = arr == null ? null : typeof Symbol !== "undefined" && arr[Symbol.iterator] || arr["@@iterator"]; if (_i == null) return; var _arr = []; var _n = true; var _d = false; var _s, _e; try { for (_i = _i.call(arr); !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
 
 function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
 
 
 
@@ -6044,7 +6047,7 @@ function Apply(_ref) {
 }
 
 Apply.propTypes = {
-  props: PropTypes.object
+  props: (prop_types__WEBPACK_IMPORTED_MODULE_7___default().object)
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Apply);
 
@@ -6142,7 +6145,7 @@ var Area = function Area(_ref) {
 };
 
 Area.propTypes = {
-  id: (prop_types__WEBPACK_IMPORTED_MODULE_4___default().int)
+  id: (prop_types__WEBPACK_IMPORTED_MODULE_4___default().number)
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Area);
 
@@ -6232,7 +6235,7 @@ var Company = function Company(_ref) {
 };
 
 Company.propTypes = {
-  id: (prop_types__WEBPACK_IMPORTED_MODULE_4___default().int)
+  id: (prop_types__WEBPACK_IMPORTED_MODULE_4___default().number)
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Company);
 
@@ -6354,7 +6357,6 @@ function Create(_ref) {
               _context2.next = 2;
               return axios__WEBPACK_IMPORTED_MODULE_3___default().get(apiAreas).then(function (result) {
                 var areasDB = result.data;
-                console.log(areas);
                 setAreas(areasDB.map(function (valor) {
                   return _objectSpread({}, valor);
                 }));
@@ -6426,7 +6428,6 @@ function Create(_ref) {
         className: "color btn btn-primary",
         href: "/apply",
         role: "button",
-        disabled: true,
         children: "View applied offers"
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
         children: " "
@@ -6526,10 +6527,10 @@ function Create(_ref) {
   });
 }
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Create);
 Create.propTypes = {
   props: (prop_types__WEBPACK_IMPORTED_MODULE_6___default().object)
 };
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Create);
 
 if (document.getElementById('react-createOffers')) {
   var element = document.getElementById('react-createOffers');
@@ -6625,7 +6626,7 @@ var Offer = function Offer(_ref) {
 };
 
 Offer.propTypes = {
-  id: (prop_types__WEBPACK_IMPORTED_MODULE_4___default().int)
+  id: (prop_types__WEBPACK_IMPORTED_MODULE_4___default().number)
 };
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Offer);
 
@@ -6820,7 +6821,6 @@ function Offers(_ref) {
         className: "color btn btn-primary",
         href: "/apply",
         role: "button",
-        disabled: true,
         children: "View applied offers"
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("span", {
         children: " "

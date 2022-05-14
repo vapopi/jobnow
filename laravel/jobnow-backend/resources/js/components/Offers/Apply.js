@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.css';
 import Offer from './Offer'
+import PropTypes from 'prop-types';
 
 
 function Apply({props}) {

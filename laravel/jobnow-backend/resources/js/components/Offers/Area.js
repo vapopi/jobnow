@@ -28,8 +28,7 @@ const Area = ({id}) => {
 }
 
 Area.propTypes = {
-    id: PropTypes.int,
+    id: PropTypes.number,
 }
-
 
 export default Area
