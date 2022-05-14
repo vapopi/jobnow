@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
+import PropTypes from 'prop-types';
 
 const Company = ({id}) => {
 
@@ -15,9 +16,7 @@ const Company = ({id}) => {
     }
 
     useEffect(() => {
-        
         getCompanyById();
-
     }, []);
 
     return (
@@ -25,6 +24,10 @@ const Company = ({id}) => {
             { company.name }
         </>
     )
+}
+
+Company.propTypes = {
+    id: PropTypes.int,
 }
 
 export default Company

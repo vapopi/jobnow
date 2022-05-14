@@ -1,5 +1,6 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
+import PropTypes from 'prop-types';
 
 const Offer = ({id}) => {
 
@@ -26,4 +27,9 @@ const Offer = ({id}) => {
     )
 }
 
+Offer.propTypes = {
+    id: PropTypes.int,
+}
+
 export default Offer
+

@@ -4,31 +4,23 @@ import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.css';
 import Company from './Company'
 import Area from './Area'
+import PropTypes from 'prop-types';
 
 function Offers({props}) {
 
-    const url = '/api/offers';
+    const apiOffers = '/api/offers';
     const apiApplicatedOffers = '/api/applicatedoffers';
 
     const [offers, setOffers] = useState([]);
+    const [offer, setOffer] = useState({});
+    const [curriculum, setCurriculum] = useState([]);
     const [filter, setFilter] = useState([])
-    const [offer, setOffer] = useState('');
     const [offerFind, setOfferFind] = useState("")
-    const [curriculum, setCurriculum] = useState();
-    const [state, setState] = useState();
-
-    useEffect(() => {
-        getOffers();
-    }, []);
-
-    useEffect( () => {
-        setFilter(offers)
-    
-    }, [offers])
+    const [state, setState] = useState({});
 
 
     const getOffers = async () => {
-        await axios.get(url).then(result => {
+        await axios.get(apiOffers).then(result => {
             const offersDB = result.data;
 
             setOffers(offersDB.map((valor) => {
@@ -37,13 +29,22 @@ function Offers({props}) {
             }));
         });
     }
-    
-    
+
+    useEffect(() => {
+        getOffers();
+    }, []);
+
+
+    useEffect( () => {
+        setFilter(offers)
+    }, [offers])
+
+
     const postApply = () => {
 
         var formData = new FormData();
         formData.append("curriculum", curriculum);
-        formData.append("offer_id", offer);
+        formData.append("offer_id", offer.offer_id);
         formData.append("user_id", props.userid);
 
         axios({
@@ -51,7 +52,7 @@ function Offers({props}) {
             url: apiApplicatedOffers,
             data: formData,
             header: {
-                      'Content-Type': 'multipart/form-data',
+                    'Content-Type': 'multipart/form-data',
                     },
         }).then(response => {
             window.location.reload();
@@ -61,14 +62,22 @@ function Offers({props}) {
         .catch(error => {
             setState(error.response.data) 
         });
-
-
     }
+
 
     function filterOffer(ofr){
         return function(x){
           return x.description.toLowerCase().includes(ofr) || !ofr
         }
+    }
+
+    const handleInputChange = ({target}) => {
+
+        setOffer({
+            ...offer,
+            [target.name]:target.value
+
+        })
     }
 
     return (
@@ -82,7 +91,6 @@ function Offers({props}) {
                 <hr/>
                 <br/>
                 <div className="float-start w-50 listOffers">
-
                     <h5 className='text-center'><strong>List all offers</strong></h5>
                     <br/>
                     <div className='row'>
@@ -93,6 +101,7 @@ function Offers({props}) {
                         type="text" 
                         placeholder="🔎︎ Search offers"
                         style={{backgroundColor: "#E6E6E6"}}/>
+
                         <div style={{margin:"0 auto"}} className='col-12'>
                             {
                                 <table className="table">
@@ -105,7 +114,6 @@ function Offers({props}) {
                                             <th>Professional Area</th>
                                         </tr>
                                     </thead>
-
                                     <tbody>
                                     {
                                         filter.filter(filterOffer(offerFind)).map((element) => {
@@ -138,12 +146,20 @@ function Offers({props}) {
                                 <form>
                                     <div>
                                         <p>Choose the id of the offer:</p>
-                                        <select name="offer_id" onChange={(data) => setOffer(data.target.value)} className="w-50 btn btn-secondary dropdown-toggle" key="usuaris">
+                                        <select 
+                                            name="offer_id" 
+                                            onChange={handleInputChange} 
+                                            className="w-50 btn btn-secondary dropdown-toggle" 
+                                            key="usuaris">
+
                                         <option>Select ID</option>
                                         {
                                             offers.map((element, index) => {
                                                 return(
-                                                    <option key={ element.id } value={ element.id }>{ element.id }</option>
+                                                    <option
+                                                        key={ element.id } 
+                                                        value={ element.id }>{ element.id }
+                                                    </option>
                                                 )
                                             })
                                         }
@@ -163,8 +179,17 @@ function Offers({props}) {
                                         )
                                     }
                                     <span className="text-warning"></span>
-                                    <input name="curriculum" type="file" onChange={(data) => setCurriculum(data.target.files[0])} className="form-control mb-2"/>
-                                    <button onClick={() => postApply()} className="btn btn-primary btn-block" type="button" style={{ width: "100%"}}>Send</button>
+                                    <input 
+                                        name="curriculum" 
+                                        type="file" 
+                                        onChange={(data) => setCurriculum(data.target.files[0])}
+                                        className="form-control mb-2"/>
+
+                                    <button 
+                                        onClick={() => postApply()} 
+                                        className="btn btn-primary btn-block" 
+                                        type="button" 
+                                        style={{ width: "100%"}}>Send</button>
                                 </form>
                             </div>
                         </div>
@@ -173,6 +198,10 @@ function Offers({props}) {
             </div>
         </div>
     );
+}
+
+Offers.propTypes = {
+    props: PropTypes.object,
 }
 
 export default Offers;

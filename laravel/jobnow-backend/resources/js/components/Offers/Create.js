@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import ReactDOM from 'react-dom';
 import axios from 'axios';
 import 'bootstrap/dist/css/bootstrap.css';
+import PropTypes from 'prop-types';
 
 function Create({props}) {
 
@@ -11,11 +12,8 @@ function Create({props}) {
 
     const [companies, setCompanies] = useState([]);
     const [areas, setAreas] = useState([]);
+    const [offer, setOffer] = useState({});
     const [state, setState] = useState('');
-    const [title, setTitle] = useState('');
-    const [description, setDescription] = useState('');
-    const [area, setArea] = useState(1);
-    const [company, setCompany] = useState();
 
 
     const getCompanies = async () => {
@@ -39,17 +37,16 @@ function Create({props}) {
 
     const postOffer = () => {
 
-        setCompany(companies[0].id)
-
         axios.post(apiOffers, {
-            title: title,
-            description: description,
-            company_id: company,
-            professional_area_id: area
+            title: offer.title,
+            description: offer.description,
+            company_id: offer.company_id,
+            professional_area_id: offer.professional_area_id
+            
         }).then(response => {
             setState(response) 
-        })
-        .catch(error => {
+
+        }).catch(error => {
             setState(error.response.data) 
             
         });
@@ -60,6 +57,13 @@ function Create({props}) {
         getCompanies();
     }, []);
 
+    const handleInputChange = ({target}) => {
+
+        setOffer({
+            ...offer,
+            [target.name]:target.value
+        })
+    }
 
     return (
         <div className="text">
@@ -82,20 +86,36 @@ function Create({props}) {
                         <br/>
                         <p></p>
                         <h5 className='text-center'><strong>Create offer</strong></h5>
+
                         <div className="w-75 mx-auto">
                             <div className="form-group">
                                 <label>Title</label>
-                                <input type="text" onChange={(event) => setTitle(event.target.value)} className="form-control" required/>
+                                <input 
+                                    type="text" 
+                                    name="title"
+                                    onChange={handleInputChange} 
+                                    className="form-control" 
+                                    required/>
                             </div>
+
                             <br/>
                             <div className="form-group">
                                 <label>Description</label>
-                                <input type="text" onChange={(event) => setDescription(event.target.value)} className="form-control" required/>
+                                <input 
+                                    type="text" 
+                                    name="description"
+                                    onChange={handleInputChange} 
+                                    className="form-control" 
+                                    required/>
                             </div>
 
                             <br/>
                             <p>Choose your company:</p>
-                            <select className="btn btn-secondary btn-block" onChange={ (event) => setCompany(event.target.value)}>
+                            <select 
+                                name="company_id"
+                                className="btn btn-secondary btn-block" 
+                                onChange={handleInputChange}>
+
                             <option>Select company</option>
                             {
                                 companies.map((key, index) => {
@@ -111,7 +131,11 @@ function Create({props}) {
 
                             <br/><br/>
                             <p>Choose the professional area:</p>
-                            <select className="btn btn-secondary btn-block" onChange={ (event) => setArea(event.target.value)}>
+                            <select 
+                                name="professional_area_id"
+                                className="btn btn-secondary btn-block" 
+                                onChange={handleInputChange}>
+
                             <option>Select area</option>
                             {
                                 areas.map(key => (
@@ -133,8 +157,17 @@ function Create({props}) {
                                 )
                             }
                             <br/><br/>
-                            <button type="button" onClick={() => postOffer()} className="w-25 btn btn-primary">Submit</button><span> </span>
-                            <button type="reset" className="w-25 btn btn-secondary">Reset</button>
+
+                            <button 
+                                type="button" 
+                                onClick={() => postOffer()} 
+                                className="w-25 btn btn-primary">Submit
+                            </button><span> </span>
+
+                            <button 
+                                type="reset" 
+                                className="w-25 btn btn-secondary">Reset
+                            </button>
                             <br/><br/>
                         </div>
                     </>
@@ -145,6 +178,10 @@ function Create({props}) {
 }
 
 export default Create;
+
+Create.propTypes = {
+    props: PropTypes.object,
+}
 
 if (document.getElementById('react-createOffers')) {
 
