@@ -32,11 +32,11 @@ class CorporationController extends Controller
      */
     public function show(Company $corporation)
     {
-        $file = File::where('id', $corporation->logo_id)->first();
-
+        $offers = Offer::where('company_id', $corporation->id)->get();
         return view('corporations.show', [
-            'corporation' => $corporation,
-            'file' => $file,
+            "corporation" => $corporation,
+            "offers" => $offers, 
+            "file" => File::where('id', $corporation->logo_id)->first()
         ]);
     }
 

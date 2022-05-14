@@ -139,10 +139,19 @@ class AccountController extends Controller
     public function show(User $account)
     {
         $file = File::where('id', $account->avatar_id)->first();
+        $follows = Follower::where('profile_id', $account->id)->count();
+        $validate = Follower::where('profile_id', $account->id)->where('follower_id', Auth::user()->id)->first();
+        $posts = Post::where('author_id', $account->id)->get();
+        $files = File::all();
 
         return view('accounts.show',  [
+            "accounts" => User::all(),
+            "validate" => $validate,
             "account" => $account,
-            "file" => $file
+            "file" => $file,
+            "follows" => $follows,
+            "posts" => $posts,
+            "files" => $files,
         ]);
     }
 

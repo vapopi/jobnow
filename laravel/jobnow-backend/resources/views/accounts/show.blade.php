@@ -32,7 +32,9 @@
             <p class="card-text"><strong>Surnames:</strong> {{$account->surnames}}</p>
             <p class="card-text"><strong>Email:</strong> {{$account->email}}</p>
             <p class="card-text"><strong>Phone:</strong> {{$account->phone}}</p>
-            <p class="card-text"><strong>Data de naixement:</strong> {{$account->birth_date}}</p>
+            <p class="card-text"><strong>Birth date:</strong> {{$account->birth_date}}</p>
+            <p class="card-text"><strong>Followers:</strong> {{$follows}}</p>
+
 
             <div>
                 @if($account->premium == 0)
@@ -59,6 +61,29 @@
 
     </div>
   </div>
+      <br>
+    <h5 class="text-center">Posts of the user</h5>
+    @foreach($posts as $post)
+
+        <div class="card w-50 mx-auto" style="width: 18rem;">
+            <div class="card-body overflow-auto">
+                
+                <div class="w-50">
+                    @foreach($files as $file)
+                        @if($file->id == $post->image_id)
+                            <div class="w-50 float-end">
+                                <img class="float-end w-75" src="{{ asset("storage/{$file->filename}") }}" title="Profile picture"/>
+                            </div>
+                        @endif
+                    @endforeach
+
+                    <p>Title: {{ $post->title }}</p>
+                    <p>Description: {{ $post->description }}</p>
+                </div>
+            </div>
+        </div>
+        <br>
+    @endforeach
 </div>
 
 @endsection
