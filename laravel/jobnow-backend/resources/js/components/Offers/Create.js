@@ -13,12 +13,17 @@ function Create({props}) {
     const [companies, setCompanies] = useState([]);
     const [areas, setAreas] = useState([]);
     const [offer, setOffer] = useState({});
-    const [state, setState] = useState('');
+    const [state, setState] = useState();
 
 
     const getCompanies = async () => {
         await axios.get(apiCompanies).then(result => {
             const companiesDB = result.data;
+            
+            if(companiesDB.length != 0) {
+                setOffer({company_id: companiesDB[0].id, professional_area_id: 1})
+            }
+
             setCompanies(companiesDB.map((valor) => {
                 return {...valor}
             }));
@@ -135,7 +140,6 @@ function Create({props}) {
                                 className="btn btn-secondary btn-block" 
                                 onChange={handleInputChange}>
 
-                            <option>Select company</option>
                             {
                                 companies.map((key, index) => {
                                     if(key.author_id == props.userid)
@@ -155,7 +159,6 @@ function Create({props}) {
                                 className="btn btn-secondary btn-block" 
                                 onChange={handleInputChange}>
 
-                            <option>Select area</option>
                             {
                                 areas.map(key => (
                                     <option key={ key.id } value={ key.id }>{ key.name }</option>

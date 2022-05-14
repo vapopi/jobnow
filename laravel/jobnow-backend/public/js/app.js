@@ -6316,7 +6316,7 @@ function Create(_ref) {
       offer = _useState6[0],
       setOffer = _useState6[1];
 
-  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(''),
+  var _useState7 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)(),
       _useState8 = _slicedToArray(_useState7, 2),
       state = _useState8[0],
       setState = _useState8[1];
@@ -6330,6 +6330,14 @@ function Create(_ref) {
               _context.next = 2;
               return axios__WEBPACK_IMPORTED_MODULE_3___default().get(apiCompanies).then(function (result) {
                 var companiesDB = result.data;
+
+                if (companiesDB.length != 0) {
+                  setOffer({
+                    company_id: companiesDB[0].id,
+                    professional_area_id: 1
+                  });
+                }
+
                 setCompanies(companiesDB.map(function (valor) {
                   return _objectSpread({}, valor);
                 }));
@@ -6472,34 +6480,30 @@ function Create(_ref) {
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("p", {
           children: "Choose your company:"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("select", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("select", {
           name: "company_id",
           className: "btn btn-secondary btn-block",
           onChange: handleInputChange,
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("option", {
-            children: "Select company"
-          }), companies.map(function (key, index) {
+          children: companies.map(function (key, index) {
             if (key.author_id == props.userid) {
               return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("option", {
                 value: key.id,
                 children: key.name
               }, index);
             }
-          })]
+          })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("p", {
           children: "Choose the professional area:"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("select", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("select", {
           name: "professional_area_id",
           className: "btn btn-secondary btn-block",
           onChange: handleInputChange,
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("option", {
-            children: "Select area"
-          }), areas.map(function (key) {
+          children: areas.map(function (key) {
             return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("option", {
               value: key.id,
               children: key.name
             }, key.id);
-          })]
+          })
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("br", {}), state != null ? state.status === 200 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
           className: "text-center text-success",
           children: state.data
@@ -6657,15 +6661,15 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__ = __webpack_require__(/*! react/jsx-runtime */ "./node_modules/react/jsx-runtime.js");
 
 
+function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
+
+function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
+
 function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); enumerableOnly && (symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; })), keys.push.apply(keys, symbols); } return keys; }
 
 function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = null != arguments[i] ? arguments[i] : {}; i % 2 ? ownKeys(Object(source), !0).forEach(function (key) { _defineProperty(target, key, source[key]); }) : Object.getOwnPropertyDescriptors ? Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)) : ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } return target; }
 
 function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
-function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
-
-function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
 function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
 
@@ -6724,8 +6728,13 @@ function Offers(_ref) {
       state = _useState12[0],
       setState = _useState12[1];
 
+  var handleInputChange = function handleInputChange(_ref2) {
+    var target = _ref2.target;
+    setOffer(_objectSpread(_objectSpread({}, offer), {}, _defineProperty({}, target.name, target.value)));
+  };
+
   var getOffers = /*#__PURE__*/function () {
-    var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
+    var _ref3 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
       return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee$(_context) {
         while (1) {
           switch (_context.prev = _context.next) {
@@ -6733,6 +6742,13 @@ function Offers(_ref) {
               _context.next = 2;
               return axios__WEBPACK_IMPORTED_MODULE_3___default().get(apiOffers).then(function (result) {
                 var offersDB = result.data;
+
+                if (offersDB.length != 0) {
+                  setOffer({
+                    offer_id: offersDB[0].id
+                  });
+                }
+
                 setOffers(offersDB.map(function (valor) {
                   return _objectSpread(_objectSpread({}, valor), {}, {
                     id: valor.id
@@ -6749,16 +6765,9 @@ function Offers(_ref) {
     }));
 
     return function getOffers() {
-      return _ref2.apply(this, arguments);
+      return _ref3.apply(this, arguments);
     };
   }();
-
-  (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
-    getOffers();
-  }, []);
-  (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
-    setFilter(offers);
-  }, [offers]);
 
   var postApply = function postApply() {
     var formData = new FormData();
@@ -6786,11 +6795,12 @@ function Offers(_ref) {
     };
   }
 
-  var handleInputChange = function handleInputChange(_ref3) {
-    var target = _ref3.target;
-    setOffer(_objectSpread(_objectSpread({}, offer), {}, _defineProperty({}, target.name, target.value)));
-  };
-
+  (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
+    getOffers();
+  }, []);
+  (0,react__WEBPACK_IMPORTED_MODULE_1__.useEffect)(function () {
+    setFilter(offers);
+  }, [offers]);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
     className: "w-100 ",
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("h1", {
@@ -6915,18 +6925,16 @@ function Offers(_ref) {
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("div", {
                   children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("p", {
                     children: "Choose the id of the offer:"
-                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsxs)("select", {
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("select", {
                     name: "offer_id",
                     onChange: handleInputChange,
                     className: "w-50 btn btn-secondary dropdown-toggle",
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("option", {
-                      children: "Select ID"
-                    }), offers.map(function (element, index) {
+                    children: offers.map(function (element, index) {
                       return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("option", {
                         value: element.id,
                         children: element.id
                       }, element.id);
-                    })]
+                    })
                   }, "usuaris")]
                 }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_7__.jsx)("p", {
                   children: "Attach your curriculum vitae"

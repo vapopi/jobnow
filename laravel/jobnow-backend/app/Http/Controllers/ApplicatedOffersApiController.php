@@ -37,7 +37,7 @@ class ApplicatedOffersApiController extends Controller
         ]);
 
         $input = $request->all();
-
+        
         $upload = $request->file('curriculum');
         $fileName = $upload->getClientOriginalName();
         $fileSize = $upload->getSize();

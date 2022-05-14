@@ -18,10 +18,21 @@ function Offers({props}) {
     const [offerFind, setOfferFind] = useState("")
     const [state, setState] = useState({});
 
+   
+    const handleInputChange = ({target}) => {
+        setOffer({
+            ...offer,
+            [target.name]:target.value
+        })
+    }
 
     const getOffers = async () => {
         await axios.get(apiOffers).then(result => {
             const offersDB = result.data;
+
+            if(offersDB.length != 0) {
+                setOffer({offer_id: offersDB[0].id})
+            }
 
             setOffers(offersDB.map((valor) => {
                 return {...valor, id:valor.id}
@@ -29,16 +40,6 @@ function Offers({props}) {
             }));
         });
     }
-
-    useEffect(() => {
-        getOffers();
-    }, []);
-
-
-    useEffect( () => {
-        setFilter(offers)
-    }, [offers])
-
 
     const postApply = () => {
 
@@ -52,7 +53,7 @@ function Offers({props}) {
             url: apiApplicatedOffers,
             data: formData,
             header: {
-                    'Content-Type': 'multipart/form-data',
+                        'Content-Type': 'multipart/form-data',
                     },
         }).then(response => {
             window.location.reload();
@@ -71,14 +72,16 @@ function Offers({props}) {
         }
     }
 
-    const handleInputChange = ({target}) => {
 
-        setOffer({
-            ...offer,
-            [target.name]:target.value
+    useEffect(() => {
+        getOffers();
+    }, []);
 
-        })
-    }
+
+    useEffect( () => {
+        setFilter(offers)
+    }, [offers])
+
 
     return (
         <div className="w-100 ">
@@ -167,7 +170,6 @@ function Offers({props}) {
                                             className="w-50 btn btn-secondary dropdown-toggle" 
                                             key="usuaris">
 
-                                        <option>Select ID</option>
                                         {
                                             offers.map((element, index) => {
                                                 return(
