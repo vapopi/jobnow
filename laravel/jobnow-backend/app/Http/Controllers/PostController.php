@@ -68,7 +68,7 @@ class PostController extends Controller
 
         $post = Post::create($input);
 
-        return \response("Post created successfully");
+        return \response("Post created successfully. Please click on View Posts to see your new post");
     }
 
     /**
@@ -108,13 +108,13 @@ class PostController extends Controller
     public function destroy(Post $post)
     {
         $file = File::where('id', $post->image_id)->first();
-        $like = Like::where('post_id', $post->id)->delete();
+        Like::where('post_id', $post->id)->delete();
 
         $post->delete();
         $file->delete();
         
         Storage::disk('public')->delete($file->filepath);
 
-        return \response("Success. The post ${post->id} has been eliminated");
+        return \response("Success. The post {$post->id} has been eliminated");
     }
 }

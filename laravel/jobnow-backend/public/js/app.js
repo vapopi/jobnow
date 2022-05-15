@@ -7056,7 +7056,6 @@ var Create = function Create(_ref) {
 
   var createPost = function createPost(e) {
     e.preventDefault();
-    console.log(post);
     var formData = new FormData();
     formData.append("title", post.title);
     formData.append("description", post.description);
@@ -7070,6 +7069,7 @@ var Create = function Create(_ref) {
         'Content-Type': 'multipart/form-data'
       }
     }).then(function (response) {
+      console.log(response.data);
       alert(response.data);
     })["catch"](function (errors) {
       alert(errors.response.data);
@@ -7361,7 +7361,7 @@ function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
 
 
 
-var Image = function Image(_ref) {
+var PostImg = function PostImg(_ref) {
   var fileId = _ref.fileId;
 
   var _useState = (0,react__WEBPACK_IMPORTED_MODULE_2__.useState)({}),
@@ -7398,11 +7398,13 @@ var Image = function Image(_ref) {
     getImageById();
   }, []);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("img", {
+    width: "612",
+    height: "400",
     src: 'storage/' + image.filename
   });
 };
 
-/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (Image);
+/* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (PostImg);
 
 /***/ }),
 
