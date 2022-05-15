@@ -1,0 +1,103 @@
+.main-body {
+    padding: 15px;
+}
+.card {
+    box-shadow: 0 1px 3px 0 rgba(0,0,0,.1), 0 1px 2px 0 rgba(0,0,0,.06);
+}
+
+.card {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+    word-wrap: break-word;
+    background-color: #fff;
+    background-clip: border-box;
+    border: 0 solid rgba(0,0,0,.125);
+    border-radius: .25rem;
+}
+
+.premium-photo {
+    border: 3px solid rgb(207, 189, 28)
+}
+
+.card-body {
+    flex: 1 1 auto;
+    min-height: 1px;
+    padding: 1rem;
+}
+
+.gutters-sm {
+    margin-right: -8px;
+    margin-left: -8px;
+}
+
+.gutters-sm>.col, .gutters-sm>[class*=col-] {
+    padding-right: 8px;
+    padding-left: 8px;
+}
+
+.mb-3, .my-3 {
+    margin-bottom: 1rem!important;
+}
+
+.bg-gray-300 {
+    background-color: #e2e8f0;
+}
+
+.h-100 {
+    height: 100%!important;
+}
+
+.shadow-none {
+    box-shadow: none!important;
+}
+
+.premium-user{
+    color: #cfb53b !important;
+}
+
+.btn-profile{
+    border-color: #6356e5;
+    color: white;
+    background: #6356e5 !important;
+}
+
+.btn-profile:hover{
+    border-color: #6356e5;
+    color: white;
+    background: #4f46b9 !important;
+}
+
+.circle-img {
+    width: 130% !important;
+    height: 50% !important;
+    overflow: hidden;
+}
+
+.circle-img img{
+    width: 130px !important;
+    height: 130px !important;
+    overflow: hidden;
+}
+
+.btn-profile:focus{
+    box-shadow: inset 0 1px 1px rgba(111, 52, 206, 0.075), 0 0 8px rgba(111, 0, 255, 0.6) !important;
+}
+
+.btn-delete{
+    border-color: #323232;
+    color: white;
+    background: #323232 !important;
+}
+
+.btn-delete:hover{
+    border-color: #323232;
+    color: white;
+    background: #3b3b3b !important;
+}
+
+.btn-delete:focus{
+    border-color: #323232;
+    box-shadow: inset 0 1px 1px rgba(111, 52, 206, 0.075), 0 0 8px rgba(117, 117, 117, 0.6) !important;
+}
