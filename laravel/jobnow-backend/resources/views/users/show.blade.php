@@ -141,6 +141,8 @@
                     </div>
                 </div>
             </div>
+            <h4>User activity</h4>
+            <hr>
             <div class="accordion" id="accordionExample">
                 <div class="accordion-item">
                     <h2 class="accordion-header" id="flush-headingOne">
@@ -151,7 +153,6 @@
                     <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
                         <div class="accordion-body">
                             <span class="mt-4"></span>
-                            <hr>
                             <div class="row gutters-sm">
                                 @foreach($companies as $company)
                                 <div class="col-sm-6 mb-3">
