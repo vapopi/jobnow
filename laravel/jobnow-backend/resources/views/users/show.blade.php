@@ -141,52 +141,75 @@
                     </div>
                 </div>
             </div>
-            <span class="mt-4"></span>
-            <h4>Companies ({{\App\Models\Company::where('author_id', '=', $user->id)->count()}})</h4>
-            <hr>
-            <div class="row gutters-sm">
-                @foreach($companies as $company)
-                <div class="col-sm-6 mb-3">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            @foreach($files as $file)
-                            @if($file->id == $company->logo_id)
-                            <div class="w-50 float-end">
-                                <img class="float-end w-75" src="{{ asset("storage/{$file->filename}") }}" title="Logo Company" />
+            <div class="accordion" id="accordionExample">
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="flush-headingOne">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                            Companies ({{\App\Models\Company::where('author_id', '=', $user->id)->count()}})
+                        </button>
+                    </h2>
+                    <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                        <div class="accordion-body">
+                            <span class="mt-4"></span>
+                            <hr>
+                            <div class="row gutters-sm">
+                                @foreach($companies as $company)
+                                <div class="col-sm-6 mb-3">
+                                    <div class="card h-100">
+                                        <div class="card-body">
+                                            @foreach($files as $file)
+                                            @if($file->id == $company->logo_id)
+                                            <div class="w-50 float-end">
+                                                <img class="float-end w-75" src="{{ asset("storage/{$file->filename}") }}" title="Logo Company" />
+                                            </div>
+                                            @endif
+                                            @endforeach
+                                            <p>Name: {{ $company->name }}</p>
+                                            <p>Email: {{ $company->email }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                @endforeach
                             </div>
-                            @endif
-                            @endforeach
-                            <p>Name: {{ $company->name }}</p>
-                            <p>Email: {{ $company->email }}</p>
+
                         </div>
                     </div>
                 </div>
-                @endforeach
-            </div>
-            <br>
-            <h4>Posts ({{\App\Models\Post::where('author_id', '=', $user->id)->count()}})</h4>
-            <hr>
-            <div class="row gutters-sm">
-                @foreach($posts as $post)
-                <div class="col-sm-6 mb-3">
-                    <div class="card h-100">
-                        <div class="card-body">
-                            @foreach($files as $file)
-                            @if($file->id == $post->image_id)
-                            <div class="w-50 float-end">
-                                <img class="float-end w-75" src="{{ asset("storage/{$file->filename}") }}" title="Profile picture" />
+
+                <div class="accordion-item">
+                    <h2 class="accordion-header" id="headingTwo">
+                        <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                            Posts ({{\App\Models\Post::where('author_id', '=', $user->id)->count()}})
+                        </button>
+                    </h2>
+                    <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                        <div class="accordion-body">
+
+
+                            <div class="row gutters-sm">
+                                @foreach($posts as $post)
+                                <div class="col-sm-6 mb-3">
+                                    <div class="card h-100">
+                                        <div class="card-body">
+                                            @foreach($files as $file)
+                                            @if($file->id == $post->image_id)
+                                            <div class="w-50 float-end">
+                                                <img class="float-end w-75" src="{{ asset("storage/{$file->filename}") }}" title="Profile picture" />
+                                            </div>
+                                            @endif
+                                            @endforeach
+                                            <p>Title: {{ $post->title }}</p>
+                                            <p>Description: {{ $post->description }}</p>
+                                        </div>
+                                    </div>
+                                </div>
+                                @endforeach
                             </div>
-                            @endif
-                            @endforeach
-                            <p>Title: {{ $post->title }}</p>
-                            <p>Description: {{ $post->description }}</p>
                         </div>
                     </div>
                 </div>
-                @endforeach
             </div>
         </div>
-
     </div>
 </div>
 @endsection

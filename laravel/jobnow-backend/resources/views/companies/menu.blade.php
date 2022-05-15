@@ -46,9 +46,9 @@
                         </div>
                     </div>
                     <hr>
-                    <a class="w-25 color btn-profile btn btn-primary" href="{{route('companies.show', $company)}}" role="button">Show</a>
-                    <a class="w-25 color btn-profile btn btn-primary" href="{{route('companies.edit', $company)}}" role="button">Edit</a>
-                    <button class="w-25 btn-delete color btn btn-secondary" id="destroy" type="submit" role="button" data-bs-toggle="modal" data-bs-target="#confirmModal{{$company->id}}">Delete</button>
+                    <a class="btn-profile btn btn-primary" href="{{route('companies.show', $company)}}" role="button">Show</a>
+                    <a class="btn-profile btn btn-primary" href="{{route('companies.edit', $company)}}" role="button">Edit</a>
+                    <button class="btn-delete btn btn-secondary" id="destroy" type="submit" role="button" data-bs-toggle="modal" data-bs-target="#confirmModal{{$company->id}}">Delete</button>
                     <div class="modal fade" id="confirmModal{{$company->id}}" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                         <div class="modal-dialog">
                             <div class="modal-content">
