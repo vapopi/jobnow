@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Post;
 use App\Models\File;
+use App\Models\Like;
+use Illuminate\Support\Facades\Storage;
 
 class PostController extends Controller
 {
@@ -66,7 +68,7 @@ class PostController extends Controller
 
         $post = Post::create($input);
 
-        return \response("Post created successfully");
+        return \response("Post created successfully. Please click on View Posts to see your new post");
     }
 
     /**
@@ -103,10 +105,16 @@ class PostController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy(int $id)
+    public function destroy(Post $post)
     {
-        Post::destroy($id);
+        $file = File::where('id', $post->image_id)->first();
+        Like::where('post_id', $post->id)->delete();
 
-        return \response("Success. The post ${id} has been eliminated");
+        $post->delete();
+        $file->delete();
+        
+        Storage::disk('public')->delete($file->filepath);
+
+        return \response("Success. The post {$post->id} has been eliminated");
     }
 }

@@ -1,7 +1,7 @@
 import axios from 'axios'
 import React, { useEffect, useState } from 'react'
 
-const Image = ({fileId}) => {
+const PostImg = ({fileId}) => {
 
     const [image, setImage] = useState({});
 
@@ -23,8 +23,8 @@ const Image = ({fileId}) => {
 
   return (
 
-    <img src={'storage/' + image.filename}></img>
+    <img width="612" height="400" src={'storage/' + image.filename}></img>
   )
 }
 
-export default Image
+export default PostImg

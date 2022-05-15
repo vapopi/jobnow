@@ -26,23 +26,26 @@ const Create = ({props}) => {
   const createPost = e => {
 
     e.preventDefault();
-    console.log(post);
 
     var formData = new FormData();
+
     formData.append("title", post.title);
     formData.append("description", post.description);
     formData.append("image_id", image);
     formData.append("author_id", props.userid);
 
     axios({
+
       method: 'post',
       url: urlPosts,
       data: formData,
       header: {
                 'Content-Type': 'multipart/form-data',
               },
+
     }).then(response => {
 
+      console.log(response.data);
       alert(response.data);
 
     }).catch(errors => {
@@ -111,8 +114,8 @@ export default Create;
 
 if(document.getElementById('posts-create')) {
 
-    const element = document.getElementById('posts-create');
-    const props = Object.assign({}, element.dataset);
+  const element = document.getElementById('posts-create');
+  const props = Object.assign({}, element.dataset);
 
-    ReactDOM.render(<Create props = {props}/>, element);
+  ReactDOM.render(<Create props = {props}/>, element);
 }
