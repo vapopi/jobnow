@@ -44,8 +44,12 @@ const Posts = ({props}) => {
 
     if(confirmDeletePost) {
 
-        axios.delete(urlPosts + idPost);
-        alert("Post deleted successfully");
+        axios.delete(urlPosts + idPost).then(response => {
+
+          alert(response.data);
+          
+        });
+
         getPosts();
 
     }

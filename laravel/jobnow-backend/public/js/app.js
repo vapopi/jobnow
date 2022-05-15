@@ -7451,8 +7451,9 @@ var Posts = function Posts(_ref) {
     var confirmDeletePost = confirm("Are you sure you want to delete the post with id = " + idPost + " ?");
 
     if (confirmDeletePost) {
-      axios__WEBPACK_IMPORTED_MODULE_3___default()["delete"](urlPosts + idPost);
-      alert("Post deleted successfully");
+      axios__WEBPACK_IMPORTED_MODULE_3___default()["delete"](urlPosts + idPost).then(function (response) {
+        alert(response.data);
+      });
       getPosts();
     }
   };
