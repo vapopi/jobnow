@@ -48,7 +48,7 @@ a.notis{
 
 .dropdown-item:active{
     color: #323232 !important;
-    background-color: #bdb7ffb9 !important;
+    background-color: #E9ECEF !important;
 }
 
 
@@ -85,10 +85,6 @@ a.nav:focus {
     border-bottom: 1px dashed #ddd;
     margin: 40px 0;
 }
-
-/* ---------------------------------------------------
-    SIDEBAR STYLE
------------------------------------------------------ */
 
 .wrapper {
     display: flex;
@@ -243,15 +239,6 @@ a.nav.article:hover {
     transition: all 0.3s;
 }
 
-
-
-
-
-
-/* ---------------------------------------------------
-    MEDIAQUERIES
------------------------------------------------------ */
-
 @media (max-width: 768px) {
     #sidebar {
         margin-left: -250px;
@@ -259,5 +246,4 @@ a.nav.article:hover {
     #sidebar.active {
         margin-left: 0;
     }
-
 }

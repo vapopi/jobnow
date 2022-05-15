@@ -1,6 +1,13 @@
 @extends('layouts.app')
 @section('content')
+<!DOCTYPE html>
+<head>
+    <link href="{{ asset('css/offers.css') }}" rel="stylesheet">
+</head>
 
-<div id="react-createOffers" data-userId={{$authUserId}}></div>
+<body>
+    <div id="react-createOffers" data-userId={{$authUserId}}></div>
+</body>
+</html>
 
 @endsection
