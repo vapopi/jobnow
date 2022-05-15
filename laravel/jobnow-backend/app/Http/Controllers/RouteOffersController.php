@@ -3,6 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\ApplicatedOffer;
+use App\Models\Company;
+use App\Models\File;
+use App\Models\Offer;
 
 class RouteOffersController extends Controller
 {
@@ -25,4 +29,21 @@ class RouteOffersController extends Controller
     {
         return view("offers.create", ['authUserId' => \Auth::user()->id]);
     }
+
+
+    public function destroy(Offer $offer)
+    {
+        $applicated = ApplicatedOffer::where('offer_id', "=", $offer->id)->get();
+
+        foreach ($applicated as $app){
+            $app->delete();
+            File::where('id', "=", $app->curriculum)->delete();
+        }
+
+        $offer->delete();
+
+        return redirect()->route('companies.show', $offer->company_id)
+            ->with('success', 'The offer with ID'. ' '.$offer->id .' '.'has been eliminated');
+    }
+
 }

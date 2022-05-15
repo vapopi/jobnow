@@ -1,5 +1,7 @@
 import axios from 'axios';
 import React, { useEffect, useState } from 'react'
+import PropTypes from 'prop-types';
+
 
 const Area = ({id}) => {
 
@@ -15,9 +17,7 @@ const Area = ({id}) => {
     }
 
     useEffect(() => {
-        
         getArea();
-
     }, []);
 
     return (
@@ -25,6 +25,10 @@ const Area = ({id}) => {
             { area.name }
         </>
     )
+}
+
+Area.propTypes = {
+    id: PropTypes.number,
 }
 
 export default Area

@@ -143,13 +143,19 @@ class UserController extends Controller
         $file = File::where('id', $user->avatar_id)->first();
         $follows = Follower::where('profile_id', $user->id)->count();
         $validate = Follower::where('profile_id', $user->id)->where('follower_id', Auth::user()->id)->first();
+        $posts = Post::where('author_id', $user->id)->get();
+        $companies = Company::where('author_id', $user->id)->get();
+        $files = File::all();
 
         return view('users.show',  [
             "users" => User::all(),
             "validate" => $validate,
             "user" => $user,
             "file" => $file,
-            "follows" => $follows
+            "follows" => $follows,
+            "posts" => $posts,
+            "files" => $files,
+            "companies" => $companies,
         ]);
     }
 

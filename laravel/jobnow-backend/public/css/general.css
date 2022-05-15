@@ -160,9 +160,9 @@ a.nav:focus {
 }
 
 #sidebar ul li a.no-special:after {
-    content: "";
+    /* content: ""; */
     position: absolute;
-    left:0;
+    left: 0;
     top: 100%;
     width: 0;
     height: 2px;
@@ -170,16 +170,6 @@ a.nav:focus {
     transition: .7s ease-in-out;
 }
 
-#sidebar ul li a.premium:after {
-    content: "";
-    position: absolute;
-    left:0;
-    top: 100%;
-    width: 0;
-    height: 2px;
-    background-color: #6356e5;
-    transition: .7s ease-in-out;
-}
 
 #sidebar ul li a.no-special:hover {
     color: #6356e5;
@@ -246,16 +236,17 @@ a.nav.article:hover {
     float: left;
 }
 
-/* ---------------------------------------------------
-    CONTENT STYLE
------------------------------------------------------ */
-
 #content {
     width: 100%;
     padding: 20px;
     min-height: 100vh;
     transition: all 0.3s;
 }
+
+
+
+
+
 
 /* ---------------------------------------------------
     MEDIAQUERIES
