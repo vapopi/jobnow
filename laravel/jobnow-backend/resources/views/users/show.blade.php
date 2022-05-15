@@ -141,6 +141,28 @@
                 </div>
             </div>
             <span class="mt-4"></span>
+            <h4>Companies ({{\App\Models\Company::where('author_id', '=', $user->id)->count()}})</h4>
+            <hr>
+            <div class="row gutters-sm">
+                @foreach($companies as $company)
+                    <div class="col-sm-6 mb-3">
+                        <div class="card h-100">
+                            <div class="card-body">
+                                @foreach($files as $file)
+                                    @if($file->id == $company->logo_id)
+                                        <div class="w-50 float-end">
+                                            <img class="float-end w-75" src="{{ asset("storage/{$file->filename}") }}" title="Logo Company" />
+                                        </div>
+                                    @endif
+                                @endforeach
+                                <p>Name: {{ $company->name }}</p>
+                                <p>Email: {{ $company->email }}</p>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            </div>
+            <br>
             <h4>Posts ({{\App\Models\Post::where('author_id', '=', $user->id)->count()}})</h4>
             <hr>
             <div class="row gutters-sm">
