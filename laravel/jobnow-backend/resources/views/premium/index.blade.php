@@ -1,43 +1,54 @@
 @extends('layouts.app')
 
 @section('content')
-<style>
-    .color{  
-        background-color: #6356e5 !important;
-        border-color: #6356e5 !important;
-    }
+<!DOCTYPE html>
 
-    .bsColor{  
-        background-color: #6356e5 !important;
-        border-color: #6356e5 !important;
-    }
-</style>
-<div class="container">
-    <div class="mx-auto col-md-8">
-        <div class="card-header">
-            {{ __('Buy premium') }}
-        </div>
-        <div class="border p-5 bg-white d-flex justify-content-center">
-        <div class="w-75 p-2 shadow-sm float-start card" style="width: 18rem;">
-            <div class="card-header">
-                {{ __('Premium plan') }}
+<head>
+    <link href="{{ asset('css/premium.css') }}" rel="stylesheet">
+</head>
+
+<body>
+    <section>
+        <div class="container py-5">
+
+            <header class="text-center mb-5 text-white">
+                <div class="row">
+                    <div class="col-lg-7 mx-auto">
+                        <h1><strong>Jobnow Premium</strong></h1>
+                        <p>Buy this premium plan and unlock exclusive features <br><span> to enhance your experience in jobnow.</span></p>
+                    </div>
+                </div>
+            </header>
+
+            <div class="text-center">
+                <div class="mx-auto w-75 mb-5 mb-lg-0">
+                    <div class="bg-white p-5 rounded-lg shadow">
+                        <h1 class="h6 text-uppercase font-weight-bold mb-4">Premium</h1>
+                        <h2 class="h1 font-weight-bold">$9.99</h2>
+
+                        <div class="custom-separator my-4 mx-auto bg-primary"></div>
+
+                        <ul class="list-unstyled my-5 text-small text-center font-weight-normal">
+                            <li class="mb-3">
+                                <i class="bi bi-check"></i>You can use a gif in your profile picture
+                            </li>
+                            <li class="mb-3">
+                                <i class="bi bi-check"></i> You can use a gif in your companies logos
+                            </li>
+                        </ul>
+                        @if(Auth::user()->premium == 0)
+                        <a href="{{ route('premium.create') }}" class="w-50 btn btn-primary btn-block p-2 shadow rounded-pill">Buy now</a>
+                        @else
+                        <p class="text-danger">You are already a premium user!</p>
+                        <a href="#" class="btn btn-primary btn-block p-2 shadow rounded-pill">Buy now</a>
+                        @endif
+                    </div>
+                </div>
             </div>
-            <div class="card-body">
-                <h5 class="card-title"><strong>$9.99</strong></h5>
-                <br>
-                <p><strong>Advantages</strong></p>
-                <div class="card-text">- You can use a gif in your profile picture</div>
-                <div class="card-text">- You can use a gif in your companies logos</div>
-                <br>
-                <br>
-                @if(Auth::user()->premium == 0)
-                <a href="{{ route('premium.create') }}" class="color btn btn-primary">Buy now</a>
-                @else
-                <p class="text-danger">You are already a premium user!</p>
-                <button class="bsColor btn btn-primary" disabled="disabled">Buy now</button>
-                @endif
-            </div>
         </div>
-    </div>
-</div>
+    </section>
+</body>
+
+</html>
+
 @endsection

@@ -141,7 +141,7 @@
                     </div>
                 </div>
             </div>
-            <h4>User activity</h4>
+            <h4>User Activity</h4>
             <hr>
             <div class="accordion" id="accordionExample">
                 <div class="accordion-item">
