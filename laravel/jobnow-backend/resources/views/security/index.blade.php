@@ -31,7 +31,7 @@
                         <hr>
                         <div>
                             <a class="w-25 color btn btn-primary" href="{{route('adverts.index')}}" role="button">Offers</a>
-                            <a class="w-25 color btn btn-primary" href="" role="button">Posts</a>
+                            <a class="w-25 color btn btn-primary" href="{{route('publications.index')}}" role="button">Posts</a>
                             <a class="w-25 color btn btn-primary" href="" role="button">Chat</a>
                             <a class="mt-5 w-25 color btn btn-primary" href="" role="button">Tickets</a>
                         </div>
