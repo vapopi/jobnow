@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Post;
 use App\Models\User;
+use App\Models\File;
 use Illuminate\Http\Request;
 
 class PublicationController extends Controller
@@ -27,9 +28,17 @@ class PublicationController extends Controller
      * @param  \App\Models\Post  $post
      * @return \Illuminate\Http\Response
      */
-    public function show(Post $post)
+    public function show(int $id)
     {
-        //
+        $post = Post::all()->where('id', "=", $id)->first();
+        $file = File::where('id', "=", $post->image_id)->first();
+
+        return view('publications.show', [
+
+            "post" => $post,
+            "file" => $file,
+            "users" => User::all()
+        ]);
     }
 
     /**
