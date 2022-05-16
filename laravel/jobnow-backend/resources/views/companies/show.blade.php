@@ -125,7 +125,7 @@
                                                 </div>
                                             </div>
                                             @else
-                                            <a href="{{ route('offers.index') }}" class="w-100 bsColor btn btn-secondary" role="button">Apply for this offer</a>
+                                            <a href="{{ route('offers.index') }}" class="w-100 btn-profile bsColor btn btn-secondary" role="button">Apply for this offer</a>
                                             @endif
                                         </div>
                                     </div>

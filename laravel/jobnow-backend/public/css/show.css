@@ -58,8 +58,8 @@
 }
 
 .btn-profile{
-    border-color: #6356e5;
-    color: white;
+    border-color: #6356e5 !important;
+    color: white !important;
     background: #6356e5 !important;
 }
 
