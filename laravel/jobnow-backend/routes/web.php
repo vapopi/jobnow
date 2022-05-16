@@ -21,6 +21,7 @@ use App\Http\Controllers\ApplicatedOffersController;
 use App\Http\Controllers\RouteAppliedController;
 use App\Http\Controllers\AdvertController;
 use App\Http\Controllers\PublicationController;
+use App\Http\Controllers\ChatController;
 
 /*
 |--------------------------------------------------------------------------
@@ -60,6 +61,7 @@ Route::resource('/security/accounts', AccountController::class)->middleware(['au
 Route::resource('/security/corporations', CorporationController::class)->middleware(['auth', 'roles: 1', 'verified']);
 Route::resource('/security/adverts', AdvertController::class)->middleware(['auth', 'roles: 1', 'verified']);
 Route::resource('/security/publications', PublicationController::class)->middleware(['auth', 'roles: 1', 'verified']);
+Route::resource('/security/chat', ChatController::class)->middleware(['auth', 'roles: 1, 3', 'verified']);
 Route::resource('/security', SecurityController::class)->middleware(['auth', 'roles: 1, 2, 3', 'verified']);
 Route::resource('/premium', PremiumController::class)->middleware(['auth', 'roles: 1, 4', 'verified']);
 Route::resource('/chatapp', RouteChatAppController::class)->middleware(['auth', 'roles: 3, 4', 'verified']);
