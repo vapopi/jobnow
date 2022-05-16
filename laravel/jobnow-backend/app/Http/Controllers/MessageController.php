@@ -37,8 +37,6 @@ class MessageController extends Controller
             'receiver_id' => 'required'
         ]);
 
-
-
         $message = Message::create($request->all());
 
         Notification::create([
@@ -47,7 +45,7 @@ class MessageController extends Controller
             'author_id' => $request['receiver_id'],
         ]);
 
-        return response($message);
+        return response("Message sended successfully");
     }
 
     /**

@@ -68,7 +68,8 @@ function ChatApp({props}) {
 
         setMsg({
 
-            message: element.message
+            message: element.message,
+            receiver: element.receiver_id
 
         });
 
@@ -119,6 +120,10 @@ function ChatApp({props}) {
             author_id: props.userid,
             receiver_id: parseInt(msg.receiver)
         
+        }).then(response => {
+
+            alert(response.data);
+
         })
 
         setMsg({

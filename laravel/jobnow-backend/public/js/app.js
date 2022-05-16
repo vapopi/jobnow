@@ -5622,7 +5622,8 @@ function ChatApp(_ref) {
   var edit = function edit(element) {
     setEditionMode(true);
     setMsg({
-      message: element.message
+      message: element.message,
+      receiver: element.receiver_id
     });
     setId(element.id);
   }; //FUNCION PARA EDITAR UN MENSAJE
@@ -5661,6 +5662,8 @@ function ChatApp(_ref) {
       message: msg.message,
       author_id: props.userid,
       receiver_id: parseInt(msg.receiver)
+    }).then(function (response) {
+      alert(response.data);
     });
     setMsg({
       message: "",
