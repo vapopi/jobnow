@@ -5661,8 +5661,6 @@ function ChatApp(_ref) {
       message: msg.message,
       author_id: props.userid,
       receiver_id: parseInt(msg.receiver)
-    })["catch"](function (error) {
-      setError(error.response.data);
     });
     setMsg({
       message: "",
