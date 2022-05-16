@@ -73,7 +73,6 @@ const Posts = ({props}) => {
           return <div key={index} className="card w-50" style={{margin: "0 auto"}}>
 
             <h5><p>Post created by: <User id={element.author_id}/></p></h5>
-            {/* INSERTAR IMG AQUI */}
             <PostImg fileId = {element.image_id}/>
 
             <div className='card-body'>

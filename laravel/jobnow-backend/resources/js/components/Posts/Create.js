@@ -1,6 +1,7 @@
 import axios from 'axios';
 import React, { useState } from 'react';
 import ReactDOM from 'react-dom';
+import PropTypes from 'prop-types';
 
 const Create = ({props}) => {
 
@@ -108,6 +109,14 @@ const Create = ({props}) => {
       </div>
     </>
   )
+}
+
+Create.propTypes = {
+
+  title: PropTypes.string,
+  description: PropTypes.string,
+  image_id: PropTypes.number,
+  author_id: PropTypes.number
 }
 
 export default Create;
