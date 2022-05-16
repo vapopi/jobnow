@@ -5661,14 +5661,11 @@ function ChatApp(_ref) {
       message: msg.message,
       author_id: props.userid,
       receiver_id: parseInt(msg.receiver)
-    })["catch"](function (error) {
-      setError(error.response.data);
     });
     setMsg({
       message: "",
       receiver: 0
     });
-    window.location.reload();
     setError(null);
     getMessages();
   }; //FUNCION QUE ENSEÑA UNA ALERTA PARA CONFIRMAR LA ELIMINACION DE UN MENSAJE
