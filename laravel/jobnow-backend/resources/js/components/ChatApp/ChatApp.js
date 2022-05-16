@@ -119,10 +119,7 @@ function ChatApp({props}) {
             author_id: props.userid,
             receiver_id: parseInt(msg.receiver)
         
-        }).catch(error => {
-
-            setError(error.response.data);
-        });
+        })
 
         setMsg({
 
