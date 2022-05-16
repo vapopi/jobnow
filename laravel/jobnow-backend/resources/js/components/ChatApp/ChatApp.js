@@ -128,7 +128,6 @@ function ChatApp({props}) {
 
         })
         
-        window.location.reload();
         setError(null);
         getMessages();
     }
