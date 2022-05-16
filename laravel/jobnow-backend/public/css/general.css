@@ -90,6 +90,7 @@ a.nav:focus {
     display: flex;
     width: 100%;
     align-items: stretch;
+    margin-top: 11px;
 }
 
 .special{
