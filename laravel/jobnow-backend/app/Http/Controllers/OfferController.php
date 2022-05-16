@@ -32,7 +32,7 @@ class OfferController extends Controller
             'title' => 'required|max:255',
             'description' => 'required',
             'company_id' => 'required',
-            'professional_area_id',
+            'professional_area_id' => 'required',
         ]);
 
         $offer = Offer::create($request->all());

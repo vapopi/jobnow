@@ -6325,14 +6325,6 @@ function Create(_ref) {
               _context.next = 2;
               return axios__WEBPACK_IMPORTED_MODULE_3___default().get(apiCompanies).then(function (result) {
                 var companiesDB = result.data;
-
-                if (companiesDB.length != 0) {
-                  setOffer({
-                    company_id: companiesDB[0].id,
-                    professional_area_id: 1
-                  });
-                }
-
                 setCompanies(companiesDB.map(function (valor) {
                   return _objectSpread({}, valor);
                 }));
@@ -6475,30 +6467,34 @@ function Create(_ref) {
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("p", {
           children: "Choose your company:"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("select", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("select", {
           name: "company_id",
           className: "btn btn-secondary btn-block",
           onChange: handleInputChange,
-          children: companies.map(function (key, index) {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("option", {
+            children: "Select option"
+          }), companies.map(function (key, index) {
             if (key.author_id == props.userid) {
               return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("option", {
                 value: key.id,
                 children: key.name
               }, index);
             }
-          })
+          })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("p", {
           children: "Choose the professional area:"
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("select", {
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("select", {
           name: "professional_area_id",
           className: "btn btn-secondary btn-block",
           onChange: handleInputChange,
-          children: areas.map(function (key) {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("option", {
+            children: "Select option"
+          }), areas.map(function (key) {
             return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("option", {
               value: key.id,
               children: key.name
             }, key.id);
-          })
+          })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("br", {}), state != null ? state.status === 200 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)("span", {
           className: "text-center text-success",
           children: state.data
