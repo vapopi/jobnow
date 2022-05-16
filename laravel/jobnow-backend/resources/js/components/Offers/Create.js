@@ -20,10 +20,6 @@ function Create({props}) {
         await axios.get(apiCompanies).then(result => {
             const companiesDB = result.data;
             
-            if(companiesDB.length != 0) {
-                setOffer({company_id: companiesDB[0].id, professional_area_id: 1})
-            }
-
             setCompanies(companiesDB.map((valor) => {
                 return {...valor}
             }));
@@ -139,17 +135,17 @@ function Create({props}) {
                                 name="company_id"
                                 className="btn btn-secondary btn-block" 
                                 onChange={handleInputChange}>
-
-                            {
-                                companies.map((key, index) => {
-                                    if(key.author_id == props.userid)
-                                    {
-                                        return(
-                                            <option key={ index } value={ key.id }>{ key.name }</option>
-                                        )
-                                    }
-                                })
-                            }
+                                <option>Select option</option>    
+                                {
+                                    companies.map((key, index) => {
+                                        if(key.author_id == props.userid)
+                                        {
+                                            return(
+                                                <option key={ index } value={ key.id }>{ key.name }</option>
+                                            )
+                                        }
+                                    })
+                                }
                             </select>
 
                             <br/><br/>
@@ -158,12 +154,12 @@ function Create({props}) {
                                 name="professional_area_id"
                                 className="btn btn-secondary btn-block" 
                                 onChange={handleInputChange}>
-
-                            {
-                                areas.map(key => (
-                                    <option key={ key.id } value={ key.id }>{ key.name }</option>
-                                ))
-                            }
+                                <option>Select option</option>    
+                                {
+                                    areas.map(key => (
+                                        <option key={ key.id } value={ key.id }>{ key.name }</option>
+                                    ))
+                                }
                             </select>
 
                             <br/><br/>
