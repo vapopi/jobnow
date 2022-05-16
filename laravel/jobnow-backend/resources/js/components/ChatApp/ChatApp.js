@@ -121,10 +121,7 @@ function ChatApp({props}) {
         
         }).catch(error => {
 
-            if(error.response.data.message.includes("given data was invalid")) {
-
-                setError("Please select the user you want to send a message to");
-            }
+            setError(error.response.data);
         });
 
         setMsg({
