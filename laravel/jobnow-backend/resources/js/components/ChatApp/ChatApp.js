@@ -102,7 +102,7 @@ function ChatApp({props}) {
         setError(null);
 
         getMessages();
-        window.location.reload();
+        
     }
 
     //FUNCION QUE CREA UN MENSAJE

@@ -5648,7 +5648,6 @@ function ChatApp(_ref) {
     setId('');
     setError(null);
     getMessages();
-    window.location.reload();
   }; //FUNCION QUE CREA UN MENSAJE
 
 
