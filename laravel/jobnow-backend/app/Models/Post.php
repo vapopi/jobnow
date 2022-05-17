@@ -15,7 +15,6 @@ class Post extends Model
         'description',
         'likes',
         'author_id',
-        'company_id',
         'image_id'
     ];
 

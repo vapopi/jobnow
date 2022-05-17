@@ -14,7 +14,6 @@ class Message extends Model
         'message',
         'author_id',
         'receiver_id',
-        'group_id'
     ];
 
     protected $casts = [

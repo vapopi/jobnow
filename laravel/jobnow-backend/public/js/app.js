@@ -5555,8 +5555,8 @@ function ChatApp(_ref) {
       setId = _useState12[1]; //URL de las API
 
 
-  var urlMessages = '/api/messages/';
-  var urlUsers = '/api/users/'; //FUNCION PARA RECUPERAR LOS MENSAJES DE LA BBDD
+  var urlMessages = '/api/messages';
+  var urlUsers = '/api/users'; //FUNCION PARA RECUPERAR LOS MENSAJES DE LA BBDD
 
   var getMessages = /*#__PURE__*/function () {
     var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
@@ -5663,8 +5663,8 @@ function ChatApp(_ref) {
       author_id: props.userid,
       receiver_id: parseInt(msg.receiver)
     }).then(function (response) {
-      console.log(response);
-      alert(response);
+      console.log(response.data);
+      alert(response.data);
     })["catch"](function (error) {
       alert(error.response.data);
     });

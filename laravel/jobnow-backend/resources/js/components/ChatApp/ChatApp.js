@@ -17,8 +17,8 @@ function ChatApp({props}) {
     const [id, setId] = useState('');
 
     //URL de las API
-    const urlMessages = '/api/messages/';
-    const urlUsers = '/api/users/';
+    const urlMessages = '/api/messages';
+    const urlUsers = '/api/users';
 
     //FUNCION PARA RECUPERAR LOS MENSAJES DE LA BBDD
     const getMessages = async () => {
@@ -121,8 +121,8 @@ function ChatApp({props}) {
             receiver_id: parseInt(msg.receiver)
         
         }).then(response => {
-            console.log(response)
-            alert(response);
+            console.log(response.data)
+            alert(response.data);
 
         }).catch(error => {
             alert(error.response.data);
