@@ -121,6 +121,7 @@ function ChatApp({props}) {
             receiver_id: parseInt(msg.receiver)
         
         }).then(response => {
+            console.log(response)
             alert(response);
 
         }).catch(error => {

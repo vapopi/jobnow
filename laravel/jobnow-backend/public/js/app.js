@@ -5663,6 +5663,7 @@ function ChatApp(_ref) {
       author_id: props.userid,
       receiver_id: parseInt(msg.receiver)
     }).then(function (response) {
+      console.log(response);
       alert(response);
     })["catch"](function (error) {
       alert(error.response.data);
