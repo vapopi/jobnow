@@ -5664,6 +5664,8 @@ function ChatApp(_ref) {
       receiver_id: parseInt(msg.receiver)
     }).then(function (response) {
       alert(response.data);
+    })["catch"](function (error) {
+      alert(error.response.data);
     });
     setMsg({
       message: "",
@@ -7062,10 +7064,11 @@ var Create = function Create(_ref) {
         'Content-Type': 'multipart/form-data'
       }
     }).then(function (response) {
+      window.location.reload();
       console.log(response.data);
       alert(response.data);
-    })["catch"](function (errors) {
-      alert(errors.response.data);
+    })["catch"](function (error) {
+      alert(error.response.data);
     });
   };
 

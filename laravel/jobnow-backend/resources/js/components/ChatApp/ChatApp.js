@@ -78,7 +78,7 @@ function ChatApp({props}) {
     }
 
     //FUNCION PARA EDITAR UN MENSAJE
-    const editMessage = e => {
+    const editMessage = (e) => {
 
         e.preventDefault();
 
@@ -105,7 +105,7 @@ function ChatApp({props}) {
     }
 
     //FUNCION QUE CREA UN MENSAJE
-    const createMessage = e => {
+    const createMessage = (e) => {
 
         e.preventDefault();
 
@@ -124,6 +124,8 @@ function ChatApp({props}) {
 
             alert(response.data);
 
+        }).catch(error => {
+            alert(error.response.data);
         })
 
         setMsg({

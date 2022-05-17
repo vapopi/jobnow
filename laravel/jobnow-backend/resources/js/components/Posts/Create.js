@@ -24,7 +24,7 @@ const Create = ({props}) => {
   }
 
   //FUNCION QUE CREA UN POST EN LA BBDD
-  const createPost = e => {
+  const createPost = (e) => {
 
     e.preventDefault();
 
@@ -45,13 +45,14 @@ const Create = ({props}) => {
               },
 
     }).then(response => {
+      window.location.reload();
 
       console.log(response.data);
       alert(response.data);
 
-    }).catch(errors => {
+    }).catch(error => {
 
-      alert(errors.response.data);
+      alert(error.response.data);
 
     });
 
