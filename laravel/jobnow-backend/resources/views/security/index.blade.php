@@ -51,8 +51,8 @@
                         <h5>Components Configuration</h5>
                         <hr>
                         <div>
-                            <a class="w-25 color btn btn-primary" href="" role="button">ChatApp</a>
-                            <a class="w-25 color btn btn-primary" href="" role="button">Posts</a>
+                            <a class="w-25 color btn btn-primary" href="{{route('chat.index')}}" role="button">ChatApp</a>
+                            <a class="w-25 color btn btn-primary" href="{{route('publications.index')}}" role="button">Posts</a>
                         </div>
                     </div>
                     @endif
