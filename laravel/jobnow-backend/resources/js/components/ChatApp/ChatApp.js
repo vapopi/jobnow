@@ -87,7 +87,12 @@ function ChatApp({props}) {
             return;
         }
 
-        axios.put(urlMessages + "/" + id, {message: msg.message, receiver_id: parseInt(msg.receiver)});
+        axios.put(urlMessages + "/" + id, {message: msg.message, receiver_id: parseInt(msg.receiver)})
+        .then(response => {
+
+            alert(response.data);
+            window.location.reload();
+        });
 
         setEditionMode(false);
 
@@ -100,8 +105,7 @@ function ChatApp({props}) {
 
         setId('');
         setError(null);
-        
-        window.location.reload();
+
         getMessages();
         
     }
@@ -125,6 +129,7 @@ function ChatApp({props}) {
         }).then(response => {
 
             alert(response.data);
+            window.location.reload();
 
         }).catch(error => {
 
@@ -140,7 +145,7 @@ function ChatApp({props}) {
         
         setError(null);
         getMessages();
-        window.location.reload();
+
     }
 
     //FUNCION QUE ENSEÑA UNA ALERTA PARA CONFIRMAR LA ELIMINACION DE UN MENSAJE

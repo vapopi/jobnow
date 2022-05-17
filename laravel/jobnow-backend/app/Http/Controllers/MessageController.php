@@ -73,7 +73,7 @@ class MessageController extends Controller
         $message = Message::find($id)
         ->update($request->all());
 
-        return response($message);
+        return \response("Message edited successfully");
     }
 
     /**

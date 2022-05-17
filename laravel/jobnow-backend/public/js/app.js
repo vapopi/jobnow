@@ -5639,6 +5639,9 @@ function ChatApp(_ref) {
     axios__WEBPACK_IMPORTED_MODULE_3___default().put(urlMessages + "/" + id, {
       message: msg.message,
       receiver_id: parseInt(msg.receiver)
+    }).then(function (response) {
+      alert(response.data);
+      window.location.reload();
     });
     setEditionMode(false);
     setMsg({
@@ -5647,7 +5650,6 @@ function ChatApp(_ref) {
     });
     setId('');
     setError(null);
-    window.location.reload();
     getMessages();
   }; //FUNCION QUE CREA UN MENSAJE
 
@@ -5665,6 +5667,7 @@ function ChatApp(_ref) {
       receiver_id: parseInt(msg.receiver)
     }).then(function (response) {
       alert(response.data);
+      window.location.reload();
     })["catch"](function (error) {
       alert(error.response.data);
     });
@@ -5674,7 +5677,6 @@ function ChatApp(_ref) {
     });
     setError(null);
     getMessages();
-    window.location.reload();
   }; //FUNCION QUE ENSEÑA UNA ALERTA PARA CONFIRMAR LA ELIMINACION DE UN MENSAJE
 
 
