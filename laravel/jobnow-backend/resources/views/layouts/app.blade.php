@@ -131,25 +131,22 @@
             </div>
         </div>
         @else
-        <main role="main">
-            <div class="shadow jumbotron">
-                <div class="container">
-                    <h1 class="display-3">Hello, {{Auth::user()->name}}!</h1>
-                    <p>Please, verify your account for starting using the app.</p>
-
-                    <div style="text-align:center;">
-                        <button class="btn btn-primary bg-dark text-light w-25 dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                            document.getElementById('logout-form').submit();">
-                            {{ __('Logout') }}
-                        </button>
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                            @csrf
-                        </form>
-                    </div>
+            <div class="mt-5 row justify-content-center">
+                <div class="col-xl-7 col-lg-9 text-center">
+                    <h1><strong>Welcome to <span style="color: #6356e5;">jobnow </span>{{ Auth::user()->name }}</strong></h1>
+                    <h4>Verify your email before starting please!</h4>
                 </div>
             </div>
-        </main>
-
+            <div class="text-center mt-5">
+                <button class="mx-auto btn btn-primary bg-dark text-light w-25 dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                    document.getElementById('logout-form').submit();">
+                    {{ __('Logout') }}
+                </button>
+                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                    @csrf
+                </form>
+            </div>
+            
         @endif
 
         <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
