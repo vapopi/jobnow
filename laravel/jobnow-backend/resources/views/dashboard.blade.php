@@ -13,6 +13,7 @@
     @else
     @endif -->
     <br>
+    <br>
     <section id="main" class="d-flex align-items-center">
         <div class="container position-relative" data-aos="fade-up" data-aos-delay="100">
             <div class="row justify-content-center">
@@ -26,7 +27,7 @@
             </div> -->
             <br>
             <div class="mt-5 row icon-boxes">
-                <div class="box  col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
+                <div class="box col-md-6 col-lg-4 d-flex mb-5 mb-lg-0">
                     <div class="icon-box">
                         <div class="icon"><i class="bi bi-flag-fill"></i></div>
                         <br>
@@ -35,7 +36,7 @@
                     </div>
                 </div>
 
-                <div class="box  col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
+                <div class="box col-md-6 col-lg-4 d-flex mb-5 mb-lg-0">
                     <div class="icon-box">
                         <div class="icon"><i class="bi bi-bookmarks-fill bi-lg"></i></div>
                         <br>
@@ -44,7 +45,7 @@
                     </div>
                 </div>
 
-                <div class="box  col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
+                <div class="box col-md-6 col-lg-4 d-flex mb-5 mb-lg-0">
                     <div class="icon-box">
                         <div class="icon"><i class="bi bi-image"></i></div>
                         <br>
@@ -55,27 +56,6 @@
             </div>
         </div>
     </section>
-    <h4>Mini tips</h4>
-    <div class="container">
-    <div id="carouselContent" class="carousel slide" data-ride="carousel">
-        <div class="carousel-inner" role="listbox">
-            <div class="carousel-item active text-center p-4">
-                 <p>...</p>
-            </div>
-            <div class="carousel-item text-center p-4">
-                
-                <p>...</p>
-            </div>
-        </div>
-        <a class="carousel-control-prev" href="#carouselContent" role="button" data-slide="prev">
-            <span class=" carousel-control-prev-icon" aria-hidden="true"></span>
-            <span class="text-dark sr-only">Previous</span>
-        </a>
-        <a class="carousel-control-next" href="#carouselContent" role="button" data-slide="next">
-            <span class=" carousel-control-next-icon" aria-hidden="true"></span>
-            <span class="text-dark sr-only">Next</span>
-        </a>
-    </div>
 </div>
 </body>
 
