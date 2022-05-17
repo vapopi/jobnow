@@ -7114,7 +7114,6 @@ var Create = function Create(_ref) {
             onChange: handleInputChange
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
-          className: "form-group",
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("label", {
             children: "Description: "
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
@@ -7519,9 +7518,8 @@ var Posts = function Posts(_ref) {
     if (confirmDeletePost) {
       axios__WEBPACK_IMPORTED_MODULE_3___default()["delete"](urlPosts + "/" + idPost).then(function (response) {
         alert(response.data);
+        getPosts();
       });
-      window.location.reload();
-      getPosts();
     }
   };
 

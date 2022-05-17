@@ -77,7 +77,7 @@ const Create = ({props}) => {
 
           <br/>
 
-          <div className='form-group'>
+          <div>
             <label>Description: </label>
             <input
               name='description'

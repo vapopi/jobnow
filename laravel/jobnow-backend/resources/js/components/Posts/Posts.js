@@ -47,11 +47,9 @@ const Posts = ({props}) => {
       axios.delete(urlPosts + "/" + idPost).then(response => {
 
         alert(response.data);
+        getPosts();
           
       });
-
-      window.location.reload();
-      getPosts();
 
     }
 
