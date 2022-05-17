@@ -97,7 +97,7 @@ class AccountController extends Controller
                 'filesize' => $fileSize,
             ]);
 
-            $upload->filepath = $filePath;
+            $upload->filename = $filePath;
             $upload->filesize = $fileSize;
             $input['avatar_id'] = $file->id;
         }
@@ -296,7 +296,7 @@ class AccountController extends Controller
         $account->delete();
         $file->delete();
 
-        Storage::disk('public')->delete($file->filepath);
+        Storage::disk('public')->delete($file->filename);
 
         return redirect()->route("accounts.index")
         ->with('success', "The user was deleted successfully.");

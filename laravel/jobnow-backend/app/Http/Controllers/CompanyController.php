@@ -81,7 +81,7 @@ class CompanyController extends Controller
                 'filesize' => $fileSize,
             ]);
 
-            $upload->filepath = $filePath;
+            $upload->filename = $filePath;
             $upload->filesize = $fileSize;
             $input['logo_id'] = $file->id;
         }
@@ -218,7 +218,7 @@ class CompanyController extends Controller
         $company->delete();
         $file->delete();
 
-        Storage::disk('public')->delete($file->filepath);
+        Storage::disk('public')->delete($file->filename);
 
         return redirect()->route("menu.index")
             ->with('success', "Company " . $company->name . " was deleted successfully");

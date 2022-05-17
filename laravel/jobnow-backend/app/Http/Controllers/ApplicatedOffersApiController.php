@@ -59,7 +59,7 @@ class ApplicatedOffersApiController extends Controller
                 'filesize' => $fileSize,
             ]);
 
-            $upload->filepath = $filePath;
+            $upload->filename = $filePath;
             $upload->filesize = $fileSize;
             $input['curriculum'] = $file->id;
         }

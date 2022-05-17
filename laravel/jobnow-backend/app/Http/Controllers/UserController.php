@@ -93,7 +93,7 @@ class UserController extends Controller
                 'filesize' => $fileSize,
             ]);
 
-            $upload->filepath = $filePath;
+            $upload->filename = $filePath;
             $upload->filesize = $fileSize;
             $input['avatar_id'] = $file->id;
         }
@@ -291,7 +291,7 @@ class UserController extends Controller
         $user->delete();
         $file->delete();
 
-        Storage::disk('public')->delete($file->filepath);
+        Storage::disk('public')->delete($file->filename);
 
         return redirect()->route("login")
             ->with('success', "The user " . $user->name . " was deleted successfully.");

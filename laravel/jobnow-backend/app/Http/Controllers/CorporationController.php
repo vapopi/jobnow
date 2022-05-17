@@ -143,7 +143,7 @@ class CorporationController extends Controller
         $corporation->delete();
         $file->delete();
 
-        \Storage::disk('public')->delete($file->filepath);
+        \Storage::disk('public')->delete($file->filename);
 
         return redirect()->route("corporations.index")
             ->with('success', "Company " . $corporation->name . " was deleted successfully");

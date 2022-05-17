@@ -61,7 +61,7 @@ class PostController extends Controller
                 'filesize' => $fileSize,
             ]);
 
-            $upload->filepath = $filePath;
+            $upload->filename = $filePath;
             $upload->filesize = $fileSize;
             $input['image_id'] = $file->id;
         }
@@ -113,7 +113,7 @@ class PostController extends Controller
         $post->delete();
         $file->delete();
         
-        Storage::disk('public')->delete($file->filepath);
+        Storage::disk('public')->delete($file->filename);
 
         return \response("Success. The post {$post->id} has been eliminated");
     }
