@@ -5667,7 +5667,6 @@ function ChatApp(_ref) {
       receiver_id: parseInt(msg.receiver)
     }).then(function (response) {
       alert(response.data);
-      window.location.reload();
     })["catch"](function (error) {
       alert(error.response.data);
     });

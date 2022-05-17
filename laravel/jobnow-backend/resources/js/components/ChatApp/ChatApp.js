@@ -129,7 +129,6 @@ function ChatApp({props}) {
         }).then(response => {
 
             alert(response.data);
-            window.location.reload();
 
         }).catch(error => {
 
