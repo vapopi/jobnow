@@ -6379,8 +6379,8 @@ function Create(_ref) {
 
   var postOffer = function postOffer() {
     axios__WEBPACK_IMPORTED_MODULE_3___default().post(apiOffers, {
-      title: offer.title,
-      description: offer.description,
+      title: offer.title.toLowerCase(),
+      description: offer.description.toLowerCase(),
       company_id: offer.company_id,
       professional_area_id: offer.professional_area_id
     }).then(function (response) {
@@ -6913,7 +6913,7 @@ function Offers(_ref) {
             className: "form-control mb-2",
             name: "offerFind",
             onChange: function onChange(e) {
-              return setOfferFind(e.target.value);
+              return setOfferFind(e.target.value.toLowerCase());
             },
             type: "text",
             placeholder: "\uD83D\uDD0E\uFE0E Search offers",

@@ -173,7 +173,7 @@ function Offers({ props }) {
                         <input
                             className="form-control mb-2"
                             name="offerFind"
-                            onChange={e => setOfferFind(e.target.value)}
+                            onChange={e => setOfferFind(e.target.value.toLowerCase())}
                             type="text"
                             placeholder="🔎︎ Search offers"
                             style={{ backgroundColor: "#E6E6E6" }} />

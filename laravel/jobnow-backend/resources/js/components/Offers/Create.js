@@ -39,8 +39,8 @@ function Create({props}) {
     const postOffer = () => {
 
         axios.post(apiOffers, {
-            title: offer.title,
-            description: offer.description,
+            title: offer.title.toLowerCase(),
+            description: offer.description.toLowerCase(),
             company_id: offer.company_id,
             professional_area_id: offer.professional_area_id
             
