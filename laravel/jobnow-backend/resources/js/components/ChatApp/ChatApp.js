@@ -102,6 +102,7 @@ function ChatApp({props}) {
         setError(null);
 
         getMessages();
+        window.location.reload();
     }
 
     //FUNCION QUE CREA UN MENSAJE
@@ -121,10 +122,11 @@ function ChatApp({props}) {
             receiver_id: parseInt(msg.receiver)
         
         }).then(response => {
-            console.log(response.data)
+
             alert(response.data);
 
         }).catch(error => {
+
             alert(error.response.data);
         })
 
