@@ -5641,7 +5641,7 @@ function ChatApp(_ref) {
       receiver_id: parseInt(msg.receiver)
     }).then(function (response) {
       alert(response.data);
-      window.location.reload();
+      getMessages();
     });
     setEditionMode(false);
     setMsg({
@@ -5650,7 +5650,6 @@ function ChatApp(_ref) {
     });
     setId('');
     setError(null);
-    getMessages();
   }; //FUNCION QUE CREA UN MENSAJE
 
 

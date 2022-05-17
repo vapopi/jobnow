@@ -91,7 +91,7 @@ function ChatApp({props}) {
         .then(response => {
 
             alert(response.data);
-            window.location.reload();
+            getMessages();
         });
 
         setEditionMode(false);
@@ -105,9 +105,6 @@ function ChatApp({props}) {
 
         setId('');
         setError(null);
-
-        getMessages();
-        
     }
 
     //FUNCION QUE CREA UN MENSAJE
