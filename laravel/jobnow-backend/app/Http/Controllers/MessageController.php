@@ -45,7 +45,7 @@ class MessageController extends Controller
             'author_id' => $request['receiver_id'],
         ]);
 
-        return response("Message sended successfully");
+        return \response("Message sended successfully");
     }
 
     /**
