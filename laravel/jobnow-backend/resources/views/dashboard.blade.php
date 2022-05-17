@@ -5,33 +5,78 @@
 <html lang="en">
 
 <head>
-	<link rel="stylesheet" href={{ asset('/css/home.css') }}>
-    <link href="/docs/4.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <link rel="stylesheet" href={{ asset('/css/home.css') }}>
 </head>
 
 <body>
-    @if(Auth::user()->email_verified_at != null)
-        <main role="main">
-            <div class="shadow jumbotron">
-                <div class="container">
-                    <h1 class="display-3">Hello, {{Auth::user()->name}}!</h1>
-                    <p>We are glad to see you here. We hope you enjoy our application and have fun on it.</p>
-                </div>
-            </div>
-        </main>
+    <!-- @if(Auth::user()->email_verified_at != null)
     @else
-        <main role="main">
-            <div class="shadow jumbotron">
-                <div class="container">
-                    <h1 class="display-3">Hello, {{Auth::user()->name}}!</h1>
-                    <p>Verify your account for starting using the app.</p>
+    @endif -->
+    <br>
+    <section id="main" class="d-flex align-items-center">
+        <div class="container position-relative" data-aos="fade-up" data-aos-delay="100">
+            <div class="row justify-content-center">
+                <div class="col-xl-7 col-lg-9 text-center">
+                    <h1><strong>Welcome to jobnow {{ Auth::user()->name }}!</strong></h1>
+                    <h3>Enjoy using our application!</h3>
                 </div>
             </div>
-        </main>
-    @endif
+            <!-- <div class="mt-5 text-center">
+                <a href="#about" class="btn btn-primary scrollto">Get Started</a>
+            </div> -->
+            <br>
+            <div class="mt-5 row icon-boxes">
+                <div class="box  col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
+                    <div class="icon-box">
+                        <div class="icon"><i class="bi bi-flag-fill"></i></div>
+                        <br>
+                        <h4 class="title"><a href="#"><strong>Apps</strong></a></h4>
+                        <p class="description">This application was created to satisfy all your needs in the work environment, that's why we offer all the features that you can see in the sidebar!</p>
+                    </div>
+                </div>
 
-    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="/docs/4.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-xrRywqdh3PHs8keKZN+8zzc5TX0GRTLCcmivcbNJWm2rs5C8PRhcEn3czEjhAO9o" crossorigin="anonymous"></script>
+                <div class="box  col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
+                    <div class="icon-box">
+                        <div class="icon"><i class="bi bi-bookmarks-fill bi-lg"></i></div>
+                        <br>
+                        <h4 class="title"><a href="#"><strong>Premium</strong></a></h4>
+                        <p class="description">Remember that if you buy premium, you will get a variety of exclusive features to offer you a better experience in the application!</p>
+                    </div>
+                </div>
+
+                <div class="box  col-md-6 col-lg-3 d-flex align-items-stretch mb-5 mb-lg-0">
+                    <div class="icon-box">
+                        <div class="icon"><i class="bi bi-image"></i></div>
+                        <br>
+                        <h4 class="title"><a href="#"><strong>Profile</strong></a></h4>
+                        <p class="description">Make sure to create a good profile with your account, so everyone can see who you are and make them notice you. Above all, respect the rules and make this community a better place!</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    <h4>Mini tips</h4>
+    <div class="container">
+    <div id="carouselContent" class="carousel slide" data-ride="carousel">
+        <div class="carousel-inner" role="listbox">
+            <div class="carousel-item active text-center p-4">
+                 <p>...</p>
+            </div>
+            <div class="carousel-item text-center p-4">
+                
+                <p>...</p>
+            </div>
+        </div>
+        <a class="carousel-control-prev" href="#carouselContent" role="button" data-slide="prev">
+            <span class=" carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="text-dark sr-only">Previous</span>
+        </a>
+        <a class="carousel-control-next" href="#carouselContent" role="button" data-slide="next">
+            <span class=" carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="text-dark sr-only">Next</span>
+        </a>
+    </div>
+</div>
 </body>
 
 </html>

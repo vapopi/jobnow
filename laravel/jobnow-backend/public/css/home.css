@@ -1,0 +1,40 @@
+.box{
+    background: #fff;
+    padding: 3%;
+    margin: 0 auto;
+    border-radius: 7px 7px 7px 7px;
+    box-shadow: 0 5px 12px #aaa0bd;
+    transition: all 0.2s ease-in-out;
+}
+
+.box:hover{
+    transform: scale(1.05);
+    box-shadow: 0 1px 20px #b7a0d2;
+
+}
+
+.box a{
+    color: #6356e5;
+}
+
+.icon{
+    font-size: 180% !important;
+    color: #6356e5;
+}
+
+.carousel-control-next-icon{
+    background-color: #323232 !important;
+}
+
+.carousel-control-prev-icon{
+    background-color: #323232 !important;
+}
+
+.carousel{
+    margin-top: 4%;
+}
+
+h4{
+    margin-top: 4%;
+    text-align: center;
+}
