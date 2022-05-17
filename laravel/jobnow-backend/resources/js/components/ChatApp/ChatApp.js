@@ -139,6 +139,7 @@ function ChatApp({props}) {
         
         setError(null);
         getMessages();
+        window.location.reload();
     }
 
     //FUNCION QUE ENSEÑA UNA ALERTA PARA CONFIRMAR LA ELIMINACION DE UN MENSAJE
