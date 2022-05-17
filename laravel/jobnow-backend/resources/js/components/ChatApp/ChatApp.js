@@ -125,6 +125,7 @@ function ChatApp({props}) {
             alert(response.data);
 
         }).catch(error => {
+            console.log("errorrrrrrrrrrrrrrrrrrrrrrrrrr")
             alert(error.response.data);
         })
 

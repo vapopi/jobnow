@@ -5665,6 +5665,7 @@ function ChatApp(_ref) {
     }).then(function (response) {
       alert(response.data);
     })["catch"](function (error) {
+      console.log("errorrrrrrrrrrrrrrrrrrrrrrrrrr");
       alert(error.response.data);
     });
     setMsg({
