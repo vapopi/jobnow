@@ -1,10 +1,8 @@
 .box{
     background: #fff;
     padding: 3%;
-    margin: 0 auto;
     border-radius: 7px 7px 7px 7px;
     box-shadow: 0 5px 12px #aaa0bd;
-    transition: all 0.2s ease-in-out;
 }
 
 .box:hover{

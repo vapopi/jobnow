@@ -24,7 +24,7 @@
             </div> -->
             <br>
             <div class="mt-5 row icon-boxes">
-                <div class="box col-md-6 col-lg-4 mb-5 mb-lg-0">
+                <div class="box col-lg-4 mb-5 mb-lg-0">
                     <div class="icon-box">
                         <div class="icon"><i class="bi bi-flag-fill"></i></div>
                         <br>
@@ -33,7 +33,7 @@
                     </div>
                 </div>
 
-                <div class="box col-md-6 col-lg-4 mb-5 mb-lg-0">
+                <div class="box col-lg-4 mb-5 mb-lg-0">
                     <div class="icon-box">
                         <div class="icon"><i class="bi bi-bookmarks-fill bi-lg"></i></div>
                         <br>
@@ -42,7 +42,7 @@
                     </div>
                 </div>
 
-                <div class="box col-md-6 col-lg-4 mb-5 mb-lg-0">
+                <div class="box col-lg-4 mb-5 mb-lg-0">
                     <div class="icon-box">
                         <div class="icon"><i class="bi bi-image"></i></div>
                         <br>
