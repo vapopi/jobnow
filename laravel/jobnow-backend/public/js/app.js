@@ -7519,9 +7519,8 @@ var Posts = function Posts(_ref) {
     if (confirmDeletePost) {
       axios__WEBPACK_IMPORTED_MODULE_3___default()["delete"](urlPosts + "/" + idPost).then(function (response) {
         alert(response.data);
+        getPosts();
       });
-      window.location.reload();
-      getPosts();
     }
   };
 
