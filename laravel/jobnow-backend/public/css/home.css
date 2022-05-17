@@ -22,19 +22,6 @@
     color: #6356e5;
 }
 
-.carousel-control-next-icon{
-    background-color: #323232 !important;
-}
-
-.carousel-control-prev-icon{
-    background-color: #323232 !important;
-}
-
-.carousel{
-    margin-top: 4%;
-}
-
-h4{
-    margin-top: 4%;
-    text-align: center;
+span{
+    color: #6356e5;
 }

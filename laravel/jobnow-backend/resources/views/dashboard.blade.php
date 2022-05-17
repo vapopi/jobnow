@@ -12,13 +12,12 @@
     <!-- @if(Auth::user()->email_verified_at != null)
     @else
     @endif -->
-    <br>
-    <br>
-    <section id="main" class="d-flex align-items-center">
-        <div class="container position-relative" data-aos="fade-up" data-aos-delay="100">
+    <br><br>
+    <section id="main" class="mt-5 align-items-center">
+        <div class="container ">
             <div class="row justify-content-center">
                 <div class="col-xl-7 col-lg-9 text-center">
-                    <h1><strong>Welcome to jobnow {{ Auth::user()->name }}!</strong></h1>
+                    <h1><strong>Welcome to <span>jobnow </span>{{ Auth::user()->name }}</strong></h1>
                     <h3>Enjoy using our application!</h3>
                 </div>
             </div>
@@ -27,7 +26,7 @@
             </div> -->
             <br>
             <div class="mt-5 row icon-boxes">
-                <div class="box col-md-6 col-lg-4 d-flex mb-5 mb-lg-0">
+                <div class="box col-md-6 col-lg-4 mb-5 mb-lg-0">
                     <div class="icon-box">
                         <div class="icon"><i class="bi bi-flag-fill"></i></div>
                         <br>
@@ -36,7 +35,7 @@
                     </div>
                 </div>
 
-                <div class="box col-md-6 col-lg-4 d-flex mb-5 mb-lg-0">
+                <div class="box col-md-6 col-lg-4 mb-5 mb-lg-0">
                     <div class="icon-box">
                         <div class="icon"><i class="bi bi-bookmarks-fill bi-lg"></i></div>
                         <br>
@@ -45,7 +44,7 @@
                     </div>
                 </div>
 
-                <div class="box col-md-6 col-lg-4 d-flex mb-5 mb-lg-0">
+                <div class="box col-md-6 col-lg-4 mb-5 mb-lg-0">
                     <div class="icon-box">
                         <div class="icon"><i class="bi bi-image"></i></div>
                         <br>
