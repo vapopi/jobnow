@@ -44,14 +44,14 @@ const Posts = ({props}) => {
 
     if(confirmDeletePost) {
 
-        axios.delete(urlPosts + "/" + idPost).then(response => {
+      axios.delete(urlPosts + "/" + idPost).then(response => {
 
-          alert(response.data);
+        alert(response.data);
           
-        });
+      });
 
-        window.location.reload();
-        getPosts();
+      window.location.reload();
+      getPosts();
 
     }
 
