@@ -5667,6 +5667,7 @@ function ChatApp(_ref) {
       receiver_id: parseInt(msg.receiver)
     }).then(function (response) {
       alert(response.data);
+      getMessages();
     })["catch"](function (error) {
       alert(error.response.data);
     });
@@ -5675,7 +5676,6 @@ function ChatApp(_ref) {
       receiver: 0
     });
     setError(null);
-    getMessages();
   }; //FUNCION QUE ENSEÑA UNA ALERTA PARA CONFIRMAR LA ELIMINACION DE UN MENSAJE
 
 

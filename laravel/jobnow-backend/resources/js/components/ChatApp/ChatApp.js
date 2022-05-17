@@ -129,6 +129,7 @@ function ChatApp({props}) {
         }).then(response => {
 
             alert(response.data);
+            getMessages();
 
         }).catch(error => {
 
@@ -143,8 +144,7 @@ function ChatApp({props}) {
         })
         
         setError(null);
-        getMessages();
-
+        
     }
 
     //FUNCION QUE ENSEÑA UNA ALERTA PARA CONFIRMAR LA ELIMINACION DE UN MENSAJE
