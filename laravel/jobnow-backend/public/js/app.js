@@ -7041,7 +7041,7 @@ var Create = function Create(_ref) {
       setImage = _useState4[1]; //URL de la API
 
 
-  var urlPosts = "/api/posts/"; //FUNCION QUE GUARDA LOS CAMIOS QUE SE PRODUCEN EN LOS INPUT 
+  var urlPosts = "/api/posts"; //FUNCION QUE GUARDA LOS CAMIOS QUE SE PRODUCEN EN LOS INPUT 
 
   var handleInputChange = function handleInputChange(_ref2) {
     var target = _ref2.target;
@@ -7049,8 +7049,7 @@ var Create = function Create(_ref) {
   }; //FUNCION QUE CREA UN POST EN LA BBDD
 
 
-  var createPost = function createPost(e) {
-    e.preventDefault();
+  var createPost = function createPost() {
     var formData = new FormData();
     formData.append("title", post.title);
     formData.append("description", post.description);
@@ -7064,8 +7063,6 @@ var Create = function Create(_ref) {
         'Content-Type': 'multipart/form-data'
       }
     }).then(function (response) {
-      window.location.reload();
-      console.log(response.data);
       alert(response.data);
     })["catch"](function (error) {
       alert(error.response.data);
@@ -7136,8 +7133,11 @@ var Create = function Create(_ref) {
             className: "form-control mb-2"
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("button", {
+          onClick: function onClick() {
+            return createPost();
+          },
           className: "color btn btn-primary",
-          type: "submit",
+          type: "button",
           children: "Create Post"
         })]
       })

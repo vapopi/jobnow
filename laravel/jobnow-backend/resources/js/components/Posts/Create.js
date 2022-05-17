@@ -10,7 +10,7 @@ const Create = ({props}) => {
   const [image, setImage] = useState();
 
   //URL de la API
-  const urlPosts = "/api/posts/";
+  const urlPosts = "/api/posts";
 
   //FUNCION QUE GUARDA LOS CAMIOS QUE SE PRODUCEN EN LOS INPUT 
   const handleInputChange = ({target}) => {
@@ -24,9 +24,7 @@ const Create = ({props}) => {
   }
 
   //FUNCION QUE CREA UN POST EN LA BBDD
-  const createPost = (e) => {
-
-    e.preventDefault();
+  const createPost = () => {
 
     var formData = new FormData();
 
@@ -45,9 +43,7 @@ const Create = ({props}) => {
               },
 
     }).then(response => {
-      window.location.reload();
 
-      console.log(response.data);
       alert(response.data);
 
     }).catch(error => {
@@ -104,7 +100,11 @@ const Create = ({props}) => {
 
           <br/>
 
-          <button className='color btn btn-primary' type='submit'>Create Post</button>
+          <button 
+            onClick={() => createPost()} 
+            className='color btn btn-primary' 
+            type='button'>Create Post
+          </button>
 
         </form>
       </div>
