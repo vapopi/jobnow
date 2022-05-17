@@ -64,41 +64,46 @@ const Posts = ({props}) => {
           <a className='color btn btn-primary' href='/posts' role="button">View Posts</a><span> </span>
           <hr/>
         </div>
-        
-      {
+        {
+          posts.length === 0 ? (
+            
+            <p>There aren't any posts</p>
 
-        posts.map((element, index) => {
+          ) : (
+            
+            posts.map((element, index) => {
 
-          return <div key={index} className="card w-50" style={{margin: "0 auto"}}>
-
-            <h5><p>Post created by: <User id={element.author_id}/></p></h5>
-            <PostImg fileId = {element.image_id}/>
-
-            <div className='card-body'>
-
-              <h5 className='card-title'>{element.title}</h5>
-              <p className='card-text'>{element.description}</p>
-              <div><Likes idPost = {element.id} idUser = {props.userid}/>
-              
-              {
-                element.author_id == props.userid ? (
-
-                  <button className='color btn btn-primary' onClick={() => showAlertDeletePost(element.id)}>Delete Post</button>
-
-                ) : (
+              return <div key={index} className="card w-50" style={{margin: "0 auto"}}>
+    
+                <h5><p>Post created by: <User id={element.author_id}/></p></h5>
+                <PostImg fileId = {element.image_id}/>
+    
+                <div className='card-body'>
+    
+                  <h5 className='card-title'>{element.title}</h5>
+                  <p className='card-text'>{element.description}</p>
+                  <div><Likes idPost = {element.id} idUser = {props.userid}/>
                   
-                  <span></span>
-                )
-              }
-              
+                  {
+                    element.author_id == props.userid ? (
+    
+                      <button className='color btn btn-primary' onClick={() => showAlertDeletePost(element.id)}>Delete Post</button>
+    
+                    ) : (
+                      
+                      <span></span>
+                    )
+                  }
+                  
+                  </div>
+    
+                </div>
+    
               </div>
-
-            </div>
-
-          </div>
-
-        })
-      }
+    
+            })
+          )
+        }
 
       </div>
     </>
