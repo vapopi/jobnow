@@ -5647,6 +5647,7 @@ function ChatApp(_ref) {
     });
     setId('');
     setError(null);
+    window.location.reload();
     getMessages();
   }; //FUNCION QUE CREA UN MENSAJE
 

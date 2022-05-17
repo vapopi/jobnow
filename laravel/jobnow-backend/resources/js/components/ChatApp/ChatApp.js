@@ -100,7 +100,8 @@ function ChatApp({props}) {
 
         setId('');
         setError(null);
-
+        
+        window.location.reload();
         getMessages();
         
     }
