@@ -5663,10 +5663,8 @@ function ChatApp(_ref) {
       author_id: props.userid,
       receiver_id: parseInt(msg.receiver)
     }).then(function (response) {
-      console.log("tutto benne");
       alert(response.data);
     })["catch"](function (error) {
-      console.log("errorrrrrrrrrrrrrrrrrrrrrrrrrr");
       alert(error.response.data);
     });
     setMsg({
