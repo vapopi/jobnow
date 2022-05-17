@@ -87,7 +87,7 @@ function ChatApp({props}) {
             return;
         }
 
-        axios.put(urlMessages + id, {message: msg.message, receiver_id: parseInt(msg.receiver)});
+        axios.put(urlMessages + "/" + id, {message: msg.message, receiver_id: parseInt(msg.receiver)});
 
         setEditionMode(false);
 
@@ -146,7 +146,7 @@ function ChatApp({props}) {
 
         if(confirmDeleteMessage) {
 
-            axios.delete(urlMessages + idMessage);
+            axios.delete(urlMessages + "/" + idMessage);
             alert("Message deleted successfully");
             getMessages();
 

@@ -12,7 +12,7 @@ const Posts = ({props}) => {
   const [posts, setPosts] = useState([]);
 
   //URL de las API
-  const urlPosts = '/api/posts/';
+  const urlPosts = '/api/posts';
 
   //FUNCION PARA RECUPERAR LOS POSTS DE LA BBDD
   const getPosts = async () => {
@@ -44,12 +44,13 @@ const Posts = ({props}) => {
 
     if(confirmDeletePost) {
 
-        axios.delete(urlPosts + idPost).then(response => {
+        axios.delete(urlPosts + "/" + idPost).then(response => {
 
           alert(response.data);
           
         });
 
+        window.location.reload();
         getPosts();
 
     }

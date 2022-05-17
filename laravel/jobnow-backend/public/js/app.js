@@ -5636,7 +5636,7 @@ function ChatApp(_ref) {
       return;
     }
 
-    axios__WEBPACK_IMPORTED_MODULE_3___default().put(urlMessages + id, {
+    axios__WEBPACK_IMPORTED_MODULE_3___default().put(urlMessages + "/" + id, {
       message: msg.message,
       receiver_id: parseInt(msg.receiver)
     });
@@ -5681,7 +5681,7 @@ function ChatApp(_ref) {
     var confirmDeleteMessage = confirm("Are you sure you want to delete the message with id = " + idMessage + " ?");
 
     if (confirmDeleteMessage) {
-      axios__WEBPACK_IMPORTED_MODULE_3___default()["delete"](urlMessages + idMessage);
+      axios__WEBPACK_IMPORTED_MODULE_3___default()["delete"](urlMessages + "/" + idMessage);
       alert("Message deleted successfully");
       getMessages();
     }
@@ -7478,7 +7478,7 @@ var Posts = function Posts(_ref) {
       setPosts = _useState2[1]; //URL de las API
 
 
-  var urlPosts = '/api/posts/'; //FUNCION PARA RECUPERAR LOS POSTS DE LA BBDD
+  var urlPosts = '/api/posts'; //FUNCION PARA RECUPERAR LOS POSTS DE LA BBDD
 
   var getPosts = /*#__PURE__*/function () {
     var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee() {
@@ -7516,9 +7516,10 @@ var Posts = function Posts(_ref) {
     var confirmDeletePost = confirm("Are you sure you want to delete the post with id = " + idPost + " ?");
 
     if (confirmDeletePost) {
-      axios__WEBPACK_IMPORTED_MODULE_3___default()["delete"](urlPosts + idPost).then(function (response) {
+      axios__WEBPACK_IMPORTED_MODULE_3___default()["delete"](urlPosts + "/" + idPost).then(function (response) {
         alert(response.data);
       });
+      window.location.reload();
       getPosts();
     }
   };
