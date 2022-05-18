@@ -181,16 +181,12 @@ function ChatApp({props}) {
                             <Table striped bordered hover responsive>
 
                                 <thead>
-
                                     <tr>
-
                                         <th>Id</th>
                                         <th>Message</th>
                                         <th>Receiver</th>
                                         <th>Options</th>
-
                                     </tr>
-
                                 </thead>
 
                                 <tbody>
@@ -222,15 +218,11 @@ function ChatApp({props}) {
                             <Table striped bordered hover responsive>
 
                                 <thead>
-
                                     <tr>
-
                                         <th>Id</th>
                                         <th>Mensaje</th>
                                         <th>Author</th>
-
                                     </tr>
-
                                 </thead>
 
                                 <tbody>
@@ -238,13 +230,13 @@ function ChatApp({props}) {
                                     messages.map((element, index) => {
 
                                         if(element.receiver_id == props.userid) {
-
-                                            return <tr key={index}>
-                                            <td>{element.id}</td>
-                                            <td>{element.message}</td>
-                                            <td><User id={element.author_id}/></td>
-                                            </tr>
-
+                                            return( 
+                                                <tr key={index}>
+                                                    <td>{element.id}</td>
+                                                    <td>{element.message}</td>
+                                                    <td><User id={element.author_id}/></td>
+                                                </tr>
+                                            )
                                         }
                                     })      
                                 }
