@@ -75,7 +75,7 @@ function Apply({props}) {
 
                                                 return (
                                                 <tr key={index}>
-                                                    <td>{element.id}</td>
+                                                    <td>{element.offer_id}</td>
                                                     <td><Offer id={element.offer_id}/></td>
                                                 </tr>
                                                 )

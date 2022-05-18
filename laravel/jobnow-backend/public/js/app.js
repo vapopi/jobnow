@@ -6030,7 +6030,7 @@ function Apply(_ref) {
                   if (element.user_id == props.userid) {
                     return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("tr", {
                       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("td", {
-                        children: element.id
+                        children: element.offer_id
                       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("td", {
                         children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_Offer__WEBPACK_IMPORTED_MODULE_5__["default"], {
                           id: element.offer_id
