@@ -81,12 +81,35 @@
                     <li>
                         <a class="nav no-special" href="{{route('mynetwork.index')}}" role="button"><i class="bi bi-wifi"></i> MY NETWORK</a><!-- React -->
                     </li>
-                    @else
+                    @endif
+
+                    @if(Auth::user()->role_id == 1)
                     <hr>
                     <li>
                         <a class="nav no-special" href="{{route('security.index')}}" role="button"><i class="bi bi-shield-fill"></i> SECURITY</a><!-- React -->
                     </li>
                     @endif
+
+                    @if(Auth::user()->role_id == 3)
+                    <hr>
+                    <li>
+                        <a class="nav no-special" href="{{route('security.index')}}" role="button"><i class="bi bi-shield-fill"></i> SECURITY</a><!-- React -->
+                    </li>
+                    <li>
+                        <a class="nav no-special" href="{{route('chatapp.index')}}" role="button"><i class="bi bi-chat-fill"></i> CHATAPP</a><!-- React -->
+                    </li>
+                    @endif
+
+                    @if(Auth::user()->role_id == 2)
+                    <hr>
+                    <li>
+                        <a class="nav no-special" href="{{route('security.index')}}" role="button"><i class="bi bi-shield-fill"></i> SECURITY</a><!-- React -->
+                    </li>
+                    <li>
+                        <a class="nav no-special" href="{{route('tickets.index')}}" role="button"><i class="bi bi-ticket-detailed-fill"></i> TICKETS</a>
+                    </li>
+                    @endif
+
                 </ul>
                 <hr>
                 <ul class="name ms-auto">
