@@ -174,6 +174,7 @@ function ChatApp({props}) {
             <div className="container mt-5">
                 <h1 className='text-center'><strong>CHATAPP</strong></h1>
                 <hr/>
+                <br/>
                 <div className='allChats shadow row'>
                     <div style={{margin:"0 auto"}}>
                         <h4 className='text-center'>
