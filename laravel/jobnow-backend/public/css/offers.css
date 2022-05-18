@@ -1,6 +1,55 @@
-.all{
+.listOffersApply{
+    background-color: #fff !important;
+    border-radius: 10px 10px 10px 10px !important;
+    padding: 3% !important;
+}
+
+button{
+    border-color: #6356e5 !important;
+    color: white !important;
+    background: #6356e5 !important;
+}
+
+button:hover{
+    border-color: #6356e5;
+    color: white;
+    background: #4f46b9 !important;
+}
+
+a.offersMenu{
+    border-color: #6356e5 !important;
+    color: white !important;
+    background: #6356e5 !important;
+}
+
+a.offersMenu:hover{
+    border-color: #6356e5;
+    color: white;
+    background: #4f46b9 !important;
+}
+
+table{
     background: #fff !important;
-    height: 830px;
-    overflow: auto;
-    padding: 3%;
+}
+
+.selectId{
+    border-color: #8c82ec !important;
+    color: white !important;
+    background: #8c82ec !important;
+}
+
+.formContainer{
+    background: #fff !important;
+    border-radius: 10px !important;
+}
+
+
+.reset{
+    background: #323232 !important;
+}
+
+@media (max-width: 800px) {
+    .btn-send{
+        width: 100% !important;
+    }
 }

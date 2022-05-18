@@ -33,33 +33,33 @@ function Apply({props}) {
             <div className="container mt-5" style={{textAlign: 'center'}}>
 
                 <a 
-                    className="color btn btn-primary" 
+                    className="offersMenu color btn btn-primary" 
                     href="/offers" 
                     role="button">List offers
                 </a><span> </span>
 
                 <a 
-                    className="color btn btn-primary" 
+                    className="offersMenu color btn btn-primary" 
                     href="/offers/create" 
                     role="button">Create offer
                 </a><span> </span>
 
                 <a 
-                    className="color btn btn-primary" 
+                    className="offersMenu color btn btn-primary" 
                     href="/apply" 
                     role="button">View applied offers
                 </a><span> </span>
 
                 <hr/>
                 <br/>
-                <div className="listOffers">
+                <div className="shadow listOffersApply">
 
-                    <h5 className='text-center'><strong>List all applicated offers</strong></h5>
+                    <h4 className='text-center'><strong>List all applicated offers</strong></h4>
                     <br/>
                     <div className='row'>
                         <div style={{margin:"0 auto"}} className='col-12'>
                             {
-                                <table className="table">
+                                <table className="bg-light w-75 mx-auto table">
                                     <thead>
                                         <tr>
                                             <th>Id</th>
