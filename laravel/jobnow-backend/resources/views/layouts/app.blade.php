@@ -79,31 +79,31 @@
                         <a class="nav no-special" href="{{route('chatapp.index')}}" role="button"><i class="bi bi-chat-fill"></i> CHATAPP</a>
                     </li>
                     <li>
-                        <a class="nav no-special" href="{{route('mynetwork.index')}}" role="button"><i class="bi bi-wifi"></i> MY NETWORK</a><!-- React -->
+                        <a class="nav no-special" href="{{route('mynetwork.index')}}" role="button"><i class="bi bi-wifi"></i> MY NETWORK</a>
                     </li>
                     @endif
 
                     @if(Auth::user()->role_id == 1)
                     <hr>
                     <li>
-                        <a class="nav no-special" href="{{route('security.index')}}" role="button"><i class="bi bi-shield-fill"></i> SECURITY</a><!-- React -->
+                        <a class="nav no-special" href="{{route('security.index')}}" role="button"><i class="bi bi-shield-fill"></i> SECURITY</a>
                     </li>
                     @endif
 
                     @if(Auth::user()->role_id == 3)
                     <hr>
                     <li>
-                        <a class="nav no-special" href="{{route('security.index')}}" role="button"><i class="bi bi-shield-fill"></i> SECURITY</a><!-- React -->
+                        <a class="nav no-special" href="{{route('security.index')}}" role="button"><i class="bi bi-shield-fill"></i> SECURITY</a>
                     </li>
                     <li>
-                        <a class="nav no-special" href="{{route('chatapp.index')}}" role="button"><i class="bi bi-chat-fill"></i> CHATAPP</a><!-- React -->
+                        <a class="nav no-special" href="{{route('chatapp.index')}}" role="button"><i class="bi bi-chat-fill"></i> CHATAPP</a>
                     </li>
                     @endif
 
                     @if(Auth::user()->role_id == 2)
                     <hr>
                     <li>
-                        <a class="nav no-special" href="{{route('security.index')}}" role="button"><i class="bi bi-shield-fill"></i> SECURITY</a><!-- React -->
+                        <a class="nav no-special" href="{{route('security.index')}}" role="button"><i class="bi bi-shield-fill"></i> SECURITY</a>
                     </li>
                     <li>
                         <a class="nav no-special" href="{{route('tickets.index')}}" role="button"><i class="bi bi-ticket-detailed-fill"></i> TICKETS</a>
