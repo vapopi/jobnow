@@ -172,94 +172,25 @@ function ChatApp({props}) {
     return (
         <>
             <div className="container mt-5">
-                <h1 className='text-center'>CHATAPP</h1>
+                <h1 className='text-center'><strong>CHATAPP</strong></h1>
                 <hr/>
-                <div className='row'>
-                    <div className='col-8' style={{margin:"0 auto"}}>
-                        <h2 className='text-center'>Messages you have sended</h2>
-                        {
-                            <Table striped bordered hover responsive>
-
-                                <thead>
-                                    <tr>
-                                        <th>Id</th>
-                                        <th>Message</th>
-                                        <th>Receiver</th>
-                                        <th>Options</th>
-                                    </tr>
-                                </thead>
-
-                                <tbody>
-                                {
-                                    messages.map((element, index) => {
-
-                                        if(element.author_id == props.userid) {
-
-                                            return <tr key={index}>
-                                            <td>{element.id}</td>
-                                            <td>{element.message}</td>
-                                            <td><User id={element.receiver_id}/></td>
-                                            <td><Button variant= "danger" onClick={() => showAlertDeleteMessage(element.id)}>Delete Message</Button>
-                                            <Button variant = "warning" onClick={() => edit(element)}>Edit Message</Button></td>
-                                            </tr>
-
-                                        }
-                                    })      
-                                }
-                                </tbody>
-
-                            </Table>
-                        }
-                    </div>
-                    
-                    <div className="col-8" style={{margin:"0 auto"}}>
-                        <h2 className="text-center">Messages you have received</h2>
-                        {
-                            <Table striped bordered hover responsive>
-
-                                <thead>
-                                    <tr>
-                                        <th>Id</th>
-                                        <th>Mensaje</th>
-                                        <th>Author</th>
-                                    </tr>
-                                </thead>
-
-                                <tbody>
-                                {
-                                    messages.map((element, index) => {
-
-                                        if(element.receiver_id == props.userid) {
-                                            return( 
-                                                <tr key={index}>
-                                                    <td>{element.id}</td>
-                                                    <td>{element.message}</td>
-                                                    <td><User id={element.author_id}/></td>
-                                                </tr>
-                                            )
-                                        }
-                                    })      
-                                }
-                                </tbody>
-                            </Table>
-                        }
-                    </div>
-                    
-                    <div className='col-8' style={{margin:"0 auto"}}>
-                        <h2 className='text-center'>
+                <div className='allChats shadow row'>
+                    <div style={{margin:"0 auto"}}>
+                        <h4 className='text-center'>
                             {
                                 editionMode ? 'Edit Message' : 'Create Message'
                             }
-                        </h2>
+                        </h4>
                         <form onSubmit={editionMode ? editMessage: createMessage}>
                             {
                                 error ? <span className='text-danger'>{error}</span> : null
                             }
                             <div>
-                                <h4>To which user do you want to send the message:</h4>
+                                <p>To which user do you want to send the message:</p>
                                 <select
                                 name='receiver'
                                 onChange={handleInputChange} key="receivers"
+                                className="usersDropDown w-25 btn btn-secondary btn-block"
                                 value={msg.receiver}>
                                     {
                                         <option key={0} value={0}>Select a user</option>
@@ -277,23 +208,113 @@ function ChatApp({props}) {
                                 <input
                                     type="text"
                                     name="message"
-                                    className="form-control mb-2"
+                                    className="mt-3 form-control mb-2"
                                     placeholder="Put your message here"
                                     onChange={handleInputChange}
-                                    value={msg.message}
-                                />
-
-                                {
-                                    editionMode ? (
-                                        <button className='btn btn-dark btn-block' type='submit'>Edit Message</button>
-                                    ) : (
-                                        <button className='btn btn-dark btn-block' type='submit'>Create Message</button>
-                                    )
-                                }
+                                    value={msg.message}/>
+                                    {
+                                        editionMode ? (
+                                            <button className='btn btn-dark btn-block' type='submit'>Edit</button>
+                                        ) : (
+                                            <button className='btn btn-dark btn-block' type='submit'>Send</button>
+                                        )
+                                    }
                             </div>
                         </form>
                     </div>
+                    <h4 className="mt-5 text-center">Lists of messages</h4>
+                    <div className="mt-4" style={{margin:"0 auto"}}>
+                        <div class="accordion accordion-flush" id="accordionFlushExample">
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="flush-headingOne">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                                Messages you have received
+                            </button>
+                            </h2>
+                            <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                            <div class="accordion-body">
+                                <h4 className="text-center">Messages you have received</h4>
+                                {
+                                    <Table hover responsive>
 
+                                        <thead>
+                                            <tr>
+                                                <th>Id</th>
+                                                <th>Mensaje</th>
+                                                <th>Author</th>
+                                            </tr>
+                                        </thead>
+
+                                        <tbody>
+                                        {
+                                            messages.map((element, index) => {
+
+                                                if(element.receiver_id == props.userid) {
+                                                    return( 
+                                                        <tr key={index}>
+                                                            <td>{element.id}</td>
+                                                            <td>{element.message}</td>
+                                                            <td><User id={element.author_id}/></td>
+                                                        </tr>
+                                                    )
+                                                }
+                                            })      
+                                        }
+                                        </tbody>
+                                    </Table>
+                                }
+                            </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="flush-headingTwo">
+                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                                Messages you have sended
+                            </button>
+                            </h2>
+                            <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                                <div class="accordion-body">
+                                    <h4 className='text-center'>Messages you have sended</h4>
+                                    {
+                                        <Table hover responsive>
+
+                                            <thead>
+                                                <tr>
+                                                    <th>Id</th>
+                                                    <th>Message</th>
+                                                    <th>Receiver</th>
+                                                    <th>Options</th>
+                                                </tr>
+                                            </thead>
+
+                                            <tbody>
+                                            {
+                                                messages.map((element, index) => {
+
+                                                    if(element.author_id == props.userid) {
+
+                                                        return <tr key={index}>
+                                                        <td>{element.id}</td>
+                                                        <td>{element.message}</td>
+                                                        <td><User id={element.receiver_id}/></td>
+                                                        <td>
+                                                            <Button className="btn-delete" variant="danger" onClick={() => showAlertDeleteMessage(element.id)}>Delete Message</Button>
+                                                            <Button className="btn-edit ml-2" variant = "warning" onClick={() => edit(element)}>Edit Message</Button>
+                                                        </td>
+                                                        </tr>
+
+                                                    }
+                                                })      
+                                            }
+                                            </tbody>
+
+                                        </Table>
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </>
