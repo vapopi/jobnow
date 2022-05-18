@@ -187,7 +187,7 @@ function ChatApp({props}) {
                                         <th>Id</th>
                                         <th>Message</th>
                                         <th>Receiver</th>
-                                        <th>Opciones</th>
+                                        <th>Options</th>
 
                                     </tr>
 
