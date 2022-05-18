@@ -26,6 +26,11 @@ const Create = ({props}) => {
   //FUNCION QUE CREA UN POST EN LA BBDD
   const createPost = () => {
 
+    if(post.title == null || post.description == null || image == null)
+    {
+      return alert("Please fill all the fields")
+    }
+
     var formData = new FormData();
 
     formData.append("title", post.title);
@@ -58,19 +63,22 @@ const Create = ({props}) => {
     <>
       <h1 className='text-center'><strong>POSTS</strong></h1>
       <div className='container mt-5' style={{textAlign: "center"}}>
-        <a className='color btn btn-primary' href='/posts/create' role="button">Create Post</a><span> </span>
-        <a className='color btn btn-primary' href='/posts' role="button">View Posts</a><span> </span>
+        <a className='btn-custom color btn btn-primary' href='/posts/create' role="button">Create Post</a><span> </span>
+        <a className='btn-custom color btn btn-primary' href='/posts' role="button">View Posts</a><span> </span>
         <hr/>
       </div>
       
-      <div style={{margin:"0 auto"}} className="w-50">
-        <form onSubmit={createPost}>
+      <div style={{margin:"0 auto"}} className="shadow formCreate w-75">
+        <h4 className='mt-5 text-center'><strong>Create Post</strong></h4>
+        <form className="w-75 mx-auto" onSubmit={createPost}>
         
           <div className="form-group">
             <label>Title: </label>
             <input
               name="title" 
               type="text" 
+              class="form-control"
+              placeholder="Write the title..."
               onChange={handleInputChange}
             />
           </div>
@@ -81,7 +89,9 @@ const Create = ({props}) => {
             <label>Description: </label>
             <input
               name='description'
+              class="form-control"
               type="text"
+              placeholder="Write the description..."
               onChange={handleInputChange}
             />
           </div>
@@ -102,7 +112,7 @@ const Create = ({props}) => {
 
           <button 
             onClick={() => createPost()} 
-            className='color btn btn-primary' 
+            className='mb-5 btn-custom color btn btn-primary' 
             type='button'>Create Post
           </button>
 

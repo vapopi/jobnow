@@ -23,7 +23,7 @@ const PostImg = ({fileId}) => {
 
   return (
 
-    <img width="612" height="400" src={'storage/' + image.filename}></img>
+    <img src={'storage/' + image.filename}></img>
   )
 }
 

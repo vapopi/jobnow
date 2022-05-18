@@ -7060,6 +7060,10 @@ var Create = function Create(_ref) {
 
 
   var createPost = function createPost() {
+    if (post.title == null || post.description == null || image == null) {
+      return alert("Please fill all the fields");
+    }
+
     var formData = new FormData();
     formData.append("title", post.title);
     formData.append("description", post.description);
@@ -7091,26 +7095,32 @@ var Create = function Create(_ref) {
         textAlign: "center"
       },
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("a", {
-        className: "color btn btn-primary",
+        className: "btn-custom color btn btn-primary",
         href: "/posts/create",
         role: "button",
         children: "Create Post"
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
         children: " "
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("a", {
-        className: "color btn btn-primary",
+        className: "btn-custom color btn btn-primary",
         href: "/posts",
         role: "button",
         children: "View Posts"
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
         children: " "
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("hr", {})]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
       style: {
         margin: "0 auto"
       },
-      className: "w-50",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("form", {
+      className: "shadow formCreate w-75",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h4", {
+        className: "mt-5 text-center",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("strong", {
+          children: "Create Post"
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("form", {
+        className: "w-75 mx-auto",
         onSubmit: createPost,
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
           className: "form-group",
@@ -7119,6 +7129,8 @@ var Create = function Create(_ref) {
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
             name: "title",
             type: "text",
+            "class": "form-control",
+            placeholder: "Write the title...",
             onChange: handleInputChange
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
@@ -7126,7 +7138,9 @@ var Create = function Create(_ref) {
             children: "Description: "
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
             name: "description",
+            "class": "form-control",
             type: "text",
+            placeholder: "Write the description...",
             onChange: handleInputChange
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
@@ -7145,11 +7159,11 @@ var Create = function Create(_ref) {
           onClick: function onClick() {
             return createPost();
           },
-          className: "color btn btn-primary",
+          className: "mb-5 btn-custom color btn btn-primary",
           type: "button",
           children: "Create Post"
         })]
-      })
+      })]
     })]
   });
 };
@@ -7409,8 +7423,6 @@ var PostImg = function PostImg(_ref) {
     getImageById();
   }, []);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("img", {
-    width: "612",
-    height: "400",
     src: 'storage/' + image.filename
   });
 };
@@ -7547,54 +7559,64 @@ var Posts = function Posts(_ref) {
           textAlign: 'center'
         },
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("a", {
-          className: "color btn btn-primary",
+          className: "btn-custom color btn btn-primary",
           href: "/posts/create",
           role: "button",
           children: "Create Post"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("span", {
           children: " "
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("a", {
-          className: "color btn btn-primary",
+          className: "btn-custom color btn btn-primary",
           href: "/posts",
           role: "button",
           children: "View Posts"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("span", {
           children: " "
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("hr", {})]
-      }), posts.length === 0 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("p", {
-        children: "There aren't any posts"
+      }), posts.length === 0 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("li", {
+        className: "list-group-item",
+        style: {
+          textAlign: "center",
+          color: "white",
+          backgroundColor: "#8c82ec"
+        },
+        children: "There are no posts to show"
       }) : posts.map(function (element, index) {
         return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
-          className: "card w-50",
+          "class": "mt-2 card mx-auto",
           style: {
-            margin: "0 auto"
+            width: "350px"
           },
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("h5", {
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("p", {
-              children: ["Post created by: ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_commons_User__WEBPACK_IMPORTED_MODULE_5__["default"], {
-                id: element.author_id
-              })]
-            })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_PostImg__WEBPACK_IMPORTED_MODULE_7__["default"], {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_PostImg__WEBPACK_IMPORTED_MODULE_7__["default"], {
             fileId: element.image_id
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
-            className: "card-body",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("h5", {
-              className: "card-title",
-              children: element.title
+            "class": "card-body",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("h4", {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("strong", {
+                children: "Post created by: "
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_commons_User__WEBPACK_IMPORTED_MODULE_5__["default"], {
+                id: element.author_id
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("hr", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("h5", {
+              "class": "card-title",
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("strong", {
+                children: element.title
+              })
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("p", {
-              className: "card-text",
+              "class": "card-text",
               children: element.description
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_Likes__WEBPACK_IMPORTED_MODULE_6__["default"], {
                 idPost: element.id,
                 idUser: props.userid
               }), element.author_id == props.userid ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("button", {
-                className: "color btn btn-primary",
+                className: "ml-1 float-end btn-customDark color btn btn-primary",
                 onClick: function onClick() {
                   return showAlertDeletePost(element.id);
                 },
-                children: "Delete Post"
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("i", {
+                  "class": "bi bi-trash-fill"
+                })
               }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("span", {})]
             })]
           })]
