@@ -5656,6 +5656,10 @@ function ChatApp(_ref) {
   var createMessage = function createMessage(e) {
     e.preventDefault();
 
+    if (msg.receiver == null || msg.message == null) {
+      return alert("Please fill all the fields");
+    }
+
     if (!msg.message.trim()) {
       return;
     }
@@ -5762,15 +5766,15 @@ function ChatApp(_ref) {
             margin: "0 auto"
           },
           children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
-            "class": "accordion accordion-flush",
+            className: "accordion accordion-flush",
             id: "accordionFlushExample",
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
-              "class": "accordion-item",
+              className: "accordion-item",
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h2", {
-                "class": "accordion-header",
+                className: "accordion-header",
                 id: "flush-headingOne",
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("button", {
-                  "class": "accordion-button collapsed",
+                  className: "accordion-button collapsed",
                   type: "button",
                   "data-bs-toggle": "collapse",
                   "data-bs-target": "#flush-collapseOne",
@@ -5780,11 +5784,11 @@ function ChatApp(_ref) {
                 })
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
                 id: "flush-collapseOne",
-                "class": "accordion-collapse collapse",
+                className: "accordion-collapse collapse",
                 "aria-labelledby": "flush-headingOne",
                 "data-bs-parent": "#accordionFlushExample",
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
-                  "class": "accordion-body",
+                  className: "accordion-body",
                   children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h4", {
                     className: "text-center",
                     children: "Messages you have received"
@@ -5822,12 +5826,12 @@ function ChatApp(_ref) {
                 })
               })]
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
-              "class": "accordion-item",
+              className: "accordion-item",
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h2", {
-                "class": "accordion-header",
+                className: "accordion-header",
                 id: "flush-headingTwo",
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("button", {
-                  "class": "accordion-button collapsed",
+                  className: "accordion-button collapsed",
                   type: "button",
                   "data-bs-toggle": "collapse",
                   "data-bs-target": "#flush-collapseTwo",
@@ -5837,11 +5841,11 @@ function ChatApp(_ref) {
                 })
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
                 id: "flush-collapseTwo",
-                "class": "accordion-collapse collapse",
+                className: "accordion-collapse collapse",
                 "aria-labelledby": "flush-headingTwo",
                 "data-bs-parent": "#accordionFlushExample",
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
-                  "class": "accordion-body",
+                  className: "accordion-body",
                   children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h4", {
                     className: "text-center",
                     children: "Messages you have sended"
@@ -7187,7 +7191,7 @@ var Create = function Create(_ref) {
             children: "Description: "
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
             name: "description",
-            "class": "form-control",
+            className: "form-control",
             type: "text",
             placeholder: "Write the description...",
             onChange: handleInputChange
@@ -7632,14 +7636,14 @@ var Posts = function Posts(_ref) {
         children: "There are no posts to show"
       }) : posts.map(function (element, index) {
         return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
-          "class": "mt-2 card mx-auto",
+          className: "mt-2 card mx-auto",
           style: {
             width: "350px"
           },
           children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_PostImg__WEBPACK_IMPORTED_MODULE_7__["default"], {
             fileId: element.image_id
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
-            "class": "card-body",
+            className: "card-body",
             children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("h4", {
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("strong", {
                 children: "Post created by: "
@@ -7647,12 +7651,12 @@ var Posts = function Posts(_ref) {
                 id: element.author_id
               })]
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("hr", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("h5", {
-              "class": "card-title",
+              className: "card-title",
               children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("strong", {
                 children: element.title
               })
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("p", {
-              "class": "card-text",
+              className: "card-text",
               children: element.description
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_Likes__WEBPACK_IMPORTED_MODULE_6__["default"], {
@@ -7664,7 +7668,7 @@ var Posts = function Posts(_ref) {
                   return showAlertDeletePost(element.id);
                 },
                 children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("i", {
-                  "class": "bi bi-trash-fill"
+                  className: "bi bi-trash-fill"
                 })
               }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("span", {})]
             })]

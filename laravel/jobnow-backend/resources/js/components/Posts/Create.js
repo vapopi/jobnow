@@ -89,7 +89,7 @@ const Create = ({props}) => {
             <label>Description: </label>
             <input
               name='description'
-              class="form-control"
+              className="form-control"
               type="text"
               placeholder="Write the description..."
               onChange={handleInputChange}

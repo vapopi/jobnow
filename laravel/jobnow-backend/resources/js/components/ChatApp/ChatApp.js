@@ -112,6 +112,11 @@ function ChatApp({props}) {
 
         e.preventDefault();
 
+        if(msg.receiver == null || msg.message == null)
+        {
+            return alert("Please fill all the fields")
+        }        
+
         if(!msg.message.trim()) {
 
             return;
@@ -225,15 +230,15 @@ function ChatApp({props}) {
                     </div>
                     <h4 className="mt-5 text-center">Lists of messages</h4>
                     <div className="mt-4" style={{margin:"0 auto"}}>
-                        <div class="accordion accordion-flush" id="accordionFlushExample">
-                        <div class="accordion-item">
-                            <h2 class="accordion-header" id="flush-headingOne">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
+                        <div className="accordion accordion-flush" id="accordionFlushExample">
+                        <div className="accordion-item">
+                            <h2 className="accordion-header" id="flush-headingOne">
+                            <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseOne" aria-expanded="false" aria-controls="flush-collapseOne">
                                 Messages you have received
                             </button>
                             </h2>
-                            <div id="flush-collapseOne" class="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
-                            <div class="accordion-body">
+                            <div id="flush-collapseOne" className="accordion-collapse collapse" aria-labelledby="flush-headingOne" data-bs-parent="#accordionFlushExample">
+                            <div className="accordion-body">
                                 <h4 className="text-center">Messages you have received</h4>
                                 {
                                     <Table hover responsive>
@@ -267,14 +272,14 @@ function ChatApp({props}) {
                             </div>
                             </div>
                         </div>
-                        <div class="accordion-item">
-                            <h2 class="accordion-header" id="flush-headingTwo">
-                            <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
+                        <div className="accordion-item">
+                            <h2 className="accordion-header" id="flush-headingTwo">
+                            <button className="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#flush-collapseTwo" aria-expanded="false" aria-controls="flush-collapseTwo">
                                 Messages you have sended
                             </button>
                             </h2>
-                            <div id="flush-collapseTwo" class="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
-                                <div class="accordion-body">
+                            <div id="flush-collapseTwo" className="accordion-collapse collapse" aria-labelledby="flush-headingTwo" data-bs-parent="#accordionFlushExample">
+                                <div className="accordion-body">
                                     <h4 className='text-center'>Messages you have sended</h4>
                                     {
                                         <Table hover responsive>

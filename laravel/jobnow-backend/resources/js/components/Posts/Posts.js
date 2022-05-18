@@ -77,17 +77,17 @@ const Posts = ({props}) => {
             posts.map((element, index) => {
 
               return (
-                <div key={index} class="mt-2 card mx-auto" style={{width: "350px"}}>
+                <div key={index} className="mt-2 card mx-auto" style={{width: "350px"}}>
                   <PostImg fileId = {element.image_id}/>
-                  <div class="card-body">
+                  <div className="card-body">
                     <h4><strong>Post created by: </strong><User id={element.author_id}/></h4>
                     <hr/>
-                    <h5 class="card-title"><strong>{element.title}</strong></h5>
-                    <p class="card-text">{element.description}</p>
+                    <h5 className="card-title"><strong>{element.title}</strong></h5>
+                    <p className="card-text">{element.description}</p>
                     <div><Likes idPost={element.id} idUser={props.userid}/>
                       {
                         element.author_id == props.userid ? (
-                          <button className='ml-1 float-end btn-customDark color btn btn-primary' onClick={() => showAlertDeletePost(element.id)}><i class="bi bi-trash-fill"></i></button>
+                          <button className='ml-1 float-end btn-customDark color btn btn-primary' onClick={() => showAlertDeletePost(element.id)}><i className="bi bi-trash-fill"></i></button>
                         ) : (
                           <span></span>
                         )
