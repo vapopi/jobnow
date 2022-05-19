@@ -7,7 +7,6 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
     <title>{{ config('app.name', 'jobnow') }}</title>
 
     <!-- Scripts -->
@@ -22,6 +21,7 @@
     <link href="{{ asset('css/general.css') }}" rel="stylesheet">
     <link href="{{ asset('css/translator.css') }}" rel="stylesheet">
     <link rel="icon" href="{{ asset('images/favicon.ico') }}">
+    
     <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">

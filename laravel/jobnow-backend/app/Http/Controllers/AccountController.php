@@ -142,6 +142,7 @@ class AccountController extends Controller
         $follows = Follower::where('profile_id', $account->id)->count();
         $validate = Follower::where('profile_id', $account->id)->where('follower_id', Auth::user()->id)->first();
         $posts = Post::where('author_id', $account->id)->get();
+        $companies = Company::where('author_id', $account->id)->get();
         $files = File::all();
 
         return view('accounts.show',  [
@@ -152,6 +153,7 @@ class AccountController extends Controller
             "follows" => $follows,
             "posts" => $posts,
             "files" => $files,
+            "companies" => $companies,
         ]);
     }
 
