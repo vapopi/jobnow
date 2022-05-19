@@ -6430,6 +6430,10 @@ function Create(_ref) {
   }();
 
   var postOffer = function postOffer() {
+    if (offer.title == null || offer.description == null || offer.company_id == "Select option" || offer.professional_area_id == "Select option" || offer.company_id == null || offer.professional_area_id == null) {
+      return alert("Please fill all the fields");
+    }
+
     axios__WEBPACK_IMPORTED_MODULE_3___default().post(apiOffers, {
       title: offer.title.toLowerCase(),
       description: offer.description.toLowerCase(),
@@ -6826,6 +6830,10 @@ function Offers(_ref) {
   }();
 
   var postApply = function postApply() {
+    if (curriculum.length == 0 || offer.offer_id == null) {
+      return alert("Please fill all the fields");
+    }
+
     var formData = new FormData();
     formData.append("curriculum", curriculum);
     formData.append("offer_id", offer.offer_id);

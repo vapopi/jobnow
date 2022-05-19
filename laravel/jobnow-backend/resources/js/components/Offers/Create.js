@@ -38,6 +38,10 @@ function Create({props}) {
 
     const postOffer = () => {
 
+        if(offer.title == null || offer.description == null || offer.company_id == "Select option" || offer.professional_area_id == "Select option" || offer.company_id == null || offer.professional_area_id == null) {
+            return alert("Please fill all the fields")
+        }
+
         axios.post(apiOffers, {
             title: offer.title.toLowerCase(),
             description: offer.description.toLowerCase(),
