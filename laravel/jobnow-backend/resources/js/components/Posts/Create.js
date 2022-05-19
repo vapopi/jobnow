@@ -26,7 +26,7 @@ const Create = ({props}) => {
   //FUNCION QUE CREA UN POST EN LA BBDD
   const createPost = () => {
 
-    if(post.title == null || post.description == null || image == null)
+    if(post.title == null || post.description == null || post.title.length == 0 || post.description.length == 0 || image == null)
     {
       return alert("Please fill all the fields")
     }
@@ -53,7 +53,7 @@ const Create = ({props}) => {
 
     }).catch(error => {
 
-      alert(error.response.data);
+      alert("Error on uploading the image. Remember: The file size max allowed is 2MB and the file extension just can be JPG or JPEG!");
 
     });
 
@@ -77,7 +77,7 @@ const Create = ({props}) => {
             <input
               name="title" 
               type="text" 
-              class="form-control"
+              className="form-control"
               placeholder="Write the title..."
               onChange={handleInputChange}
             />

@@ -35,6 +35,9 @@
                             <li class="mb-3">
                                 <i class="bi bi-check"></i> You can use a gif in your companies logos
                             </li>
+                            <li class="mb-3">
+                                <i class="bi bi-check"></i> You can use gifs in your posts
+                            </li>
                         </ul>
                         @if(Auth::user()->premium == 0)
                         <a href="{{ route('premium.create') }}" class="w-50 btn btn-primary btn-block p-2 shadow rounded-pill">Buy now</a>

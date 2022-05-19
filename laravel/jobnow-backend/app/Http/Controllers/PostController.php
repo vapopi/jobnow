@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Post;
+use App\Models\User;
 use App\Models\File;
 use App\Models\Like;
 use Illuminate\Support\Facades\Storage;
@@ -35,7 +36,7 @@ class PostController extends Controller
             'title' => 'required|max:20',
             'description' => 'required|max:255',
             'author_id' => 'required',
-            'image_id' => 'required|mimes:jpg,jpeg'
+            'image_id' => 'required|mimes:jpg,jpeg,gif|max:2048'
         ]);
 
         $input = $request->all();
@@ -45,6 +46,13 @@ class PostController extends Controller
         $fileSize = $upload->getSize();
         $fileExtension = $upload->getClientOriginalExtension();
         $uploadName = time() . '_' . $fileName;
+
+        $user = User::where("id", "=", $request['author_id'])->first();
+
+        if($fileExtension == "gif" && $user->premium == 0)
+        {
+            return \response("You cannot post gifs without premium.");
+        }
 
         $filePath = $upload->storeAs(
             'uploads',

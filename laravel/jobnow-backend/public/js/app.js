@@ -7121,7 +7121,7 @@ var Create = function Create(_ref) {
 
 
   var createPost = function createPost() {
-    if (post.title == null || post.description == null || image == null) {
+    if (post.title == null || post.description == null || post.title.length == 0 || post.description.length == 0 || image == null) {
       return alert("Please fill all the fields");
     }
 
@@ -7140,7 +7140,7 @@ var Create = function Create(_ref) {
     }).then(function (response) {
       alert(response.data);
     })["catch"](function (error) {
-      alert(error.response.data);
+      alert("Error on uploading the image. Remember: The file size max allowed is 2MB and the file extension just can be JPG or JPEG!");
     });
   };
 
@@ -7190,7 +7190,7 @@ var Create = function Create(_ref) {
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
             name: "title",
             type: "text",
-            "class": "form-control",
+            className: "form-control",
             placeholder: "Write the title...",
             onChange: handleInputChange
           })]
