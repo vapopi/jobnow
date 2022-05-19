@@ -112,15 +112,10 @@ function ChatApp({props}) {
 
         e.preventDefault();
 
-        if(msg.receiver == null || msg.message == null)
+        if(msg.receiver == null || msg.message == null || msg.receiver == 0 || msg.message.length == 0)
         {
-            return alert("Please fill all the fields")
+            return alert("Please fill all the fields");
         }        
-
-        if(!msg.message.trim()) {
-
-            return;
-        }
 
         axios.post(urlMessages, {
             
