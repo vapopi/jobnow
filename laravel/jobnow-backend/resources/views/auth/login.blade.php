@@ -15,10 +15,12 @@
 	<link rel="icon" href="{{ asset('images/favicon.ico') }}">
 	<script src="{{ asset('js/app.js') }}" defer></script>
 	<script defer type="text/javascript">
+    var duplicate_google_translate_counter = 0;
 		function loadGoogleTranslate() {
-			new google.translate.TranslateElement({
-				pageLanguage: 'en'
-			}, 'google_translate_element');
+			if (duplicate_google_translate_counter == 0) {
+				new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+			}
+			duplicate_google_translate_counter++;
 		}
 	</script>
 </head>

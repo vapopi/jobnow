@@ -26,11 +26,13 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
     <script defer type="text/javascript">
-		function loadGoogleTranslate() {
-			new google.translate.TranslateElement({
-				pageLanguage: 'en'
-			}, 'google_translate_element');
-		}
+        var duplicate_google_translate_counter = 0;
+        function loadGoogleTranslate() {
+            if (duplicate_google_translate_counter == 0) {
+                new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+            }
+            duplicate_google_translate_counter++;
+        }
 	</script>
 </head>
 
