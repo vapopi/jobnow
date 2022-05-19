@@ -6430,7 +6430,7 @@ function Create(_ref) {
   }();
 
   var postOffer = function postOffer() {
-    if (offer.title == null || offer.description == null || offer.company_id == "Select option" || offer.professional_area_id == "Select option" || offer.company_id == null || offer.professional_area_id == null) {
+    if (offer.title.length == 0 || offer.description.length == 0 || offer.title == null || offer.description == null || offer.company_id == "Select option" || offer.professional_area_id == "Select option" || offer.company_id == null || offer.professional_area_id == null) {
       return alert("Please fill all the fields");
     }
 
