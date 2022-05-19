@@ -5656,12 +5656,8 @@ function ChatApp(_ref) {
   var createMessage = function createMessage(e) {
     e.preventDefault();
 
-    if (msg.receiver == null || msg.message == null) {
+    if (msg.receiver == null || msg.message == null || msg.receiver == 0 || msg.message.length == 0) {
       return alert("Please fill all the fields");
-    }
-
-    if (!msg.message.trim()) {
-      return;
     }
 
     axios__WEBPACK_IMPORTED_MODULE_3___default().post(urlMessages, {
