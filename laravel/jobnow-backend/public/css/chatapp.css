@@ -1,0 +1,36 @@
+.allChats{
+    background-color: #fff !important;
+    padding: 4%;
+    border-radius: 10px 10px 10px 10px !important;
+}
+
+.btn-delete{
+    border-color: #323232 !important;
+    color: white !important;
+    background: #323232 !important;
+}
+
+
+.btn-delete:hover{
+    border-color: #323232 !important;
+    color: white !important;
+    background: #3b3b3b !important;
+}
+
+.btn-edit{
+    border-color: #6356e5 !important;
+    color: white !important;
+    background: #6356e5 !important;
+}
+
+.btn-edit:hover{
+    border-color: #6356e5 !important;
+    color: white !important;
+    background: #786ee4 !important;
+}
+
+.usersDropDown{
+    border-color: #8c82ec !important;
+    color: white !important;
+    background: #8c82ec !important;
+}   

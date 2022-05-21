@@ -35,12 +35,15 @@
                             <li class="mb-3">
                                 <i class="bi bi-check"></i> You can use a gif in your companies logos
                             </li>
+                            <li class="mb-3">
+                                <i class="bi bi-check"></i> You can use gifs in your posts
+                            </li>
                         </ul>
                         @if(Auth::user()->premium == 0)
-                        <a href="{{ route('premium.create') }}" class="w-50 btn btn-primary btn-block p-2 shadow rounded-pill">Buy now</a>
+                        <a href="{{ route('premium.create') }}" class="w-50 mx-auto btn btn-primary btn-block p-2 shadow rounded-pill">Buy now</a>
                         @else
                         <p class="text-danger">You are already a premium user!</p>
-                        <a href="#" class="btn btn-primary btn-block p-2 shadow rounded-pill">Buy now</a>
+                        <a href="#" style="background-color: #323232 !important; border-color: #323232 !important;" class="mx-auto btn btn-primary btn-block p-2 shadow rounded-pill">Buy now</a>
                         @endif
                     </div>
                 </div>

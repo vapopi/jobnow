@@ -99,7 +99,6 @@ const Likes = ({idPost, idUser}) => {
             <button className='btn btn-primary' id="btLike" onClick={() => changeLike(idPost, idUser)}><i className="bi bi-hand-thumbs-up-fill"></i></button>
 
         ) : (
-
             <button className='btn btn-secondary' id="btLike" onClick={() => changeLike(idPost, idUser)}><i className="bi bi-hand-thumbs-up-fill"></i></button>
         )
     }

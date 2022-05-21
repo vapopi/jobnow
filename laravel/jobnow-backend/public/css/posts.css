@@ -1,0 +1,36 @@
+.btn-custom{
+    border-color: #6356e5;
+    color: white;
+    background: #6356e5 !important;
+}
+
+.btn-custom:hover{
+    border-color: #6356e5;
+    color: white;
+    background: #4f46b9 !important;
+}
+
+.btn-customDark{
+    border-color: #323232;
+    color: white;
+    background: #323232 !important;
+}
+
+.btn-customDark:hover{
+    border-color: #323232;
+    color: white;
+    background: #464646 !important;
+}
+
+.formCreate{
+    border-radius: 15px 15px 15px 15px !important;
+    background-color: white !important;
+    padding: 2%;
+}
+
+@media(min-width:1200px){
+    .card{
+        width: 40% !important;
+    }
+
+}

@@ -39,7 +39,7 @@ class PremiumController extends Controller
         $this->validate($request, [
             'card_number' => 'required|regex:/\b\d{13,16}\b/',
             'expiration_date' => 'required|date',
-            'cvv' => 'required|max:3'
+            'cvv' => 'required|regex:/[0-9]{3}/|max:3'
         ]);
 
         $user = Auth::user();

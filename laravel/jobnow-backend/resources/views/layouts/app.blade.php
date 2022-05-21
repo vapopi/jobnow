@@ -7,7 +7,6 @@
 
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
-
     <title>{{ config('app.name', 'jobnow') }}</title>
 
     <!-- Scripts -->
@@ -22,15 +21,18 @@
     <link href="{{ asset('css/general.css') }}" rel="stylesheet">
     <link href="{{ asset('css/translator.css') }}" rel="stylesheet">
     <link rel="icon" href="{{ asset('images/favicon.ico') }}">
+    
     <!-- Bootstrap CSS CDN -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.0/css/bootstrap.min.css" integrity="sha384-9gVQ4dYFwwWSjIDZnLEWnxCjeSWFphJiwGPXr1jddIhOegiu1FwO5qRGvFXOdJZ4" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
     <script defer type="text/javascript">
-		function loadGoogleTranslate() {
-			new google.translate.TranslateElement({
-				pageLanguage: 'en'
-			}, 'google_translate_element');
-		}
+        var duplicate_google_translate_counter = 0;
+        function loadGoogleTranslate() {
+            if (duplicate_google_translate_counter == 0) {
+                new google.translate.TranslateElement({pageLanguage: 'en'}, 'google_translate_element');
+            }
+            duplicate_google_translate_counter++;
+        }
 	</script>
 </head>
 
@@ -79,14 +81,37 @@
                         <a class="nav no-special" href="{{route('chatapp.index')}}" role="button"><i class="bi bi-chat-fill"></i> CHATAPP</a>
                     </li>
                     <li>
-                        <a class="nav no-special" href="{{route('mynetwork.index')}}" role="button"><i class="bi bi-wifi"></i> MY NETWORK</a><!-- React -->
-                    </li>
-                    @else
-                    <hr>
-                    <li>
-                        <a class="nav no-special" href="{{route('security.index')}}" role="button"><i class="bi bi-shield-fill"></i> SECURITY</a><!-- React -->
+                        <a class="nav no-special" href="{{route('mynetwork.index')}}" role="button"><i class="bi bi-wifi"></i> MY NETWORK</a>
                     </li>
                     @endif
+
+                    @if(Auth::user()->role_id == 1)
+                    <hr>
+                    <li>
+                        <a class="nav no-special" href="{{route('security.index')}}" role="button"><i class="bi bi-shield-fill"></i> SECURITY</a>
+                    </li>
+                    @endif
+
+                    @if(Auth::user()->role_id == 3)
+                    <hr>
+                    <li>
+                        <a class="nav no-special" href="{{route('security.index')}}" role="button"><i class="bi bi-shield-fill"></i> SECURITY</a>
+                    </li>
+                    <li>
+                        <a class="nav no-special" href="{{route('chatapp.index')}}" role="button"><i class="bi bi-chat-fill"></i> CHATAPP</a>
+                    </li>
+                    @endif
+
+                    @if(Auth::user()->role_id == 2)
+                    <hr>
+                    <li>
+                        <a class="nav no-special" href="{{route('security.index')}}" role="button"><i class="bi bi-shield-fill"></i> SECURITY</a>
+                    </li>
+                    <li>
+                        <a class="nav no-special" href="{{route('tickets.index')}}" role="button"><i class="bi bi-ticket-detailed-fill"></i> TICKETS</a>
+                    </li>
+                    @endif
+
                 </ul>
                 <hr>
                 <ul class="name ms-auto">

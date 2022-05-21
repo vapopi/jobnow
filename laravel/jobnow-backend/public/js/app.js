@@ -5656,8 +5656,8 @@ function ChatApp(_ref) {
   var createMessage = function createMessage(e) {
     e.preventDefault();
 
-    if (!msg.message.trim()) {
-      return;
+    if (msg.receiver == null || msg.message == null || msg.receiver == 0 || msg.message.length == 0) {
+      return alert("Please fill all the fields");
     }
 
     axios__WEBPACK_IMPORTED_MODULE_3___default().post(urlMessages, {
@@ -5699,113 +5699,16 @@ function ChatApp(_ref) {
       className: "container mt-5",
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h1", {
         className: "text-center",
-        children: "CHATAPP"
-      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("hr", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
-        className: "row",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("strong", {
+          children: "CHATAPP"
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("hr", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+        className: "allChats shadow row",
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
-          className: "col-8",
           style: {
             margin: "0 auto"
           },
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h2", {
-            className: "text-center",
-            children: "Messages you have sended"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
-            striped: true,
-            bordered: true,
-            hover: true,
-            responsive: true,
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("thead", {
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("tr", {
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("th", {
-                  children: "Id"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("th", {
-                  children: "Message"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("th", {
-                  children: "Receiver"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("th", {
-                  children: "Opciones"
-                })]
-              })
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("tbody", {
-              children: messages.map(function (element, index) {
-                if (element.author_id == props.userid) {
-                  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("tr", {
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("td", {
-                      children: element.id
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("td", {
-                      children: element.message
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("td", {
-                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_commons_User__WEBPACK_IMPORTED_MODULE_4__["default"], {
-                        id: element.receiver_id
-                      })
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("td", {
-                      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
-                        variant: "danger",
-                        onClick: function onClick() {
-                          return showAlertDeleteMessage(element.id);
-                        },
-                        children: "Delete Message"
-                      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
-                        variant: "warning",
-                        onClick: function onClick() {
-                          return edit(element);
-                        },
-                        children: "Edit Message"
-                      })]
-                    })]
-                  }, index);
-                }
-              })
-            })]
-          })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
-          className: "col-8",
-          style: {
-            margin: "0 auto"
-          },
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h2", {
-            className: "text-center",
-            children: "Messages you have received"
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
-            striped: true,
-            bordered: true,
-            hover: true,
-            responsive: true,
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("thead", {
-              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("tr", {
-                children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("th", {
-                  children: "Id"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("th", {
-                  children: "Mensaje"
-                }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("th", {
-                  children: "Author"
-                })]
-              })
-            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("tbody", {
-              children: messages.map(function (element, index) {
-                if (element.receiver_id == props.userid) {
-                  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("tr", {
-                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("td", {
-                      children: element.id
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("td", {
-                      children: element.message
-                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("td", {
-                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_commons_User__WEBPACK_IMPORTED_MODULE_4__["default"], {
-                        id: element.author_id
-                      })
-                    })]
-                  }, index);
-                }
-              })
-            })]
-          })]
-        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
-          className: "col-8",
-          style: {
-            margin: "0 auto"
-          },
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h2", {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h4", {
             className: "text-center",
             children: editionMode ? 'Edit Message' : 'Create Message'
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("form", {
@@ -5814,11 +5717,12 @@ function ChatApp(_ref) {
               className: "text-danger",
               children: error
             }) : null, /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
-              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h4", {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("p", {
                 children: "To which user do you want to send the message:"
               }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("select", {
                 name: "receiver",
                 onChange: handleInputChange,
+                className: "usersDropDown w-25 btn btn-secondary btn-block",
                 value: msg.receiver,
                 children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
                   value: 0,
@@ -5834,21 +5738,166 @@ function ChatApp(_ref) {
               children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("input", {
                 type: "text",
                 name: "message",
-                className: "form-control mb-2",
+                className: "mt-3 form-control mb-2",
                 placeholder: "Put your message here",
                 onChange: handleInputChange,
                 value: msg.message
               }), editionMode ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("button", {
                 className: "btn btn-dark btn-block",
                 type: "submit",
-                children: "Edit Message"
+                children: "Edit"
               }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("button", {
                 className: "btn btn-dark btn-block",
                 type: "submit",
-                children: "Create Message"
+                children: "Send"
               })]
             })]
           })]
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h4", {
+          className: "mt-5 text-center",
+          children: "Lists of messages"
+        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+          className: "mt-4",
+          style: {
+            margin: "0 auto"
+          },
+          children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+            className: "accordion accordion-flush",
+            id: "accordionFlushExample",
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+              className: "accordion-item",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h2", {
+                className: "accordion-header",
+                id: "flush-headingOne",
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("button", {
+                  className: "accordion-button collapsed",
+                  type: "button",
+                  "data-bs-toggle": "collapse",
+                  "data-bs-target": "#flush-collapseOne",
+                  "aria-expanded": "false",
+                  "aria-controls": "flush-collapseOne",
+                  children: "Messages you have received"
+                })
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+                id: "flush-collapseOne",
+                className: "accordion-collapse collapse",
+                "aria-labelledby": "flush-headingOne",
+                "data-bs-parent": "#accordionFlushExample",
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+                  className: "accordion-body",
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h4", {
+                    className: "text-center",
+                    children: "Messages you have received"
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
+                    hover: true,
+                    responsive: true,
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("thead", {
+                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("tr", {
+                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("th", {
+                          children: "Id"
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("th", {
+                          children: "Mensaje"
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("th", {
+                          children: "Author"
+                        })]
+                      })
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("tbody", {
+                      children: messages.map(function (element, index) {
+                        if (element.receiver_id == props.userid) {
+                          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("tr", {
+                            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("td", {
+                              children: element.id
+                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("td", {
+                              children: element.message
+                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("td", {
+                              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_commons_User__WEBPACK_IMPORTED_MODULE_4__["default"], {
+                                id: element.author_id
+                              })
+                            })]
+                          }, index);
+                        }
+                      })
+                    })]
+                  })]
+                })
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+              className: "accordion-item",
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h2", {
+                className: "accordion-header",
+                id: "flush-headingTwo",
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("button", {
+                  className: "accordion-button collapsed",
+                  type: "button",
+                  "data-bs-toggle": "collapse",
+                  "data-bs-target": "#flush-collapseTwo",
+                  "aria-expanded": "false",
+                  "aria-controls": "flush-collapseTwo",
+                  children: "Messages you have sended"
+                })
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("div", {
+                id: "flush-collapseTwo",
+                className: "accordion-collapse collapse",
+                "aria-labelledby": "flush-headingTwo",
+                "data-bs-parent": "#accordionFlushExample",
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("div", {
+                  className: "accordion-body",
+                  children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("h4", {
+                    className: "text-center",
+                    children: "Messages you have sended"
+                  }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)(react_bootstrap__WEBPACK_IMPORTED_MODULE_7__["default"], {
+                    hover: true,
+                    responsive: true,
+                    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("thead", {
+                      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("tr", {
+                        children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("th", {
+                          children: "Id"
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("th", {
+                          children: "Message"
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("th", {
+                          children: "Receiver"
+                        }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("th", {
+                          children: "Options"
+                        })]
+                      })
+                    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("tbody", {
+                      children: messages.map(function (element, index) {
+                        if (element.author_id == props.userid) {
+                          return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("tr", {
+                            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("td", {
+                              children: element.id
+                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("td", {
+                              children: element.message
+                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("td", {
+                              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(_commons_User__WEBPACK_IMPORTED_MODULE_4__["default"], {
+                                id: element.receiver_id
+                              })
+                            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsxs)("td", {
+                              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
+                                className: "btn-delete",
+                                variant: "danger",
+                                onClick: function onClick() {
+                                  return showAlertDeleteMessage(element.id);
+                                },
+                                children: "Delete Message"
+                              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)(react_bootstrap__WEBPACK_IMPORTED_MODULE_8__["default"], {
+                                className: "btn-edit ml-2",
+                                variant: "warning",
+                                onClick: function onClick() {
+                                  return edit(element);
+                                },
+                                children: "Edit Message"
+                              })]
+                            })]
+                          }, index);
+                        }
+                      })
+                    })]
+                  })]
+                })
+              })]
+            })]
+          })
         })]
       })]
     })
@@ -6377,6 +6426,10 @@ function Create(_ref) {
   }();
 
   var postOffer = function postOffer() {
+    if (offer.title.length == 0 || offer.description.length == 0 || offer.title == null || offer.description == null || offer.company_id == "Select option" || offer.professional_area_id == "Select option" || offer.company_id == null || offer.professional_area_id == null) {
+      return alert("Please fill all the fields");
+    }
+
     axios__WEBPACK_IMPORTED_MODULE_3___default().post(apiOffers, {
       title: offer.title.toLowerCase(),
       description: offer.description.toLowerCase(),
@@ -6773,6 +6826,10 @@ function Offers(_ref) {
   }();
 
   var postApply = function postApply() {
+    if (curriculum.length == 0 || offer.offer_id == null) {
+      return alert("Please fill all the fields");
+    }
+
     var formData = new FormData();
     formData.append("curriculum", curriculum);
     formData.append("offer_id", offer.offer_id);
@@ -7060,6 +7117,10 @@ var Create = function Create(_ref) {
 
 
   var createPost = function createPost() {
+    if (post.title == null || post.description == null || post.title.length == 0 || post.description.length == 0 || image == null) {
+      return alert("Please fill all the fields");
+    }
+
     var formData = new FormData();
     formData.append("title", post.title);
     formData.append("description", post.description);
@@ -7075,7 +7136,7 @@ var Create = function Create(_ref) {
     }).then(function (response) {
       alert(response.data);
     })["catch"](function (error) {
-      alert(error.response.data);
+      alert("Error on uploading the image. Remember: The file size max allowed is 2MB and the file extension just can be JPG or JPEG!");
     });
   };
 
@@ -7091,26 +7152,32 @@ var Create = function Create(_ref) {
         textAlign: "center"
       },
       children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("a", {
-        className: "color btn btn-primary",
+        className: "btn-custom color btn btn-primary",
         href: "/posts/create",
         role: "button",
         children: "Create Post"
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
         children: " "
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("a", {
-        className: "color btn btn-primary",
+        className: "btn-custom color btn btn-primary",
         href: "/posts",
         role: "button",
         children: "View Posts"
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("span", {
         children: " "
       }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("hr", {})]
-    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("div", {
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
       style: {
         margin: "0 auto"
       },
-      className: "w-50",
-      children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("form", {
+      className: "shadow formCreate w-75",
+      children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("h4", {
+        className: "mt-5 text-center",
+        children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("strong", {
+          children: "Create Post"
+        })
+      }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("form", {
+        className: "w-75 mx-auto",
         onSubmit: createPost,
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
           className: "form-group",
@@ -7119,6 +7186,8 @@ var Create = function Create(_ref) {
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
             name: "title",
             type: "text",
+            className: "form-control",
+            placeholder: "Write the title...",
             onChange: handleInputChange
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
@@ -7126,7 +7195,9 @@ var Create = function Create(_ref) {
             children: "Description: "
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("input", {
             name: "description",
+            className: "form-control",
             type: "text",
+            placeholder: "Write the description...",
             onChange: handleInputChange
           })]
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("br", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsxs)("div", {
@@ -7145,11 +7216,11 @@ var Create = function Create(_ref) {
           onClick: function onClick() {
             return createPost();
           },
-          className: "color btn btn-primary",
+          className: "mb-5 btn-custom color btn btn-primary",
           type: "button",
           children: "Create Post"
         })]
-      })
+      })]
     })]
   });
 };
@@ -7409,8 +7480,6 @@ var PostImg = function PostImg(_ref) {
     getImageById();
   }, []);
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_3__.jsx)("img", {
-    width: "612",
-    height: "400",
     src: 'storage/' + image.filename
   });
 };
@@ -7547,41 +7616,49 @@ var Posts = function Posts(_ref) {
           textAlign: 'center'
         },
         children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("a", {
-          className: "color btn btn-primary",
+          className: "btn-custom color btn btn-primary",
           href: "/posts/create",
           role: "button",
           children: "Create Post"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("span", {
           children: " "
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("a", {
-          className: "color btn btn-primary",
+          className: "btn-custom color btn btn-primary",
           href: "/posts",
           role: "button",
           children: "View Posts"
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("span", {
           children: " "
         }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("hr", {})]
-      }), posts.length === 0 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("p", {
-        children: "There aren't any posts"
+      }), posts.length === 0 ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("li", {
+        className: "list-group-item",
+        style: {
+          textAlign: "center",
+          color: "white",
+          backgroundColor: "#8c82ec"
+        },
+        children: "There are no posts to show"
       }) : posts.map(function (element, index) {
         return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
-          className: "card w-50",
+          className: "mt-2 card mx-auto",
           style: {
-            margin: "0 auto"
+            width: "350px"
           },
-          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("h5", {
-            children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("p", {
-              children: ["Post created by: ", /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_commons_User__WEBPACK_IMPORTED_MODULE_5__["default"], {
-                id: element.author_id
-              })]
-            })
-          }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_PostImg__WEBPACK_IMPORTED_MODULE_7__["default"], {
+          children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_PostImg__WEBPACK_IMPORTED_MODULE_7__["default"], {
             fileId: element.image_id
           }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("div", {
             className: "card-body",
-            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("h5", {
+            children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsxs)("h4", {
+              children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("strong", {
+                children: "Post created by: "
+              }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)(_commons_User__WEBPACK_IMPORTED_MODULE_5__["default"], {
+                id: element.author_id
+              })]
+            }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("hr", {}), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("h5", {
               className: "card-title",
-              children: element.title
+              children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("strong", {
+                children: element.title
+              })
             }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("p", {
               className: "card-text",
               children: element.description
@@ -7590,11 +7667,13 @@ var Posts = function Posts(_ref) {
                 idPost: element.id,
                 idUser: props.userid
               }), element.author_id == props.userid ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("button", {
-                className: "color btn btn-primary",
+                className: "ml-1 float-end btn-customDark color btn btn-primary",
                 onClick: function onClick() {
                   return showAlertDeletePost(element.id);
                 },
-                children: "Delete Post"
+                children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("i", {
+                  className: "bi bi-trash-fill"
+                })
               }) : /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_8__.jsx)("span", {})]
             })]
           })]

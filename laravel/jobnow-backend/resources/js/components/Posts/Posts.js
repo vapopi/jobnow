@@ -60,51 +60,45 @@ const Posts = ({props}) => {
       <div style={{overflow: "auto"}}>
         <h1 className='text-center'><strong>POSTS</strong></h1>
         <div className='container mt-5' style={{textAlign: 'center'}}>
-          <a className='color btn btn-primary' href='/posts/create' role="button">Create Post</a><span> </span>
-          <a className='color btn btn-primary' href='/posts' role="button">View Posts</a><span> </span>
+          <a className='btn-custom color btn btn-primary' href='/posts/create' role="button">Create Post</a><span> </span>
+          <a className='btn-custom color btn btn-primary' href='/posts' role="button">View Posts</a><span> </span>
           <hr/>
         </div>
         {
           posts.length === 0 ? (
-            
-            <p>There aren't any posts</p>
+            <li 
+              className="list-group-item" 
+              style={{textAlign: "center", color: "white", backgroundColor: "#8c82ec"}}
+              >There are no posts to show
+            </li> 
 
           ) : (
             
             posts.map((element, index) => {
 
-              return <div key={index} className="card w-50" style={{margin: "0 auto"}}>
-    
-                <h5><p>Post created by: <User id={element.author_id}/></p></h5>
-                <PostImg fileId = {element.image_id}/>
-    
-                <div className='card-body'>
-    
-                  <h5 className='card-title'>{element.title}</h5>
-                  <p className='card-text'>{element.description}</p>
-                  <div><Likes idPost = {element.id} idUser = {props.userid}/>
-                  
-                  {
-                    element.author_id == props.userid ? (
-    
-                      <button className='color btn btn-primary' onClick={() => showAlertDeletePost(element.id)}>Delete Post</button>
-    
-                    ) : (
-                      
-                      <span></span>
-                    )
-                  }
-                  
+              return (
+                <div key={index} className="mt-2 card mx-auto" style={{width: "350px"}}>
+                  <PostImg fileId = {element.image_id}/>
+                  <div className="card-body">
+                    <h4><strong>Post created by: </strong><User id={element.author_id}/></h4>
+                    <hr/>
+                    <h5 className="card-title"><strong>{element.title}</strong></h5>
+                    <p className="card-text">{element.description}</p>
+                    <div><Likes idPost={element.id} idUser={props.userid}/>
+                      {
+                        element.author_id == props.userid ? (
+                          <button className='ml-1 float-end btn-customDark color btn btn-primary' onClick={() => showAlertDeletePost(element.id)}><i className="bi bi-trash-fill"></i></button>
+                        ) : (
+                          <span></span>
+                        )
+                      }
+                    </div>
                   </div>
-    
                 </div>
-    
-              </div>
-    
+              )
             })
           )
         }
-
       </div>
     </>
   )
