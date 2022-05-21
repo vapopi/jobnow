@@ -22,12 +22,12 @@
 									@foreach($users as $user)
 										@if($aUser->user_id == $user->id)
 											<tr>
-												<td>{{$user->name}}</td>
+												<td>{{$user->email}}</td>
 												<td>
 													@foreach($files as $file)
 														@if($aUser->curriculum == $file->id)
 															@if(str_ends_with($file->filename, ".pdf"))
-																<a role="button" class="w-100 btn btn-primary" download="{{'CV ' . $user->name.' '.$user->surnames}}" href="{{ asset("storage/{$file->filename}") }}">
+																<a role="button" style="background-color: #6356e5 !important;" class="w-100 btn btn-primary" download="{{'CV ' . $user->name.' '.$user->surnames}}" href="{{ asset("storage/{$file->filename}") }}">
 																	<i class="bi bi-download"></i> Download CV
 																</a>
 															@endif
