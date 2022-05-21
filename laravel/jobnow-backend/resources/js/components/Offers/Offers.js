@@ -113,6 +113,7 @@ function Offers({ props }) {
                         <div className="float-start container">
                             <div className=" listOffers">
                                 <h5 className='text-left'><strong>Apply to offer</strong></h5>
+                                <span className="text-warning"></span>
                                 <br/>
                                 <div className='row'>
                                     <div style={{ margin: "0 auto" }} className='col-12'>
@@ -149,7 +150,6 @@ function Offers({ props }) {
                                                     <span className="text-center text-info"></span>
                                                 )
                                             }
-                                            <span className="text-warning"></span>
                                             <input
                                                 name="curriculum"
                                                 type="file"
