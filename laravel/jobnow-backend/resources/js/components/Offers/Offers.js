@@ -43,11 +43,6 @@ function Offers({ props }) {
 
     const postApply = () => {
 
-        if(curriculum.length == 0 || offer.offer_id == null)
-        {
-            return alert("Please fill all the fields")
-        }
-
         var formData = new FormData();
         formData.append("curriculum", curriculum);
         formData.append("offer_id", offer.offer_id);
@@ -118,7 +113,6 @@ function Offers({ props }) {
                         <div className="float-start container">
                             <div className=" listOffers">
                                 <h5 className='text-left'><strong>Apply to offer</strong></h5>
-                                <span className="text-warning"></span>
                                 <br/>
                                 <div className='row'>
                                     <div style={{ margin: "0 auto" }} className='col-12'>
@@ -144,17 +138,6 @@ function Offers({ props }) {
                                             </div>
                                             <br/>
                                             <span className="ml-3">Attach your curriculum vitae: </span>
-                                            {
-                                                state != null ? (
-                                                    state.status === 200 ? (
-                                                        <span className="text-center text-success">{state.data}</span>
-                                                    ) : (
-                                                        <span className="text-center text-danger">{state.message}</span>
-                                                    )
-                                                ) : (
-                                                    <span className="text-center text-info"></span>
-                                                )
-                                            }
                                             <input
                                                 name="curriculum"
                                                 type="file"
@@ -171,6 +154,18 @@ function Offers({ props }) {
                             </div>
                         </div>
                     </div>
+                    {
+                        state != null ? (
+                            state.status === 200 ? (
+                                <span className="text-success">{state.data}</span>
+                            ) : (
+                                <span className="text-danger">{state.message}</span>
+                            )
+                        ) : (
+                            <span className="text-info"></span>
+                        )
+                    }
+                    <span className="text-warning"></span>
                     <div className="w-100 float-start listOffers">
                         <br/>
                         <h5 className='ml-2 text-left'><strong>List all offers</strong></h5>
