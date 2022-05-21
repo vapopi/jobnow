@@ -154,18 +154,6 @@ function Offers({ props }) {
                             </div>
                         </div>
                     </div>
-                    {
-                        state != null ? (
-                            state.status === 200 ? (
-                                <span className="text-success">{state.data}</span>
-                            ) : (
-                                <span className="text-danger">{state.message}</span>
-                            )
-                        ) : (
-                            <span className="text-info"></span>
-                        )
-                    }
-                    <span className="text-warning"></span>
                     <div className="w-100 float-start listOffers">
                         <br/>
                         <h5 className='ml-2 text-left'><strong>List all offers</strong></h5>
