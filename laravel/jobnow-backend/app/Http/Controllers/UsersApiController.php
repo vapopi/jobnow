@@ -16,7 +16,7 @@ class UsersApiController extends Controller
     public function index()
     {
         $users = DB::table('users')
-        ->select('id', 'name')
+        ->select('id', 'name', 'email')
         ->get();
 
         return response($users);

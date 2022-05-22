@@ -198,8 +198,7 @@ function ChatApp({props}) {
                                     }
                                     {
                                         users.map((element, index) => (
-
-                                            <option key={index} value={element.id}>{element.name}</option>
+                                            <option key={index} value={element.id}>{element.email}</option>
                                         ))
                                     }
                                 </select>

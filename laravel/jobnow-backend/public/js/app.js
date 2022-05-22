@@ -5730,7 +5730,7 @@ function ChatApp(_ref) {
                 }, 0), users.map(function (element, index) {
                   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_6__.jsx)("option", {
                     value: element.id,
-                    children: element.name
+                    children: element.email
                   }, index);
                 })]
               }, "receivers")]
