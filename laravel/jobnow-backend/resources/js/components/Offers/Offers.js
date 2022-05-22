@@ -43,6 +43,11 @@ function Offers({ props }) {
 
     const postApply = () => {
 
+        if(curriculum.length == 0 || offer.offer_id == null || offer.offer_id == "")
+        {
+            return alert("Please fill all the fields")
+        }
+        
         var formData = new FormData();
         formData.append("curriculum", curriculum);
         formData.append("offer_id", offer.offer_id);

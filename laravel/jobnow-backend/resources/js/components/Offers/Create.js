@@ -12,7 +12,7 @@ function Create({props}) {
 
     const [companies, setCompanies] = useState([]);
     const [areas, setAreas] = useState([]);
-    const [offer, setOffer] = useState({});
+    const [offer, setOffer] = useState({title: "", description: ""});
     const [state, setState] = useState();
 
 

@@ -6361,7 +6361,10 @@ function Create(_ref) {
       areas = _useState4[0],
       setAreas = _useState4[1];
 
-  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)({}),
+  var _useState5 = (0,react__WEBPACK_IMPORTED_MODULE_1__.useState)({
+    title: "",
+    description: ""
+  }),
       _useState6 = _slicedToArray(_useState5, 2),
       offer = _useState6[0],
       setOffer = _useState6[1];
@@ -6818,6 +6821,10 @@ function Offers(_ref) {
   }();
 
   var postApply = function postApply() {
+    if (curriculum.length == 0 || offer.offer_id == null || offer.offer_id == "") {
+      return alert("Please fill all the fields");
+    }
+
     var formData = new FormData();
     formData.append("curriculum", curriculum);
     formData.append("offer_id", offer.offer_id);
