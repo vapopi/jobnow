@@ -56,7 +56,7 @@ class UserController extends Controller
             'surnames' => 'required|max:50',
             'email' => 'required|email|max:255',
             'birth_date' => 'required|date',
-            'phone' => 'required|max:20',
+            'phone' => 'required|regex:/^\+?[1-9][0-9]{7,14}$/|max:20',
             'password' => 'required|min:8',
             'password_confirmation' => 'required|min:8|same:password',
             'avatar_id' => 'required|mimes:gif,jpeg,jpg|max:2048',
@@ -189,7 +189,7 @@ class UserController extends Controller
             'surnames' => 'required|max:50',
             'email' => 'required|email|max:255',
             'birth_date' => 'required|date',
-            'phone' => 'required|max:20',
+            'phone' => 'required|regex:/^\+?[1-9][0-9]{7,14}$/|max:20',
             'avatar_id' => 'mimes:gif,jpeg,jpg|max:2048',
         ]);
 
